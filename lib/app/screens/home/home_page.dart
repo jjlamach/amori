@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: const Color.fromRGBO(131, 165, 255, 1),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
             Strings.appMoto,
@@ -29,15 +29,6 @@ class HomePage extends StatelessWidget {
             buttonColor: Color.fromRGBO(172, 196, 254, 1),
             textColor: Colors.white,
           ),
-          const SizedBox(height: 25.0),
-          const AppButton(
-            activityName: Strings.signIn,
-            buttonColor: Colors.transparent,
-            textColor: Colors.white,
-            borderColor: true,
-            fontWeight: FontWeight.w400,
-            fontSize: 18,
-          )
         ],
       ),
     );
