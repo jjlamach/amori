@@ -29,11 +29,18 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(
-            Assets.splashscreen,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            fit: BoxFit.cover,
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [
+                  Color(0xff83a5ff),
+                  Color(0xffffffff),
+                ],
+                stops: [0, 1],
+              ),
+            ),
           ),
         ],
       ),
