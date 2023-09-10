@@ -1,4 +1,5 @@
 import 'package:amori/app/screens/home/home_page.dart';
+import 'package:amori/common/assets.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -29,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Stack(
         children: [
           Image.asset(
-            'lib/assets/splashscreen.jpeg',
+            Assets.splashscreen,
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             fit: BoxFit.cover,
