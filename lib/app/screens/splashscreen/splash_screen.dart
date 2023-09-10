@@ -1,5 +1,4 @@
 import 'package:amori/app/screens/home/home_page.dart';
-import 'package:amori/common/assets.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

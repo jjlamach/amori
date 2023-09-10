@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "229279446684",
+    "project_id": "amori-5d70e",
+    "storage_bucket": "amori-5d70e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229279446684:android:457a6cc9e517d711105f59",
+        "android_client_info": {
+          "package_name": "com.julama.amori"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229279446684-td9s5gomf1g9go2gup5n5tl77h3o0i5o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoRM9VO3y2kjOaXnwEnxoyUhgkZaE3aCw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "229279446684-td9s5gomf1g9go2gup5n5tl77h3o0i5o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
