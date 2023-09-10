@@ -1,4 +1,5 @@
 import 'package:amori/app/screens/splashscreen/splash_screen.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 final kColorScheme = ColorScheme.fromSeed(
@@ -6,7 +7,12 @@ final kColorScheme = ColorScheme.fromSeed(
 );
 
 void main() {
-  runApp(const AmoriApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
+    (_) => {
+      runApp(const AmoriApp()),
+    },
+  );
 }
 
 class AmoriApp extends StatelessWidget {
