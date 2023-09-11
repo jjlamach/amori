@@ -31,10 +31,10 @@
               "client_type": 3
             },
             {
-              "client_id": "229279446684-rr58c39n7egbbto3onvnfujqo8qlo8mg.apps.googleusercontent.com",
+              "client_id": "229279446684-pp2hblm7hehgukk75bhegde63bj7plio.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.julama.amori"
+                "bundle_id": "com.julama"
               }
             }
           ]

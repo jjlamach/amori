@@ -1,4 +1,5 @@
 import 'package:amori/common/dimen.dart';
+import 'package:firebase_ui_oauth_apple/firebase_ui_oauth_apple.dart';
 import 'package:flutter/material.dart';
 
 class AppThemes {
@@ -57,4 +58,8 @@ class AppThemes {
       ),
     ),
   );
+}
+
+class AppleBttn extends AppleSignInButton {
+  AppleBttn({required super.loadingIndicator});
 }
