@@ -44,6 +44,15 @@ class HomePage extends StatelessWidget {
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => SignInScreen(
+                  providers: [
+                    EmailAuthProvider(),
+                    AppleProvider(),
+                  ],
+                  actions: [
+                    AuthStateChangeAction<SignedIn>(
+                      (context, state) {},
+                    ),
+                  ],
                   headerMaxExtent: MediaQuery.of(context).size.height * 0.3,
                   headerBuilder: (context, constraints, shrinkOffset) {
                     return Padding(
@@ -54,10 +63,6 @@ class HomePage extends StatelessWidget {
                       ),
                     );
                   },
-                  providers: [
-                    EmailAuthProvider(),
-                    AppleProvider(),
-                  ],
                 ),
               ),
             ),
