@@ -29,6 +29,13 @@
             {
               "client_id": "229279446684-td9s5gomf1g9go2gup5n5tl77h3o0i5o.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "229279446684-rr58c39n7egbbto3onvnfujqo8qlo8mg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.julama.amori"
+              }
             }
           ]
         }

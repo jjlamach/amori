@@ -9,7 +9,9 @@ class AppButton extends StatelessWidget {
   final bool? borderColor;
   final double? fontSize;
   final FontWeight? fontWeight;
+  final Function onTap;
   const AppButton({
+    required this.onTap,
     required this.activityName,
     required this.buttonColor,
     required this.textColor,
@@ -21,38 +23,14 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 337,
-      height: 46,
-      decoration: BoxDecoration(
-        color: buttonColor,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(Dimen.borderRadiusCircular),
-        ),
-        border: borderColor == true
-            ? Border.all(
-                color: const Color.fromRGBO(172, 196, 254, 1),
-              )
-            : Border.all(
-                color: Colors.transparent,
-              ),
-      ),
-      child: TextButton(
-        style: ButtonStyle(
-          shape: MaterialStatePropertyAll(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(Dimen.borderRadiusCircular),
-            ),
-          ),
-        ),
-        onPressed: () {},
-        child: Text(
-          activityName,
-          style: GoogleFonts.inter(
-            fontSize: fontSize ?? 20,
-            fontWeight: fontWeight ?? FontWeight.w400,
-            color: textColor,
-          ),
+    return TextButton(
+      onPressed: () => onTap(),
+      child: Text(
+        activityName,
+        style: GoogleFonts.inter(
+          fontSize: fontSize ?? 20,
+          fontWeight: fontWeight ?? FontWeight.w400,
+          color: textColor,
         ),
       ),
     );
