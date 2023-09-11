@@ -1,8 +1,6 @@
-import 'package:amori/common/app_button.dart';
 import 'package:amori/common/assets.dart';
 import 'package:amori/common/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_oauth_apple/firebase_ui_oauth_apple.dart';
