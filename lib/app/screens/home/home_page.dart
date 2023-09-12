@@ -1,11 +1,7 @@
-import 'package:amori/common/assets.dart';
-import 'package:amori/common/dimen.dart';
+import 'package:amori/app/screens/signin/sign_in_page.dart';
 import 'package:amori/common/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
-import 'package:firebase_ui_oauth_apple/firebase_ui_oauth_apple.dart';
-import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -42,7 +38,11 @@ class HomePage extends StatelessWidget {
                       Color.fromRGBO(172, 196, 254, 1),
                     ),
                   ),
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const SignInPage(),
+                ),
+              ),
               child: Text(
                 Strings.getStarted,
                 style: GoogleFonts.inter(

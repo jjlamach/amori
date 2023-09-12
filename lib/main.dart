@@ -2,8 +2,6 @@ import 'package:amori/app/screens/splashscreen/splash_screen.dart';
 import 'package:amori/common/app_themes.dart';
 import 'package:amori/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
-import 'package:firebase_ui_oauth_apple/firebase_ui_oauth_apple.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
@@ -16,10 +14,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  FirebaseUIAuth.configureProviders([
-    AppleProvider(),
-    EmailAuthProvider(),
-  ]);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (_) => {
       runApp(const AmoriApp()),
