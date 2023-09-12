@@ -1,9 +1,11 @@
+import 'package:amori/app/screens/signin/bloc/sign_in_ui_cubit.dart';
 import 'package:amori/app/screens/splashscreen/splash_screen.dart';
 import 'package:amori/common/app_themes.dart';
 import 'package:amori/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 final kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromRGBO(131, 165, 255, 1),
@@ -27,20 +29,25 @@ class AmoriApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Amori App',
-      theme: ThemeData(
-        inputDecorationTheme: AppThemes.inputDecorationTheme,
-        outlinedButtonTheme: AppThemes.outLinedButtonTheme,
-        textTheme: const TextTheme(
-          bodySmall: TextStyle(
-            fontSize: 16,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<SignInUICubit>(create: (_) => SignInUICubit()),
+      ],
+      child: MaterialApp(
+        title: 'Amori App',
+        theme: ThemeData(
+          inputDecorationTheme: AppThemes.inputDecorationTheme,
+          outlinedButtonTheme: AppThemes.outLinedButtonTheme,
+          textTheme: const TextTheme(
+            bodySmall: TextStyle(
+              fontSize: 16,
+            ),
           ),
+          textButtonTheme: AppThemes.textButtomTheme,
+          useMaterial3: true,
         ),
-        textButtonTheme: AppThemes.textButtomTheme,
-        useMaterial3: true,
+        home: const SplashScreen(),
       ),
-      home: const SplashScreen(),
     );
   }
 }
