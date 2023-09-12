@@ -17,62 +17,65 @@ class SignInPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
-        child: BlocBuilder<SignInUICubit, SignInUIState>(
-          builder: (context, state) => ListView(
-            physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.all(25.0),
-            children: [
-              Container(
-                margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.1,
-                ),
-                child: Image.asset(
-                  Assets.logo2,
-                  width: 189,
-                  height: 184,
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    state is SignInRegisterState ? 'Register' : 'Sign In',
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w400,
-                    ),
+        child: Form(
+          child: BlocBuilder<SignInUICubit, SignInUIState>(
+            builder: (context, state) => ListView(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.all(25.0),
+              children: [
+                Container(
+                  margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.1,
                   ),
-                  const SizedBox(height: 10.0),
-                  state is SignInRegisterState
-                      ? const AlreadyHaveAnAccountHeaderView()
-                      : const DontHaveAnAccountHeaderView(),
-                  const SizedBox(height: 20.0),
-                  const EmailFormInputView(),
-                  const SizedBox(height: 20.0),
-                  const PasswordFormFieldView(),
-                  state is SignInRegisterState
-                      ? const ConfirmPasswordFieldView()
-                      : const SizedBox.shrink(),
-                  state is SignInInitialState
-                      ? const ForgottenPasswordButtonView()
-                      : const SizedBox(height: 40.0),
-                  const SizedBox(height: 5.0),
-                  SizedBox(
-                    width: 337,
-                    height: 46,
-                    child: OutlinedButton(
-                      onPressed: () {
-                        // TODO: implement sign in or register logic
-                      },
-                      child: Text(
-                        state is SignInInitialState ? 'Sign in' : 'Register',
+                  child: Image.asset(
+                    Assets.logo2,
+                    width: 189,
+                    height: 184,
+                    fit: BoxFit.fitHeight,
+                  ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      state is SignInRegisterState ? 'Register' : 'Sign In',
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    const SizedBox(height: 10.0),
+                    state is SignInRegisterState
+                        ? const AlreadyHaveAnAccountHeaderView()
+                        : const DontHaveAnAccountHeaderView(),
+                    const SizedBox(height: 20.0),
+                    const EmailFormInputView(),
+                    const SizedBox(height: 20.0),
+                    const PasswordFormFieldView(),
+                    state is SignInRegisterState
+                        ? const ConfirmPasswordFieldView()
+                        : const SizedBox.shrink(),
+                    state is SignInInitialState
+                        ? const ForgottenPasswordButtonView()
+                        : const SizedBox(height: 40.0),
+                    const SizedBox(height: 5.0),
+                    SizedBox(
+                      width: 337,
+                      height: 46,
+                      child: OutlinedButton(
+                        onPressed: () {
+                          final x = Form.of(context).validate();
+                          // TODO: implement sign in or register logic
+                        },
+                        child: Text(
+                          state is SignInInitialState ? 'Sign in' : 'Register',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

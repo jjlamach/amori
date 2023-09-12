@@ -7,22 +7,21 @@ class EmailFormInputView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 337,
-      height: 46,
-      child: TextFormField(
-        decoration: const InputDecoration(
-          label: Text(
-            "Email",
-          ),
-          labelStyle: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-          ),
-          contentPadding: EdgeInsets.all(20.0),
+    return TextFormField(
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "Email field required.";
+        }
+        return null;
+      },
+      decoration: const InputDecoration(
+        labelText: "Email",
+        labelStyle: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
         ),
-        keyboardType: TextInputType.emailAddress,
       ),
+      keyboardType: TextInputType.emailAddress,
     );
   }
 }
