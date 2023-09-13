@@ -1,4 +1,4 @@
-import 'package:amori/app/screens/home/home_page.dart';
+import 'package:amori/app/screens/onboarding/onboarding_page.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const HomePage(),
+            builder: (context) => const OnBoardingPage(),
           ),
         );
       },
