@@ -1,8 +1,10 @@
-import 'package:amori/app/screens/signin/sign_in_page.dart';
+import 'package:amori/app/auto_route.gr.dart';
 import 'package:amori/common/strings.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+@RoutePage()
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({super.key});
 
@@ -38,10 +40,8 @@ class OnBoardingPage extends StatelessWidget {
                       Color.fromRGBO(172, 196, 254, 1),
                     ),
                   ),
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const SignInPage(),
-                ),
+              onPressed: () => AutoRouter.of(context).push(
+                const SignInRoute(),
               ),
               child: Text(
                 Strings.getStarted,

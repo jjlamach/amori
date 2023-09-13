@@ -1,6 +1,8 @@
-import 'package:amori/app/screens/onboarding/onboarding_page.dart';
+import 'package:amori/app/auto_route.gr.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -15,11 +17,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(
       const Duration(seconds: 2),
       () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const OnBoardingPage(),
-          ),
+        AutoRouter.of(context).push(
+          const OnBoardingRoute(),
         );
       },
     );

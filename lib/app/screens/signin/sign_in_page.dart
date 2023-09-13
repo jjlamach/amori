@@ -1,3 +1,5 @@
+import 'package:amori/app/auto_route.gr.dart';
+import 'package:amori/app/screens/home/home_page.dart';
 import 'package:amori/app/screens/signin/bloc/sign_in_ui_cubit.dart';
 import 'package:amori/app/screens/signin/widgets/already_have_an_account_header_view.dart';
 import 'package:amori/app/screens/signin/widgets/confirm_password_field_view.dart';
@@ -6,9 +8,11 @@ import 'package:amori/app/screens/signin/widgets/email_form_input_view.dart';
 import 'package:amori/app/screens/signin/widgets/forgotten_password_button_view.dart';
 import 'package:amori/app/screens/signin/widgets/password_form_field_view.dart';
 import 'package:amori/common/assets.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+@RoutePage()
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
 
@@ -64,8 +68,9 @@ class SignInPage extends StatelessWidget {
                       height: 46,
                       child: OutlinedButton(
                         onPressed: () {
-                          final x = Form.of(context).validate();
+                          // final x = Form.of(context).validate();
                           // TODO: implement sign in or register logic
+                          AutoRouter.of(context).pushNamed("/home");
                         },
                         child: Text(
                           state is SignInInitialState ? 'Sign in' : 'Register',

@@ -1,7 +1,12 @@
+import 'package:amori/app/auto_route.dart';
+import 'package:amori/app/screens/favorites/favorites_page.dart';
+import 'package:amori/app/screens/feelings/feelings_page.dart';
 import 'package:amori/app/screens/forgottenpassword/forgotten_password_page.dart';
+import 'package:amori/app/screens/home/home_page.dart';
 import 'package:amori/app/screens/signin/bloc/sign_in_ui_cubit.dart';
 import 'package:amori/app/screens/splashscreen/splash_screen.dart';
 import 'package:amori/common/app_themes.dart';
+import 'package:amori/common/navigation_cubit.dart';
 import 'package:amori/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
@@ -19,13 +24,14 @@ void main() async {
   );
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (_) => {
-      runApp(const AmoriApp()),
+      runApp(AmoriApp()),
     },
   );
 }
 
 class AmoriApp extends StatelessWidget {
-  const AmoriApp({super.key});
+  final _router = AmoriAppRouter();
+  AmoriApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -33,8 +39,10 @@ class AmoriApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<SignInUICubit>(create: (_) => SignInUICubit()),
+        BlocProvider<NavigationCubit>(create: (_) => NavigationCubit()),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
+        routerConfig: _router.config(),
         title: 'Amori App',
         theme: ThemeData(
           inputDecorationTheme: AppThemes.inputDecorationTheme,
@@ -42,10 +50,6 @@ class AmoriApp extends StatelessWidget {
           textButtonTheme: AppThemes.textButtomTheme,
           useMaterial3: true,
         ),
-        home: const SplashScreen(),
-        routes: {
-          "/forgotten-password": (context) => const ForgottenPasswordPage(),
-        },
       ),
     );
   }
