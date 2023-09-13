@@ -63,6 +63,7 @@ flutter:
   assets:
     - lib/assets/splashscreen.jpeg
     - lib/assets/hd_logo.png
+    - lib/assets/icon _heart_.svg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -11,16 +11,30 @@ class AmoriAppRouter extends $AmoriAppRouter {
           path: '/splash',
         ),
         AutoRoute(
-          page: OnBoardingRoute.page,
-          path: '/onboarding',
-        ),
-        AutoRoute(
           page: SignInRoute.page,
           path: '/sign-in',
         ),
         AutoRoute(
-          page: HomeRoute.page,
-          path: '/home',
+          page: OnBoardingRoute.page,
+          path: '/onboarding',
+        ),
+        AutoRoute(
+          page: BottomNavigationBarRoute.page,
+          path: '/index',
+          children: [
+            AutoRoute(
+              page: FeelingsRoute.page,
+              path: 'feelings',
+            ),
+            AutoRoute(
+              page: HomeRoute.page,
+              path: 'home',
+            ),
+            AutoRoute(
+              page: FavoritesRoute.page,
+              path: 'favorites',
+            )
+          ],
         )
       ];
 }

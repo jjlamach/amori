@@ -1,10 +1,5 @@
 import 'package:amori/app/auto_route.dart';
-import 'package:amori/app/screens/favorites/favorites_page.dart';
-import 'package:amori/app/screens/feelings/feelings_page.dart';
-import 'package:amori/app/screens/forgottenpassword/forgotten_password_page.dart';
-import 'package:amori/app/screens/home/home_page.dart';
 import 'package:amori/app/screens/signin/bloc/sign_in_ui_cubit.dart';
-import 'package:amori/app/screens/splashscreen/splash_screen.dart';
 import 'package:amori/common/app_themes.dart';
 import 'package:amori/common/navigation_cubit.dart';
 import 'package:amori/firebase_options.dart';
