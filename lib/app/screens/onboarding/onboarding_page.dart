@@ -40,9 +40,7 @@ class OnBoardingPage extends StatelessWidget {
                       Color.fromRGBO(172, 196, 254, 1),
                     ),
                   ),
-              onPressed: () => AutoRouter.of(context).push(
-                const SignInRoute(),
-              ),
+              onPressed: () => AutoRouter.of(context).replaceNamed('/sign-in'),
               child: Text(
                 Strings.getStarted,
                 style: GoogleFonts.inter(

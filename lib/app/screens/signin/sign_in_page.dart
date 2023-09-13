@@ -70,7 +70,7 @@ class SignInPage extends StatelessWidget {
                         onPressed: () {
                           // final x = Form.of(context).validate();
                           // TODO: implement sign in or register logic
-                          AutoRouter.of(context).pushNamed("/home");
+                          AutoRouter.of(context).replaceNamed('/home');
                         },
                         child: Text(
                           state is SignInInitialState ? 'Sign in' : 'Register',
