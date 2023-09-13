@@ -1,3 +1,4 @@
+import 'package:amori/app/screens/forgottenpassword/forgotten_password_page.dart';
 import 'package:flutter/material.dart';
 
 class ForgottenPasswordButtonView extends StatelessWidget {
@@ -10,9 +11,11 @@ class ForgottenPasswordButtonView extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
-        onPressed: () {
-          // TODO: implement forgot password logic
-        },
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const ForgottenPasswordPage(),
+          ),
+        ),
         child: const Text("Forgotten Password?"),
       ),
     );

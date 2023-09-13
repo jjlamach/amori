@@ -1,3 +1,4 @@
+import 'package:amori/app/screens/forgottenpassword/forgotten_password_page.dart';
 import 'package:amori/app/screens/signin/bloc/sign_in_ui_cubit.dart';
 import 'package:amori/app/screens/splashscreen/splash_screen.dart';
 import 'package:amori/common/app_themes.dart';
@@ -38,15 +39,13 @@ class AmoriApp extends StatelessWidget {
         theme: ThemeData(
           inputDecorationTheme: AppThemes.inputDecorationTheme,
           outlinedButtonTheme: AppThemes.outLinedButtonTheme,
-          textTheme: const TextTheme(
-            bodySmall: TextStyle(
-              fontSize: 16,
-            ),
-          ),
           textButtonTheme: AppThemes.textButtomTheme,
           useMaterial3: true,
         ),
         home: const SplashScreen(),
+        routes: {
+          "/forgotten-password": (context) => const ForgottenPasswordPage(),
+        },
       ),
     );
   }
