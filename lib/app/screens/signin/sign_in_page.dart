@@ -1,4 +1,4 @@
-import 'package:amori/app/screens/signin/bloc/sign_in_ui_cubit.dart';
+import 'package:amori/app/screens/signin/state/sign_in_ui_cubit.dart';
 import 'package:amori/app/screens/signin/widgets/already_have_an_account_header_view.dart';
 import 'package:amori/app/screens/signin/widgets/confirm_password_field_view.dart';
 import 'package:amori/app/screens/signin/widgets/dont_have_an_account_header_view.dart';

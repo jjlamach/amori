@@ -1,8 +1,9 @@
 import 'package:amori/app/auto_route.dart';
-import 'package:amori/app/screens/signin/bloc/sign_in_ui_cubit.dart';
+import 'package:amori/app/screens/signin/state/sign_in_ui_cubit.dart';
 import 'package:amori/common/app_themes.dart';
 import 'package:amori/common/navigation_cubit.dart';
 import 'package:amori/firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,14 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+  await FirebaseAuth.instance.authStateChanges().listen((User? user) {
+    if (user == null) {
+      print('User is logged off.');
+    } else {
+      print('User is signed in.');
+    }
+  });
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (_) => {
       runApp(AmoriApp()),
