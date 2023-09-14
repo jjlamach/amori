@@ -20,65 +20,95 @@ class SignInPage extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
         child: Form(
-          child: BlocBuilder<SignInUICubit, SignInUIState>(
-            builder: (context, state) => ListView(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.all(25.0),
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.1,
-                  ),
-                  child: Image.asset(
-                    Assets.logo2,
-                    width: 189,
-                    height: 184,
-                    fit: BoxFit.fitHeight,
-                  ),
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.all(25.0),
+            children: [
+              Container(
+                margin: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.1,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      state is SignInRegisterState ? 'Register' : 'Sign In',
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    const SizedBox(height: 10.0),
-                    state is SignInRegisterState
-                        ? const AlreadyHaveAnAccountHeaderView()
-                        : const DontHaveAnAccountHeaderView(),
-                    const SizedBox(height: 20.0),
-                    const EmailFormInputView(),
-                    const SizedBox(height: 20.0),
-                    const PasswordFormFieldView(),
-                    state is SignInRegisterState
-                        ? const ConfirmPasswordFieldView()
-                        : const SizedBox.shrink(),
-                    state is SignInInitialState
-                        ? const ForgottenPasswordButtonView()
-                        : const SizedBox(height: 40.0),
-                    const SizedBox(height: 5.0),
-                    SizedBox(
-                      width: 337,
-                      height: 46,
-                      child: OutlinedButton(
-                        onPressed: () {
-                          // final x = Form.of(context).validate();
-                          // TODO: implement sign in or register logic
-                          AutoRouter.of(context).replaceNamed('/index');
-                        },
-                        child: Text(
-                          state is SignInInitialState ? 'Sign in' : 'Register',
+                child: Image.asset(
+                  Assets.logo2,
+                  width: 189,
+                  height: 184,
+                  fit: BoxFit.fitHeight,
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BlocBuilder<SignInUICubit, SignInUIState>(
+                    builder: (context, state) {
+                      return state.when(
+                        initial: () => const Text(
+                          'Sign In',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
+                        register: () => const Text(
+                          'Register',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 10.0),
+                  BlocBuilder<SignInUICubit, SignInUIState>(
+                    builder: (context, state) {
+                      return state.when(
+                        initial: () => const DontHaveAnAccountHeaderView(),
+                        register: () => const AlreadyHaveAnAccountHeaderView(),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 20.0),
+                  const EmailFormInputView(),
+                  const SizedBox(height: 20.0),
+                  const PasswordFormFieldView(),
+                  BlocBuilder<SignInUICubit, SignInUIState>(
+                    builder: (context, state) {
+                      return state.when(
+                          initial: () => const SizedBox.shrink(),
+                          register: () => const ConfirmPasswordFieldView());
+                    },
+                  ),
+                  BlocBuilder<SignInUICubit, SignInUIState>(
+                    builder: (context, state) {
+                      return state.when(
+                        initial: () => const ForgottenPasswordButtonView(),
+                        register: () => const SizedBox(height: 40.0),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 5.0),
+                  SizedBox(
+                    width: 337,
+                    height: 46,
+                    child: OutlinedButton(
+                      onPressed: () {
+                        // final x = Form.of(context).validate();
+                        // TODO: implement sign in or register logic
+                        AutoRouter.of(context).replaceNamed('/index');
+                      },
+                      child: BlocBuilder<SignInUICubit, SignInUIState>(
+                        builder: (context, state) {
+                          return state.when(
+                            initial: () => const Text('Sign in'),
+                            register: () => const Text('Register'),
+                          );
+                        },
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

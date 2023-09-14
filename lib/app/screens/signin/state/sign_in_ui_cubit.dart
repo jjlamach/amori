@@ -1,29 +1,23 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Base class that represents main state
-abstract class SignInUIState extends Equatable {}
-
-// Sub-states
-class SignInInitialState extends SignInUIState {
-  // Equal to itself with 0 properties
-  @override
-  List<Object?> get props => [];
-}
-
-class SignInRegisterState extends SignInUIState {
-  @override
-  List<Object?> get props => [];
-}
+part 'sign_in_ui_cubit.freezed.dart';
 
 class SignInUICubit extends Cubit<SignInUIState> {
-  SignInUICubit() : super(SignInInitialState());
+  SignInUICubit() : super(const _Initial());
 
   void registerScreen() {
-    emit(SignInRegisterState());
+    emit(SignInUIState.register());
   }
 
   void initialState() {
-    emit(SignInInitialState());
+    emit(SignInUIState.initial());
   }
+}
+
+@freezed
+class SignInUIState with _$SignInUIState {
+  const SignInUIState._();
+  const factory SignInUIState.initial() = _Initial;
+  const factory SignInUIState.register() = _Register;
 }
