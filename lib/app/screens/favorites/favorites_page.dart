@@ -7,6 +7,34 @@ class FavoritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Favorites',
+                style: TextStyle(
+                  fontSize: 35,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const Text(
+                'Click on a day to relive your best moments',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              Expanded(
+                child: ListView(),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
