@@ -7,11 +7,11 @@ class SignInUICubit extends Cubit<SignInUIState> {
   SignInUICubit() : super(const _Initial());
 
   void registerScreen() {
-    emit(SignInUIState.register());
+    emit(const SignInUIState.register());
   }
 
   void initialState() {
-    emit(SignInUIState.initial());
+    emit(const SignInUIState.initial());
   }
 }
 
