@@ -46,11 +46,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               emit(const AuthState.loading());
               emit(AuthState.loggedIn(userCredential.user));
             } on FirebaseAuthException catch (e) {
-              emit(AuthState.error('Invalid login credentials.'));
+              emit(const AuthState.error('Invalid login credentials.'));
               emit(const AuthState.initial());
             }
           },
-          logOut: () {},
+          logOut: () async {
+            try {
+              await FirebaseAuth.instance.signOut();
+              emit(const AuthState.loggedOut());
+            } catch (e) {
+              emit(AuthState.error(e.toString()));
+            }
+          },
         );
       },
     );

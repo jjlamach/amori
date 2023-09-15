@@ -132,6 +132,8 @@ class SignInPage extends StatelessWidget {
                             listener: (context, state) {
                               state.whenOrNull(
                                 loggedIn: (user) {
+                                  emailController.clear();
+                                  passwordController.clear();
                                   AutoRouter.of(context).replaceNamed('/index');
                                 },
                                 error: (exception) {

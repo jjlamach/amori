@@ -1,5 +1,7 @@
+import 'package:amori/app/auto_route.gr.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,6 +33,21 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.w400,
+                ),
+              ),
+              BlocListener<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  state.whenOrNull(
+                    loggedOut: () => AutoRouter.of(context).replace(
+                      SignInRoute(),
+                    ),
+                  );
+                },
+                child: TextButton(
+                  onPressed: () {
+                    context.read<AuthBloc>().add(AuthEvent.logOut());
+                  },
+                  child: Text('Log Out'),
                 ),
               ),
             ],

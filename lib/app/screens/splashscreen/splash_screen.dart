@@ -1,5 +1,6 @@
 import 'package:amori/app/auto_route.gr.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -17,7 +18,22 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(
       const Duration(seconds: 2),
       () {
-        AutoRouter.of(context).replaceNamed('/onboarding');
+        /*
+          If user kills the app check the session again and if a user exists don't make him sign-in again
+         */
+        FirebaseAuth.instance.authStateChanges().listen(
+          (User? user) {
+            if (mounted) {
+              if (user != null) {
+                AutoRouter.of(context).replaceNamed('/index');
+              } else {
+                AutoRouter.of(context).replaceNamed('/onboarding');
+              }
+            }
+          },
+        );
+
+        // AutoRouter.of(context).replaceNamed('/onboarding');
       },
     );
   }
