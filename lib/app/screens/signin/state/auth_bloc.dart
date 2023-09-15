@@ -12,17 +12,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         await event.when(
           register: (email, password) async {
             try {
-              await FirebaseAuth.instance
-                  .createUserWithEmailAndPassword(
-                      email: email, password: password)
-                  .then(
-                    (credentials) =>
-                        emit(AuthState.registered(credentials.user)),
-                  );
+              UserCredential userCredential =
+                  await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                email: email,
+                password: password,
+              );
+              emit(AuthState.registered(userCredential.user));
             } on FirebaseAuthException catch (e) {
               if (e.code == 'weak-password') {
+                emit(AuthState.error(e));
                 kLogger.e('Password provided is too weak.');
               } else if (e.code == 'email-already-in-use') {
+                emit(AuthState.error(e));
                 kLogger.i('Email provided is already in use.');
               }
             } catch (e) {
@@ -44,6 +45,7 @@ class AuthState with _$AuthState {
   const factory AuthState.registered(User? user) = _Registered;
   const factory AuthState.loggedIn(User? user) = _LoggedIn;
   const factory AuthState.loggedOut() = _LoggedOut;
+  const factory AuthState.error(FirebaseAuthException exception) = _Error;
 }
 
 @freezed

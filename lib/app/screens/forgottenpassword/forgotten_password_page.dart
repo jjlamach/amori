@@ -50,7 +50,7 @@ class ForgottenPasswordPage extends StatelessWidget {
               ),
               const SizedBox(height: 20.0),
               SizedBox(
-                width: 337,
+                width: double.infinity,
                 height: 46,
                 child: OutlinedButton(
                   onPressed: () {

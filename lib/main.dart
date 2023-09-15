@@ -1,5 +1,7 @@
 import 'package:amori/app/auto_route.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
+import 'package:amori/app/screens/signin/state/register_form_cubit.dart';
+import 'package:amori/app/screens/signin/state/sign_in_form_cubit.dart';
 import 'package:amori/app/screens/signin/state/sign_in_ui_cubit.dart';
 import 'package:amori/common/app_themes.dart';
 import 'package:amori/common/navigation_cubit.dart';
@@ -31,14 +33,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   setUp();
-  await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-  FirebaseAuth.instance.authStateChanges().listen((User? user) {
-    if (user == null) {
-      print('User is logged off.');
-    } else {
-      print('User is signed in.');
-    }
-  });
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (_) => {
       runApp(AmoriApp()),
@@ -58,12 +52,15 @@ void setUpServices() {
 
 void setUpCubits() {
   getIt.registerFactory(
-    () => SignInUICubit(
+    () => SignInFormCubit(
       getIt.get(),
       getIt.get(),
       getIt.get(),
     ),
   );
+  getIt.registerFactory(() => SignInUICubit());
+  getIt.registerFactory(
+      () => RegisterFormCubit(getIt.get(), getIt.get(), getIt.get()));
 }
 
 class AmoriApp extends StatelessWidget {
@@ -76,6 +73,8 @@ class AmoriApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<SignInUICubit>(create: (_) => getIt<SignInUICubit>()),
+        BlocProvider(create: (_) => getIt<SignInFormCubit>()),
+        BlocProvider(create: (_) => getIt<RegisterFormCubit>()),
         BlocProvider<NavigationCubit>(create: (_) => NavigationCubit()),
         BlocProvider<AuthBloc>(create: (_) => AuthBloc()),
       ],

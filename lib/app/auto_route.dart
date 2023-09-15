@@ -15,6 +15,10 @@ class AmoriAppRouter extends $AmoriAppRouter {
           path: '/sign-in',
         ),
         AutoRoute(
+          page: RegisterRoute.page,
+          path: '/register',
+        ),
+        AutoRoute(
           page: OnBoardingRoute.page,
           path: '/onboarding',
         ),
