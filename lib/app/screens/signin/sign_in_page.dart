@@ -1,11 +1,6 @@
 import 'package:amori/app/screens/signin/state/sign_in_ui_cubit.dart';
-import 'package:amori/app/screens/signin/widgets/already_have_an_account_header_view.dart';
-import 'package:amori/app/screens/signin/widgets/confirm_password_field_view.dart';
-import 'package:amori/app/screens/signin/widgets/dont_have_an_account_header_view.dart';
-import 'package:amori/app/screens/signin/widgets/email_form_input_view.dart';
-import 'package:amori/app/screens/signin/widgets/forgotten_password_button_view.dart';
-import 'package:amori/app/screens/signin/widgets/password_form_field_view.dart';
-import 'package:amori/common/assets.dart';
+import 'package:amori/app/screens/signin/widgets/register_view.dart';
+import 'package:amori/app/screens/signin/widgets/sign_in_view.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,108 +17,15 @@ class SignInPage extends StatelessWidget {
         child: BlocBuilder<SignInUICubit, SignInUIState>(
           builder: (context, state) {
             return state.when(
-              signIn: (emailCtrlr, passwordCtrlr, formKey) => Form(
-                key: formKey,
-                child: ListView(
-                  physics: const BouncingScrollPhysics(),
-                  padding: const EdgeInsets.all(25.0),
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.1,
-                      ),
-                      child: Image.asset(
-                        Assets.logo2,
-                        width: 189,
-                        height: 184,
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Sign In',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        const SizedBox(height: 10.0),
-                        const DontHaveAnAccountHeaderView(),
-                        const SizedBox(height: 20.0),
-                        EmailFormInputView(controller: emailCtrlr),
-                        const SizedBox(height: 20.0),
-                        PasswordFormFieldView(controller: passwordCtrlr),
-                        const ForgottenPasswordButtonView(),
-                        const SizedBox(height: 5.0),
-                        SizedBox(
-                          width: 337,
-                          height: 46,
-                          child: OutlinedButton(
-                            onPressed: () {
-                              // final x = Form.of(context).validate();
-                              // TODO: implement sign in or register logic
-                              // AutoRouter.of(context).replaceNamed('/index');
-                              final isValid = formKey.currentState?.validate();
-                            },
-                            child: const Text('Sign in'),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+              signIn: (emailCtrlr, passwordCtrlr, formKey) => SignInView(
+                formKey: formKey,
+                emailCtrlr: emailCtrlr,
+                passwordCtrlr: passwordCtrlr,
               ),
-              register: (emailCtrlr, passwordCtrlr, formKey) => Form(
-                key: formKey,
-                child: ListView(
-                  physics: const BouncingScrollPhysics(),
-                  padding: const EdgeInsets.all(25.0),
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.1,
-                      ),
-                      child: Image.asset(
-                        Assets.logo2,
-                        width: 189,
-                        height: 184,
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Register',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        const SizedBox(height: 10.0),
-                        const AlreadyHaveAnAccountHeaderView(),
-                        const SizedBox(height: 20.0),
-                        EmailFormInputView(controller: emailCtrlr),
-                        const SizedBox(height: 20.0),
-                        PasswordFormFieldView(controller: passwordCtrlr),
-                        ConfirmPasswordFieldView(controller: passwordCtrlr),
-                        const SizedBox(height: 40.0),
-                        const ForgottenPasswordButtonView(),
-                        const SizedBox(height: 5.0),
-                        SizedBox(
-                          width: 337,
-                          height: 46,
-                          child: OutlinedButton(
-                            onPressed: () {},
-                            child: const Text('Register'),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+              register: (emailCtrlr, passwordCtrlr, formKey) => RegisterView(
+                formKey: formKey,
+                emailCtrlr: emailCtrlr,
+                passwordCtrlr: passwordCtrlr,
               ),
             );
           },
