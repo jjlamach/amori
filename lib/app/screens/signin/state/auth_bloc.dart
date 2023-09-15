@@ -23,13 +23,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               emit(const AuthState.initial());
             } on FirebaseAuthException catch (e) {
               if (e.code == 'weak-password') {
-                emit(AuthState.error(e));
+                emit(const AuthState.error('Password is too weak.'));
+                emit(const AuthState.initial());
                 kLogger.e('Password provided is too weak.');
               } else if (e.code == 'email-already-in-use') {
-                emit(AuthState.error(e));
+                emit(const AuthState.error('Email is already in use.'));
+                emit(const AuthState.initial());
                 kLogger.i('Email provided is already in use.');
               }
             } catch (e) {
+              emit(const AuthState.initial());
               kLogger.e('Error: $e');
             }
           },
@@ -48,7 +51,7 @@ class AuthState with _$AuthState {
   const factory AuthState.registered(User? user) = _Registered;
   const factory AuthState.loggedIn(User? user) = _LoggedIn;
   const factory AuthState.loggedOut() = _LoggedOut;
-  const factory AuthState.error(FirebaseAuthException exception) = _Error;
+  const factory AuthState.error(String exception) = _Error;
 }
 
 @freezed

@@ -163,7 +163,14 @@ class RegisterPage extends StatelessWidget {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   duration: const Duration(seconds: 2),
-                                  content: Text(exception.code),
+                                  content: Text(
+                                    exception,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
                                 ),
                               ),
                               registered: (user) {
@@ -175,6 +182,8 @@ class RegisterPage extends StatelessWidget {
                                     content: Text(
                                       'You have been registered.',
                                       style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
                                         color: Color.fromRGBO(255, 255, 255, 1),
                                       ),
                                       textAlign: TextAlign.center,
@@ -191,6 +200,7 @@ class RegisterPage extends StatelessWidget {
                             initial: () => const Text('Register'),
                             loading: () => const SizedBox.shrink(),
                             registered: (user) => const SizedBox.shrink(),
+                            error: (_) => const Text('Register'),
                             orElse: () => const SizedBox.shrink(),
                           ),
                         ),

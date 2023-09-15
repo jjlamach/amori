@@ -23,7 +23,7 @@ mixin _$AuthState {
     required TResult Function(User? user) registered,
     required TResult Function(User? user) loggedIn,
     required TResult Function() loggedOut,
-    required TResult Function(FirebaseAuthException exception) error,
+    required TResult Function(String exception) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,7 +33,7 @@ mixin _$AuthState {
     TResult? Function(User? user)? registered,
     TResult? Function(User? user)? loggedIn,
     TResult? Function()? loggedOut,
-    TResult? Function(FirebaseAuthException exception)? error,
+    TResult? Function(String exception)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,7 +43,7 @@ mixin _$AuthState {
     TResult Function(User? user)? registered,
     TResult Function(User? user)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function(FirebaseAuthException exception)? error,
+    TResult Function(String exception)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -139,7 +139,7 @@ class _$_Initial implements _Initial {
     required TResult Function(User? user) registered,
     required TResult Function(User? user) loggedIn,
     required TResult Function() loggedOut,
-    required TResult Function(FirebaseAuthException exception) error,
+    required TResult Function(String exception) error,
   }) {
     return initial();
   }
@@ -152,7 +152,7 @@ class _$_Initial implements _Initial {
     TResult? Function(User? user)? registered,
     TResult? Function(User? user)? loggedIn,
     TResult? Function()? loggedOut,
-    TResult? Function(FirebaseAuthException exception)? error,
+    TResult? Function(String exception)? error,
   }) {
     return initial?.call();
   }
@@ -165,7 +165,7 @@ class _$_Initial implements _Initial {
     TResult Function(User? user)? registered,
     TResult Function(User? user)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function(FirebaseAuthException exception)? error,
+    TResult Function(String exception)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -264,7 +264,7 @@ class _$_Loading implements _Loading {
     required TResult Function(User? user) registered,
     required TResult Function(User? user) loggedIn,
     required TResult Function() loggedOut,
-    required TResult Function(FirebaseAuthException exception) error,
+    required TResult Function(String exception) error,
   }) {
     return loading();
   }
@@ -277,7 +277,7 @@ class _$_Loading implements _Loading {
     TResult? Function(User? user)? registered,
     TResult? Function(User? user)? loggedIn,
     TResult? Function()? loggedOut,
-    TResult? Function(FirebaseAuthException exception)? error,
+    TResult? Function(String exception)? error,
   }) {
     return loading?.call();
   }
@@ -290,7 +290,7 @@ class _$_Loading implements _Loading {
     TResult Function(User? user)? registered,
     TResult Function(User? user)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function(FirebaseAuthException exception)? error,
+    TResult Function(String exception)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -416,7 +416,7 @@ class _$_Registered implements _Registered {
     required TResult Function(User? user) registered,
     required TResult Function(User? user) loggedIn,
     required TResult Function() loggedOut,
-    required TResult Function(FirebaseAuthException exception) error,
+    required TResult Function(String exception) error,
   }) {
     return registered(user);
   }
@@ -429,7 +429,7 @@ class _$_Registered implements _Registered {
     TResult? Function(User? user)? registered,
     TResult? Function(User? user)? loggedIn,
     TResult? Function()? loggedOut,
-    TResult? Function(FirebaseAuthException exception)? error,
+    TResult? Function(String exception)? error,
   }) {
     return registered?.call(user);
   }
@@ -442,7 +442,7 @@ class _$_Registered implements _Registered {
     TResult Function(User? user)? registered,
     TResult Function(User? user)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function(FirebaseAuthException exception)? error,
+    TResult Function(String exception)? error,
     required TResult orElse(),
   }) {
     if (registered != null) {
@@ -573,7 +573,7 @@ class _$_LoggedIn implements _LoggedIn {
     required TResult Function(User? user) registered,
     required TResult Function(User? user) loggedIn,
     required TResult Function() loggedOut,
-    required TResult Function(FirebaseAuthException exception) error,
+    required TResult Function(String exception) error,
   }) {
     return loggedIn(user);
   }
@@ -586,7 +586,7 @@ class _$_LoggedIn implements _LoggedIn {
     TResult? Function(User? user)? registered,
     TResult? Function(User? user)? loggedIn,
     TResult? Function()? loggedOut,
-    TResult? Function(FirebaseAuthException exception)? error,
+    TResult? Function(String exception)? error,
   }) {
     return loggedIn?.call(user);
   }
@@ -599,7 +599,7 @@ class _$_LoggedIn implements _LoggedIn {
     TResult Function(User? user)? registered,
     TResult Function(User? user)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function(FirebaseAuthException exception)? error,
+    TResult Function(String exception)? error,
     required TResult orElse(),
   }) {
     if (loggedIn != null) {
@@ -704,7 +704,7 @@ class _$_LoggedOut implements _LoggedOut {
     required TResult Function(User? user) registered,
     required TResult Function(User? user) loggedIn,
     required TResult Function() loggedOut,
-    required TResult Function(FirebaseAuthException exception) error,
+    required TResult Function(String exception) error,
   }) {
     return loggedOut();
   }
@@ -717,7 +717,7 @@ class _$_LoggedOut implements _LoggedOut {
     TResult? Function(User? user)? registered,
     TResult? Function(User? user)? loggedIn,
     TResult? Function()? loggedOut,
-    TResult? Function(FirebaseAuthException exception)? error,
+    TResult? Function(String exception)? error,
   }) {
     return loggedOut?.call();
   }
@@ -730,7 +730,7 @@ class _$_LoggedOut implements _LoggedOut {
     TResult Function(User? user)? registered,
     TResult Function(User? user)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function(FirebaseAuthException exception)? error,
+    TResult Function(String exception)? error,
     required TResult orElse(),
   }) {
     if (loggedOut != null) {
@@ -792,7 +792,7 @@ abstract class _$$_ErrorCopyWith<$Res> {
   factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
       __$$_ErrorCopyWithImpl<$Res>;
   @useResult
-  $Res call({FirebaseAuthException exception});
+  $Res call({String exception});
 }
 
 /// @nodoc
@@ -811,7 +811,7 @@ class __$$_ErrorCopyWithImpl<$Res>
       null == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
-              as FirebaseAuthException,
+              as String,
     ));
   }
 }
@@ -822,7 +822,7 @@ class _$_Error implements _Error {
   const _$_Error(this.exception);
 
   @override
-  final FirebaseAuthException exception;
+  final String exception;
 
   @override
   String toString() {
@@ -855,7 +855,7 @@ class _$_Error implements _Error {
     required TResult Function(User? user) registered,
     required TResult Function(User? user) loggedIn,
     required TResult Function() loggedOut,
-    required TResult Function(FirebaseAuthException exception) error,
+    required TResult Function(String exception) error,
   }) {
     return error(exception);
   }
@@ -868,7 +868,7 @@ class _$_Error implements _Error {
     TResult? Function(User? user)? registered,
     TResult? Function(User? user)? loggedIn,
     TResult? Function()? loggedOut,
-    TResult? Function(FirebaseAuthException exception)? error,
+    TResult? Function(String exception)? error,
   }) {
     return error?.call(exception);
   }
@@ -881,7 +881,7 @@ class _$_Error implements _Error {
     TResult Function(User? user)? registered,
     TResult Function(User? user)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function(FirebaseAuthException exception)? error,
+    TResult Function(String exception)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -935,9 +935,9 @@ class _$_Error implements _Error {
 }
 
 abstract class _Error implements AuthState {
-  const factory _Error(final FirebaseAuthException exception) = _$_Error;
+  const factory _Error(final String exception) = _$_Error;
 
-  FirebaseAuthException get exception;
+  String get exception;
   @JsonKey(ignore: true)
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
       throw _privateConstructorUsedError;
