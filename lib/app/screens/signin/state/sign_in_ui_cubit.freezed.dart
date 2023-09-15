@@ -16,43 +16,62 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SignInUIState {
+  TextEditingController get email => throw _privateConstructorUsedError;
+  TextEditingController get password => throw _privateConstructorUsedError;
+  GlobalKey<FormState> get key => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() register,
+    required TResult Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)
+        signIn,
+    required TResult Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)
+        register,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? register,
+    TResult? Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)?
+        signIn,
+    TResult? Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)?
+        register,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? register,
+    TResult Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)?
+        signIn,
+    TResult Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)?
+        register,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(_SignIn value) signIn,
     required TResult Function(_Register value) register,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
+    TResult? Function(_SignIn value)? signIn,
     TResult? Function(_Register value)? register,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_SignIn value)? signIn,
     TResult Function(_Register value)? register,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SignInUIStateCopyWith<SignInUIState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -61,6 +80,11 @@ abstract class $SignInUIStateCopyWith<$Res> {
   factory $SignInUIStateCopyWith(
           SignInUIState value, $Res Function(SignInUIState) then) =
       _$SignInUIStateCopyWithImpl<$Res, SignInUIState>;
+  @useResult
+  $Res call(
+      {TextEditingController email,
+      TextEditingController password,
+      GlobalKey<FormState> key});
 }
 
 /// @nodoc
@@ -72,69 +96,151 @@ class _$SignInUIStateCopyWithImpl<$Res, $Val extends SignInUIState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+    Object? key = null,
+  }) {
+    return _then(_value.copyWith(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as GlobalKey<FormState>,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$_SignInCopyWith<$Res>
+    implements $SignInUIStateCopyWith<$Res> {
+  factory _$$_SignInCopyWith(_$_SignIn value, $Res Function(_$_SignIn) then) =
+      __$$_SignInCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {TextEditingController email,
+      TextEditingController password,
+      GlobalKey<FormState> key});
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$SignInUIStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$_SignInCopyWithImpl<$Res>
+    extends _$SignInUIStateCopyWithImpl<$Res, _$_SignIn>
+    implements _$$_SignInCopyWith<$Res> {
+  __$$_SignInCopyWithImpl(_$_SignIn _value, $Res Function(_$_SignIn) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+    Object? key = null,
+  }) {
+    return _then(_$_SignIn(
+      null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+      null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+      null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as GlobalKey<FormState>,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Initial extends _Initial {
-  const _$_Initial() : super._();
+class _$_SignIn extends _SignIn {
+  const _$_SignIn(this.email, this.password, this.key) : super._();
+
+  @override
+  final TextEditingController email;
+  @override
+  final TextEditingController password;
+  @override
+  final GlobalKey<FormState> key;
 
   @override
   String toString() {
-    return 'SignInUIState.initial()';
+    return 'SignInUIState.signIn(email: $email, password: $password, key: $key)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType &&
+            other is _$_SignIn &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.key, key) || other.key == key));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, email, password, key);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SignInCopyWith<_$_SignIn> get copyWith =>
+      __$$_SignInCopyWithImpl<_$_SignIn>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() register,
+    required TResult Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)
+        signIn,
+    required TResult Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)
+        register,
   }) {
-    return initial();
+    return signIn(email, password, key);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? register,
+    TResult? Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)?
+        signIn,
+    TResult? Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)?
+        register,
   }) {
-    return initial?.call();
+    return signIn?.call(email, password, key);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? register,
+    TResult Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)?
+        signIn,
+    TResult Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)?
+        register,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial();
+    if (signIn != null) {
+      return signIn(email, password, key);
     }
     return orElse();
   }
@@ -142,45 +248,66 @@ class _$_Initial extends _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(_SignIn value) signIn,
     required TResult Function(_Register value) register,
   }) {
-    return initial(this);
+    return signIn(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
+    TResult? Function(_SignIn value)? signIn,
     TResult? Function(_Register value)? register,
   }) {
-    return initial?.call(this);
+    return signIn?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_SignIn value)? signIn,
     TResult Function(_Register value)? register,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial(this);
+    if (signIn != null) {
+      return signIn(this);
     }
     return orElse();
   }
 }
 
-abstract class _Initial extends SignInUIState {
-  const factory _Initial() = _$_Initial;
-  const _Initial._() : super._();
+abstract class _SignIn extends SignInUIState {
+  const factory _SignIn(
+      final TextEditingController email,
+      final TextEditingController password,
+      final GlobalKey<FormState> key) = _$_SignIn;
+  const _SignIn._() : super._();
+
+  @override
+  TextEditingController get email;
+  @override
+  TextEditingController get password;
+  @override
+  GlobalKey<FormState> get key;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SignInCopyWith<_$_SignIn> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_RegisterCopyWith<$Res> {
+abstract class _$$_RegisterCopyWith<$Res>
+    implements $SignInUIStateCopyWith<$Res> {
   factory _$$_RegisterCopyWith(
           _$_Register value, $Res Function(_$_Register) then) =
       __$$_RegisterCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {TextEditingController email,
+      TextEditingController password,
+      GlobalKey<FormState> key});
 }
 
 /// @nodoc
@@ -190,54 +317,107 @@ class __$$_RegisterCopyWithImpl<$Res>
   __$$_RegisterCopyWithImpl(
       _$_Register _value, $Res Function(_$_Register) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+    Object? key = null,
+  }) {
+    return _then(_$_Register(
+      null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+      null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+      null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as GlobalKey<FormState>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Register extends _Register {
-  const _$_Register() : super._();
+  const _$_Register(this.email, this.password, this.key) : super._();
+
+  @override
+  final TextEditingController email;
+  @override
+  final TextEditingController password;
+  @override
+  final GlobalKey<FormState> key;
 
   @override
   String toString() {
-    return 'SignInUIState.register()';
+    return 'SignInUIState.register(email: $email, password: $password, key: $key)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Register);
+        (other.runtimeType == runtimeType &&
+            other is _$_Register &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.key, key) || other.key == key));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, email, password, key);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RegisterCopyWith<_$_Register> get copyWith =>
+      __$$_RegisterCopyWithImpl<_$_Register>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() register,
+    required TResult Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)
+        signIn,
+    required TResult Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)
+        register,
   }) {
-    return register();
+    return register(email, password, key);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? register,
+    TResult? Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)?
+        signIn,
+    TResult? Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)?
+        register,
   }) {
-    return register?.call();
+    return register?.call(email, password, key);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? register,
+    TResult Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)?
+        signIn,
+    TResult Function(TextEditingController email,
+            TextEditingController password, GlobalKey<FormState> key)?
+        register,
     required TResult orElse(),
   }) {
     if (register != null) {
-      return register();
+      return register(email, password, key);
     }
     return orElse();
   }
@@ -245,7 +425,7 @@ class _$_Register extends _Register {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(_SignIn value) signIn,
     required TResult Function(_Register value) register,
   }) {
     return register(this);
@@ -254,7 +434,7 @@ class _$_Register extends _Register {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
+    TResult? Function(_SignIn value)? signIn,
     TResult? Function(_Register value)? register,
   }) {
     return register?.call(this);
@@ -263,7 +443,7 @@ class _$_Register extends _Register {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_SignIn value)? signIn,
     TResult Function(_Register value)? register,
     required TResult orElse(),
   }) {
@@ -275,6 +455,20 @@ class _$_Register extends _Register {
 }
 
 abstract class _Register extends SignInUIState {
-  const factory _Register() = _$_Register;
+  const factory _Register(
+      final TextEditingController email,
+      final TextEditingController password,
+      final GlobalKey<FormState> key) = _$_Register;
   const _Register._() : super._();
+
+  @override
+  TextEditingController get email;
+  @override
+  TextEditingController get password;
+  @override
+  GlobalKey<FormState> get key;
+  @override
+  @JsonKey(ignore: true)
+  _$$_RegisterCopyWith<_$_Register> get copyWith =>
+      throw _privateConstructorUsedError;
 }

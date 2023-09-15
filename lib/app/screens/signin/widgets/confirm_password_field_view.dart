@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ConfirmPasswordFieldView extends StatelessWidget {
+  final TextEditingController controller;
   const ConfirmPasswordFieldView({
+    required this.controller,
     super.key,
   });
 
@@ -10,6 +12,7 @@ class ConfirmPasswordFieldView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 20.0),
       child: TextFormField(
+        controller: controller,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return "Confirm password field is required.";

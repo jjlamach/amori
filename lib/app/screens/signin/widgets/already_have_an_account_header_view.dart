@@ -26,7 +26,7 @@ class AlreadyHaveAnAccountHeaderView extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             recognizer: TapGestureRecognizer()
-              ..onTap = () => context.read<SignInUICubit>().initialState(),
+              ..onTap = () => context.read<SignInUICubit>().signIn(),
           ),
         ],
       ),
