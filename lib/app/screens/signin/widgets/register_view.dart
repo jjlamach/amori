@@ -1,6 +1,6 @@
+import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/app/screens/signin/state/register_form_cubit.dart';
 import 'package:amori/common/assets.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +14,7 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController confirmPasswordCtrl = TextEditingController();
     return Scaffold(
       body: BlocBuilder<RegisterFormCubit, RegisterFormState>(
         builder: (context, state) => state.when(
@@ -79,6 +80,11 @@ class RegisterPage extends StatelessWidget {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Email field required.";
+                        } else if (value.isNotEmpty) {
+                          final isValid = value.isValidEmail();
+                          if (!isValid) {
+                            return "Not a valid email.";
+                          }
                         }
                         return null;
                       },
@@ -111,15 +117,19 @@ class RegisterPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 20.0),
                     TextFormField(
-                      controller: passwordController,
+                      controller: confirmPasswordCtrl,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Password field required.";
+                          return "Confirm Password field required.";
+                        }
+                        if (value.isNotEmpty &&
+                            value != passwordController.text) {
+                          return "Password must match.";
                         }
                         return null;
                       },
                       decoration: const InputDecoration(
-                        labelText: "Password",
+                        labelText: "Confirm Password",
                         labelStyle: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
@@ -133,15 +143,57 @@ class RegisterPage extends StatelessWidget {
                       height: 46,
                       child: OutlinedButton(
                         onPressed: () {
-                          // final thisFormIsValid = formKey.currentState?.validate();
-                          // if (thisFormIsValid == true) {
-                          //   TODO: implement sign in or register logic
-                          //   TODO: // AutoRouter.of(context).replaceNamed('/index');
-                          // }
+                          final confirmPass = confirmPasswordCtrl.text;
+                          final pass = passwordController.text;
                           final isFormValid = formKey.currentState?.validate();
-                          if (isFormValid == true) {}
+                          if (isFormValid == true && (pass == confirmPass)) {
+                            context.read<AuthBloc>().add(
+                                  AuthEvent.register(
+                                      emailController.text, pass),
+                                );
+                            confirmPasswordCtrl.clear();
+                            passwordController.clear();
+                            emailController.clear();
+                          }
                         },
-                        child: const Text('Register'),
+                        child: BlocConsumer<AuthBloc, AuthState>(
+                          listener: (context, state) {
+                            state.whenOrNull(
+                              error: (exception) =>
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  duration: const Duration(seconds: 2),
+                                  content: Text(exception.code),
+                                ),
+                              ),
+                              registered: (user) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    backgroundColor:
+                                        Color.fromRGBO(172, 196, 254, 1),
+                                    duration: Duration(seconds: 2),
+                                    content: Text(
+                                      'You have been registered.',
+                                      style: TextStyle(
+                                        color: Color.fromRGBO(255, 255, 255, 1),
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                );
+                                Future.delayed(const Duration(seconds: 1)).then(
+                                  (value) => AutoRouter.of(context).pop(),
+                                );
+                              },
+                            );
+                          },
+                          builder: (context, state) => state.maybeWhen(
+                            initial: () => const Text('Register'),
+                            loading: () => const SizedBox.shrink(),
+                            registered: (user) => const SizedBox.shrink(),
+                            orElse: () => const SizedBox.shrink(),
+                          ),
+                        ),
                       ),
                     ),
                   ],

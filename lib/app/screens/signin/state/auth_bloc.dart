@@ -17,7 +17,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 email: email,
                 password: password,
               );
+              emit(const AuthState.loading());
               emit(AuthState.registered(userCredential.user));
+              // Reset state after registering user
+              emit(const AuthState.initial());
             } on FirebaseAuthException catch (e) {
               if (e.code == 'weak-password') {
                 emit(AuthState.error(e));
