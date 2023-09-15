@@ -948,21 +948,21 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) register,
-    required TResult Function() logIn,
+    required TResult Function(String email, String password) logIn,
     required TResult Function() logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? register,
-    TResult? Function()? logIn,
+    TResult? Function(String email, String password)? logIn,
     TResult? Function()? logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? register,
-    TResult Function()? logIn,
+    TResult Function(String email, String password)? logIn,
     TResult Function()? logOut,
     required TResult orElse(),
   }) =>
@@ -1082,7 +1082,7 @@ class _$_Register implements _Register {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) register,
-    required TResult Function() logIn,
+    required TResult Function(String email, String password) logIn,
     required TResult Function() logOut,
   }) {
     return register(email, password);
@@ -1092,7 +1092,7 @@ class _$_Register implements _Register {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? register,
-    TResult? Function()? logIn,
+    TResult? Function(String email, String password)? logIn,
     TResult? Function()? logOut,
   }) {
     return register?.call(email, password);
@@ -1102,7 +1102,7 @@ class _$_Register implements _Register {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? register,
-    TResult Function()? logIn,
+    TResult Function(String email, String password)? logIn,
     TResult Function()? logOut,
     required TResult orElse(),
   }) {
@@ -1162,6 +1162,8 @@ abstract class _Register implements AuthEvent {
 abstract class _$$_LogInCopyWith<$Res> {
   factory _$$_LogInCopyWith(_$_LogIn value, $Res Function(_$_LogIn) then) =
       __$$_LogInCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -1170,57 +1172,90 @@ class __$$_LogInCopyWithImpl<$Res>
     implements _$$_LogInCopyWith<$Res> {
   __$$_LogInCopyWithImpl(_$_LogIn _value, $Res Function(_$_LogIn) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+  }) {
+    return _then(_$_LogIn(
+      null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_LogIn implements _LogIn {
-  const _$_LogIn();
+  const _$_LogIn(this.email, this.password);
+
+  @override
+  final String email;
+  @override
+  final String password;
 
   @override
   String toString() {
-    return 'AuthEvent.logIn()';
+    return 'AuthEvent.logIn(email: $email, password: $password)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LogIn);
+        (other.runtimeType == runtimeType &&
+            other is _$_LogIn &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, email, password);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LogInCopyWith<_$_LogIn> get copyWith =>
+      __$$_LogInCopyWithImpl<_$_LogIn>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) register,
-    required TResult Function() logIn,
+    required TResult Function(String email, String password) logIn,
     required TResult Function() logOut,
   }) {
-    return logIn();
+    return logIn(email, password);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? register,
-    TResult? Function()? logIn,
+    TResult? Function(String email, String password)? logIn,
     TResult? Function()? logOut,
   }) {
-    return logIn?.call();
+    return logIn?.call(email, password);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? register,
-    TResult Function()? logIn,
+    TResult Function(String email, String password)? logIn,
     TResult Function()? logOut,
     required TResult orElse(),
   }) {
     if (logIn != null) {
-      return logIn();
+      return logIn(email, password);
     }
     return orElse();
   }
@@ -1261,7 +1296,13 @@ class _$_LogIn implements _LogIn {
 }
 
 abstract class _LogIn implements AuthEvent {
-  const factory _LogIn() = _$_LogIn;
+  const factory _LogIn(final String email, final String password) = _$_LogIn;
+
+  String get email;
+  String get password;
+  @JsonKey(ignore: true)
+  _$$_LogInCopyWith<_$_LogIn> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1301,7 +1342,7 @@ class _$_LogOut implements _LogOut {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) register,
-    required TResult Function() logIn,
+    required TResult Function(String email, String password) logIn,
     required TResult Function() logOut,
   }) {
     return logOut();
@@ -1311,7 +1352,7 @@ class _$_LogOut implements _LogOut {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? register,
-    TResult? Function()? logIn,
+    TResult? Function(String email, String password)? logIn,
     TResult? Function()? logOut,
   }) {
     return logOut?.call();
@@ -1321,7 +1362,7 @@ class _$_LogOut implements _LogOut {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? register,
-    TResult Function()? logIn,
+    TResult Function(String email, String password)? logIn,
     TResult Function()? logOut,
     required TResult orElse(),
   }) {

@@ -1,5 +1,7 @@
+import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {

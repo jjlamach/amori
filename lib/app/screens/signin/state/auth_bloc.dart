@@ -36,7 +36,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               kLogger.e('Error: $e');
             }
           },
-          logIn: () {},
+          logIn: (email, password) async {
+            try {
+              UserCredential userCredential =
+                  await FirebaseAuth.instance.signInWithEmailAndPassword(
+                email: email,
+                password: password,
+              );
+              emit(const AuthState.loading());
+              emit(AuthState.loggedIn(userCredential.user));
+            } on FirebaseAuthException catch (e) {
+              emit(AuthState.error('Invalid login credentials.'));
+              emit(const AuthState.initial());
+            }
+          },
           logOut: () {},
         );
       },
@@ -60,6 +73,9 @@ class AuthEvent with _$AuthEvent {
     String email,
     String password,
   ) = _Register;
-  const factory AuthEvent.logIn() = _LogIn;
+  const factory AuthEvent.logIn(
+    String email,
+    String password,
+  ) = _LogIn;
   const factory AuthEvent.logOut() = _LogOut;
 }
