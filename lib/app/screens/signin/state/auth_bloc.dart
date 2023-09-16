@@ -58,6 +58,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               emit(AuthState.error(e.toString()));
             }
           },
+          delete: () async {
+            try {
+              await FirebaseAuth.instance.currentUser?.delete();
+              emit(const AuthState.deletedAccount());
+            } on FirebaseAuthException catch (e) {
+              emit(AuthState.error(e.code));
+            }
+          },
         );
       },
     );
@@ -71,6 +79,7 @@ class AuthState with _$AuthState {
   const factory AuthState.registered(User? user) = _Registered;
   const factory AuthState.loggedIn(User? user) = _LoggedIn;
   const factory AuthState.loggedOut() = _LoggedOut;
+  const factory AuthState.deletedAccount() = _Deleted;
   const factory AuthState.error(String exception) = _Error;
 }
 
@@ -85,4 +94,5 @@ class AuthEvent with _$AuthEvent {
     String password,
   ) = _LogIn;
   const factory AuthEvent.logOut() = _LogOut;
+  const factory AuthEvent.delete() = _Delete;
 }

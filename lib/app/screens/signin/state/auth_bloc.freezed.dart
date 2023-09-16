@@ -23,6 +23,7 @@ mixin _$AuthState {
     required TResult Function(User? user) registered,
     required TResult Function(User? user) loggedIn,
     required TResult Function() loggedOut,
+    required TResult Function() deletedAccount,
     required TResult Function(String exception) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -33,6 +34,7 @@ mixin _$AuthState {
     TResult? Function(User? user)? registered,
     TResult? Function(User? user)? loggedIn,
     TResult? Function()? loggedOut,
+    TResult? Function()? deletedAccount,
     TResult? Function(String exception)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +45,7 @@ mixin _$AuthState {
     TResult Function(User? user)? registered,
     TResult Function(User? user)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? deletedAccount,
     TResult Function(String exception)? error,
     required TResult orElse(),
   }) =>
@@ -54,6 +57,7 @@ mixin _$AuthState {
     required TResult Function(_Registered value) registered,
     required TResult Function(_LoggedIn value) loggedIn,
     required TResult Function(_LoggedOut value) loggedOut,
+    required TResult Function(_Deleted value) deletedAccount,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -64,6 +68,7 @@ mixin _$AuthState {
     TResult? Function(_Registered value)? registered,
     TResult? Function(_LoggedIn value)? loggedIn,
     TResult? Function(_LoggedOut value)? loggedOut,
+    TResult? Function(_Deleted value)? deletedAccount,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -74,6 +79,7 @@ mixin _$AuthState {
     TResult Function(_Registered value)? registered,
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_Deleted value)? deletedAccount,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -139,6 +145,7 @@ class _$_Initial implements _Initial {
     required TResult Function(User? user) registered,
     required TResult Function(User? user) loggedIn,
     required TResult Function() loggedOut,
+    required TResult Function() deletedAccount,
     required TResult Function(String exception) error,
   }) {
     return initial();
@@ -152,6 +159,7 @@ class _$_Initial implements _Initial {
     TResult? Function(User? user)? registered,
     TResult? Function(User? user)? loggedIn,
     TResult? Function()? loggedOut,
+    TResult? Function()? deletedAccount,
     TResult? Function(String exception)? error,
   }) {
     return initial?.call();
@@ -165,6 +173,7 @@ class _$_Initial implements _Initial {
     TResult Function(User? user)? registered,
     TResult Function(User? user)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? deletedAccount,
     TResult Function(String exception)? error,
     required TResult orElse(),
   }) {
@@ -182,6 +191,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Registered value) registered,
     required TResult Function(_LoggedIn value) loggedIn,
     required TResult Function(_LoggedOut value) loggedOut,
+    required TResult Function(_Deleted value) deletedAccount,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -195,6 +205,7 @@ class _$_Initial implements _Initial {
     TResult? Function(_Registered value)? registered,
     TResult? Function(_LoggedIn value)? loggedIn,
     TResult? Function(_LoggedOut value)? loggedOut,
+    TResult? Function(_Deleted value)? deletedAccount,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -208,6 +219,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Registered value)? registered,
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_Deleted value)? deletedAccount,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -264,6 +276,7 @@ class _$_Loading implements _Loading {
     required TResult Function(User? user) registered,
     required TResult Function(User? user) loggedIn,
     required TResult Function() loggedOut,
+    required TResult Function() deletedAccount,
     required TResult Function(String exception) error,
   }) {
     return loading();
@@ -277,6 +290,7 @@ class _$_Loading implements _Loading {
     TResult? Function(User? user)? registered,
     TResult? Function(User? user)? loggedIn,
     TResult? Function()? loggedOut,
+    TResult? Function()? deletedAccount,
     TResult? Function(String exception)? error,
   }) {
     return loading?.call();
@@ -290,6 +304,7 @@ class _$_Loading implements _Loading {
     TResult Function(User? user)? registered,
     TResult Function(User? user)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? deletedAccount,
     TResult Function(String exception)? error,
     required TResult orElse(),
   }) {
@@ -307,6 +322,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Registered value) registered,
     required TResult Function(_LoggedIn value) loggedIn,
     required TResult Function(_LoggedOut value) loggedOut,
+    required TResult Function(_Deleted value) deletedAccount,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -320,6 +336,7 @@ class _$_Loading implements _Loading {
     TResult? Function(_Registered value)? registered,
     TResult? Function(_LoggedIn value)? loggedIn,
     TResult? Function(_LoggedOut value)? loggedOut,
+    TResult? Function(_Deleted value)? deletedAccount,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -333,6 +350,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Registered value)? registered,
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_Deleted value)? deletedAccount,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -416,6 +434,7 @@ class _$_Registered implements _Registered {
     required TResult Function(User? user) registered,
     required TResult Function(User? user) loggedIn,
     required TResult Function() loggedOut,
+    required TResult Function() deletedAccount,
     required TResult Function(String exception) error,
   }) {
     return registered(user);
@@ -429,6 +448,7 @@ class _$_Registered implements _Registered {
     TResult? Function(User? user)? registered,
     TResult? Function(User? user)? loggedIn,
     TResult? Function()? loggedOut,
+    TResult? Function()? deletedAccount,
     TResult? Function(String exception)? error,
   }) {
     return registered?.call(user);
@@ -442,6 +462,7 @@ class _$_Registered implements _Registered {
     TResult Function(User? user)? registered,
     TResult Function(User? user)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? deletedAccount,
     TResult Function(String exception)? error,
     required TResult orElse(),
   }) {
@@ -459,6 +480,7 @@ class _$_Registered implements _Registered {
     required TResult Function(_Registered value) registered,
     required TResult Function(_LoggedIn value) loggedIn,
     required TResult Function(_LoggedOut value) loggedOut,
+    required TResult Function(_Deleted value) deletedAccount,
     required TResult Function(_Error value) error,
   }) {
     return registered(this);
@@ -472,6 +494,7 @@ class _$_Registered implements _Registered {
     TResult? Function(_Registered value)? registered,
     TResult? Function(_LoggedIn value)? loggedIn,
     TResult? Function(_LoggedOut value)? loggedOut,
+    TResult? Function(_Deleted value)? deletedAccount,
     TResult? Function(_Error value)? error,
   }) {
     return registered?.call(this);
@@ -485,6 +508,7 @@ class _$_Registered implements _Registered {
     TResult Function(_Registered value)? registered,
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_Deleted value)? deletedAccount,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -573,6 +597,7 @@ class _$_LoggedIn implements _LoggedIn {
     required TResult Function(User? user) registered,
     required TResult Function(User? user) loggedIn,
     required TResult Function() loggedOut,
+    required TResult Function() deletedAccount,
     required TResult Function(String exception) error,
   }) {
     return loggedIn(user);
@@ -586,6 +611,7 @@ class _$_LoggedIn implements _LoggedIn {
     TResult? Function(User? user)? registered,
     TResult? Function(User? user)? loggedIn,
     TResult? Function()? loggedOut,
+    TResult? Function()? deletedAccount,
     TResult? Function(String exception)? error,
   }) {
     return loggedIn?.call(user);
@@ -599,6 +625,7 @@ class _$_LoggedIn implements _LoggedIn {
     TResult Function(User? user)? registered,
     TResult Function(User? user)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? deletedAccount,
     TResult Function(String exception)? error,
     required TResult orElse(),
   }) {
@@ -616,6 +643,7 @@ class _$_LoggedIn implements _LoggedIn {
     required TResult Function(_Registered value) registered,
     required TResult Function(_LoggedIn value) loggedIn,
     required TResult Function(_LoggedOut value) loggedOut,
+    required TResult Function(_Deleted value) deletedAccount,
     required TResult Function(_Error value) error,
   }) {
     return loggedIn(this);
@@ -629,6 +657,7 @@ class _$_LoggedIn implements _LoggedIn {
     TResult? Function(_Registered value)? registered,
     TResult? Function(_LoggedIn value)? loggedIn,
     TResult? Function(_LoggedOut value)? loggedOut,
+    TResult? Function(_Deleted value)? deletedAccount,
     TResult? Function(_Error value)? error,
   }) {
     return loggedIn?.call(this);
@@ -642,6 +671,7 @@ class _$_LoggedIn implements _LoggedIn {
     TResult Function(_Registered value)? registered,
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_Deleted value)? deletedAccount,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -704,6 +734,7 @@ class _$_LoggedOut implements _LoggedOut {
     required TResult Function(User? user) registered,
     required TResult Function(User? user) loggedIn,
     required TResult Function() loggedOut,
+    required TResult Function() deletedAccount,
     required TResult Function(String exception) error,
   }) {
     return loggedOut();
@@ -717,6 +748,7 @@ class _$_LoggedOut implements _LoggedOut {
     TResult? Function(User? user)? registered,
     TResult? Function(User? user)? loggedIn,
     TResult? Function()? loggedOut,
+    TResult? Function()? deletedAccount,
     TResult? Function(String exception)? error,
   }) {
     return loggedOut?.call();
@@ -730,6 +762,7 @@ class _$_LoggedOut implements _LoggedOut {
     TResult Function(User? user)? registered,
     TResult Function(User? user)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? deletedAccount,
     TResult Function(String exception)? error,
     required TResult orElse(),
   }) {
@@ -747,6 +780,7 @@ class _$_LoggedOut implements _LoggedOut {
     required TResult Function(_Registered value) registered,
     required TResult Function(_LoggedIn value) loggedIn,
     required TResult Function(_LoggedOut value) loggedOut,
+    required TResult Function(_Deleted value) deletedAccount,
     required TResult Function(_Error value) error,
   }) {
     return loggedOut(this);
@@ -760,6 +794,7 @@ class _$_LoggedOut implements _LoggedOut {
     TResult? Function(_Registered value)? registered,
     TResult? Function(_LoggedIn value)? loggedIn,
     TResult? Function(_LoggedOut value)? loggedOut,
+    TResult? Function(_Deleted value)? deletedAccount,
     TResult? Function(_Error value)? error,
   }) {
     return loggedOut?.call(this);
@@ -773,6 +808,7 @@ class _$_LoggedOut implements _LoggedOut {
     TResult Function(_Registered value)? registered,
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_Deleted value)? deletedAccount,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -785,6 +821,137 @@ class _$_LoggedOut implements _LoggedOut {
 
 abstract class _LoggedOut implements AuthState {
   const factory _LoggedOut() = _$_LoggedOut;
+}
+
+/// @nodoc
+abstract class _$$_DeletedCopyWith<$Res> {
+  factory _$$_DeletedCopyWith(
+          _$_Deleted value, $Res Function(_$_Deleted) then) =
+      __$$_DeletedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_DeletedCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$_Deleted>
+    implements _$$_DeletedCopyWith<$Res> {
+  __$$_DeletedCopyWithImpl(_$_Deleted _value, $Res Function(_$_Deleted) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Deleted implements _Deleted {
+  const _$_Deleted();
+
+  @override
+  String toString() {
+    return 'AuthState.deletedAccount()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Deleted);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(User? user) registered,
+    required TResult Function(User? user) loggedIn,
+    required TResult Function() loggedOut,
+    required TResult Function() deletedAccount,
+    required TResult Function(String exception) error,
+  }) {
+    return deletedAccount();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(User? user)? registered,
+    TResult? Function(User? user)? loggedIn,
+    TResult? Function()? loggedOut,
+    TResult? Function()? deletedAccount,
+    TResult? Function(String exception)? error,
+  }) {
+    return deletedAccount?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(User? user)? registered,
+    TResult Function(User? user)? loggedIn,
+    TResult Function()? loggedOut,
+    TResult Function()? deletedAccount,
+    TResult Function(String exception)? error,
+    required TResult orElse(),
+  }) {
+    if (deletedAccount != null) {
+      return deletedAccount();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Registered value) registered,
+    required TResult Function(_LoggedIn value) loggedIn,
+    required TResult Function(_LoggedOut value) loggedOut,
+    required TResult Function(_Deleted value) deletedAccount,
+    required TResult Function(_Error value) error,
+  }) {
+    return deletedAccount(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Registered value)? registered,
+    TResult? Function(_LoggedIn value)? loggedIn,
+    TResult? Function(_LoggedOut value)? loggedOut,
+    TResult? Function(_Deleted value)? deletedAccount,
+    TResult? Function(_Error value)? error,
+  }) {
+    return deletedAccount?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Registered value)? registered,
+    TResult Function(_LoggedIn value)? loggedIn,
+    TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_Deleted value)? deletedAccount,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (deletedAccount != null) {
+      return deletedAccount(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Deleted implements AuthState {
+  const factory _Deleted() = _$_Deleted;
 }
 
 /// @nodoc
@@ -855,6 +1022,7 @@ class _$_Error implements _Error {
     required TResult Function(User? user) registered,
     required TResult Function(User? user) loggedIn,
     required TResult Function() loggedOut,
+    required TResult Function() deletedAccount,
     required TResult Function(String exception) error,
   }) {
     return error(exception);
@@ -868,6 +1036,7 @@ class _$_Error implements _Error {
     TResult? Function(User? user)? registered,
     TResult? Function(User? user)? loggedIn,
     TResult? Function()? loggedOut,
+    TResult? Function()? deletedAccount,
     TResult? Function(String exception)? error,
   }) {
     return error?.call(exception);
@@ -881,6 +1050,7 @@ class _$_Error implements _Error {
     TResult Function(User? user)? registered,
     TResult Function(User? user)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? deletedAccount,
     TResult Function(String exception)? error,
     required TResult orElse(),
   }) {
@@ -898,6 +1068,7 @@ class _$_Error implements _Error {
     required TResult Function(_Registered value) registered,
     required TResult Function(_LoggedIn value) loggedIn,
     required TResult Function(_LoggedOut value) loggedOut,
+    required TResult Function(_Deleted value) deletedAccount,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -911,6 +1082,7 @@ class _$_Error implements _Error {
     TResult? Function(_Registered value)? registered,
     TResult? Function(_LoggedIn value)? loggedIn,
     TResult? Function(_LoggedOut value)? loggedOut,
+    TResult? Function(_Deleted value)? deletedAccount,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -924,6 +1096,7 @@ class _$_Error implements _Error {
     TResult Function(_Registered value)? registered,
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_Deleted value)? deletedAccount,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -950,6 +1123,7 @@ mixin _$AuthEvent {
     required TResult Function(String email, String password) register,
     required TResult Function(String email, String password) logIn,
     required TResult Function() logOut,
+    required TResult Function() delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -957,6 +1131,7 @@ mixin _$AuthEvent {
     TResult? Function(String email, String password)? register,
     TResult? Function(String email, String password)? logIn,
     TResult? Function()? logOut,
+    TResult? Function()? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -964,6 +1139,7 @@ mixin _$AuthEvent {
     TResult Function(String email, String password)? register,
     TResult Function(String email, String password)? logIn,
     TResult Function()? logOut,
+    TResult Function()? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -972,6 +1148,7 @@ mixin _$AuthEvent {
     required TResult Function(_Register value) register,
     required TResult Function(_LogIn value) logIn,
     required TResult Function(_LogOut value) logOut,
+    required TResult Function(_Delete value) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -979,6 +1156,7 @@ mixin _$AuthEvent {
     TResult? Function(_Register value)? register,
     TResult? Function(_LogIn value)? logIn,
     TResult? Function(_LogOut value)? logOut,
+    TResult? Function(_Delete value)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -986,6 +1164,7 @@ mixin _$AuthEvent {
     TResult Function(_Register value)? register,
     TResult Function(_LogIn value)? logIn,
     TResult Function(_LogOut value)? logOut,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1084,6 +1263,7 @@ class _$_Register implements _Register {
     required TResult Function(String email, String password) register,
     required TResult Function(String email, String password) logIn,
     required TResult Function() logOut,
+    required TResult Function() delete,
   }) {
     return register(email, password);
   }
@@ -1094,6 +1274,7 @@ class _$_Register implements _Register {
     TResult? Function(String email, String password)? register,
     TResult? Function(String email, String password)? logIn,
     TResult? Function()? logOut,
+    TResult? Function()? delete,
   }) {
     return register?.call(email, password);
   }
@@ -1104,6 +1285,7 @@ class _$_Register implements _Register {
     TResult Function(String email, String password)? register,
     TResult Function(String email, String password)? logIn,
     TResult Function()? logOut,
+    TResult Function()? delete,
     required TResult orElse(),
   }) {
     if (register != null) {
@@ -1118,6 +1300,7 @@ class _$_Register implements _Register {
     required TResult Function(_Register value) register,
     required TResult Function(_LogIn value) logIn,
     required TResult Function(_LogOut value) logOut,
+    required TResult Function(_Delete value) delete,
   }) {
     return register(this);
   }
@@ -1128,6 +1311,7 @@ class _$_Register implements _Register {
     TResult? Function(_Register value)? register,
     TResult? Function(_LogIn value)? logIn,
     TResult? Function(_LogOut value)? logOut,
+    TResult? Function(_Delete value)? delete,
   }) {
     return register?.call(this);
   }
@@ -1138,6 +1322,7 @@ class _$_Register implements _Register {
     TResult Function(_Register value)? register,
     TResult Function(_LogIn value)? logIn,
     TResult Function(_LogOut value)? logOut,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (register != null) {
@@ -1232,6 +1417,7 @@ class _$_LogIn implements _LogIn {
     required TResult Function(String email, String password) register,
     required TResult Function(String email, String password) logIn,
     required TResult Function() logOut,
+    required TResult Function() delete,
   }) {
     return logIn(email, password);
   }
@@ -1242,6 +1428,7 @@ class _$_LogIn implements _LogIn {
     TResult? Function(String email, String password)? register,
     TResult? Function(String email, String password)? logIn,
     TResult? Function()? logOut,
+    TResult? Function()? delete,
   }) {
     return logIn?.call(email, password);
   }
@@ -1252,6 +1439,7 @@ class _$_LogIn implements _LogIn {
     TResult Function(String email, String password)? register,
     TResult Function(String email, String password)? logIn,
     TResult Function()? logOut,
+    TResult Function()? delete,
     required TResult orElse(),
   }) {
     if (logIn != null) {
@@ -1266,6 +1454,7 @@ class _$_LogIn implements _LogIn {
     required TResult Function(_Register value) register,
     required TResult Function(_LogIn value) logIn,
     required TResult Function(_LogOut value) logOut,
+    required TResult Function(_Delete value) delete,
   }) {
     return logIn(this);
   }
@@ -1276,6 +1465,7 @@ class _$_LogIn implements _LogIn {
     TResult? Function(_Register value)? register,
     TResult? Function(_LogIn value)? logIn,
     TResult? Function(_LogOut value)? logOut,
+    TResult? Function(_Delete value)? delete,
   }) {
     return logIn?.call(this);
   }
@@ -1286,6 +1476,7 @@ class _$_LogIn implements _LogIn {
     TResult Function(_Register value)? register,
     TResult Function(_LogIn value)? logIn,
     TResult Function(_LogOut value)? logOut,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (logIn != null) {
@@ -1344,6 +1535,7 @@ class _$_LogOut implements _LogOut {
     required TResult Function(String email, String password) register,
     required TResult Function(String email, String password) logIn,
     required TResult Function() logOut,
+    required TResult Function() delete,
   }) {
     return logOut();
   }
@@ -1354,6 +1546,7 @@ class _$_LogOut implements _LogOut {
     TResult? Function(String email, String password)? register,
     TResult? Function(String email, String password)? logIn,
     TResult? Function()? logOut,
+    TResult? Function()? delete,
   }) {
     return logOut?.call();
   }
@@ -1364,6 +1557,7 @@ class _$_LogOut implements _LogOut {
     TResult Function(String email, String password)? register,
     TResult Function(String email, String password)? logIn,
     TResult Function()? logOut,
+    TResult Function()? delete,
     required TResult orElse(),
   }) {
     if (logOut != null) {
@@ -1378,6 +1572,7 @@ class _$_LogOut implements _LogOut {
     required TResult Function(_Register value) register,
     required TResult Function(_LogIn value) logIn,
     required TResult Function(_LogOut value) logOut,
+    required TResult Function(_Delete value) delete,
   }) {
     return logOut(this);
   }
@@ -1388,6 +1583,7 @@ class _$_LogOut implements _LogOut {
     TResult? Function(_Register value)? register,
     TResult? Function(_LogIn value)? logIn,
     TResult? Function(_LogOut value)? logOut,
+    TResult? Function(_Delete value)? delete,
   }) {
     return logOut?.call(this);
   }
@@ -1398,6 +1594,7 @@ class _$_LogOut implements _LogOut {
     TResult Function(_Register value)? register,
     TResult Function(_LogIn value)? logIn,
     TResult Function(_LogOut value)? logOut,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (logOut != null) {
@@ -1409,4 +1606,116 @@ class _$_LogOut implements _LogOut {
 
 abstract class _LogOut implements AuthEvent {
   const factory _LogOut() = _$_LogOut;
+}
+
+/// @nodoc
+abstract class _$$_DeleteCopyWith<$Res> {
+  factory _$$_DeleteCopyWith(_$_Delete value, $Res Function(_$_Delete) then) =
+      __$$_DeleteCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_DeleteCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_Delete>
+    implements _$$_DeleteCopyWith<$Res> {
+  __$$_DeleteCopyWithImpl(_$_Delete _value, $Res Function(_$_Delete) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Delete implements _Delete {
+  const _$_Delete();
+
+  @override
+  String toString() {
+    return 'AuthEvent.delete()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Delete);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password) register,
+    required TResult Function(String email, String password) logIn,
+    required TResult Function() logOut,
+    required TResult Function() delete,
+  }) {
+    return delete();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? register,
+    TResult? Function(String email, String password)? logIn,
+    TResult? Function()? logOut,
+    TResult? Function()? delete,
+  }) {
+    return delete?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? register,
+    TResult Function(String email, String password)? logIn,
+    TResult Function()? logOut,
+    TResult Function()? delete,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Register value) register,
+    required TResult Function(_LogIn value) logIn,
+    required TResult Function(_LogOut value) logOut,
+    required TResult Function(_Delete value) delete,
+  }) {
+    return delete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Register value)? register,
+    TResult? Function(_LogIn value)? logIn,
+    TResult? Function(_LogOut value)? logOut,
+    TResult? Function(_Delete value)? delete,
+  }) {
+    return delete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Register value)? register,
+    TResult Function(_LogIn value)? logIn,
+    TResult Function(_LogOut value)? logOut,
+    TResult Function(_Delete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Delete implements AuthEvent {
+  const factory _Delete() = _$_Delete;
 }

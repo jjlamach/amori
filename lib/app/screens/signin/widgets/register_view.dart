@@ -1,6 +1,7 @@
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/app/screens/signin/state/register_form_cubit.dart';
 import 'package:amori/common/assets.dart';
+import 'package:amori/common/common.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -166,35 +167,12 @@ class RegisterPage extends StatelessWidget {
                               state.whenOrNull(
                                 error: (exception) =>
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    duration: const Duration(seconds: 2),
-                                    content: Text(
-                                      exception,
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ),
+                                  Common.showAppSnackBar(exception),
                                 ),
                                 registered: (user) {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      backgroundColor:
-                                          Color.fromRGBO(172, 196, 254, 1),
-                                      duration: Duration(seconds: 2),
-                                      content: Text(
-                                        'You have been registered.',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          color:
-                                              Color.fromRGBO(255, 255, 255, 1),
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
+                                    Common.showAppSnackBar(
+                                        'You have been registered.'),
                                   );
                                   Future.delayed(const Duration(seconds: 1))
                                       .then(

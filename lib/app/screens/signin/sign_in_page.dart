@@ -2,6 +2,7 @@ import 'package:amori/app/screens/forgottenpassword/forgotten_password_page.dart
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/app/screens/signin/state/sign_in_form_cubit.dart';
 import 'package:amori/common/assets.dart';
+import 'package:amori/common/common.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -138,19 +139,7 @@ class SignInPage extends StatelessWidget {
                                 },
                                 error: (exception) {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      duration: const Duration(seconds: 2),
-                                      backgroundColor: const Color.fromRGBO(
-                                          172, 196, 254, 1),
-                                      content: Text(
-                                        exception,
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ),
+                                    Common.showAppSnackBar(exception),
                                   );
                                 },
                               );

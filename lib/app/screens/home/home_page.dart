@@ -1,6 +1,6 @@
 import 'package:amori/app/auto_route.gr.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
-import 'package:auto_route/annotations.dart';
+import 'package:amori/common/common.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,6 +50,27 @@ class HomePage extends StatelessWidget {
                   child: Text('Log Out'),
                 ),
               ),
+              BlocListener<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  state.whenOrNull(
+                    error: (exception) {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(Common.showAppSnackBar(exception));
+                    },
+                    deletedAccount: () {
+                      AutoRouter.of(context).replace(
+                        OnBoardingRoute(),
+                      );
+                    },
+                  );
+                },
+                child: TextButton(
+                  onPressed: () {
+                    context.read<AuthBloc>().add(AuthEvent.delete());
+                  },
+                  child: Text('Delete'),
+                ),
+              )
             ],
           ),
         ),
