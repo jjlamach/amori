@@ -39,6 +39,10 @@ class AmoriAppRouter extends $AmoriAppRouter {
               path: 'favorites',
             )
           ],
-        )
+        ),
+        AutoRoute(
+          page: EmotionSelectionRoute.page,
+          path: '/emotion-selection',
+        ),
       ];
 }

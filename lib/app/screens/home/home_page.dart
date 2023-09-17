@@ -68,9 +68,9 @@ class HomePage extends StatelessWidget {
               children: List.generate(
                 Assets.emotions.length,
                 (index) => GestureDetector(
-                  onTap: () {
-                    print('Tapped: $index');
-                  },
+                  onTap: () => AutoRouter.of(context).push(
+                    EmotionSelectionRoute(emotion: Assets.emotions[index]),
+                  ),
                   child: SvgPicture.asset(
                     Assets.emotions[index],
                   ),

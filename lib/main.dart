@@ -91,7 +91,13 @@ class AmoriApp extends StatelessWidget {
         routerConfig: _router.config(),
         title: 'Amori App',
         theme: ThemeData(
-          colorScheme: kColorScheme,
+          appBarTheme: AppBarTheme(
+            iconTheme: IconThemeData(
+              color: Color.fromRGBO(0, 0, 0, 1),
+              size: 30,
+            ),
+          ),
+          // colorScheme: kColorScheme,
           inputDecorationTheme: AppThemes.inputDecorationTheme,
           outlinedButtonTheme: AppThemes.outLinedButtonTheme,
           textButtonTheme: AppThemes.textButtomTheme,

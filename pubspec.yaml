@@ -71,6 +71,7 @@ flutter:
     - lib/assets/angry.svg
     - lib/assets/relaxed.svg
     - lib/assets/sad.svg
+    - lib/assets/icon _pencil_.svg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
