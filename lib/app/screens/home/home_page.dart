@@ -1,5 +1,6 @@
 import 'package:amori/app/auto_route.gr.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
+import 'package:amori/common/assets.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,43 +35,46 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
-          const SliverToBoxAdapter(
-            child: Column(
-              children: [
-                Text(
-                  'Good morning, Julio', // todo: add username
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 50,
-                    fontWeight: FontWeight.w700,
+          const SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            sliver: SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  Text(
+                    'Good morning, Julio', // todo: add username
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 50,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
-                ),
-                SizedBox(height: 40),
-                Text(
-                  'How are we feeling today?',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w400,
+                  SizedBox(height: 40),
+                  Text(
+                    'How are we feeling today?',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           SliverPadding(
-            padding: const EdgeInsets.all(10.0),
-            sliver: SliverGrid(
-              // cuz of fixed number of children
-              delegate: SliverChildListDelegate(
-                [
-                  SvgPicture.asset('lib/assets/happy.svg'),
-                  SvgPicture.asset('lib/assets/sad.svg'),
-                  SvgPicture.asset('lib/assets/relaxed.svg'),
-                  SvgPicture.asset('lib/assets/anxious.svg'),
-                  SvgPicture.asset('lib/assets/angry.svg'),
-                ],
-              ),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
+            padding: const EdgeInsets.all(20.0),
+            sliver: SliverGrid.count(
+              crossAxisCount: 3,
+              mainAxisSpacing: 20.0,
+              children: List.generate(
+                Assets.emotions.length,
+                (index) => GestureDetector(
+                  onTap: () {
+                    print('Tapped: $index');
+                  },
+                  child: SvgPicture.asset(
+                    Assets.emotions[index],
+                  ),
+                ),
               ),
             ),
           )
