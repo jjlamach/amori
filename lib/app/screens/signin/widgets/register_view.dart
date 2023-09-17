@@ -184,6 +184,7 @@ class RegisterPage extends StatelessWidget {
                             builder: (context, state) => state.maybeWhen(
                               initial: () => const Text('Register'),
                               loading: () => const SizedBox.shrink(),
+                              loggedOut: () => const Text('Register'),
                               registered: (user) => const SizedBox.shrink(),
                               error: (_) => const Text('Register'),
                               orElse: () => const SizedBox.shrink(),
