@@ -72,6 +72,7 @@ flutter:
     - lib/assets/relaxed.svg
     - lib/assets/sad.svg
     - lib/assets/icon _pencil_.svg
+    - lib/assets/icon _microphone_.svg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

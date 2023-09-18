@@ -8,11 +8,11 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:amori/app/screens/emotionselection/emotion_selection_page.dart'
+    as _i2;
 import 'package:amori/app/screens/favorites/favorites_page.dart' as _i3;
 import 'package:amori/app/screens/feelings/feelings_page.dart' as _i4;
 import 'package:amori/app/screens/home/home_page.dart' as _i5;
-import 'package:amori/app/screens/home/widgets/emotion_selection_page.dart'
-    as _i2;
 import 'package:amori/app/screens/navigation/bottom_navigation_page.dart'
     as _i1;
 import 'package:amori/app/screens/onboarding/onboarding_page.dart' as _i6;

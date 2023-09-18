@@ -1,4 +1,5 @@
 import 'package:amori/app/auto_route.dart';
+import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/app/screens/signin/state/register_form_cubit.dart';
 import 'package:amori/app/screens/signin/state/sign_in_form_cubit.dart';
@@ -70,6 +71,7 @@ void setUpCubits() {
       getIt.get(),
     ),
   );
+  getIt.registerFactory(() => TagCubit());
 }
 
 class AmoriApp extends StatelessWidget {
@@ -82,16 +84,25 @@ class AmoriApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<SignInUICubit>(create: (_) => getIt<SignInUICubit>()),
-        BlocProvider(create: (_) => getIt<SignInFormCubit>()),
-        BlocProvider(create: (_) => getIt<RegisterFormCubit>()),
+        BlocProvider<SignInFormCubit>(create: (_) => getIt<SignInFormCubit>()),
+        BlocProvider<RegisterFormCubit>(
+            create: (_) => getIt<RegisterFormCubit>()),
         BlocProvider<NavigationCubit>(create: (_) => NavigationCubit()),
         BlocProvider<AuthBloc>(create: (_) => AuthBloc()),
+        BlocProvider<TagCubit>(create: (_) => TagCubit()),
       ],
       child: MaterialApp.router(
         routerConfig: _router.config(),
         title: 'Amori App',
         theme: ThemeData(
-          appBarTheme: AppBarTheme(
+          chipTheme: const ChipThemeData(
+            labelPadding: EdgeInsets.symmetric(horizontal: 3.0, vertical: 2.0),
+            side: BorderSide(
+              color: Color.fromRGBO(172, 196, 254, 1),
+            ),
+            selectedColor: Color.fromRGBO(172, 196, 254, 1),
+          ),
+          appBarTheme: const AppBarTheme(
             iconTheme: IconThemeData(
               color: Color.fromRGBO(0, 0, 0, 1),
               size: 30,
