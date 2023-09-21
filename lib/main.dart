@@ -54,6 +54,7 @@ void setUpServices() {
 }
 
 void setUpCubits() {
+  getIt.registerFactory(() => AuthBloc());
   getIt.registerFactory(
     () => SignInFormCubit(
       getIt.get(),
@@ -87,9 +88,9 @@ class AmoriApp extends StatelessWidget {
         BlocProvider<SignInFormCubit>(create: (_) => getIt<SignInFormCubit>()),
         BlocProvider<RegisterFormCubit>(
             create: (_) => getIt<RegisterFormCubit>()),
-        BlocProvider<NavigationCubit>(create: (_) => NavigationCubit()),
-        BlocProvider<AuthBloc>(create: (_) => AuthBloc()),
-        BlocProvider<TagCubit>(create: (_) => TagCubit()),
+        BlocProvider<NavigationCubit>(create: (_) => getIt<NavigationCubit>()),
+        BlocProvider<AuthBloc>(create: (_) => getIt<AuthBloc>()),
+        BlocProvider<TagCubit>(create: (_) => getIt<TagCubit>()),
       ],
       child: MaterialApp.router(
         routerConfig: _router.config(),

@@ -23,196 +23,195 @@ class EmotionSelectionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocProvider<TagCubit>(
-        create: (_) => getIt<TagCubit>(),
-        child: CustomScrollView(
-          shrinkWrap: false,
-          slivers: [
-            const SliverAppBar(
-              title: Text(
-                'What is making you?:',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w400,
+    return GestureDetector(
+      onTap: () {
+        // Dismiss keyboard
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        body: BlocProvider<TagCubit>(
+          create: (_) => getIt<TagCubit>(),
+          child: CustomScrollView(
+            shrinkWrap: false,
+            slivers: [
+              const SliverAppBar(
+                title: Text(
+                  'What is making you?:',
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ),
-            ),
-            SliverToBoxAdapter(
-              child: SvgPicture.asset(
-                emotion,
-                width: 85,
-                height: 89,
+              SliverToBoxAdapter(
+                child: SvgPicture.asset(
+                  emotion,
+                  width: 200,
+                  height: 200,
+                  // fit: BoxFit.fill,
+                ),
               ),
-            ),
-            const SliverToBoxAdapter(child: SizedBox(height: 40.0)),
-            SliverPadding(
-              padding: const EdgeInsets.all(25.0),
-              sliver: SliverToBoxAdapter(
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        const Text(
-                          'Write it out',
-                          style: TextStyle(
-                            color: Color.fromRGBO(131, 165, 255, 1),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(width: 10.0),
-                        SvgPicture.asset('lib/assets/icon _pencil_.svg'),
-                      ],
-                    ),
-                    const SizedBox(height: 20.0),
-                    Container(
-                      width: 391,
-                      height: 218,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(Dimen.borderRadiusCircular),
-                        ),
-                      ),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(
-                                Dimen.borderRadiusCircular),
-                            borderSide: const BorderSide(
-                              color: Color.fromRGBO(233, 233, 233, 1),
-                              width: 2.0,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(
-                                Dimen.borderRadiusCircular),
-                            borderSide: const BorderSide(
-                              color: Color.fromRGBO(172, 196, 254, 1),
-                              width: 2.0,
-                            ),
-                          ),
-                        ),
-                        maxLength: 250,
-                        maxLines: 250,
-                      ),
-                    ),
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Label it',
-                        style: TextStyle(
-                          color: Color.fromRGBO(131, 165, 255, 1),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                    BlocBuilder<TagCubit, TagState>(
-                      builder: (context, state) {
-                        final state = context.read<TagCubit>().state;
-                        final cubit = context.read<TagCubit>();
-                        return Wrap(
-                          alignment: WrapAlignment.center,
-                          spacing: 15.0,
-                          children: [
-                            FilterChip(
-                              label: Text(Tags.values[0].name),
-                              onSelected: (selected) {
-                                cubit.tagPersonal(selected);
-                              },
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  Dimen.borderRadiusCircular,
-                                ),
-                                side: BorderSide.none,
-                              ),
-                              selected: state.whenOrNull(
-                                    personal: (tagName, selected) => selected,
-                                  ) ??
-                                  false,
-                              showCheckmark: false,
-                            ),
-                            FilterChip(
-                              label: Text(Tags.values[1].name),
-                              onSelected: (selected) {
-                                cubit.tagWork(selected);
-                              },
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  Dimen.borderRadiusCircular,
-                                ),
-                              ),
-                              selected: state.whenOrNull(
-                                    work: (tagName, selected) => selected,
-                                  ) ??
-                                  false,
-                              showCheckmark: false,
-                            ),
-                            FilterChip(
-                              selected: state.whenOrNull(
-                                    family: (tagName, selected) => selected,
-                                  ) ??
-                                  false,
-                              label: Text(Tags.values[2].name),
-                              onSelected: (selected) {
-                                cubit.tagFamily(selected);
-                              },
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  Dimen.borderRadiusCircular,
-                                ),
-                                side: const BorderSide(
-                                  color: Color.fromRGBO(172, 196, 254, 1),
-                                  width: 2,
-                                ),
-                              ),
-                              showCheckmark: false,
-                            ),
-                            FilterChip(
-                              label: Text(Tags.values[3].name),
-                              onSelected: (selected) {
-                                cubit.tagRelationships(selected);
-                              },
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  Dimen.borderRadiusCircular,
-                                ),
-                              ),
-                              selected: state.whenOrNull(
-                                    relationships: (tagName, selected) =>
-                                        selected,
-                                  ) ??
-                                  false,
-                              showCheckmark: false,
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 20.0),
-                    Row(
-                      children: [
-                        const Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Record it',
+              const SliverToBoxAdapter(child: SizedBox(height: 40.0)),
+              SliverPadding(
+                padding: const EdgeInsets.all(25.0),
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          const Text(
+                            'Write it out',
                             style: TextStyle(
                               color: Color.fromRGBO(131, 165, 255, 1),
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
+                          const SizedBox(width: 10.0),
+                          SvgPicture.asset('lib/assets/icon _pencil_.svg'),
+                        ],
+                      ),
+                      const SizedBox(height: 20.0),
+                      Container(
+                        width: 391,
+                        height: 218,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(Dimen.borderRadiusCircular),
+                          ),
                         ),
-                        const SizedBox(width: 10.0),
-                        SvgPicture.asset('lib/assets/icon _microphone_.svg'),
-                      ],
-                    ),
-                  ],
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
+                                  Dimen.borderRadiusCircular),
+                              borderSide: const BorderSide(
+                                color: Color.fromRGBO(233, 233, 233, 1),
+                                width: 2.0,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
+                                  Dimen.borderRadiusCircular),
+                              borderSide: const BorderSide(
+                                color: Color.fromRGBO(172, 196, 254, 1),
+                                width: 2.0,
+                              ),
+                            ),
+                          ),
+                          maxLength: 250,
+                          maxLines: 250,
+                        ),
+                      ),
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Label it',
+                          style: TextStyle(
+                            color: Color.fromRGBO(131, 165, 255, 1),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                      BlocBuilder<TagCubit, TagState>(
+                        builder: (context, state) {
+                          final state = context.read<TagCubit>().state;
+                          final cubit = context.read<TagCubit>();
+                          return Wrap(
+                            alignment: WrapAlignment.center,
+                            spacing: 15.0,
+                            children: [
+                              FilterChip(
+                                label: Text(Tags.values[0].name),
+                                onSelected: (selected) {
+                                  cubit.tagPersonal(selected);
+                                },
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    Dimen.borderRadiusCircular,
+                                  ),
+                                  side: BorderSide.none,
+                                ),
+                                selected: state.whenOrNull(
+                                      personal: (tagName, selected) => selected,
+                                    ) ??
+                                    false,
+                                showCheckmark: false,
+                              ),
+                              FilterChip(
+                                label: Text(Tags.values[1].name),
+                                onSelected: (selected) {
+                                  cubit.tagWork(selected);
+                                },
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    Dimen.borderRadiusCircular,
+                                  ),
+                                ),
+                                selected: state.whenOrNull(
+                                      work: (tagName, selected) => selected,
+                                    ) ??
+                                    false,
+                                showCheckmark: false,
+                              ),
+                              FilterChip(
+                                selected: state.whenOrNull(
+                                      family: (tagName, selected) => selected,
+                                    ) ??
+                                    false,
+                                label: Text(Tags.values[2].name),
+                                onSelected: (selected) {
+                                  cubit.tagFamily(selected);
+                                },
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    Dimen.borderRadiusCircular,
+                                  ),
+                                  side: const BorderSide(
+                                    color: Color.fromRGBO(172, 196, 254, 1),
+                                    width: 2,
+                                  ),
+                                ),
+                                showCheckmark: false,
+                              ),
+                              FilterChip(
+                                label: Text(Tags.values[3].name),
+                                onSelected: (selected) {
+                                  cubit.tagRelationships(selected);
+                                },
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    Dimen.borderRadiusCircular,
+                                  ),
+                                ),
+                                selected: state.whenOrNull(
+                                      relationships: (tagName, selected) =>
+                                          selected,
+                                    ) ??
+                                    false,
+                                showCheckmark: false,
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.1,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: OutlinedButton(
+                          onPressed: () {},
+                          child: Text('Save'),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

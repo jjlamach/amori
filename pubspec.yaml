@@ -38,6 +38,9 @@ dependencies:
   bloc: ^8.1.2
   logger: ^2.0.2
   get_it: ^7.6.4
+  permission_handler: ^11.0.0
+  firebase_storage: ^11.2.7
+  path_provider: ^2.1.1
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +76,7 @@ flutter:
     - lib/assets/sad.svg
     - lib/assets/icon _pencil_.svg
     - lib/assets/icon _microphone_.svg
+    - lib/assets/normal.svg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

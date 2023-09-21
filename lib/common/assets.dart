@@ -7,6 +7,7 @@ class Assets {
     'lib/assets/relaxed.svg',
     'lib/assets/anxious.svg',
     'lib/assets/angry.svg',
+    'lib/assets/normal.svg',
   ];
 }
 
