@@ -7,6 +7,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 @RoutePage()
 class SignInPage extends StatelessWidget {
@@ -17,33 +18,32 @@ class SignInPage extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        body: SafeArea(
-          child: BlocBuilder<SignInFormCubit, SignInFormState>(
-            builder: (context, state) {
-              return state.when(
-                formCreated: (
-                  formKey,
-                  emailController,
-                  passwordController,
-                ) {
-                  return Form(
+        appBar: AppBar(
+          title: Text(
+            'Amori',
+            style: GoogleFonts.slacksideOne(
+              fontSize: 50,
+              color: const Color.fromRGBO(131, 165, 255, 1),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        body: BlocBuilder<SignInFormCubit, SignInFormState>(
+          builder: (context, state) {
+            return state.when(
+              formCreated: (
+                formKey,
+                emailController,
+                passwordController,
+              ) {
+                return SingleChildScrollView(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Form(
                     key: formKey,
-                    child: ListView(
-                      physics: const BouncingScrollPhysics(),
-                      padding: const EdgeInsets.all(25.0),
+                    child: Column(
                       children: [
-                        Container(
-                          margin: EdgeInsets.only(
-                            top: MediaQuery.of(context).size.height * 0.1,
-                          ),
-                          child: Image.asset(
-                            Assets.logo2,
-                            width: 189,
-                            height: 184,
-                            fit: BoxFit.fitHeight,
-                          ),
-                        ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.2),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -66,10 +66,15 @@ class SignInPage extends StatelessWidget {
                                   ),
                                   TextSpan(
                                     text: ' Register',
-                                    style: const TextStyle(
-                                      color: Color.fromRGBO(131, 165, 255, 1),
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelLarge
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .inversePrimary,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () => AutoRouter.of(context)
                                           .pushNamed('/register'),
@@ -127,10 +132,24 @@ class SignInPage extends StatelessWidget {
                                         const ForgottenPasswordPage(),
                                   ),
                                 ),
-                                child: const Text("Forgotten Password?"),
+                                child: Text(
+                                  "Forgotten Password?",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge
+                                      ?.copyWith(
+                                        fontSize: 16,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .inversePrimary,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
                               ),
                             ),
-                            const SizedBox(height: 5.0),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.1,
+                            ),
                             BlocListener<AuthBloc, AuthState>(
                               listener: (context, state) {
                                 state.whenOrNull(
@@ -163,7 +182,18 @@ class SignInPage extends StatelessWidget {
                                           );
                                     }
                                   },
-                                  child: const Text('Sign in'),
+                                  child: Text(
+                                    'Sign in',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelLarge
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                          fontSize: 20,
+                                        ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -171,11 +201,11 @@ class SignInPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                  );
-                },
-              );
-            },
-          ),
+                  ),
+                );
+              },
+            );
+          },
         ),
       ),
     );

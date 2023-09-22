@@ -58,8 +58,12 @@ class ForgottenPasswordPage extends StatelessWidget {
                     onPressed: () {
                       final form = formKey.currentState?.validate();
                     },
-                    child: const Text(
+                    child: Text(
                       'Reset password',
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontSize: 20,
+                          ),
                     ),
                   ),
                 ),
@@ -67,7 +71,13 @@ class ForgottenPasswordPage extends StatelessWidget {
                 Center(
                   child: TextButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Go back'),
+                    child: Text(
+                      'Go back',
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontSize: 20,
+                          ),
+                    ),
                   ),
                 ),
               ],

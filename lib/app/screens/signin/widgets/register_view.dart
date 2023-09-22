@@ -32,17 +32,7 @@ class RegisterPage extends StatelessWidget {
                   physics: const BouncingScrollPhysics(),
                   padding: const EdgeInsets.all(25.0),
                   children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.1,
-                      ),
-                      child: Image.asset(
-                        Assets.logo2,
-                        width: 189,
-                        height: 184,
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.2),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -65,10 +55,15 @@ class RegisterPage extends StatelessWidget {
                               ),
                               TextSpan(
                                 text: ' Sign in',
-                                style: const TextStyle(
-                                  color: Color.fromRGBO(131, 165, 255, 1),
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelLarge
+                                    ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .inversePrimary,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
                                     final canGoBack =
@@ -144,7 +139,8 @@ class RegisterPage extends StatelessWidget {
                           ),
                           keyboardType: TextInputType.visiblePassword,
                         ),
-                        const SizedBox(height: 20.0),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.1),
                         SizedBox(
                           width: double.infinity,
                           height: 46,
@@ -186,7 +182,18 @@ class RegisterPage extends StatelessWidget {
                                 );
                               },
                               builder: (context, state) => state.maybeWhen(
-                                initial: () => const Text('Register'),
+                                initial: () => Text(
+                                  'Register',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                        fontSize: 20,
+                                      ),
+                                ),
                                 loading: () => const SizedBox.shrink(),
                                 loggedOut: () => const Text('Register'),
                                 registered: (user) => const SizedBox.shrink(),

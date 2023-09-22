@@ -30,7 +30,11 @@ class HomePage extends StatelessWidget {
                   onPressed: () {
                     context.read<AuthBloc>().add(const AuthEvent.logOut());
                   },
-                  child: const Text('Log out'),
+                  child: const Text(
+                    'Log out',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                  ),
                 ),
               ),
             ],
@@ -40,8 +44,9 @@ class HomePage extends StatelessWidget {
             sliver: SliverToBoxAdapter(
               child: Column(
                 children: [
+                  SizedBox(height: 40),
                   Text(
-                    'Good morning, Julio', // todo: add username
+                    'Good morning',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 50,

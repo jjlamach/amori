@@ -99,8 +99,8 @@ class EmotionSelectionPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          maxLength: 250,
-                          maxLines: 250,
+                          maxLength: 250, // Counter - bottom right
+                          maxLines: 250, // Box increases height for 250
                         ),
                       ),
                       const Align(
@@ -203,7 +203,16 @@ class EmotionSelectionPage extends StatelessWidget {
                         width: double.infinity,
                         child: OutlinedButton(
                           onPressed: () {},
-                          child: Text('Save'),
+                          child: Text(
+                            'Save',
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelLarge
+                                ?.copyWith(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontSize: 20,
+                                ),
+                          ),
                         ),
                       ),
                     ],

@@ -4,7 +4,6 @@ import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/app/screens/signin/state/register_form_cubit.dart';
 import 'package:amori/app/screens/signin/state/sign_in_form_cubit.dart';
 import 'package:amori/app/screens/signin/state/sign_in_ui_cubit.dart';
-import 'package:amori/common/app_themes.dart';
 import 'package:amori/common/navigation_cubit.dart';
 import 'package:amori/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -12,15 +11,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:logger/logger.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
+
+import 'common/dimen.dart';
 
 // Dependency injection. Service locator/provider
 final getIt = GetIt.instance;
-
-// TODO: Complete scheme of the app
-final kColorScheme = ColorScheme.fromSeed(
-  seedColor: const Color.fromRGBO(131, 165, 255, 1),
-);
 
 final kLogger = Logger(
   printer: PrettyPrinter(
@@ -95,26 +93,126 @@ class AmoriApp extends StatelessWidget {
       child: MaterialApp.router(
         routerConfig: _router.config(),
         title: 'Amori App',
-        theme: ThemeData(
-          chipTheme: const ChipThemeData(
-            labelPadding: EdgeInsets.symmetric(horizontal: 3.0, vertical: 2.0),
-            side: BorderSide(
-              color: Color.fromRGBO(172, 196, 254, 1),
-            ),
-            selectedColor: Color.fromRGBO(172, 196, 254, 1),
+        theme: FlexThemeData.light(
+          colors: const FlexSchemeColor(
+            primary: Color(0xff00296b),
+            primaryContainer: Color(0xffa0c2ed),
+            secondary: Color(0xffd26900),
+            secondaryContainer: Color(0xffffd270),
+            tertiary: Color(0xff5c5c95),
+            tertiaryContainer: Color(0xffc8dbf8),
+            appBarColor: Color(0xffc8dcf8),
+            error: null,
           ),
-          appBarTheme: const AppBarTheme(
-            iconTheme: IconThemeData(
-              color: Color.fromRGBO(0, 0, 0, 1),
-              size: 30,
-            ),
+          applyElevationOverlayColor: false,
+          surfaceTint: Colors.transparent,
+          subThemesData: const FlexSubThemesData(
+            interactionEffects: false,
+            tintedDisabledControls: false,
+            blendOnColors: false,
+            useTextTheme: true,
+            splashType: FlexSplashType.defaultSplash,
+            defaultRadius: 20.0,
+            adaptiveRadius: FlexAdaptive.all(),
+            filledButtonRadius: 20.0,
+            elevatedButtonRadius: 20.0,
+            outlinedButtonRadius: 20.0,
+            segmentedButtonRadius: 20.0,
+            sliderTrackHeight: 4,
+            inputDecoratorRadius: 20.0,
+            inputDecoratorUnfocusedBorderIsColored: false,
+            chipSelectedSchemeColor: SchemeColor.primaryContainer,
+            chipRadius: 20.0,
+            alignedDropdown: true,
+            tooltipRadius: 4,
+            tooltipSchemeColor: SchemeColor.inverseSurface,
+            tooltipOpacity: 0.9,
+            useInputDecoratorThemeInDialogs: true,
+            snackBarElevation: 6,
+            snackBarBackgroundSchemeColor: SchemeColor.inverseSurface,
+            navigationBarSelectedLabelSchemeColor: SchemeColor.onSurface,
+            navigationBarUnselectedLabelSchemeColor: SchemeColor.onSurface,
+            navigationBarMutedUnselectedLabel: false,
+            navigationBarSelectedIconSchemeColor: SchemeColor.onSurface,
+            navigationBarUnselectedIconSchemeColor: SchemeColor.onSurface,
+            navigationBarMutedUnselectedIcon: false,
+            navigationBarIndicatorSchemeColor: SchemeColor.secondaryContainer,
+            navigationBarIndicatorOpacity: 1.00,
+            navigationRailSelectedLabelSchemeColor: SchemeColor.onSurface,
+            navigationRailUnselectedLabelSchemeColor: SchemeColor.onSurface,
+            navigationRailMutedUnselectedLabel: false,
+            navigationRailSelectedIconSchemeColor: SchemeColor.onSurface,
+            navigationRailUnselectedIconSchemeColor: SchemeColor.onSurface,
+            navigationRailMutedUnselectedIcon: false,
+            navigationRailIndicatorSchemeColor: SchemeColor.secondaryContainer,
+            navigationRailIndicatorOpacity: 1.00,
+            navigationRailBackgroundSchemeColor: SchemeColor.surface,
+            navigationRailLabelType: NavigationRailLabelType.none,
           ),
-          // colorScheme: kColorScheme,
-          inputDecorationTheme: AppThemes.inputDecorationTheme,
-          outlinedButtonTheme: AppThemes.outLinedButtonTheme,
-          textButtonTheme: AppThemes.textButtomTheme,
+          visualDensity: FlexColorScheme.comfortablePlatformDensity,
           useMaterial3: true,
+          swapLegacyOnMaterial3: true,
+          fontFamily: GoogleFonts.notoSans().fontFamily,
         ),
+        darkTheme: FlexThemeData.dark(
+          colors: const FlexSchemeColor(
+            primary: Color(0xffb1cff5),
+            primaryContainer: Color(0xff3873ba),
+            secondary: Color(0xffffd270),
+            secondaryContainer: Color(0xffd26900),
+            tertiary: Color(0xffc9cbfc),
+            tertiaryContainer: Color(0xff535393),
+            appBarColor: Color(0xff00102b),
+            error: null,
+          ),
+          subThemesData: const FlexSubThemesData(
+            interactionEffects: false,
+            tintedDisabledControls: false,
+            useTextTheme: true,
+            splashType: FlexSplashType.defaultSplash,
+            defaultRadius: 20.0,
+            adaptiveRadius: FlexAdaptive.all(),
+            filledButtonRadius: 20.0,
+            elevatedButtonRadius: 20.0,
+            outlinedButtonRadius: 20.0,
+            segmentedButtonRadius: 20.0,
+            sliderTrackHeight: 4,
+            inputDecoratorRadius: 20.0,
+            inputDecoratorUnfocusedBorderIsColored: false,
+            chipSelectedSchemeColor: SchemeColor.primaryContainer,
+            chipRadius: 20.0,
+            alignedDropdown: true,
+            tooltipRadius: 4,
+            tooltipSchemeColor: SchemeColor.inverseSurface,
+            tooltipOpacity: 0.9,
+            useInputDecoratorThemeInDialogs: true,
+            snackBarElevation: 6,
+            snackBarBackgroundSchemeColor: SchemeColor.inverseSurface,
+            navigationBarSelectedLabelSchemeColor: SchemeColor.onSurface,
+            navigationBarUnselectedLabelSchemeColor: SchemeColor.onSurface,
+            navigationBarMutedUnselectedLabel: false,
+            navigationBarSelectedIconSchemeColor: SchemeColor.onSurface,
+            navigationBarUnselectedIconSchemeColor: SchemeColor.onSurface,
+            navigationBarMutedUnselectedIcon: false,
+            navigationBarIndicatorSchemeColor: SchemeColor.secondaryContainer,
+            navigationBarIndicatorOpacity: 1.00,
+            navigationRailSelectedLabelSchemeColor: SchemeColor.onSurface,
+            navigationRailUnselectedLabelSchemeColor: SchemeColor.onSurface,
+            navigationRailMutedUnselectedLabel: false,
+            navigationRailSelectedIconSchemeColor: SchemeColor.onSurface,
+            navigationRailUnselectedIconSchemeColor: SchemeColor.onSurface,
+            navigationRailMutedUnselectedIcon: false,
+            navigationRailIndicatorSchemeColor: SchemeColor.secondaryContainer,
+            navigationRailIndicatorOpacity: 1.00,
+            navigationRailBackgroundSchemeColor: SchemeColor.surface,
+            navigationRailLabelType: NavigationRailLabelType.none,
+          ),
+          visualDensity: FlexColorScheme.comfortablePlatformDensity,
+          useMaterial3: true,
+          swapLegacyOnMaterial3: true,
+          fontFamily: GoogleFonts.notoSans().fontFamily,
+        ),
+        themeMode: ThemeMode.system,
       ),
     );
   }
