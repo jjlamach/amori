@@ -110,16 +110,21 @@ class EmotionSelectionPage extends StatelessWidget {
                       ),
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Label it',
-                          style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .inversePrimary,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 20.0),
+                          child: Text(
+                            'Label it',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .inversePrimary,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                          ),
                         ),
                       ),
                       BlocBuilder<TagCubit, TagState>(
@@ -128,7 +133,7 @@ class EmotionSelectionPage extends StatelessWidget {
                           final cubit = context.read<TagCubit>();
                           return Wrap(
                             alignment: WrapAlignment.center,
-                            spacing: 15.0,
+                            spacing: 5.0,
                             children: [
                               FilterChip(
                                 label: Text(Tags.values[0].name),
