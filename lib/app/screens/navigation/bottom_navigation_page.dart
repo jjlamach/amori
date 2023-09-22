@@ -31,9 +31,9 @@ class BottomNavigationBarPage extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
             iconSize: 34,
-            selectedIconTheme: const IconThemeData(
+            selectedIconTheme: IconThemeData(
               size: 40,
-              color: Color.fromRGBO(131, 165, 255, 1),
+              color: Theme.of(context).colorScheme.primary,
             ),
             unselectedIconTheme: const IconThemeData(
               color: Color.fromRGBO(0, 0, 0, 1),

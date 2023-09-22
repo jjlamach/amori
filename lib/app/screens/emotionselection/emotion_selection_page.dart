@@ -59,13 +59,18 @@ class EmotionSelectionPage extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          const Text(
+                          Text(
                             'Write it out',
-                            style: TextStyle(
-                              color: Color.fromRGBO(131, 165, 255, 1),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                            ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .inversePrimary,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                ),
                           ),
                           const SizedBox(width: 10.0),
                           SvgPicture.asset('lib/assets/icon _pencil_.svg'),
@@ -103,15 +108,18 @@ class EmotionSelectionPage extends StatelessWidget {
                           maxLines: 250, // Box increases height for 250
                         ),
                       ),
-                      const Align(
+                      Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           'Label it',
-                          style: TextStyle(
-                            color: Color.fromRGBO(131, 165, 255, 1),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .inversePrimary,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                         ),
                       ),
                       BlocBuilder<TagCubit, TagState>(
