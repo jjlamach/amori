@@ -8,12 +8,27 @@ class RegisterFormCubit extends Cubit<RegisterFormState> {
   final GlobalKey<FormState> _formKey;
   final TextEditingController _email;
   final TextEditingController _password;
+  final TextEditingController _username;
 
-  RegisterFormCubit(this._formKey, this._email, this._password)
-      : super(_RegisterForm(_formKey, _email, _password));
+  RegisterFormCubit(
+    this._formKey,
+    this._email,
+    this._password,
+    this._username,
+  ) : super(_RegisterForm(
+          _formKey,
+          _email,
+          _password,
+          _username,
+        ));
 
   void createRegisterForm() {
-    emit(RegisterFormState.createdRegisterForm(_formKey, _email, _password));
+    emit(RegisterFormState.createdRegisterForm(
+      _formKey,
+      _email,
+      _password,
+      _username,
+    ));
   }
 }
 
@@ -23,5 +38,6 @@ class RegisterFormState with _$RegisterFormState {
     GlobalKey<FormState> formKey,
     TextEditingController email,
     TextEditingController password,
+    TextEditingController username,
   ) = _RegisterForm;
 }

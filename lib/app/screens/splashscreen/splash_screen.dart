@@ -1,6 +1,8 @@
+import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class SplashScreen extends StatefulWidget {
@@ -24,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
           (User? user) {
             if (mounted) {
               if (user != null) {
+                context.read<AuthBloc>().user = user;
                 AutoRouter.of(context).replaceNamed('/index');
               } else {
                 AutoRouter.of(context).replaceNamed('/onboarding');

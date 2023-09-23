@@ -19,24 +19,28 @@ mixin _$RegisterFormState {
   GlobalKey<FormState> get formKey => throw _privateConstructorUsedError;
   TextEditingController get email => throw _privateConstructorUsedError;
   TextEditingController get password => throw _privateConstructorUsedError;
+  TextEditingController get username => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GlobalKey<FormState> formKey,
-            TextEditingController email, TextEditingController password)
+    required TResult Function(
+            GlobalKey<FormState> formKey,
+            TextEditingController email,
+            TextEditingController password,
+            TextEditingController username)
         createdRegisterForm,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(GlobalKey<FormState> formKey, TextEditingController email,
-            TextEditingController password)?
+            TextEditingController password, TextEditingController username)?
         createdRegisterForm,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GlobalKey<FormState> formKey, TextEditingController email,
-            TextEditingController password)?
+            TextEditingController password, TextEditingController username)?
         createdRegisterForm,
     required TResult orElse(),
   }) =>
@@ -72,7 +76,8 @@ abstract class $RegisterFormStateCopyWith<$Res> {
   $Res call(
       {GlobalKey<FormState> formKey,
       TextEditingController email,
-      TextEditingController password});
+      TextEditingController password,
+      TextEditingController username});
 }
 
 /// @nodoc
@@ -91,6 +96,7 @@ class _$RegisterFormStateCopyWithImpl<$Res, $Val extends RegisterFormState>
     Object? formKey = null,
     Object? email = null,
     Object? password = null,
+    Object? username = null,
   }) {
     return _then(_value.copyWith(
       formKey: null == formKey
@@ -104,6 +110,10 @@ class _$RegisterFormStateCopyWithImpl<$Res, $Val extends RegisterFormState>
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
     ) as $Val);
   }
@@ -120,7 +130,8 @@ abstract class _$$_RegisterFormCopyWith<$Res>
   $Res call(
       {GlobalKey<FormState> formKey,
       TextEditingController email,
-      TextEditingController password});
+      TextEditingController password,
+      TextEditingController username});
 }
 
 /// @nodoc
@@ -137,6 +148,7 @@ class __$$_RegisterFormCopyWithImpl<$Res>
     Object? formKey = null,
     Object? email = null,
     Object? password = null,
+    Object? username = null,
   }) {
     return _then(_$_RegisterForm(
       null == formKey
@@ -151,6 +163,10 @@ class __$$_RegisterFormCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
+      null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
     ));
   }
 }
@@ -158,7 +174,7 @@ class __$$_RegisterFormCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_RegisterForm implements _RegisterForm {
-  const _$_RegisterForm(this.formKey, this.email, this.password);
+  const _$_RegisterForm(this.formKey, this.email, this.password, this.username);
 
   @override
   final GlobalKey<FormState> formKey;
@@ -166,10 +182,12 @@ class _$_RegisterForm implements _RegisterForm {
   final TextEditingController email;
   @override
   final TextEditingController password;
+  @override
+  final TextEditingController username;
 
   @override
   String toString() {
-    return 'RegisterFormState.createdRegisterForm(formKey: $formKey, email: $email, password: $password)';
+    return 'RegisterFormState.createdRegisterForm(formKey: $formKey, email: $email, password: $password, username: $username)';
   }
 
   @override
@@ -180,11 +198,14 @@ class _$_RegisterForm implements _RegisterForm {
             (identical(other.formKey, formKey) || other.formKey == formKey) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            (identical(other.username, username) ||
+                other.username == username));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, formKey, email, password);
+  int get hashCode =>
+      Object.hash(runtimeType, formKey, email, password, username);
 
   @JsonKey(ignore: true)
   @override
@@ -195,33 +216,36 @@ class _$_RegisterForm implements _RegisterForm {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GlobalKey<FormState> formKey,
-            TextEditingController email, TextEditingController password)
+    required TResult Function(
+            GlobalKey<FormState> formKey,
+            TextEditingController email,
+            TextEditingController password,
+            TextEditingController username)
         createdRegisterForm,
   }) {
-    return createdRegisterForm(formKey, email, password);
+    return createdRegisterForm(formKey, email, password, username);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(GlobalKey<FormState> formKey, TextEditingController email,
-            TextEditingController password)?
+            TextEditingController password, TextEditingController username)?
         createdRegisterForm,
   }) {
-    return createdRegisterForm?.call(formKey, email, password);
+    return createdRegisterForm?.call(formKey, email, password, username);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(GlobalKey<FormState> formKey, TextEditingController email,
-            TextEditingController password)?
+            TextEditingController password, TextEditingController username)?
         createdRegisterForm,
     required TResult orElse(),
   }) {
     if (createdRegisterForm != null) {
-      return createdRegisterForm(formKey, email, password);
+      return createdRegisterForm(formKey, email, password, username);
     }
     return orElse();
   }
@@ -259,7 +283,8 @@ abstract class _RegisterForm implements RegisterFormState {
   const factory _RegisterForm(
       final GlobalKey<FormState> formKey,
       final TextEditingController email,
-      final TextEditingController password) = _$_RegisterForm;
+      final TextEditingController password,
+      final TextEditingController username) = _$_RegisterForm;
 
   @override
   GlobalKey<FormState> get formKey;
@@ -267,6 +292,8 @@ abstract class _RegisterForm implements RegisterFormState {
   TextEditingController get email;
   @override
   TextEditingController get password;
+  @override
+  TextEditingController get username;
   @override
   @JsonKey(ignore: true)
   _$$_RegisterFormCopyWith<_$_RegisterForm> get copyWith =>

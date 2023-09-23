@@ -68,6 +68,7 @@ void setUpCubits() {
       getIt.get(),
       getIt.get(),
       getIt.get(),
+      getIt.get(),
     ),
   );
   getIt.registerFactory(() => TagCubit());

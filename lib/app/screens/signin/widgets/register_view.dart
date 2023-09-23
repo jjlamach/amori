@@ -2,6 +2,7 @@ import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/app/screens/signin/state/register_form_cubit.dart';
 import 'package:amori/common/assets.dart';
 import 'package:amori/common/common.dart';
+import 'package:amori/domain/app_user.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class RegisterPage extends StatelessWidget {
               formKey,
               emailController,
               passwordController,
+              usernameController,
             ) {
               return Form(
                 key: formKey,
@@ -101,6 +103,24 @@ class RegisterPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 20.0),
                         TextFormField(
+                          controller: usernameController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Username field required.";
+                            }
+                            return null;
+                          },
+                          decoration: const InputDecoration(
+                            labelText: "Username",
+                            labelStyle: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          keyboardType: TextInputType.text,
+                        ),
+                        const SizedBox(height: 20.0),
+                        TextFormField(
                           controller: passwordController,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -154,11 +174,18 @@ class RegisterPage extends StatelessWidget {
                                   (pass == confirmPass)) {
                                 context.read<AuthBloc>().add(
                                       AuthEvent.register(
-                                          emailController.text, pass),
+                                        emailController.text,
+                                        pass,
+                                      ),
                                     );
+                                final newUser = AppUser(
+                                  email: emailController.text,
+                                  username: usernameController.text,
+                                );
                                 confirmPasswordCtrl.clear();
                                 passwordController.clear();
                                 emailController.clear();
+                                usernameController.clear();
                               }
                             },
                             child: BlocConsumer<AuthBloc, AuthState>(
