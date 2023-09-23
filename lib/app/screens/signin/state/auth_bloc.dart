@@ -7,12 +7,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'auth_bloc.freezed.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  User? _user;
+  User? appUser;
 
-  User? get user => _user;
+  User? get user => appUser;
 
   set user(User? value) {
-    _user = value;
+    appUser = value;
   }
 
   AuthBloc() : super(const _Initial()) {
@@ -53,7 +53,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 email: email,
                 password: password,
               );
-              _user = userCredential.user;
+              appUser = userCredential.user;
               emit(const AuthState.loading());
               emit(AuthState.loggedIn(userCredential.user));
             } on FirebaseAuthException catch (e) {
