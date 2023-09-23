@@ -1,5 +1,5 @@
+import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
 import 'package:amori/main.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -7,14 +7,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'auth_bloc.freezed.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  User? appUser;
-
-  User? get user => appUser;
-
-  set user(User? value) {
-    appUser = value;
-  }
-
   AuthBloc() : super(const _Initial()) {
     on<AuthEvent>(
       (event, emit) async {
@@ -26,9 +18,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 email: email,
                 password: password,
               );
+              await FirebaseStorageHelper.saveUserToFireStore(
+                userCredential.user,
+                username,
+              );
               emit(const AuthState.loading());
               emit(AuthState.registered(userCredential.user));
-              await saveUserToFireStore(userCredential.user, username);
               // Reset state after registering user
               emit(const AuthState.initial());
             } on FirebaseAuthException catch (e) {
@@ -53,7 +48,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 email: email,
                 password: password,
               );
-              appUser = userCredential.user;
               emit(const AuthState.loading());
               emit(AuthState.loggedIn(userCredential.user));
             } on FirebaseAuthException catch (e) {
@@ -80,16 +74,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         );
       },
     );
-  }
-
-  Future<void> saveUserToFireStore(User? user, String username) async {
-    await FirebaseFirestore.instance.collection('users').doc(user?.uid).set({
-      'email': user?.email,
-      'displayName': username,
-      'photoUrl': user?.photoURL,
-      'creationDate': user?.metadata.creationTime,
-      'lastSignedIn': user?.metadata.lastSignInTime,
-    });
   }
 }
 

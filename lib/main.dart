@@ -1,10 +1,12 @@
 import 'package:amori/app/auto_route.dart';
 import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
+import 'package:amori/app/screens/home/state/home_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/app/screens/signin/state/register_form_cubit.dart';
 import 'package:amori/app/screens/signin/state/sign_in_form_cubit.dart';
 import 'package:amori/app/screens/signin/state/sign_in_ui_cubit.dart';
 import 'package:amori/common/navigation_cubit.dart';
+import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
 import 'package:amori/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
@@ -49,6 +51,7 @@ void setUpAppDependencies() {
 void setUpServices() {
   getIt.registerFactory(() => TextEditingController());
   getIt.registerFactory(() => GlobalKey<FormState>());
+  getIt.registerSingleton(() => FirebaseStorageHelper());
 }
 
 void setUpCubits() {
@@ -72,6 +75,7 @@ void setUpCubits() {
     ),
   );
   getIt.registerFactory(() => TagCubit());
+  getIt.registerFactory(() => HomeCubit());
 }
 
 class AmoriApp extends StatelessWidget {
@@ -90,6 +94,7 @@ class AmoriApp extends StatelessWidget {
         BlocProvider<NavigationCubit>(create: (_) => getIt<NavigationCubit>()),
         BlocProvider<AuthBloc>(create: (_) => getIt<AuthBloc>()),
         BlocProvider<TagCubit>(create: (_) => getIt<TagCubit>()),
+        BlocProvider<HomeCubit>(create: (_) => getIt<HomeCubit>()..greetUser()),
       ],
       child: MaterialApp.router(
         routerConfig: _router.config(),

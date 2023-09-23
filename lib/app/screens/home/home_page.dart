@@ -1,4 +1,5 @@
 import 'package:amori/app/auto_route.gr.dart';
+import 'package:amori/app/screens/home/state/home_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/assets.dart';
 import 'package:auto_route/auto_route.dart';
@@ -39,22 +40,29 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
-          const SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             sliver: SliverToBoxAdapter(
               child: Column(
                 children: [
-                  SizedBox(height: 40),
-                  Text(
-                    'Good morning',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 50,
-                      fontWeight: FontWeight.w700,
-                    ),
+                  const SizedBox(height: 40),
+                  BlocBuilder<HomeCubit, HomeState>(
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        greetUser: (username) => Text(
+                          'Hello, $username',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 50,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        orElse: () => const SizedBox.shrink(),
+                      );
+                    },
                   ),
-                  SizedBox(height: 40),
-                  Text(
+                  const SizedBox(height: 40),
+                  const Text(
                     'How are we feeling today?',
                     style: TextStyle(
                       fontSize: 25,

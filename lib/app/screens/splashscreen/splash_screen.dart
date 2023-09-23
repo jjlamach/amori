@@ -26,7 +26,6 @@ class _SplashScreenState extends State<SplashScreen> {
           (User? user) {
             if (mounted) {
               if (user != null) {
-                context.read<AuthBloc>().user = user;
                 AutoRouter.of(context).replaceNamed('/index');
               } else {
                 AutoRouter.of(context).replaceNamed('/onboarding');
