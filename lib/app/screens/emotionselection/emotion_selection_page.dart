@@ -1,10 +1,7 @@
 import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
-import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/dimen.dart';
-import 'package:amori/domain/app_user.dart';
 import 'package:amori/main.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';

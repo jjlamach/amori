@@ -1,4 +1,5 @@
 import 'package:amori/main.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,7 +19,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthEvent>(
       (event, emit) async {
         await event.when(
-          register: (email, password) async {
+          register: (email, password, username) async {
             try {
               UserCredential userCredential =
                   await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -27,6 +28,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               );
               emit(const AuthState.loading());
               emit(AuthState.registered(userCredential.user));
+              await saveUserToFireStore(userCredential.user, username);
               // Reset state after registering user
               emit(const AuthState.initial());
             } on FirebaseAuthException catch (e) {
@@ -79,6 +81,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       },
     );
   }
+
+  Future<void> saveUserToFireStore(User? user, String username) async {
+    await FirebaseFirestore.instance.collection('users').doc(user?.uid).set({
+      'email': user?.email,
+      'displayName': username,
+      'photoUrl': user?.photoURL,
+      'creationDate': user?.metadata.creationTime,
+      'lastSignedIn': user?.metadata.lastSignInTime,
+    });
+  }
 }
 
 @freezed
@@ -97,6 +109,7 @@ class AuthEvent with _$AuthEvent {
   const factory AuthEvent.register(
     String email,
     String password,
+    String username,
   ) = _Register;
   const factory AuthEvent.logIn(
     String email,

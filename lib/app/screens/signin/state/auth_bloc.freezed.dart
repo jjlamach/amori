@@ -1120,7 +1120,8 @@ abstract class _Error implements AuthState {
 mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) register,
+    required TResult Function(String email, String password, String username)
+        register,
     required TResult Function(String email, String password) logIn,
     required TResult Function() logOut,
     required TResult Function() delete,
@@ -1128,7 +1129,7 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password)? register,
+    TResult? Function(String email, String password, String username)? register,
     TResult? Function(String email, String password)? logIn,
     TResult? Function()? logOut,
     TResult? Function()? delete,
@@ -1136,7 +1137,7 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? register,
+    TResult Function(String email, String password, String username)? register,
     TResult Function(String email, String password)? logIn,
     TResult Function()? logOut,
     TResult Function()? delete,
@@ -1193,7 +1194,7 @@ abstract class _$$_RegisterCopyWith<$Res> {
           _$_Register value, $Res Function(_$_Register) then) =
       __$$_RegisterCopyWithImpl<$Res>;
   @useResult
-  $Res call({String email, String password});
+  $Res call({String email, String password, String username});
 }
 
 /// @nodoc
@@ -1209,6 +1210,7 @@ class __$$_RegisterCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? password = null,
+    Object? username = null,
   }) {
     return _then(_$_Register(
       null == email
@@ -1219,6 +1221,10 @@ class __$$_RegisterCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -1226,16 +1232,18 @@ class __$$_RegisterCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Register implements _Register {
-  const _$_Register(this.email, this.password);
+  const _$_Register(this.email, this.password, this.username);
 
   @override
   final String email;
   @override
   final String password;
+  @override
+  final String username;
 
   @override
   String toString() {
-    return 'AuthEvent.register(email: $email, password: $password)';
+    return 'AuthEvent.register(email: $email, password: $password, username: $username)';
   }
 
   @override
@@ -1245,11 +1253,13 @@ class _$_Register implements _Register {
             other is _$_Register &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            (identical(other.username, username) ||
+                other.username == username));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password);
+  int get hashCode => Object.hash(runtimeType, email, password, username);
 
   @JsonKey(ignore: true)
   @override
@@ -1260,36 +1270,37 @@ class _$_Register implements _Register {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) register,
+    required TResult Function(String email, String password, String username)
+        register,
     required TResult Function(String email, String password) logIn,
     required TResult Function() logOut,
     required TResult Function() delete,
   }) {
-    return register(email, password);
+    return register(email, password, username);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password)? register,
+    TResult? Function(String email, String password, String username)? register,
     TResult? Function(String email, String password)? logIn,
     TResult? Function()? logOut,
     TResult? Function()? delete,
   }) {
-    return register?.call(email, password);
+    return register?.call(email, password, username);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? register,
+    TResult Function(String email, String password, String username)? register,
     TResult Function(String email, String password)? logIn,
     TResult Function()? logOut,
     TResult Function()? delete,
     required TResult orElse(),
   }) {
     if (register != null) {
-      return register(email, password);
+      return register(email, password, username);
     }
     return orElse();
   }
@@ -1333,11 +1344,13 @@ class _$_Register implements _Register {
 }
 
 abstract class _Register implements AuthEvent {
-  const factory _Register(final String email, final String password) =
+  const factory _Register(
+          final String email, final String password, final String username) =
       _$_Register;
 
   String get email;
   String get password;
+  String get username;
   @JsonKey(ignore: true)
   _$$_RegisterCopyWith<_$_Register> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1414,7 +1427,8 @@ class _$_LogIn implements _LogIn {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) register,
+    required TResult Function(String email, String password, String username)
+        register,
     required TResult Function(String email, String password) logIn,
     required TResult Function() logOut,
     required TResult Function() delete,
@@ -1425,7 +1439,7 @@ class _$_LogIn implements _LogIn {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password)? register,
+    TResult? Function(String email, String password, String username)? register,
     TResult? Function(String email, String password)? logIn,
     TResult? Function()? logOut,
     TResult? Function()? delete,
@@ -1436,7 +1450,7 @@ class _$_LogIn implements _LogIn {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? register,
+    TResult Function(String email, String password, String username)? register,
     TResult Function(String email, String password)? logIn,
     TResult Function()? logOut,
     TResult Function()? delete,
@@ -1532,7 +1546,8 @@ class _$_LogOut implements _LogOut {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) register,
+    required TResult Function(String email, String password, String username)
+        register,
     required TResult Function(String email, String password) logIn,
     required TResult Function() logOut,
     required TResult Function() delete,
@@ -1543,7 +1558,7 @@ class _$_LogOut implements _LogOut {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password)? register,
+    TResult? Function(String email, String password, String username)? register,
     TResult? Function(String email, String password)? logIn,
     TResult? Function()? logOut,
     TResult? Function()? delete,
@@ -1554,7 +1569,7 @@ class _$_LogOut implements _LogOut {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? register,
+    TResult Function(String email, String password, String username)? register,
     TResult Function(String email, String password)? logIn,
     TResult Function()? logOut,
     TResult Function()? delete,
@@ -1644,7 +1659,8 @@ class _$_Delete implements _Delete {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) register,
+    required TResult Function(String email, String password, String username)
+        register,
     required TResult Function(String email, String password) logIn,
     required TResult Function() logOut,
     required TResult Function() delete,
@@ -1655,7 +1671,7 @@ class _$_Delete implements _Delete {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password)? register,
+    TResult? Function(String email, String password, String username)? register,
     TResult? Function(String email, String password)? logIn,
     TResult? Function()? logOut,
     TResult? Function()? delete,
@@ -1666,7 +1682,7 @@ class _$_Delete implements _Delete {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? register,
+    TResult Function(String email, String password, String username)? register,
     TResult Function(String email, String password)? logIn,
     TResult Function()? logOut,
     TResult Function()? delete,

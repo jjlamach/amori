@@ -2,7 +2,6 @@ import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/app/screens/signin/state/register_form_cubit.dart';
 import 'package:amori/common/assets.dart';
 import 'package:amori/common/common.dart';
-import 'package:amori/domain/app_user.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -171,17 +170,16 @@ class RegisterPage extends StatelessWidget {
                               final isFormValid =
                                   formKey.currentState?.validate();
                               if (isFormValid == true &&
-                                  (pass == confirmPass)) {
+                                  (pass == confirmPass &&
+                                      usernameController.text.isNotEmpty)) {
                                 context.read<AuthBloc>().add(
                                       AuthEvent.register(
                                         emailController.text,
                                         pass,
+                                        usernameController.text,
                                       ),
                                     );
-                                final newUser = AppUser(
-                                  email: emailController.text,
-                                  username: usernameController.text,
-                                );
+
                                 confirmPasswordCtrl.clear();
                                 passwordController.clear();
                                 emailController.clear();
