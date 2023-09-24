@@ -1,7 +1,9 @@
 import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
 import 'package:amori/common/dimen.dart';
+import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
 import 'package:amori/main.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,6 +25,7 @@ class EmotionSelectionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController controller = TextEditingController();
     return GestureDetector(
       onTap: () {
         // Dismiss keyboard
@@ -32,7 +35,6 @@ class EmotionSelectionPage extends StatelessWidget {
         body: BlocProvider<TagCubit>(
           create: (_) => getIt<TagCubit>(),
           child: CustomScrollView(
-            shrinkWrap: false,
             slivers: [
               const SliverAppBar(
                 title: Text(
@@ -86,6 +88,7 @@ class EmotionSelectionPage extends StatelessWidget {
                           ),
                         ),
                         child: TextFormField(
+                          controller: controller,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(
@@ -215,7 +218,16 @@ class EmotionSelectionPage extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         child: OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            if (controller.text.isNotEmpty) {
+                              FirebaseStorageHelper.saveFeelingDescription(
+                                userId:
+                                    FirebaseAuth.instance.currentUser?.uid ??
+                                        '',
+                                feelingDescription: controller.text,
+                              );
+                            }
+                          },
                           child: Text(
                             'Save',
                             style: Theme.of(context)

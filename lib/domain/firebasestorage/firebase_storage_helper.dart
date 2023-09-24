@@ -4,8 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseStorageHelper {
-  final FirebaseFirestore? database;
-  FirebaseStorageHelper({this.database});
+  FirebaseStorageHelper();
 
   /// Transforms the json user from FireStore to AppUser
   static Future<AppUser> getUser(String userid) async {
@@ -50,6 +49,29 @@ class FirebaseStorageHelper {
       );
     } on Exception catch (e) {
       kLogger.e('Could not register and save user to FireStore. $e');
+    }
+  }
+
+  static Future<void> saveFeelingDescription({
+    required String userId,
+    required String feelingDescription,
+  }) async {
+    try {
+      FirebaseFirestore.instance.collection('users').doc(userId).set(
+        {
+          'feelingDescription': [
+            {
+              DateTime.utc(2023).toIso8601String(): feelingDescription,
+            },
+          ],
+        },
+        SetOptions(
+          merge: true,
+        ),
+      );
+      kLogger.i('Feeling recorded successfully.');
+    } on Exception catch (e) {
+      kLogger.e('Failed to save feeling description. $e');
     }
   }
 }
