@@ -16,8 +16,8 @@ import 'package:amori/app/screens/home/home_page.dart' as _i5;
 import 'package:amori/app/screens/navigation/bottom_navigation_page.dart'
     as _i1;
 import 'package:amori/app/screens/onboarding/onboarding_page.dart' as _i6;
+import 'package:amori/app/screens/register/register_page.dart' as _i7;
 import 'package:amori/app/screens/signin/sign_in_page.dart' as _i8;
-import 'package:amori/app/screens/signin/widgets/register_view.dart' as _i7;
 import 'package:amori/app/screens/splashscreen/splash_screen.dart' as _i9;
 import 'package:auto_route/auto_route.dart' as _i10;
 import 'package:flutter/material.dart' as _i11;
