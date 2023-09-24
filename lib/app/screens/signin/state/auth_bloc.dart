@@ -13,14 +13,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         await event.when(
           register: (email, password, username) async {
             try {
-              UserCredential userCredential =
-                  await FirebaseAuth.instance.createUserWithEmailAndPassword(
+              UserCredential userCredential = await FirebaseAuth.instance
+                  .createUserWithEmailAndPassword(
                 email: email,
                 password: password,
-              );
-              await FirebaseStorageHelper.saveUserToFireStore(
-                userCredential.user,
-                username,
+              )
+                  .then(
+                (UserCredential credentials) async {
+                  await credentials.user?.updateDisplayName(username);
+                  await FirebaseStorageHelper.saveUserToFireStore(
+                    credentials.user,
+                  );
+                  return credentials;
+                },
               );
               emit(const AuthState.loading());
               emit(AuthState.registered(userCredential.user));

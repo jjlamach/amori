@@ -17,8 +17,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:logger/logger.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 
-import 'common/dimen.dart';
-
 // Dependency injection. Service locator/provider
 final getIt = GetIt.instance;
 
@@ -94,7 +92,7 @@ class AmoriApp extends StatelessWidget {
         BlocProvider<NavigationCubit>(create: (_) => getIt<NavigationCubit>()),
         BlocProvider<AuthBloc>(create: (_) => getIt<AuthBloc>()),
         BlocProvider<TagCubit>(create: (_) => getIt<TagCubit>()),
-        BlocProvider<HomeCubit>(create: (_) => getIt<HomeCubit>()..greetUser()),
+        BlocProvider<HomeCubit>(create: (_) => getIt<HomeCubit>()),
       ],
       child: MaterialApp.router(
         routerConfig: _router.config(),

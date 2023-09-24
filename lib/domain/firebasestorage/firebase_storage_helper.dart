@@ -35,7 +35,7 @@ class FirebaseStorageHelper {
     return appUser;
   }
 
-  static Future<void> saveUserToFireStore(User? user, String username) async {
+  static Future<void> saveUserToFireStore(User? user) async {
     try {
       await FirebaseFirestore.instance.collection('users').doc(user?.uid).set(
         {
@@ -44,7 +44,7 @@ class FirebaseStorageHelper {
           'photoUrl': user?.photoURL,
           'phoneNumber': user?.phoneNumber,
           'isAnonymous': user?.isAnonymous,
-          'displayName': username,
+          'displayName': user?.displayName,
           'creationDate': user?.metadata.creationTime,
         },
       );
