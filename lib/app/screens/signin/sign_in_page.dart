@@ -85,7 +85,11 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            _formKey.currentState?.reset();
+                            setState(() {
+                              _email.clear();
+                              _password.clear();
+                              _formKey.currentState?.reset();
+                            });
                             AutoRouter.of(context).pushNamed('/register');
                           },
                       ),
