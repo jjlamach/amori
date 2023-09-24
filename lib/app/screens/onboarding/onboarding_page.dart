@@ -10,60 +10,57 @@ class OnBoardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: const Color.fromRGBO(131, 165, 255, 1),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            if (height > 600) const SizedBox(height: 10.0),
-            if (height > 900)
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1, // 10%
-              ),
-            Text(
-              Strings.appMoto,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.inter(
-                fontSize: 27,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.4, // 40%
-              child: SvgPicture.asset(
-                'lib/assets/husky.svg',
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.2,
-            ), // 20%
-            TextButton(
-              style: Theme.of(context).outlinedButtonTheme.style?.copyWith(
-                    padding: const MaterialStatePropertyAll(
-                      EdgeInsets.symmetric(
-                        horizontal: 100,
-                        vertical: 10,
-                      ),
-                    ),
-                    backgroundColor: const MaterialStatePropertyAll(
-                      Color.fromRGBO(172, 196, 254, 1),
-                    ),
-                  ),
-              onPressed: () => AutoRouter.of(context).replaceNamed('/sign-in'),
-              child: Text(
-                Strings.getStarted,
+        child: SafeArea(
+          child: Column(
+            children: [
+              Text(
+                Strings.appMoto,
+                textAlign: TextAlign.center,
                 style: GoogleFonts.inter(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
+                  fontSize: 27,
+                  fontWeight: FontWeight.w700,
                   color: Colors.white,
                 ),
               ),
-            ),
-          ],
+              SizedBox(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height * 0.4, // 40%
+                child: SvgPicture.asset(
+                  'lib/assets/husky.svg',
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
+              ), // 20%
+              TextButton(
+                style: Theme.of(context).outlinedButtonTheme.style?.copyWith(
+                      padding: const MaterialStatePropertyAll(
+                        EdgeInsets.symmetric(
+                          horizontal: 100,
+                          vertical: 10,
+                        ),
+                      ),
+                      backgroundColor: const MaterialStatePropertyAll(
+                        Color.fromRGBO(172, 196, 254, 1),
+                      ),
+                    ),
+                onPressed: () =>
+                    AutoRouter.of(context).replaceNamed('/sign-in'),
+                child: Text(
+                  Strings.getStarted,
+                  style: GoogleFonts.inter(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
