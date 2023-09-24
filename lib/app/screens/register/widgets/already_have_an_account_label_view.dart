@@ -26,10 +26,7 @@ class AlreadyHaveAnAccountLabelView extends StatelessWidget {
                 ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                final canGoBack = AutoRouter.of(context).canNavigateBack;
-                if (canGoBack) {
-                  AutoRouter.of(context).pop();
-                }
+                AutoRouter.of(context).pop();
               },
           ),
         ],

@@ -1,18 +1,40 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-class ForgottenPasswordPage extends StatelessWidget {
+@RoutePage()
+class ForgottenPasswordPage extends StatefulWidget {
   const ForgottenPasswordPage({super.key});
 
   @override
+  State<ForgottenPasswordPage> createState() => _ForgottenPasswordPageState();
+}
+
+class _ForgottenPasswordPageState extends State<ForgottenPasswordPage> {
+  late GlobalKey<FormState> _formKey;
+  late TextEditingController _email;
+
+  @override
+  void initState() {
+    super.initState();
+    _formKey = GlobalKey();
+    _email = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _email.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> formKey = GlobalKey();
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.all(25.0),
+          padding: const EdgeInsets.all(20.0),
           child: Form(
-            key: formKey,
+            key: _formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,7 +78,7 @@ class ForgottenPasswordPage extends StatelessWidget {
                   height: 46,
                   child: OutlinedButton(
                     onPressed: () {
-                      final form = formKey.currentState?.validate();
+                      _formKey.currentState?.validate();
                     },
                     child: Text(
                       'Reset password',
@@ -70,7 +92,9 @@ class ForgottenPasswordPage extends StatelessWidget {
                 const SizedBox(height: 20.0),
                 Center(
                   child: TextButton(
-                    onPressed: () => Navigator.of(context).pop(),
+                    onPressed: () {
+                      AutoRouter.of(context).pop();
+                    },
                     child: Text(
                       'Go back',
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(

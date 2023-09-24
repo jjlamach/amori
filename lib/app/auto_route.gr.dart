@@ -12,30 +12,32 @@ import 'package:amori/app/screens/emotionselection/emotion_selection_page.dart'
     as _i2;
 import 'package:amori/app/screens/favorites/favorites_page.dart' as _i3;
 import 'package:amori/app/screens/feelings/feelings_page.dart' as _i4;
-import 'package:amori/app/screens/home/home_page.dart' as _i5;
+import 'package:amori/app/screens/forgottenpassword/forgotten_password_page.dart'
+    as _i5;
+import 'package:amori/app/screens/home/home_page.dart' as _i6;
 import 'package:amori/app/screens/navigation/bottom_navigation_page.dart'
     as _i1;
-import 'package:amori/app/screens/onboarding/onboarding_page.dart' as _i6;
-import 'package:amori/app/screens/register/register_page.dart' as _i7;
-import 'package:amori/app/screens/signin/sign_in_page.dart' as _i8;
-import 'package:amori/app/screens/splashscreen/splash_screen.dart' as _i9;
-import 'package:auto_route/auto_route.dart' as _i10;
-import 'package:flutter/material.dart' as _i11;
+import 'package:amori/app/screens/onboarding/onboarding_page.dart' as _i7;
+import 'package:amori/app/screens/register/register_page.dart' as _i8;
+import 'package:amori/app/screens/signin/sign_in_page.dart' as _i9;
+import 'package:amori/app/screens/splashscreen/splash_screen.dart' as _i10;
+import 'package:auto_route/auto_route.dart' as _i11;
+import 'package:flutter/material.dart' as _i12;
 
-abstract class $AmoriAppRouter extends _i10.RootStackRouter {
+abstract class $AmoriAppRouter extends _i11.RootStackRouter {
   $AmoriAppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i10.PageFactory> pagesMap = {
+  final Map<String, _i11.PageFactory> pagesMap = {
     BottomNavigationBarRoute.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.BottomNavigationBarPage(),
       );
     },
     EmotionSelectionRoute.name: (routeData) {
       final args = routeData.argsAs<EmotionSelectionRouteArgs>();
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i2.EmotionSelectionPage(
           emotion: args.emotion,
@@ -44,45 +46,51 @@ abstract class $AmoriAppRouter extends _i10.RootStackRouter {
       );
     },
     FavoritesRoute.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i3.FavoritesPage(),
       );
     },
     FeelingsRoute.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i4.FeelingsPage(),
       );
     },
-    HomeRoute.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+    ForgottenPasswordRoute.name: (routeData) {
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i5.HomePage(),
+        child: const _i5.ForgottenPasswordPage(),
+      );
+    },
+    HomeRoute.name: (routeData) {
+      return _i11.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i6.HomePage(),
       );
     },
     OnBoardingRoute.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.OnBoardingPage(),
+        child: const _i7.OnBoardingPage(),
       );
     },
     RegisterRoute.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.RegisterPage(),
+        child: const _i8.RegisterPage(),
       );
     },
     SignInRoute.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.SignInPage(),
+        child: const _i9.SignInPage(),
       );
     },
     SplashRoute.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.SplashScreen(),
+        child: const _i10.SplashScreen(),
       );
     },
   };
@@ -90,8 +98,8 @@ abstract class $AmoriAppRouter extends _i10.RootStackRouter {
 
 /// generated route for
 /// [_i1.BottomNavigationBarPage]
-class BottomNavigationBarRoute extends _i10.PageRouteInfo<void> {
-  const BottomNavigationBarRoute({List<_i10.PageRouteInfo>? children})
+class BottomNavigationBarRoute extends _i11.PageRouteInfo<void> {
+  const BottomNavigationBarRoute({List<_i11.PageRouteInfo>? children})
       : super(
           BottomNavigationBarRoute.name,
           initialChildren: children,
@@ -99,17 +107,17 @@ class BottomNavigationBarRoute extends _i10.PageRouteInfo<void> {
 
   static const String name = 'BottomNavigationBarRoute';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.EmotionSelectionPage]
 class EmotionSelectionRoute
-    extends _i10.PageRouteInfo<EmotionSelectionRouteArgs> {
+    extends _i11.PageRouteInfo<EmotionSelectionRouteArgs> {
   EmotionSelectionRoute({
     required String emotion,
-    _i11.Key? key,
-    List<_i10.PageRouteInfo>? children,
+    _i12.Key? key,
+    List<_i11.PageRouteInfo>? children,
   }) : super(
           EmotionSelectionRoute.name,
           args: EmotionSelectionRouteArgs(
@@ -121,8 +129,8 @@ class EmotionSelectionRoute
 
   static const String name = 'EmotionSelectionRoute';
 
-  static const _i10.PageInfo<EmotionSelectionRouteArgs> page =
-      _i10.PageInfo<EmotionSelectionRouteArgs>(name);
+  static const _i11.PageInfo<EmotionSelectionRouteArgs> page =
+      _i11.PageInfo<EmotionSelectionRouteArgs>(name);
 }
 
 class EmotionSelectionRouteArgs {
@@ -133,7 +141,7 @@ class EmotionSelectionRouteArgs {
 
   final String emotion;
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
@@ -143,8 +151,8 @@ class EmotionSelectionRouteArgs {
 
 /// generated route for
 /// [_i3.FavoritesPage]
-class FavoritesRoute extends _i10.PageRouteInfo<void> {
-  const FavoritesRoute({List<_i10.PageRouteInfo>? children})
+class FavoritesRoute extends _i11.PageRouteInfo<void> {
+  const FavoritesRoute({List<_i11.PageRouteInfo>? children})
       : super(
           FavoritesRoute.name,
           initialChildren: children,
@@ -152,13 +160,13 @@ class FavoritesRoute extends _i10.PageRouteInfo<void> {
 
   static const String name = 'FavoritesRoute';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i4.FeelingsPage]
-class FeelingsRoute extends _i10.PageRouteInfo<void> {
-  const FeelingsRoute({List<_i10.PageRouteInfo>? children})
+class FeelingsRoute extends _i11.PageRouteInfo<void> {
+  const FeelingsRoute({List<_i11.PageRouteInfo>? children})
       : super(
           FeelingsRoute.name,
           initialChildren: children,
@@ -166,13 +174,27 @@ class FeelingsRoute extends _i10.PageRouteInfo<void> {
 
   static const String name = 'FeelingsRoute';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i5.HomePage]
-class HomeRoute extends _i10.PageRouteInfo<void> {
-  const HomeRoute({List<_i10.PageRouteInfo>? children})
+/// [_i5.ForgottenPasswordPage]
+class ForgottenPasswordRoute extends _i11.PageRouteInfo<void> {
+  const ForgottenPasswordRoute({List<_i11.PageRouteInfo>? children})
+      : super(
+          ForgottenPasswordRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ForgottenPasswordRoute';
+
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i6.HomePage]
+class HomeRoute extends _i11.PageRouteInfo<void> {
+  const HomeRoute({List<_i11.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
           initialChildren: children,
@@ -180,13 +202,13 @@ class HomeRoute extends _i10.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i6.OnBoardingPage]
-class OnBoardingRoute extends _i10.PageRouteInfo<void> {
-  const OnBoardingRoute({List<_i10.PageRouteInfo>? children})
+/// [_i7.OnBoardingPage]
+class OnBoardingRoute extends _i11.PageRouteInfo<void> {
+  const OnBoardingRoute({List<_i11.PageRouteInfo>? children})
       : super(
           OnBoardingRoute.name,
           initialChildren: children,
@@ -194,13 +216,13 @@ class OnBoardingRoute extends _i10.PageRouteInfo<void> {
 
   static const String name = 'OnBoardingRoute';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i7.RegisterPage]
-class RegisterRoute extends _i10.PageRouteInfo<void> {
-  const RegisterRoute({List<_i10.PageRouteInfo>? children})
+/// [_i8.RegisterPage]
+class RegisterRoute extends _i11.PageRouteInfo<void> {
+  const RegisterRoute({List<_i11.PageRouteInfo>? children})
       : super(
           RegisterRoute.name,
           initialChildren: children,
@@ -208,13 +230,13 @@ class RegisterRoute extends _i10.PageRouteInfo<void> {
 
   static const String name = 'RegisterRoute';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i8.SignInPage]
-class SignInRoute extends _i10.PageRouteInfo<void> {
-  const SignInRoute({List<_i10.PageRouteInfo>? children})
+/// [_i9.SignInPage]
+class SignInRoute extends _i11.PageRouteInfo<void> {
+  const SignInRoute({List<_i11.PageRouteInfo>? children})
       : super(
           SignInRoute.name,
           initialChildren: children,
@@ -222,13 +244,13 @@ class SignInRoute extends _i10.PageRouteInfo<void> {
 
   static const String name = 'SignInRoute';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i9.SplashScreen]
-class SplashRoute extends _i10.PageRouteInfo<void> {
-  const SplashRoute({List<_i10.PageRouteInfo>? children})
+/// [_i10.SplashScreen]
+class SplashRoute extends _i11.PageRouteInfo<void> {
+  const SplashRoute({List<_i11.PageRouteInfo>? children})
       : super(
           SplashRoute.name,
           initialChildren: children,
@@ -236,5 +258,5 @@ class SplashRoute extends _i10.PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
