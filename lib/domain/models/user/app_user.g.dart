@@ -19,6 +19,9 @@ _$_AppUser _$$_AppUserFromJson(Map<String, dynamic> json) => _$_AppUser(
       lastSignedIn: json['lastSignedIn'] == null
           ? null
           : DateTime.parse(json['lastSignedIn'] as String),
+      feelings: (json['feelings'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, FeelingEntry.fromJson(e as Map<String, dynamic>)),
+      ),
     );
 
 Map<String, dynamic> _$$_AppUserToJson(_$_AppUser instance) =>
@@ -31,4 +34,5 @@ Map<String, dynamic> _$$_AppUserToJson(_$_AppUser instance) =>
       'displayName': instance.displayName,
       'creationTime': instance.creationTime?.toIso8601String(),
       'lastSignedIn': instance.lastSignedIn?.toIso8601String(),
+      'feelings': instance.feelings,
     };

@@ -28,6 +28,7 @@ mixin _$AppUser {
   String? get displayName => throw _privateConstructorUsedError;
   DateTime? get creationTime => throw _privateConstructorUsedError;
   DateTime? get lastSignedIn => throw _privateConstructorUsedError;
+  Map<String, FeelingEntry>? get feelings => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +48,8 @@ abstract class $AppUserCopyWith<$Res> {
       bool? isAnonymous,
       String? displayName,
       DateTime? creationTime,
-      DateTime? lastSignedIn});
+      DateTime? lastSignedIn,
+      Map<String, FeelingEntry>? feelings});
 }
 
 /// @nodoc
@@ -71,6 +73,7 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? displayName = freezed,
     Object? creationTime = freezed,
     Object? lastSignedIn = freezed,
+    Object? feelings = freezed,
   }) {
     return _then(_value.copyWith(
       uid: freezed == uid
@@ -105,6 +108,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.lastSignedIn
           : lastSignedIn // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      feelings: freezed == feelings
+          ? _value.feelings
+          : feelings // ignore: cast_nullable_to_non_nullable
+              as Map<String, FeelingEntry>?,
     ) as $Val);
   }
 }
@@ -124,7 +131,8 @@ abstract class _$$_AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       bool? isAnonymous,
       String? displayName,
       DateTime? creationTime,
-      DateTime? lastSignedIn});
+      DateTime? lastSignedIn,
+      Map<String, FeelingEntry>? feelings});
 }
 
 /// @nodoc
@@ -145,6 +153,7 @@ class __$$_AppUserCopyWithImpl<$Res>
     Object? displayName = freezed,
     Object? creationTime = freezed,
     Object? lastSignedIn = freezed,
+    Object? feelings = freezed,
   }) {
     return _then(_$_AppUser(
       uid: freezed == uid
@@ -179,6 +188,10 @@ class __$$_AppUserCopyWithImpl<$Res>
           ? _value.lastSignedIn
           : lastSignedIn // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      feelings: freezed == feelings
+          ? _value._feelings
+          : feelings // ignore: cast_nullable_to_non_nullable
+              as Map<String, FeelingEntry>?,
     ));
   }
 }
@@ -194,7 +207,9 @@ class _$_AppUser implements _AppUser {
       this.isAnonymous,
       this.displayName,
       this.creationTime,
-      this.lastSignedIn});
+      this.lastSignedIn,
+      final Map<String, FeelingEntry>? feelings})
+      : _feelings = feelings;
 
   factory _$_AppUser.fromJson(Map<String, dynamic> json) =>
       _$$_AppUserFromJson(json);
@@ -215,10 +230,19 @@ class _$_AppUser implements _AppUser {
   final DateTime? creationTime;
   @override
   final DateTime? lastSignedIn;
+  final Map<String, FeelingEntry>? _feelings;
+  @override
+  Map<String, FeelingEntry>? get feelings {
+    final value = _feelings;
+    if (value == null) return null;
+    if (_feelings is EqualUnmodifiableMapView) return _feelings;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
 
   @override
   String toString() {
-    return 'AppUser(uid: $uid, email: $email, photoURL: $photoURL, phoneNumber: $phoneNumber, isAnonymous: $isAnonymous, displayName: $displayName, creationTime: $creationTime, lastSignedIn: $lastSignedIn)';
+    return 'AppUser(uid: $uid, email: $email, photoURL: $photoURL, phoneNumber: $phoneNumber, isAnonymous: $isAnonymous, displayName: $displayName, creationTime: $creationTime, lastSignedIn: $lastSignedIn, feelings: $feelings)';
   }
 
   @override
@@ -239,13 +263,23 @@ class _$_AppUser implements _AppUser {
             (identical(other.creationTime, creationTime) ||
                 other.creationTime == creationTime) &&
             (identical(other.lastSignedIn, lastSignedIn) ||
-                other.lastSignedIn == lastSignedIn));
+                other.lastSignedIn == lastSignedIn) &&
+            const DeepCollectionEquality().equals(other._feelings, _feelings));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, uid, email, photoURL,
-      phoneNumber, isAnonymous, displayName, creationTime, lastSignedIn);
+  int get hashCode => Object.hash(
+      runtimeType,
+      uid,
+      email,
+      photoURL,
+      phoneNumber,
+      isAnonymous,
+      displayName,
+      creationTime,
+      lastSignedIn,
+      const DeepCollectionEquality().hash(_feelings));
 
   @JsonKey(ignore: true)
   @override
@@ -270,7 +304,8 @@ abstract class _AppUser implements AppUser {
       final bool? isAnonymous,
       final String? displayName,
       final DateTime? creationTime,
-      final DateTime? lastSignedIn}) = _$_AppUser;
+      final DateTime? lastSignedIn,
+      final Map<String, FeelingEntry>? feelings}) = _$_AppUser;
 
   factory _AppUser.fromJson(Map<String, dynamic> json) = _$_AppUser.fromJson;
 
@@ -290,6 +325,8 @@ abstract class _AppUser implements AppUser {
   DateTime? get creationTime;
   @override
   DateTime? get lastSignedIn;
+  @override
+  Map<String, FeelingEntry>? get feelings;
   @override
   @JsonKey(ignore: true)
   _$$_AppUserCopyWith<_$_AppUser> get copyWith =>
