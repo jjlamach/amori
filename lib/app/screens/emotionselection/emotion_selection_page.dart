@@ -3,7 +3,6 @@ import 'package:amori/app/screens/emotionselection/widgets/emotion_field_view.da
 import 'package:amori/app/screens/emotionselection/widgets/tags_view.dart';
 import 'package:amori/common/common.dart';
 import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -60,12 +59,12 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
               ),
             ),
             const SliverToBoxAdapter(child: SizedBox(height: 40.0)),
-            SliverPadding(
-              padding: const EdgeInsets.all(25.0),
-              sliver: SliverToBoxAdapter(
-                child: Column(
-                  children: [
-                    Row(
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
                       children: [
                         Text(
                           'Write it out',
@@ -82,33 +81,34 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                         SvgPicture.asset('lib/assets/icon _pencil_.svg'),
                       ],
                     ),
-                    const SizedBox(height: 20.0),
-                    EmotionFieldView(
-                      emotion: _emotion,
-                      formKey: _formKey,
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 20.0),
-                        child: Text(
-                          'Label it',
-                          style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .inversePrimary,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                        ),
+                  ),
+                  const SizedBox(height: 20.0),
+                  EmotionFieldView(
+                    emotion: _emotion,
+                    formKey: _formKey,
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0, bottom: 20.0),
+                      child: Text(
+                        'Label it',
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                              color:
+                                  Theme.of(context).colorScheme.inversePrimary,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                            ),
                       ),
                     ),
-                    const TagsView(),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.1,
-                    ),
-                    SizedBox(
+                  ),
+                  const TagsView(),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.1,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: SizedBox(
                       width: double.infinity,
                       child: OutlinedButton(
                         onPressed: () {
@@ -144,8 +144,8 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],
