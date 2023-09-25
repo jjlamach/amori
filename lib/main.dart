@@ -216,7 +216,7 @@ class AmoriApp extends StatelessWidget {
           swapLegacyOnMaterial3: true,
           fontFamily: GoogleFonts.notoSans().fontFamily,
         ),
-        themeMode: ThemeMode.system,
+        themeMode: ThemeMode.light,
       ),
     );
   }
