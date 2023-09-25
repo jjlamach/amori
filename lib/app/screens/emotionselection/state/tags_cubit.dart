@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'tags_cubit.freezed.dart';
 
 class TagCubit extends Cubit<TagState> {
-  TagCubit() : super(const _Personal(selected: false));
+  TagCubit() : super(const _NoTag());
 
   void tagPersonal(bool selected) {
     emit(TagState.personal(selected: selected));
@@ -21,10 +21,15 @@ class TagCubit extends Cubit<TagState> {
   void tagRelationships(bool selected) {
     emit(TagState.relationships(selected: selected));
   }
+
+  void resetTag() {
+    emit(const TagState.noTag());
+  }
 }
 
 @freezed
 class TagState with _$TagState {
+  const factory TagState.noTag() = _NoTag;
   const factory TagState.personal({
     @Default('Personal') String tagName,
     required bool selected,

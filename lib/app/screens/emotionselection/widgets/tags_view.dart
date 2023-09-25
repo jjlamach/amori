@@ -28,7 +28,11 @@ class TagsView extends StatelessWidget {
             FilterChip(
               label: Text(Tags.values[0].name),
               onSelected: (selected) {
-                cubit.tagPersonal(selected);
+                if (selected == false) {
+                  cubit.resetTag();
+                } else {
+                  cubit.tagPersonal(selected);
+                }
               },
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
@@ -45,7 +49,11 @@ class TagsView extends StatelessWidget {
             FilterChip(
               label: Text(Tags.values[1].name),
               onSelected: (selected) {
-                cubit.tagWork(selected);
+                if (selected == false) {
+                  cubit.resetTag();
+                } else {
+                  cubit.tagWork(selected);
+                }
               },
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
@@ -65,7 +73,11 @@ class TagsView extends StatelessWidget {
                   false,
               label: Text(Tags.values[2].name),
               onSelected: (selected) {
-                cubit.tagFamily(selected);
+                if (selected == false) {
+                  cubit.resetTag();
+                } else {
+                  cubit.tagFamily(selected);
+                }
               },
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
@@ -81,7 +93,11 @@ class TagsView extends StatelessWidget {
             FilterChip(
               label: Text(Tags.values[3].name),
               onSelected: (selected) {
-                cubit.tagRelationships(selected);
+                if (selected == false) {
+                  cubit.resetTag();
+                } else {
+                  cubit.tagRelationships(selected);
+                }
               },
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(

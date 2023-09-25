@@ -1,9 +1,13 @@
+import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
 import 'package:amori/app/screens/emotionselection/widgets/emotion_field_view.dart';
 import 'package:amori/app/screens/emotionselection/widgets/tags_view.dart';
+import 'package:amori/common/common.dart';
 import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
@@ -114,6 +118,17 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                               userId:
                                   FirebaseAuth.instance.currentUser?.uid ?? '',
                               feelingDescription: _emotion.text,
+                            );
+                            _emotion.clear();
+                            context.read<TagCubit>().resetTag();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              Common.showAppSnackBar(
+                                  "Feeling recorded successfully."),
+                            );
+                            Future.delayed(const Duration(seconds: 2)).then(
+                              (value) => {
+                                AutoRouter.of(context).pop(),
+                              },
                             );
                           }
                         },

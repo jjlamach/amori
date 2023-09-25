@@ -16,10 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TagState {
-  String get tagName => throw _privateConstructorUsedError;
-  bool get selected => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() noTag,
     required TResult Function(String tagName, bool selected) personal,
     required TResult Function(String tagName, bool selected) work,
     required TResult Function(String tagName, bool selected) family,
@@ -28,6 +27,7 @@ mixin _$TagState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? noTag,
     TResult? Function(String tagName, bool selected)? personal,
     TResult? Function(String tagName, bool selected)? work,
     TResult? Function(String tagName, bool selected)? family,
@@ -36,6 +36,7 @@ mixin _$TagState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noTag,
     TResult Function(String tagName, bool selected)? personal,
     TResult Function(String tagName, bool selected)? work,
     TResult Function(String tagName, bool selected)? family,
@@ -45,6 +46,7 @@ mixin _$TagState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_NoTag value) noTag,
     required TResult Function(_Personal value) personal,
     required TResult Function(_Work value) work,
     required TResult Function(_Family value) family,
@@ -53,6 +55,7 @@ mixin _$TagState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NoTag value)? noTag,
     TResult? Function(_Personal value)? personal,
     TResult? Function(_Work value)? work,
     TResult? Function(_Family value)? family,
@@ -61,6 +64,7 @@ mixin _$TagState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoTag value)? noTag,
     TResult Function(_Personal value)? personal,
     TResult Function(_Work value)? work,
     TResult Function(_Family value)? family,
@@ -68,18 +72,12 @@ mixin _$TagState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $TagStateCopyWith<TagState> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $TagStateCopyWith<$Res> {
   factory $TagStateCopyWith(TagState value, $Res Function(TagState) then) =
       _$TagStateCopyWithImpl<$Res, TagState>;
-  @useResult
-  $Res call({String tagName, bool selected});
 }
 
 /// @nodoc
@@ -91,32 +89,131 @@ class _$TagStateCopyWithImpl<$Res, $Val extends TagState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? tagName = null,
-    Object? selected = null,
-  }) {
-    return _then(_value.copyWith(
-      tagName: null == tagName
-          ? _value.tagName
-          : tagName // ignore: cast_nullable_to_non_nullable
-              as String,
-      selected: null == selected
-          ? _value.selected
-          : selected // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_PersonalCopyWith<$Res> implements $TagStateCopyWith<$Res> {
+abstract class _$$_NoTagCopyWith<$Res> {
+  factory _$$_NoTagCopyWith(_$_NoTag value, $Res Function(_$_NoTag) then) =
+      __$$_NoTagCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NoTagCopyWithImpl<$Res>
+    extends _$TagStateCopyWithImpl<$Res, _$_NoTag>
+    implements _$$_NoTagCopyWith<$Res> {
+  __$$_NoTagCopyWithImpl(_$_NoTag _value, $Res Function(_$_NoTag) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_NoTag implements _NoTag {
+  const _$_NoTag();
+
+  @override
+  String toString() {
+    return 'TagState.noTag()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_NoTag);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() noTag,
+    required TResult Function(String tagName, bool selected) personal,
+    required TResult Function(String tagName, bool selected) work,
+    required TResult Function(String tagName, bool selected) family,
+    required TResult Function(String tagName, bool selected) relationships,
+  }) {
+    return noTag();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? noTag,
+    TResult? Function(String tagName, bool selected)? personal,
+    TResult? Function(String tagName, bool selected)? work,
+    TResult? Function(String tagName, bool selected)? family,
+    TResult? Function(String tagName, bool selected)? relationships,
+  }) {
+    return noTag?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noTag,
+    TResult Function(String tagName, bool selected)? personal,
+    TResult Function(String tagName, bool selected)? work,
+    TResult Function(String tagName, bool selected)? family,
+    TResult Function(String tagName, bool selected)? relationships,
+    required TResult orElse(),
+  }) {
+    if (noTag != null) {
+      return noTag();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NoTag value) noTag,
+    required TResult Function(_Personal value) personal,
+    required TResult Function(_Work value) work,
+    required TResult Function(_Family value) family,
+    required TResult Function(_Relationships value) relationships,
+  }) {
+    return noTag(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NoTag value)? noTag,
+    TResult? Function(_Personal value)? personal,
+    TResult? Function(_Work value)? work,
+    TResult? Function(_Family value)? family,
+    TResult? Function(_Relationships value)? relationships,
+  }) {
+    return noTag?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoTag value)? noTag,
+    TResult Function(_Personal value)? personal,
+    TResult Function(_Work value)? work,
+    TResult Function(_Family value)? family,
+    TResult Function(_Relationships value)? relationships,
+    required TResult orElse(),
+  }) {
+    if (noTag != null) {
+      return noTag(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NoTag implements TagState {
+  const factory _NoTag() = _$_NoTag;
+}
+
+/// @nodoc
+abstract class _$$_PersonalCopyWith<$Res> {
   factory _$$_PersonalCopyWith(
           _$_Personal value, $Res Function(_$_Personal) then) =
       __$$_PersonalCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String tagName, bool selected});
 }
@@ -186,6 +283,7 @@ class _$_Personal implements _Personal {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() noTag,
     required TResult Function(String tagName, bool selected) personal,
     required TResult Function(String tagName, bool selected) work,
     required TResult Function(String tagName, bool selected) family,
@@ -197,6 +295,7 @@ class _$_Personal implements _Personal {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? noTag,
     TResult? Function(String tagName, bool selected)? personal,
     TResult? Function(String tagName, bool selected)? work,
     TResult? Function(String tagName, bool selected)? family,
@@ -208,6 +307,7 @@ class _$_Personal implements _Personal {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noTag,
     TResult Function(String tagName, bool selected)? personal,
     TResult Function(String tagName, bool selected)? work,
     TResult Function(String tagName, bool selected)? family,
@@ -223,6 +323,7 @@ class _$_Personal implements _Personal {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_NoTag value) noTag,
     required TResult Function(_Personal value) personal,
     required TResult Function(_Work value) work,
     required TResult Function(_Family value) family,
@@ -234,6 +335,7 @@ class _$_Personal implements _Personal {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NoTag value)? noTag,
     TResult? Function(_Personal value)? personal,
     TResult? Function(_Work value)? work,
     TResult? Function(_Family value)? family,
@@ -245,6 +347,7 @@ class _$_Personal implements _Personal {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoTag value)? noTag,
     TResult Function(_Personal value)? personal,
     TResult Function(_Work value)? work,
     TResult Function(_Family value)? family,
@@ -262,21 +365,17 @@ abstract class _Personal implements TagState {
   const factory _Personal(
       {final String tagName, required final bool selected}) = _$_Personal;
 
-  @override
   String get tagName;
-  @override
   bool get selected;
-  @override
   @JsonKey(ignore: true)
   _$$_PersonalCopyWith<_$_Personal> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_WorkCopyWith<$Res> implements $TagStateCopyWith<$Res> {
+abstract class _$$_WorkCopyWith<$Res> {
   factory _$$_WorkCopyWith(_$_Work value, $Res Function(_$_Work) then) =
       __$$_WorkCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String tagName, bool selected});
 }
@@ -344,6 +443,7 @@ class _$_Work implements _Work {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() noTag,
     required TResult Function(String tagName, bool selected) personal,
     required TResult Function(String tagName, bool selected) work,
     required TResult Function(String tagName, bool selected) family,
@@ -355,6 +455,7 @@ class _$_Work implements _Work {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? noTag,
     TResult? Function(String tagName, bool selected)? personal,
     TResult? Function(String tagName, bool selected)? work,
     TResult? Function(String tagName, bool selected)? family,
@@ -366,6 +467,7 @@ class _$_Work implements _Work {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noTag,
     TResult Function(String tagName, bool selected)? personal,
     TResult Function(String tagName, bool selected)? work,
     TResult Function(String tagName, bool selected)? family,
@@ -381,6 +483,7 @@ class _$_Work implements _Work {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_NoTag value) noTag,
     required TResult Function(_Personal value) personal,
     required TResult Function(_Work value) work,
     required TResult Function(_Family value) family,
@@ -392,6 +495,7 @@ class _$_Work implements _Work {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NoTag value)? noTag,
     TResult? Function(_Personal value)? personal,
     TResult? Function(_Work value)? work,
     TResult? Function(_Family value)? family,
@@ -403,6 +507,7 @@ class _$_Work implements _Work {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoTag value)? noTag,
     TResult Function(_Personal value)? personal,
     TResult Function(_Work value)? work,
     TResult Function(_Family value)? family,
@@ -420,20 +525,16 @@ abstract class _Work implements TagState {
   const factory _Work({final String tagName, required final bool selected}) =
       _$_Work;
 
-  @override
   String get tagName;
-  @override
   bool get selected;
-  @override
   @JsonKey(ignore: true)
   _$$_WorkCopyWith<_$_Work> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_FamilyCopyWith<$Res> implements $TagStateCopyWith<$Res> {
+abstract class _$$_FamilyCopyWith<$Res> {
   factory _$$_FamilyCopyWith(_$_Family value, $Res Function(_$_Family) then) =
       __$$_FamilyCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String tagName, bool selected});
 }
@@ -502,6 +603,7 @@ class _$_Family implements _Family {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() noTag,
     required TResult Function(String tagName, bool selected) personal,
     required TResult Function(String tagName, bool selected) work,
     required TResult Function(String tagName, bool selected) family,
@@ -513,6 +615,7 @@ class _$_Family implements _Family {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? noTag,
     TResult? Function(String tagName, bool selected)? personal,
     TResult? Function(String tagName, bool selected)? work,
     TResult? Function(String tagName, bool selected)? family,
@@ -524,6 +627,7 @@ class _$_Family implements _Family {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noTag,
     TResult Function(String tagName, bool selected)? personal,
     TResult Function(String tagName, bool selected)? work,
     TResult Function(String tagName, bool selected)? family,
@@ -539,6 +643,7 @@ class _$_Family implements _Family {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_NoTag value) noTag,
     required TResult Function(_Personal value) personal,
     required TResult Function(_Work value) work,
     required TResult Function(_Family value) family,
@@ -550,6 +655,7 @@ class _$_Family implements _Family {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NoTag value)? noTag,
     TResult? Function(_Personal value)? personal,
     TResult? Function(_Work value)? work,
     TResult? Function(_Family value)? family,
@@ -561,6 +667,7 @@ class _$_Family implements _Family {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoTag value)? noTag,
     TResult Function(_Personal value)? personal,
     TResult Function(_Work value)? work,
     TResult Function(_Family value)? family,
@@ -578,23 +685,18 @@ abstract class _Family implements TagState {
   const factory _Family({final String tagName, required final bool selected}) =
       _$_Family;
 
-  @override
   String get tagName;
-  @override
   bool get selected;
-  @override
   @JsonKey(ignore: true)
   _$$_FamilyCopyWith<_$_Family> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_RelationshipsCopyWith<$Res>
-    implements $TagStateCopyWith<$Res> {
+abstract class _$$_RelationshipsCopyWith<$Res> {
   factory _$$_RelationshipsCopyWith(
           _$_Relationships value, $Res Function(_$_Relationships) then) =
       __$$_RelationshipsCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String tagName, bool selected});
 }
@@ -665,6 +767,7 @@ class _$_Relationships implements _Relationships {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() noTag,
     required TResult Function(String tagName, bool selected) personal,
     required TResult Function(String tagName, bool selected) work,
     required TResult Function(String tagName, bool selected) family,
@@ -676,6 +779,7 @@ class _$_Relationships implements _Relationships {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? noTag,
     TResult? Function(String tagName, bool selected)? personal,
     TResult? Function(String tagName, bool selected)? work,
     TResult? Function(String tagName, bool selected)? family,
@@ -687,6 +791,7 @@ class _$_Relationships implements _Relationships {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noTag,
     TResult Function(String tagName, bool selected)? personal,
     TResult Function(String tagName, bool selected)? work,
     TResult Function(String tagName, bool selected)? family,
@@ -702,6 +807,7 @@ class _$_Relationships implements _Relationships {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_NoTag value) noTag,
     required TResult Function(_Personal value) personal,
     required TResult Function(_Work value) work,
     required TResult Function(_Family value) family,
@@ -713,6 +819,7 @@ class _$_Relationships implements _Relationships {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NoTag value)? noTag,
     TResult? Function(_Personal value)? personal,
     TResult? Function(_Work value)? work,
     TResult? Function(_Family value)? family,
@@ -724,6 +831,7 @@ class _$_Relationships implements _Relationships {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoTag value)? noTag,
     TResult Function(_Personal value)? personal,
     TResult Function(_Work value)? work,
     TResult Function(_Family value)? family,
@@ -741,11 +849,8 @@ abstract class _Relationships implements TagState {
   const factory _Relationships(
       {final String tagName, required final bool selected}) = _$_Relationships;
 
-  @override
   String get tagName;
-  @override
   bool get selected;
-  @override
   @JsonKey(ignore: true)
   _$$_RelationshipsCopyWith<_$_Relationships> get copyWith =>
       throw _privateConstructorUsedError;
