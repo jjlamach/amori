@@ -111,7 +111,7 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                     child: SizedBox(
                       width: double.infinity,
                       child: OutlinedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           final isValid = _formKey.currentState?.validate();
                           if ((isValid == true) && _emotion.text.isNotEmpty) {
                             FirebaseStorageHelper.saveFeelingDescription(

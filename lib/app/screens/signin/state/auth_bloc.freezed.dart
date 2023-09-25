@@ -20,8 +20,8 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User? user) registered,
-    required TResult Function(User? user) loggedIn,
+    required TResult Function(AppUser? user) registered,
+    required TResult Function(AppUser? user) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function() deletedAccount,
     required TResult Function(String exception) error,
@@ -31,8 +31,8 @@ mixin _$AuthState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User? user)? registered,
-    TResult? Function(User? user)? loggedIn,
+    TResult? Function(AppUser? user)? registered,
+    TResult? Function(AppUser? user)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function()? deletedAccount,
     TResult? Function(String exception)? error,
@@ -42,8 +42,8 @@ mixin _$AuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User? user)? registered,
-    TResult Function(User? user)? loggedIn,
+    TResult Function(AppUser? user)? registered,
+    TResult Function(AppUser? user)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? deletedAccount,
     TResult Function(String exception)? error,
@@ -142,8 +142,8 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User? user) registered,
-    required TResult Function(User? user) loggedIn,
+    required TResult Function(AppUser? user) registered,
+    required TResult Function(AppUser? user) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function() deletedAccount,
     required TResult Function(String exception) error,
@@ -156,8 +156,8 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User? user)? registered,
-    TResult? Function(User? user)? loggedIn,
+    TResult? Function(AppUser? user)? registered,
+    TResult? Function(AppUser? user)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function()? deletedAccount,
     TResult? Function(String exception)? error,
@@ -170,8 +170,8 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User? user)? registered,
-    TResult Function(User? user)? loggedIn,
+    TResult Function(AppUser? user)? registered,
+    TResult Function(AppUser? user)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? deletedAccount,
     TResult Function(String exception)? error,
@@ -273,8 +273,8 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User? user) registered,
-    required TResult Function(User? user) loggedIn,
+    required TResult Function(AppUser? user) registered,
+    required TResult Function(AppUser? user) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function() deletedAccount,
     required TResult Function(String exception) error,
@@ -287,8 +287,8 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User? user)? registered,
-    TResult? Function(User? user)? loggedIn,
+    TResult? Function(AppUser? user)? registered,
+    TResult? Function(AppUser? user)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function()? deletedAccount,
     TResult? Function(String exception)? error,
@@ -301,8 +301,8 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User? user)? registered,
-    TResult Function(User? user)? loggedIn,
+    TResult Function(AppUser? user)? registered,
+    TResult Function(AppUser? user)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? deletedAccount,
     TResult Function(String exception)? error,
@@ -371,7 +371,9 @@ abstract class _$$_RegisteredCopyWith<$Res> {
           _$_Registered value, $Res Function(_$_Registered) then) =
       __$$_RegisteredCopyWithImpl<$Res>;
   @useResult
-  $Res call({User? user});
+  $Res call({AppUser? user});
+
+  $AppUserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -391,8 +393,20 @@ class __$$_RegisteredCopyWithImpl<$Res>
       freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User?,
+              as AppUser?,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AppUserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $AppUserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value));
+    });
   }
 }
 
@@ -402,7 +416,7 @@ class _$_Registered implements _Registered {
   const _$_Registered(this.user);
 
   @override
-  final User? user;
+  final AppUser? user;
 
   @override
   String toString() {
@@ -431,8 +445,8 @@ class _$_Registered implements _Registered {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User? user) registered,
-    required TResult Function(User? user) loggedIn,
+    required TResult Function(AppUser? user) registered,
+    required TResult Function(AppUser? user) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function() deletedAccount,
     required TResult Function(String exception) error,
@@ -445,8 +459,8 @@ class _$_Registered implements _Registered {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User? user)? registered,
-    TResult? Function(User? user)? loggedIn,
+    TResult? Function(AppUser? user)? registered,
+    TResult? Function(AppUser? user)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function()? deletedAccount,
     TResult? Function(String exception)? error,
@@ -459,8 +473,8 @@ class _$_Registered implements _Registered {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User? user)? registered,
-    TResult Function(User? user)? loggedIn,
+    TResult Function(AppUser? user)? registered,
+    TResult Function(AppUser? user)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? deletedAccount,
     TResult Function(String exception)? error,
@@ -520,9 +534,9 @@ class _$_Registered implements _Registered {
 }
 
 abstract class _Registered implements AuthState {
-  const factory _Registered(final User? user) = _$_Registered;
+  const factory _Registered(final AppUser? user) = _$_Registered;
 
-  User? get user;
+  AppUser? get user;
   @JsonKey(ignore: true)
   _$$_RegisteredCopyWith<_$_Registered> get copyWith =>
       throw _privateConstructorUsedError;
@@ -534,7 +548,9 @@ abstract class _$$_LoggedInCopyWith<$Res> {
           _$_LoggedIn value, $Res Function(_$_LoggedIn) then) =
       __$$_LoggedInCopyWithImpl<$Res>;
   @useResult
-  $Res call({User? user});
+  $Res call({AppUser? user});
+
+  $AppUserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -554,8 +570,20 @@ class __$$_LoggedInCopyWithImpl<$Res>
       freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User?,
+              as AppUser?,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AppUserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $AppUserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value));
+    });
   }
 }
 
@@ -565,7 +593,7 @@ class _$_LoggedIn implements _LoggedIn {
   const _$_LoggedIn(this.user);
 
   @override
-  final User? user;
+  final AppUser? user;
 
   @override
   String toString() {
@@ -594,8 +622,8 @@ class _$_LoggedIn implements _LoggedIn {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User? user) registered,
-    required TResult Function(User? user) loggedIn,
+    required TResult Function(AppUser? user) registered,
+    required TResult Function(AppUser? user) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function() deletedAccount,
     required TResult Function(String exception) error,
@@ -608,8 +636,8 @@ class _$_LoggedIn implements _LoggedIn {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User? user)? registered,
-    TResult? Function(User? user)? loggedIn,
+    TResult? Function(AppUser? user)? registered,
+    TResult? Function(AppUser? user)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function()? deletedAccount,
     TResult? Function(String exception)? error,
@@ -622,8 +650,8 @@ class _$_LoggedIn implements _LoggedIn {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User? user)? registered,
-    TResult Function(User? user)? loggedIn,
+    TResult Function(AppUser? user)? registered,
+    TResult Function(AppUser? user)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? deletedAccount,
     TResult Function(String exception)? error,
@@ -683,9 +711,9 @@ class _$_LoggedIn implements _LoggedIn {
 }
 
 abstract class _LoggedIn implements AuthState {
-  const factory _LoggedIn(final User? user) = _$_LoggedIn;
+  const factory _LoggedIn(final AppUser? user) = _$_LoggedIn;
 
-  User? get user;
+  AppUser? get user;
   @JsonKey(ignore: true)
   _$$_LoggedInCopyWith<_$_LoggedIn> get copyWith =>
       throw _privateConstructorUsedError;
@@ -731,8 +759,8 @@ class _$_LoggedOut implements _LoggedOut {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User? user) registered,
-    required TResult Function(User? user) loggedIn,
+    required TResult Function(AppUser? user) registered,
+    required TResult Function(AppUser? user) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function() deletedAccount,
     required TResult Function(String exception) error,
@@ -745,8 +773,8 @@ class _$_LoggedOut implements _LoggedOut {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User? user)? registered,
-    TResult? Function(User? user)? loggedIn,
+    TResult? Function(AppUser? user)? registered,
+    TResult? Function(AppUser? user)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function()? deletedAccount,
     TResult? Function(String exception)? error,
@@ -759,8 +787,8 @@ class _$_LoggedOut implements _LoggedOut {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User? user)? registered,
-    TResult Function(User? user)? loggedIn,
+    TResult Function(AppUser? user)? registered,
+    TResult Function(AppUser? user)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? deletedAccount,
     TResult Function(String exception)? error,
@@ -862,8 +890,8 @@ class _$_Deleted implements _Deleted {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User? user) registered,
-    required TResult Function(User? user) loggedIn,
+    required TResult Function(AppUser? user) registered,
+    required TResult Function(AppUser? user) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function() deletedAccount,
     required TResult Function(String exception) error,
@@ -876,8 +904,8 @@ class _$_Deleted implements _Deleted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User? user)? registered,
-    TResult? Function(User? user)? loggedIn,
+    TResult? Function(AppUser? user)? registered,
+    TResult? Function(AppUser? user)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function()? deletedAccount,
     TResult? Function(String exception)? error,
@@ -890,8 +918,8 @@ class _$_Deleted implements _Deleted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User? user)? registered,
-    TResult Function(User? user)? loggedIn,
+    TResult Function(AppUser? user)? registered,
+    TResult Function(AppUser? user)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? deletedAccount,
     TResult Function(String exception)? error,
@@ -1019,8 +1047,8 @@ class _$_Error implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User? user) registered,
-    required TResult Function(User? user) loggedIn,
+    required TResult Function(AppUser? user) registered,
+    required TResult Function(AppUser? user) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function() deletedAccount,
     required TResult Function(String exception) error,
@@ -1033,8 +1061,8 @@ class _$_Error implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User? user)? registered,
-    TResult? Function(User? user)? loggedIn,
+    TResult? Function(AppUser? user)? registered,
+    TResult? Function(AppUser? user)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function()? deletedAccount,
     TResult? Function(String exception)? error,
@@ -1047,8 +1075,8 @@ class _$_Error implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User? user)? registered,
-    TResult Function(User? user)? loggedIn,
+    TResult Function(AppUser? user)? registered,
+    TResult Function(AppUser? user)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? deletedAccount,
     TResult Function(String exception)? error,

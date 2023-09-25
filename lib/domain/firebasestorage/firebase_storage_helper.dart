@@ -1,7 +1,6 @@
 import 'package:amori/domain/models/user/app_user.dart';
 import 'package:amori/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseStorageHelper {
   FirebaseStorageHelper();
@@ -18,9 +17,9 @@ class FirebaseStorageHelper {
         return data;
       });
       appUser = appUser.copyWith(
-        uuid: userRef['uuid'],
+        uid: userRef['uid'],
         displayName: userRef['displayName'],
-        creationTime: userRef['creationTime'],
+        creationTime: userRef['creationDate'],
         email: userRef['email'],
         isAnonymous: userRef['isAnonymous'],
         lastSignedIn: userRef['lastSignedIn'],
@@ -34,19 +33,12 @@ class FirebaseStorageHelper {
     return appUser;
   }
 
-  static Future<void> saveUserToFireStore(User? user) async {
+  static Future<void> saveUserToFireStore(AppUser user) async {
     try {
-      await FirebaseFirestore.instance.collection('users').doc(user?.uid).set(
-        {
-          'uuid': user?.uid,
-          'email': user?.email,
-          'photoUrl': user?.photoURL,
-          'phoneNumber': user?.phoneNumber,
-          'isAnonymous': user?.isAnonymous,
-          'displayName': user?.displayName,
-          'creationDate': user?.metadata.creationTime,
-        },
-      );
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .set(user.toJson());
     } on Exception catch (e) {
       kLogger.e('Could not register and save user to FireStore. $e');
     }

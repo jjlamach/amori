@@ -20,7 +20,7 @@ AppUser _$AppUserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AppUser {
-  String? get uuid => throw _privateConstructorUsedError;
+  String? get uid => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get photoURL => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $AppUserCopyWith<$Res> {
       _$AppUserCopyWithImpl<$Res, AppUser>;
   @useResult
   $Res call(
-      {String? uuid,
+      {String? uid,
       String? email,
       String? photoURL,
       String? phoneNumber,
@@ -63,7 +63,7 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uuid = freezed,
+    Object? uid = freezed,
     Object? email = freezed,
     Object? photoURL = freezed,
     Object? phoneNumber = freezed,
@@ -73,9 +73,9 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? lastSignedIn = freezed,
   }) {
     return _then(_value.copyWith(
-      uuid: freezed == uuid
-          ? _value.uuid
-          : uuid // ignore: cast_nullable_to_non_nullable
+      uid: freezed == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -117,7 +117,7 @@ abstract class _$$_AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? uuid,
+      {String? uid,
       String? email,
       String? photoURL,
       String? phoneNumber,
@@ -137,7 +137,7 @@ class __$$_AppUserCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uuid = freezed,
+    Object? uid = freezed,
     Object? email = freezed,
     Object? photoURL = freezed,
     Object? phoneNumber = freezed,
@@ -147,9 +147,9 @@ class __$$_AppUserCopyWithImpl<$Res>
     Object? lastSignedIn = freezed,
   }) {
     return _then(_$_AppUser(
-      uuid: freezed == uuid
-          ? _value.uuid
-          : uuid // ignore: cast_nullable_to_non_nullable
+      uid: freezed == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
           ? _value.email
@@ -187,7 +187,7 @@ class __$$_AppUserCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AppUser implements _AppUser {
   const _$_AppUser(
-      {this.uuid,
+      {this.uid,
       this.email,
       this.photoURL,
       this.phoneNumber,
@@ -200,7 +200,7 @@ class _$_AppUser implements _AppUser {
       _$$_AppUserFromJson(json);
 
   @override
-  final String? uuid;
+  final String? uid;
   @override
   final String? email;
   @override
@@ -218,7 +218,7 @@ class _$_AppUser implements _AppUser {
 
   @override
   String toString() {
-    return 'AppUser(uuid: $uuid, email: $email, photoURL: $photoURL, phoneNumber: $phoneNumber, isAnonymous: $isAnonymous, displayName: $displayName, creationTime: $creationTime, lastSignedIn: $lastSignedIn)';
+    return 'AppUser(uid: $uid, email: $email, photoURL: $photoURL, phoneNumber: $phoneNumber, isAnonymous: $isAnonymous, displayName: $displayName, creationTime: $creationTime, lastSignedIn: $lastSignedIn)';
   }
 
   @override
@@ -226,7 +226,7 @@ class _$_AppUser implements _AppUser {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AppUser &&
-            (identical(other.uuid, uuid) || other.uuid == uuid) &&
+            (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.photoURL, photoURL) ||
                 other.photoURL == photoURL) &&
@@ -244,7 +244,7 @@ class _$_AppUser implements _AppUser {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, uuid, email, photoURL,
+  int get hashCode => Object.hash(runtimeType, uid, email, photoURL,
       phoneNumber, isAnonymous, displayName, creationTime, lastSignedIn);
 
   @JsonKey(ignore: true)
@@ -263,7 +263,7 @@ class _$_AppUser implements _AppUser {
 
 abstract class _AppUser implements AppUser {
   const factory _AppUser(
-      {final String? uuid,
+      {final String? uid,
       final String? email,
       final String? photoURL,
       final String? phoneNumber,
@@ -275,7 +275,7 @@ abstract class _AppUser implements AppUser {
   factory _AppUser.fromJson(Map<String, dynamic> json) = _$_AppUser.fromJson;
 
   @override
-  String? get uuid;
+  String? get uid;
   @override
   String? get email;
   @override

@@ -1,4 +1,5 @@
 import 'package:amori/app/auto_route.gr.dart';
+import 'package:amori/app/screens/home/state/home_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/assets.dart';
 import 'package:auto_route/auto_route.dart';
@@ -29,6 +30,7 @@ class HomePage extends StatelessWidget {
                 child: TextButton(
                   onPressed: () {
                     context.read<AuthBloc>().add(const AuthEvent.logOut());
+                    context.read<HomeCubit>().resetState();
                   },
                   child: const Text(
                     'Log out',

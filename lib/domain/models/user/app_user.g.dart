@@ -7,7 +7,7 @@ part of 'app_user.dart';
 // **************************************************************************
 
 _$_AppUser _$$_AppUserFromJson(Map<String, dynamic> json) => _$_AppUser(
-      uuid: json['uuid'] as String?,
+      uid: json['uid'] as String?,
       email: json['email'] as String?,
       photoURL: json['photoURL'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
@@ -23,7 +23,7 @@ _$_AppUser _$$_AppUserFromJson(Map<String, dynamic> json) => _$_AppUser(
 
 Map<String, dynamic> _$$_AppUserToJson(_$_AppUser instance) =>
     <String, dynamic>{
-      'uuid': instance.uuid,
+      'uid': instance.uid,
       'email': instance.email,
       'photoURL': instance.photoURL,
       'phoneNumber': instance.phoneNumber,

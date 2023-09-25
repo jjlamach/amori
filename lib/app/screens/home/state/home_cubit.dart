@@ -1,8 +1,10 @@
 import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
+import 'package:amori/domain/models/user/app_user.dart';
 import 'package:amori/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'home_cubit.freezed.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -10,13 +12,17 @@ class HomeCubit extends Cubit<HomeState> {
 
   void greetUser() async {
     try {
-      final currentUserId = FirebaseAuth.instance.currentUser?.uid;
-      final username = await FirebaseStorageHelper.getUser(currentUserId ?? '');
-      emit(HomeState.greetUser(username.displayName ?? ''));
+      final AppUser user = await FirebaseStorageHelper.getUser(
+          FirebaseAuth.instance.currentUser?.uid ?? '');
+      emit(HomeState.greetUser(user.displayName ?? ''));
     } on Exception catch (e) {
       kLogger.e('Could not greet the user. $e');
       emit(HomeState.error(e));
     }
+  }
+
+  void resetState() {
+    emit(const HomeState.initial());
   }
 }
 

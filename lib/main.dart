@@ -9,13 +9,13 @@ import 'package:amori/common/navigation_cubit.dart';
 import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
 import 'package:amori/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/services.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logger/logger.dart';
-import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 // Dependency injection. Service locator/provider
 final getIt = GetIt.instance;
