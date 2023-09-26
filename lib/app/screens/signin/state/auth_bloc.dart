@@ -54,8 +54,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 email: email,
                 password: password,
               );
-              final AppUser user = await FirebaseStorageHelper.getUser(
-                  userCredential.user?.uid ?? '');
+              final AppUser? user =
+                  await FirebaseStorageHelper.getUserFromFirestore(
+                      userCredential.user?.uid ?? '');
               emit(const AuthState.loading());
               emit(AuthState.loggedIn(user));
             } on FirebaseAuthException catch (e) {

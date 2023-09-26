@@ -3,6 +3,7 @@ import 'package:amori/app/screens/emotionselection/widgets/emotion_field_view.da
 import 'package:amori/app/screens/emotionselection/widgets/tags_view.dart';
 import 'package:amori/common/common.dart';
 import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
+import 'package:amori/domain/models/feeling/feeling_entry.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -114,11 +115,13 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                         onPressed: () async {
                           final isValid = _formKey.currentState?.validate();
                           if ((isValid == true) && _emotion.text.isNotEmpty) {
-                            FirebaseStorageHelper.saveFeelingDescription(
-                              userId:
-                                  FirebaseAuth.instance.currentUser?.uid ?? '',
-                              feelingDescription: _emotion.text,
+                            FeelingEntry entry = FeelingEntry(
+                              feeling: _emotion.text,
+                              recordedAt: DateTime.now(),
                             );
+                            FirebaseStorageHelper.addOrUpdateFeelingForToday(
+                                FirebaseAuth.instance.currentUser?.uid ?? '',
+                                entry);
                             _emotion.clear();
                             context.read<TagCubit>().resetTag();
                             ScaffoldMessenger.of(context).showSnackBar(

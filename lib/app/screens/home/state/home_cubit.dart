@@ -12,9 +12,9 @@ class HomeCubit extends Cubit<HomeState> {
 
   void greetUser() async {
     try {
-      final AppUser user = await FirebaseStorageHelper.getUser(
+      final AppUser? user = await FirebaseStorageHelper.getUserFromFirestore(
           FirebaseAuth.instance.currentUser?.uid ?? '');
-      emit(HomeState.greetUser(user.displayName ?? ''));
+      emit(HomeState.greetUser(user?.displayName ?? ''));
     } on Exception catch (e) {
       kLogger.e('Could not greet the user. $e');
       emit(HomeState.error(e));

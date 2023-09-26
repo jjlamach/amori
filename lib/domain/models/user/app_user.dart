@@ -1,4 +1,4 @@
-import 'package:amori/domain/models/feeling/feeling.dart';
+import 'package:amori/domain/models/feeling/daily_feeling_log.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_user.freezed.dart';
@@ -15,7 +15,7 @@ class AppUser with _$AppUser {
     String? displayName,
     DateTime? creationTime,
     DateTime? lastSignedIn,
-    Map<String, FeelingEntry>? feelings,
+    DailyFeelingLog? feelingLog,
   }) = _AppUser;
 
   factory AppUser.fromJson(Map<String, dynamic> json) =>

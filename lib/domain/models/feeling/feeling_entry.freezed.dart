@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'feeling.dart';
+part of 'feeling_entry.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -21,7 +21,7 @@ FeelingEntry _$FeelingEntryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$FeelingEntry {
   String? get feeling => throw _privateConstructorUsedError;
-  DateTime? get timestamp => throw _privateConstructorUsedError;
+  DateTime? get recordedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $FeelingEntryCopyWith<$Res> {
           FeelingEntry value, $Res Function(FeelingEntry) then) =
       _$FeelingEntryCopyWithImpl<$Res, FeelingEntry>;
   @useResult
-  $Res call({String? feeling, DateTime? timestamp});
+  $Res call({String? feeling, DateTime? recordedAt});
 }
 
 /// @nodoc
@@ -52,16 +52,16 @@ class _$FeelingEntryCopyWithImpl<$Res, $Val extends FeelingEntry>
   @override
   $Res call({
     Object? feeling = freezed,
-    Object? timestamp = freezed,
+    Object? recordedAt = freezed,
   }) {
     return _then(_value.copyWith(
       feeling: freezed == feeling
           ? _value.feeling
           : feeling // ignore: cast_nullable_to_non_nullable
               as String?,
-      timestamp: freezed == timestamp
-          ? _value.timestamp
-          : timestamp // ignore: cast_nullable_to_non_nullable
+      recordedAt: freezed == recordedAt
+          ? _value.recordedAt
+          : recordedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ) as $Val);
   }
@@ -75,7 +75,7 @@ abstract class _$$_FeelingEntryCopyWith<$Res>
       __$$_FeelingEntryCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? feeling, DateTime? timestamp});
+  $Res call({String? feeling, DateTime? recordedAt});
 }
 
 /// @nodoc
@@ -90,16 +90,16 @@ class __$$_FeelingEntryCopyWithImpl<$Res>
   @override
   $Res call({
     Object? feeling = freezed,
-    Object? timestamp = freezed,
+    Object? recordedAt = freezed,
   }) {
     return _then(_$_FeelingEntry(
       feeling: freezed == feeling
           ? _value.feeling
           : feeling // ignore: cast_nullable_to_non_nullable
               as String?,
-      timestamp: freezed == timestamp
-          ? _value.timestamp
-          : timestamp // ignore: cast_nullable_to_non_nullable
+      recordedAt: freezed == recordedAt
+          ? _value.recordedAt
+          : recordedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
   }
@@ -108,7 +108,7 @@ class __$$_FeelingEntryCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_FeelingEntry implements _FeelingEntry {
-  const _$_FeelingEntry({this.feeling, this.timestamp});
+  const _$_FeelingEntry({this.feeling, this.recordedAt});
 
   factory _$_FeelingEntry.fromJson(Map<String, dynamic> json) =>
       _$$_FeelingEntryFromJson(json);
@@ -116,11 +116,11 @@ class _$_FeelingEntry implements _FeelingEntry {
   @override
   final String? feeling;
   @override
-  final DateTime? timestamp;
+  final DateTime? recordedAt;
 
   @override
   String toString() {
-    return 'FeelingEntry(feeling: $feeling, timestamp: $timestamp)';
+    return 'FeelingEntry(feeling: $feeling, recordedAt: $recordedAt)';
   }
 
   @override
@@ -129,13 +129,13 @@ class _$_FeelingEntry implements _FeelingEntry {
         (other.runtimeType == runtimeType &&
             other is _$_FeelingEntry &&
             (identical(other.feeling, feeling) || other.feeling == feeling) &&
-            (identical(other.timestamp, timestamp) ||
-                other.timestamp == timestamp));
+            (identical(other.recordedAt, recordedAt) ||
+                other.recordedAt == recordedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, feeling, timestamp);
+  int get hashCode => Object.hash(runtimeType, feeling, recordedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -153,7 +153,7 @@ class _$_FeelingEntry implements _FeelingEntry {
 
 abstract class _FeelingEntry implements FeelingEntry {
   const factory _FeelingEntry(
-      {final String? feeling, final DateTime? timestamp}) = _$_FeelingEntry;
+      {final String? feeling, final DateTime? recordedAt}) = _$_FeelingEntry;
 
   factory _FeelingEntry.fromJson(Map<String, dynamic> json) =
       _$_FeelingEntry.fromJson;
@@ -161,7 +161,7 @@ abstract class _FeelingEntry implements FeelingEntry {
   @override
   String? get feeling;
   @override
-  DateTime? get timestamp;
+  DateTime? get recordedAt;
   @override
   @JsonKey(ignore: true)
   _$$_FeelingEntryCopyWith<_$_FeelingEntry> get copyWith =>
