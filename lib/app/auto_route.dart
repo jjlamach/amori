@@ -1,5 +1,4 @@
 import 'package:amori/app/auto_route.gr.dart';
-import 'package:amori/app/screens/forgottenpassword/forgotten_password_page.dart';
 import 'package:auto_route/auto_route.dart';
 
 @AutoRouterConfig()
@@ -42,7 +41,11 @@ class AmoriAppRouter extends $AmoriAppRouter {
             AutoRoute(
               page: FavoritesRoute.page,
               path: 'favorites',
-            )
+            ),
+            AutoRoute(
+              page: SelectedEmotionRoute.page,
+              path: 'selected-emotion',
+            ),
           ],
         ),
         AutoRoute(

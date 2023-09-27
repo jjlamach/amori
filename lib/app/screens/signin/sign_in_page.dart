@@ -121,6 +121,7 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 const SizedBox(height: 20.0),
                 TextFormField(
+                  obscureText: true,
                   controller: _password,
                   validator: (value) {
                     if (value == null || value.isEmpty) {

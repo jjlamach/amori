@@ -19,44 +19,44 @@ mixin _$HomeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String username) greetUser,
     required TResult Function(Exception e) error,
+    required TResult Function(String emotionSelected) emotionSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String username)? greetUser,
     TResult? Function(Exception e)? error,
+    TResult? Function(String emotionSelected)? emotionSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String username)? greetUser,
     TResult Function(Exception e)? error,
+    TResult Function(String emotionSelected)? emotionSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_GreetUser value) greetUser,
     required TResult Function(_Error value) error,
+    required TResult Function(_EmotionSelected value) emotionSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_GreetUser value)? greetUser,
     TResult? Function(_Error value)? error,
+    TResult? Function(_EmotionSelected value)? emotionSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_GreetUser value)? greetUser,
     TResult Function(_Error value)? error,
+    TResult Function(_EmotionSelected value)? emotionSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -117,8 +117,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String username) greetUser,
     required TResult Function(Exception e) error,
+    required TResult Function(String emotionSelected) emotionSelected,
   }) {
     return initial();
   }
@@ -127,8 +127,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String username)? greetUser,
     TResult? Function(Exception e)? error,
+    TResult? Function(String emotionSelected)? emotionSelected,
   }) {
     return initial?.call();
   }
@@ -137,8 +137,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String username)? greetUser,
     TResult Function(Exception e)? error,
+    TResult Function(String emotionSelected)? emotionSelected,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -151,8 +151,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_GreetUser value) greetUser,
     required TResult Function(_Error value) error,
+    required TResult Function(_EmotionSelected value) emotionSelected,
   }) {
     return initial(this);
   }
@@ -161,8 +161,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_GreetUser value)? greetUser,
     TResult? Function(_Error value)? error,
+    TResult? Function(_EmotionSelected value)? emotionSelected,
   }) {
     return initial?.call(this);
   }
@@ -171,8 +171,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_GreetUser value)? greetUser,
     TResult Function(_Error value)? error,
+    TResult Function(_EmotionSelected value)? emotionSelected,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -184,146 +184,6 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements HomeState {
   const factory _Initial() = _$_Initial;
-}
-
-/// @nodoc
-abstract class _$$_GreetUserCopyWith<$Res> {
-  factory _$$_GreetUserCopyWith(
-          _$_GreetUser value, $Res Function(_$_GreetUser) then) =
-      __$$_GreetUserCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String username});
-}
-
-/// @nodoc
-class __$$_GreetUserCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$_GreetUser>
-    implements _$$_GreetUserCopyWith<$Res> {
-  __$$_GreetUserCopyWithImpl(
-      _$_GreetUser _value, $Res Function(_$_GreetUser) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? username = null,
-  }) {
-    return _then(_$_GreetUser(
-      null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_GreetUser implements _GreetUser {
-  const _$_GreetUser(this.username);
-
-  @override
-  final String username;
-
-  @override
-  String toString() {
-    return 'HomeState.greetUser(username: $username)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_GreetUser &&
-            (identical(other.username, username) ||
-                other.username == username));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, username);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_GreetUserCopyWith<_$_GreetUser> get copyWith =>
-      __$$_GreetUserCopyWithImpl<_$_GreetUser>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(String username) greetUser,
-    required TResult Function(Exception e) error,
-  }) {
-    return greetUser(username);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(String username)? greetUser,
-    TResult? Function(Exception e)? error,
-  }) {
-    return greetUser?.call(username);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(String username)? greetUser,
-    TResult Function(Exception e)? error,
-    required TResult orElse(),
-  }) {
-    if (greetUser != null) {
-      return greetUser(username);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_GreetUser value) greetUser,
-    required TResult Function(_Error value) error,
-  }) {
-    return greetUser(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_GreetUser value)? greetUser,
-    TResult? Function(_Error value)? error,
-  }) {
-    return greetUser?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_GreetUser value)? greetUser,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (greetUser != null) {
-      return greetUser(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GreetUser implements HomeState {
-  const factory _GreetUser(final String username) = _$_GreetUser;
-
-  String get username;
-  @JsonKey(ignore: true)
-  _$$_GreetUserCopyWith<_$_GreetUser> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -389,8 +249,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String username) greetUser,
     required TResult Function(Exception e) error,
+    required TResult Function(String emotionSelected) emotionSelected,
   }) {
     return error(e);
   }
@@ -399,8 +259,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String username)? greetUser,
     TResult? Function(Exception e)? error,
+    TResult? Function(String emotionSelected)? emotionSelected,
   }) {
     return error?.call(e);
   }
@@ -409,8 +269,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String username)? greetUser,
     TResult Function(Exception e)? error,
+    TResult Function(String emotionSelected)? emotionSelected,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -423,8 +283,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_GreetUser value) greetUser,
     required TResult Function(_Error value) error,
+    required TResult Function(_EmotionSelected value) emotionSelected,
   }) {
     return error(this);
   }
@@ -433,8 +293,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_GreetUser value)? greetUser,
     TResult? Function(_Error value)? error,
+    TResult? Function(_EmotionSelected value)? emotionSelected,
   }) {
     return error?.call(this);
   }
@@ -443,8 +303,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_GreetUser value)? greetUser,
     TResult Function(_Error value)? error,
+    TResult Function(_EmotionSelected value)? emotionSelected,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -460,5 +320,146 @@ abstract class _Error implements HomeState {
   Exception get e;
   @JsonKey(ignore: true)
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_EmotionSelectedCopyWith<$Res> {
+  factory _$$_EmotionSelectedCopyWith(
+          _$_EmotionSelected value, $Res Function(_$_EmotionSelected) then) =
+      __$$_EmotionSelectedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String emotionSelected});
+}
+
+/// @nodoc
+class __$$_EmotionSelectedCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$_EmotionSelected>
+    implements _$$_EmotionSelectedCopyWith<$Res> {
+  __$$_EmotionSelectedCopyWithImpl(
+      _$_EmotionSelected _value, $Res Function(_$_EmotionSelected) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? emotionSelected = null,
+  }) {
+    return _then(_$_EmotionSelected(
+      null == emotionSelected
+          ? _value.emotionSelected
+          : emotionSelected // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_EmotionSelected implements _EmotionSelected {
+  const _$_EmotionSelected(this.emotionSelected);
+
+  @override
+  final String emotionSelected;
+
+  @override
+  String toString() {
+    return 'HomeState.emotionSelected(emotionSelected: $emotionSelected)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_EmotionSelected &&
+            (identical(other.emotionSelected, emotionSelected) ||
+                other.emotionSelected == emotionSelected));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, emotionSelected);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_EmotionSelectedCopyWith<_$_EmotionSelected> get copyWith =>
+      __$$_EmotionSelectedCopyWithImpl<_$_EmotionSelected>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(Exception e) error,
+    required TResult Function(String emotionSelected) emotionSelected,
+  }) {
+    return emotionSelected(this.emotionSelected);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(Exception e)? error,
+    TResult? Function(String emotionSelected)? emotionSelected,
+  }) {
+    return emotionSelected?.call(this.emotionSelected);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Exception e)? error,
+    TResult Function(String emotionSelected)? emotionSelected,
+    required TResult orElse(),
+  }) {
+    if (emotionSelected != null) {
+      return emotionSelected(this.emotionSelected);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Error value) error,
+    required TResult Function(_EmotionSelected value) emotionSelected,
+  }) {
+    return emotionSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_EmotionSelected value)? emotionSelected,
+  }) {
+    return emotionSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Error value)? error,
+    TResult Function(_EmotionSelected value)? emotionSelected,
+    required TResult orElse(),
+  }) {
+    if (emotionSelected != null) {
+      return emotionSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EmotionSelected implements HomeState {
+  const factory _EmotionSelected(final String emotionSelected) =
+      _$_EmotionSelected;
+
+  String get emotionSelected;
+  @JsonKey(ignore: true)
+  _$$_EmotionSelectedCopyWith<_$_EmotionSelected> get copyWith =>
       throw _privateConstructorUsedError;
 }

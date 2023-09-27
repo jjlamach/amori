@@ -1,6 +1,7 @@
 import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
 import 'package:amori/app/screens/emotionselection/widgets/emotion_field_view.dart';
 import 'package:amori/app/screens/emotionselection/widgets/tags_view.dart';
+import 'package:amori/app/screens/home/state/home_cubit.dart';
 import 'package:amori/common/common.dart';
 import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
 import 'package:amori/domain/models/feeling/feeling_entry.dart';
@@ -130,6 +131,9 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                             );
                             Future.delayed(const Duration(seconds: 2)).then(
                               (value) => {
+                                context
+                                    .read<HomeCubit>()
+                                    .emotionSelected(widget.emotion),
                                 AutoRouter.of(context).pop(),
                               },
                             );
