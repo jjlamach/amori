@@ -1,5 +1,5 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'tags_cubit.freezed.dart';
 
@@ -20,6 +20,14 @@ class TagCubit extends Cubit<TagState> {
 
   void tagRelationships(bool selected) {
     emit(TagState.relationships(selected: selected));
+  }
+
+  void tagFriends(bool selected) {
+    emit(TagState.friends(selected: selected));
+  }
+
+  void tagOthers(bool selected) {
+    emit(TagState.others(selected: selected));
   }
 
   void resetTag() {
@@ -46,4 +54,14 @@ class TagState with _$TagState {
     @Default('Relationships') String tagName,
     required bool selected,
   }) = _Relationships;
+
+  const factory TagState.friends({
+    @Default('Friends') String tagName,
+    required bool selected,
+  }) = _Friends;
+
+  const factory TagState.others({
+    @Default('Others') String tagName,
+    required bool selected,
+  }) = _Others;
 }

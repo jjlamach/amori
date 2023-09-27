@@ -23,6 +23,8 @@ mixin _$TagState {
     required TResult Function(String tagName, bool selected) work,
     required TResult Function(String tagName, bool selected) family,
     required TResult Function(String tagName, bool selected) relationships,
+    required TResult Function(String tagName, bool selected) friends,
+    required TResult Function(String tagName, bool selected) others,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +34,8 @@ mixin _$TagState {
     TResult? Function(String tagName, bool selected)? work,
     TResult? Function(String tagName, bool selected)? family,
     TResult? Function(String tagName, bool selected)? relationships,
+    TResult? Function(String tagName, bool selected)? friends,
+    TResult? Function(String tagName, bool selected)? others,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +45,8 @@ mixin _$TagState {
     TResult Function(String tagName, bool selected)? work,
     TResult Function(String tagName, bool selected)? family,
     TResult Function(String tagName, bool selected)? relationships,
+    TResult Function(String tagName, bool selected)? friends,
+    TResult Function(String tagName, bool selected)? others,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +57,8 @@ mixin _$TagState {
     required TResult Function(_Work value) work,
     required TResult Function(_Family value) family,
     required TResult Function(_Relationships value) relationships,
+    required TResult Function(_Friends value) friends,
+    required TResult Function(_Others value) others,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +68,8 @@ mixin _$TagState {
     TResult? Function(_Work value)? work,
     TResult? Function(_Family value)? family,
     TResult? Function(_Relationships value)? relationships,
+    TResult? Function(_Friends value)? friends,
+    TResult? Function(_Others value)? others,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +79,8 @@ mixin _$TagState {
     TResult Function(_Work value)? work,
     TResult Function(_Family value)? family,
     TResult Function(_Relationships value)? relationships,
+    TResult Function(_Friends value)? friends,
+    TResult Function(_Others value)? others,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -132,6 +144,8 @@ class _$_NoTag implements _NoTag {
     required TResult Function(String tagName, bool selected) work,
     required TResult Function(String tagName, bool selected) family,
     required TResult Function(String tagName, bool selected) relationships,
+    required TResult Function(String tagName, bool selected) friends,
+    required TResult Function(String tagName, bool selected) others,
   }) {
     return noTag();
   }
@@ -144,6 +158,8 @@ class _$_NoTag implements _NoTag {
     TResult? Function(String tagName, bool selected)? work,
     TResult? Function(String tagName, bool selected)? family,
     TResult? Function(String tagName, bool selected)? relationships,
+    TResult? Function(String tagName, bool selected)? friends,
+    TResult? Function(String tagName, bool selected)? others,
   }) {
     return noTag?.call();
   }
@@ -156,6 +172,8 @@ class _$_NoTag implements _NoTag {
     TResult Function(String tagName, bool selected)? work,
     TResult Function(String tagName, bool selected)? family,
     TResult Function(String tagName, bool selected)? relationships,
+    TResult Function(String tagName, bool selected)? friends,
+    TResult Function(String tagName, bool selected)? others,
     required TResult orElse(),
   }) {
     if (noTag != null) {
@@ -172,6 +190,8 @@ class _$_NoTag implements _NoTag {
     required TResult Function(_Work value) work,
     required TResult Function(_Family value) family,
     required TResult Function(_Relationships value) relationships,
+    required TResult Function(_Friends value) friends,
+    required TResult Function(_Others value) others,
   }) {
     return noTag(this);
   }
@@ -184,6 +204,8 @@ class _$_NoTag implements _NoTag {
     TResult? Function(_Work value)? work,
     TResult? Function(_Family value)? family,
     TResult? Function(_Relationships value)? relationships,
+    TResult? Function(_Friends value)? friends,
+    TResult? Function(_Others value)? others,
   }) {
     return noTag?.call(this);
   }
@@ -196,6 +218,8 @@ class _$_NoTag implements _NoTag {
     TResult Function(_Work value)? work,
     TResult Function(_Family value)? family,
     TResult Function(_Relationships value)? relationships,
+    TResult Function(_Friends value)? friends,
+    TResult Function(_Others value)? others,
     required TResult orElse(),
   }) {
     if (noTag != null) {
@@ -288,6 +312,8 @@ class _$_Personal implements _Personal {
     required TResult Function(String tagName, bool selected) work,
     required TResult Function(String tagName, bool selected) family,
     required TResult Function(String tagName, bool selected) relationships,
+    required TResult Function(String tagName, bool selected) friends,
+    required TResult Function(String tagName, bool selected) others,
   }) {
     return personal(tagName, selected);
   }
@@ -300,6 +326,8 @@ class _$_Personal implements _Personal {
     TResult? Function(String tagName, bool selected)? work,
     TResult? Function(String tagName, bool selected)? family,
     TResult? Function(String tagName, bool selected)? relationships,
+    TResult? Function(String tagName, bool selected)? friends,
+    TResult? Function(String tagName, bool selected)? others,
   }) {
     return personal?.call(tagName, selected);
   }
@@ -312,6 +340,8 @@ class _$_Personal implements _Personal {
     TResult Function(String tagName, bool selected)? work,
     TResult Function(String tagName, bool selected)? family,
     TResult Function(String tagName, bool selected)? relationships,
+    TResult Function(String tagName, bool selected)? friends,
+    TResult Function(String tagName, bool selected)? others,
     required TResult orElse(),
   }) {
     if (personal != null) {
@@ -328,6 +358,8 @@ class _$_Personal implements _Personal {
     required TResult Function(_Work value) work,
     required TResult Function(_Family value) family,
     required TResult Function(_Relationships value) relationships,
+    required TResult Function(_Friends value) friends,
+    required TResult Function(_Others value) others,
   }) {
     return personal(this);
   }
@@ -340,6 +372,8 @@ class _$_Personal implements _Personal {
     TResult? Function(_Work value)? work,
     TResult? Function(_Family value)? family,
     TResult? Function(_Relationships value)? relationships,
+    TResult? Function(_Friends value)? friends,
+    TResult? Function(_Others value)? others,
   }) {
     return personal?.call(this);
   }
@@ -352,6 +386,8 @@ class _$_Personal implements _Personal {
     TResult Function(_Work value)? work,
     TResult Function(_Family value)? family,
     TResult Function(_Relationships value)? relationships,
+    TResult Function(_Friends value)? friends,
+    TResult Function(_Others value)? others,
     required TResult orElse(),
   }) {
     if (personal != null) {
@@ -448,6 +484,8 @@ class _$_Work implements _Work {
     required TResult Function(String tagName, bool selected) work,
     required TResult Function(String tagName, bool selected) family,
     required TResult Function(String tagName, bool selected) relationships,
+    required TResult Function(String tagName, bool selected) friends,
+    required TResult Function(String tagName, bool selected) others,
   }) {
     return work(tagName, selected);
   }
@@ -460,6 +498,8 @@ class _$_Work implements _Work {
     TResult? Function(String tagName, bool selected)? work,
     TResult? Function(String tagName, bool selected)? family,
     TResult? Function(String tagName, bool selected)? relationships,
+    TResult? Function(String tagName, bool selected)? friends,
+    TResult? Function(String tagName, bool selected)? others,
   }) {
     return work?.call(tagName, selected);
   }
@@ -472,6 +512,8 @@ class _$_Work implements _Work {
     TResult Function(String tagName, bool selected)? work,
     TResult Function(String tagName, bool selected)? family,
     TResult Function(String tagName, bool selected)? relationships,
+    TResult Function(String tagName, bool selected)? friends,
+    TResult Function(String tagName, bool selected)? others,
     required TResult orElse(),
   }) {
     if (work != null) {
@@ -488,6 +530,8 @@ class _$_Work implements _Work {
     required TResult Function(_Work value) work,
     required TResult Function(_Family value) family,
     required TResult Function(_Relationships value) relationships,
+    required TResult Function(_Friends value) friends,
+    required TResult Function(_Others value) others,
   }) {
     return work(this);
   }
@@ -500,6 +544,8 @@ class _$_Work implements _Work {
     TResult? Function(_Work value)? work,
     TResult? Function(_Family value)? family,
     TResult? Function(_Relationships value)? relationships,
+    TResult? Function(_Friends value)? friends,
+    TResult? Function(_Others value)? others,
   }) {
     return work?.call(this);
   }
@@ -512,6 +558,8 @@ class _$_Work implements _Work {
     TResult Function(_Work value)? work,
     TResult Function(_Family value)? family,
     TResult Function(_Relationships value)? relationships,
+    TResult Function(_Friends value)? friends,
+    TResult Function(_Others value)? others,
     required TResult orElse(),
   }) {
     if (work != null) {
@@ -608,6 +656,8 @@ class _$_Family implements _Family {
     required TResult Function(String tagName, bool selected) work,
     required TResult Function(String tagName, bool selected) family,
     required TResult Function(String tagName, bool selected) relationships,
+    required TResult Function(String tagName, bool selected) friends,
+    required TResult Function(String tagName, bool selected) others,
   }) {
     return family(tagName, selected);
   }
@@ -620,6 +670,8 @@ class _$_Family implements _Family {
     TResult? Function(String tagName, bool selected)? work,
     TResult? Function(String tagName, bool selected)? family,
     TResult? Function(String tagName, bool selected)? relationships,
+    TResult? Function(String tagName, bool selected)? friends,
+    TResult? Function(String tagName, bool selected)? others,
   }) {
     return family?.call(tagName, selected);
   }
@@ -632,6 +684,8 @@ class _$_Family implements _Family {
     TResult Function(String tagName, bool selected)? work,
     TResult Function(String tagName, bool selected)? family,
     TResult Function(String tagName, bool selected)? relationships,
+    TResult Function(String tagName, bool selected)? friends,
+    TResult Function(String tagName, bool selected)? others,
     required TResult orElse(),
   }) {
     if (family != null) {
@@ -648,6 +702,8 @@ class _$_Family implements _Family {
     required TResult Function(_Work value) work,
     required TResult Function(_Family value) family,
     required TResult Function(_Relationships value) relationships,
+    required TResult Function(_Friends value) friends,
+    required TResult Function(_Others value) others,
   }) {
     return family(this);
   }
@@ -660,6 +716,8 @@ class _$_Family implements _Family {
     TResult? Function(_Work value)? work,
     TResult? Function(_Family value)? family,
     TResult? Function(_Relationships value)? relationships,
+    TResult? Function(_Friends value)? friends,
+    TResult? Function(_Others value)? others,
   }) {
     return family?.call(this);
   }
@@ -672,6 +730,8 @@ class _$_Family implements _Family {
     TResult Function(_Work value)? work,
     TResult Function(_Family value)? family,
     TResult Function(_Relationships value)? relationships,
+    TResult Function(_Friends value)? friends,
+    TResult Function(_Others value)? others,
     required TResult orElse(),
   }) {
     if (family != null) {
@@ -772,6 +832,8 @@ class _$_Relationships implements _Relationships {
     required TResult Function(String tagName, bool selected) work,
     required TResult Function(String tagName, bool selected) family,
     required TResult Function(String tagName, bool selected) relationships,
+    required TResult Function(String tagName, bool selected) friends,
+    required TResult Function(String tagName, bool selected) others,
   }) {
     return relationships(tagName, selected);
   }
@@ -784,6 +846,8 @@ class _$_Relationships implements _Relationships {
     TResult? Function(String tagName, bool selected)? work,
     TResult? Function(String tagName, bool selected)? family,
     TResult? Function(String tagName, bool selected)? relationships,
+    TResult? Function(String tagName, bool selected)? friends,
+    TResult? Function(String tagName, bool selected)? others,
   }) {
     return relationships?.call(tagName, selected);
   }
@@ -796,6 +860,8 @@ class _$_Relationships implements _Relationships {
     TResult Function(String tagName, bool selected)? work,
     TResult Function(String tagName, bool selected)? family,
     TResult Function(String tagName, bool selected)? relationships,
+    TResult Function(String tagName, bool selected)? friends,
+    TResult Function(String tagName, bool selected)? others,
     required TResult orElse(),
   }) {
     if (relationships != null) {
@@ -812,6 +878,8 @@ class _$_Relationships implements _Relationships {
     required TResult Function(_Work value) work,
     required TResult Function(_Family value) family,
     required TResult Function(_Relationships value) relationships,
+    required TResult Function(_Friends value) friends,
+    required TResult Function(_Others value) others,
   }) {
     return relationships(this);
   }
@@ -824,6 +892,8 @@ class _$_Relationships implements _Relationships {
     TResult? Function(_Work value)? work,
     TResult? Function(_Family value)? family,
     TResult? Function(_Relationships value)? relationships,
+    TResult? Function(_Friends value)? friends,
+    TResult? Function(_Others value)? others,
   }) {
     return relationships?.call(this);
   }
@@ -836,6 +906,8 @@ class _$_Relationships implements _Relationships {
     TResult Function(_Work value)? work,
     TResult Function(_Family value)? family,
     TResult Function(_Relationships value)? relationships,
+    TResult Function(_Friends value)? friends,
+    TResult Function(_Others value)? others,
     required TResult orElse(),
   }) {
     if (relationships != null) {
@@ -853,5 +925,352 @@ abstract class _Relationships implements TagState {
   bool get selected;
   @JsonKey(ignore: true)
   _$$_RelationshipsCopyWith<_$_Relationships> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_FriendsCopyWith<$Res> {
+  factory _$$_FriendsCopyWith(
+          _$_Friends value, $Res Function(_$_Friends) then) =
+      __$$_FriendsCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String tagName, bool selected});
+}
+
+/// @nodoc
+class __$$_FriendsCopyWithImpl<$Res>
+    extends _$TagStateCopyWithImpl<$Res, _$_Friends>
+    implements _$$_FriendsCopyWith<$Res> {
+  __$$_FriendsCopyWithImpl(_$_Friends _value, $Res Function(_$_Friends) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tagName = null,
+    Object? selected = null,
+  }) {
+    return _then(_$_Friends(
+      tagName: null == tagName
+          ? _value.tagName
+          : tagName // ignore: cast_nullable_to_non_nullable
+              as String,
+      selected: null == selected
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Friends implements _Friends {
+  const _$_Friends({this.tagName = 'Friends', required this.selected});
+
+  @override
+  @JsonKey()
+  final String tagName;
+  @override
+  final bool selected;
+
+  @override
+  String toString() {
+    return 'TagState.friends(tagName: $tagName, selected: $selected)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Friends &&
+            (identical(other.tagName, tagName) || other.tagName == tagName) &&
+            (identical(other.selected, selected) ||
+                other.selected == selected));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, tagName, selected);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_FriendsCopyWith<_$_Friends> get copyWith =>
+      __$$_FriendsCopyWithImpl<_$_Friends>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() noTag,
+    required TResult Function(String tagName, bool selected) personal,
+    required TResult Function(String tagName, bool selected) work,
+    required TResult Function(String tagName, bool selected) family,
+    required TResult Function(String tagName, bool selected) relationships,
+    required TResult Function(String tagName, bool selected) friends,
+    required TResult Function(String tagName, bool selected) others,
+  }) {
+    return friends(tagName, selected);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? noTag,
+    TResult? Function(String tagName, bool selected)? personal,
+    TResult? Function(String tagName, bool selected)? work,
+    TResult? Function(String tagName, bool selected)? family,
+    TResult? Function(String tagName, bool selected)? relationships,
+    TResult? Function(String tagName, bool selected)? friends,
+    TResult? Function(String tagName, bool selected)? others,
+  }) {
+    return friends?.call(tagName, selected);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noTag,
+    TResult Function(String tagName, bool selected)? personal,
+    TResult Function(String tagName, bool selected)? work,
+    TResult Function(String tagName, bool selected)? family,
+    TResult Function(String tagName, bool selected)? relationships,
+    TResult Function(String tagName, bool selected)? friends,
+    TResult Function(String tagName, bool selected)? others,
+    required TResult orElse(),
+  }) {
+    if (friends != null) {
+      return friends(tagName, selected);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NoTag value) noTag,
+    required TResult Function(_Personal value) personal,
+    required TResult Function(_Work value) work,
+    required TResult Function(_Family value) family,
+    required TResult Function(_Relationships value) relationships,
+    required TResult Function(_Friends value) friends,
+    required TResult Function(_Others value) others,
+  }) {
+    return friends(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NoTag value)? noTag,
+    TResult? Function(_Personal value)? personal,
+    TResult? Function(_Work value)? work,
+    TResult? Function(_Family value)? family,
+    TResult? Function(_Relationships value)? relationships,
+    TResult? Function(_Friends value)? friends,
+    TResult? Function(_Others value)? others,
+  }) {
+    return friends?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoTag value)? noTag,
+    TResult Function(_Personal value)? personal,
+    TResult Function(_Work value)? work,
+    TResult Function(_Family value)? family,
+    TResult Function(_Relationships value)? relationships,
+    TResult Function(_Friends value)? friends,
+    TResult Function(_Others value)? others,
+    required TResult orElse(),
+  }) {
+    if (friends != null) {
+      return friends(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Friends implements TagState {
+  const factory _Friends({final String tagName, required final bool selected}) =
+      _$_Friends;
+
+  String get tagName;
+  bool get selected;
+  @JsonKey(ignore: true)
+  _$$_FriendsCopyWith<_$_Friends> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_OthersCopyWith<$Res> {
+  factory _$$_OthersCopyWith(_$_Others value, $Res Function(_$_Others) then) =
+      __$$_OthersCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String tagName, bool selected});
+}
+
+/// @nodoc
+class __$$_OthersCopyWithImpl<$Res>
+    extends _$TagStateCopyWithImpl<$Res, _$_Others>
+    implements _$$_OthersCopyWith<$Res> {
+  __$$_OthersCopyWithImpl(_$_Others _value, $Res Function(_$_Others) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tagName = null,
+    Object? selected = null,
+  }) {
+    return _then(_$_Others(
+      tagName: null == tagName
+          ? _value.tagName
+          : tagName // ignore: cast_nullable_to_non_nullable
+              as String,
+      selected: null == selected
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Others implements _Others {
+  const _$_Others({this.tagName = 'Others', required this.selected});
+
+  @override
+  @JsonKey()
+  final String tagName;
+  @override
+  final bool selected;
+
+  @override
+  String toString() {
+    return 'TagState.others(tagName: $tagName, selected: $selected)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Others &&
+            (identical(other.tagName, tagName) || other.tagName == tagName) &&
+            (identical(other.selected, selected) ||
+                other.selected == selected));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, tagName, selected);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_OthersCopyWith<_$_Others> get copyWith =>
+      __$$_OthersCopyWithImpl<_$_Others>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() noTag,
+    required TResult Function(String tagName, bool selected) personal,
+    required TResult Function(String tagName, bool selected) work,
+    required TResult Function(String tagName, bool selected) family,
+    required TResult Function(String tagName, bool selected) relationships,
+    required TResult Function(String tagName, bool selected) friends,
+    required TResult Function(String tagName, bool selected) others,
+  }) {
+    return others(tagName, selected);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? noTag,
+    TResult? Function(String tagName, bool selected)? personal,
+    TResult? Function(String tagName, bool selected)? work,
+    TResult? Function(String tagName, bool selected)? family,
+    TResult? Function(String tagName, bool selected)? relationships,
+    TResult? Function(String tagName, bool selected)? friends,
+    TResult? Function(String tagName, bool selected)? others,
+  }) {
+    return others?.call(tagName, selected);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noTag,
+    TResult Function(String tagName, bool selected)? personal,
+    TResult Function(String tagName, bool selected)? work,
+    TResult Function(String tagName, bool selected)? family,
+    TResult Function(String tagName, bool selected)? relationships,
+    TResult Function(String tagName, bool selected)? friends,
+    TResult Function(String tagName, bool selected)? others,
+    required TResult orElse(),
+  }) {
+    if (others != null) {
+      return others(tagName, selected);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NoTag value) noTag,
+    required TResult Function(_Personal value) personal,
+    required TResult Function(_Work value) work,
+    required TResult Function(_Family value) family,
+    required TResult Function(_Relationships value) relationships,
+    required TResult Function(_Friends value) friends,
+    required TResult Function(_Others value) others,
+  }) {
+    return others(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NoTag value)? noTag,
+    TResult? Function(_Personal value)? personal,
+    TResult? Function(_Work value)? work,
+    TResult? Function(_Family value)? family,
+    TResult? Function(_Relationships value)? relationships,
+    TResult? Function(_Friends value)? friends,
+    TResult? Function(_Others value)? others,
+  }) {
+    return others?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoTag value)? noTag,
+    TResult Function(_Personal value)? personal,
+    TResult Function(_Work value)? work,
+    TResult Function(_Family value)? family,
+    TResult Function(_Relationships value)? relationships,
+    TResult Function(_Friends value)? friends,
+    TResult Function(_Others value)? others,
+    required TResult orElse(),
+  }) {
+    if (others != null) {
+      return others(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Others implements TagState {
+  const factory _Others({final String tagName, required final bool selected}) =
+      _$_Others;
+
+  String get tagName;
+  bool get selected;
+  @JsonKey(ignore: true)
+  _$$_OthersCopyWith<_$_Others> get copyWith =>
       throw _privateConstructorUsedError;
 }

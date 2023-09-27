@@ -34,6 +34,8 @@ class EmotionFieldView extends StatelessWidget {
                       family: (tagName, selected) => tagName,
                       relationships: (tagName, selected) => tagName,
                       work: (tagName, selected) => tagName,
+                      friends: (tagName, selected) => tagName,
+                      others: (tagName, selected) => tagName,
                     );
             if (value == null || value.isEmpty) {
               return "Describe how you felt today.";

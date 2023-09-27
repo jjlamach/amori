@@ -8,6 +8,8 @@ enum Tags {
   Work,
   Family,
   Relationship,
+  Friends,
+  Other,
 }
 
 class TagsView extends StatelessWidget {
@@ -23,7 +25,7 @@ class TagsView extends StatelessWidget {
         final cubit = context.read<TagCubit>();
         return Wrap(
           alignment: WrapAlignment.center,
-          spacing: 5.0,
+          spacing: 10.0,
           children: [
             FilterChip(
               label: Text(Tags.values[0].name),
@@ -106,6 +108,46 @@ class TagsView extends StatelessWidget {
               ),
               selected: state.whenOrNull(
                     relationships: (tagName, selected) => selected,
+                  ) ??
+                  false,
+              showCheckmark: false,
+            ),
+            FilterChip(
+              label: Text(Tags.values[4].name),
+              onSelected: (selected) {
+                if (selected == false) {
+                  cubit.resetTag();
+                } else {
+                  cubit.tagFriends(selected);
+                }
+              },
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  Dimen.borderRadiusCircular,
+                ),
+              ),
+              selected: state.whenOrNull(
+                    friends: (tagName, selected) => selected,
+                  ) ??
+                  false,
+              showCheckmark: false,
+            ),
+            FilterChip(
+              label: Text(Tags.values[5].name),
+              onSelected: (selected) {
+                if (selected == false) {
+                  cubit.resetTag();
+                } else {
+                  cubit.tagOthers(selected);
+                }
+              },
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  Dimen.borderRadiusCircular,
+                ),
+              ),
+              selected: state.whenOrNull(
+                    others: (tagName, selected) => selected,
                   ) ??
                   false,
               showCheckmark: false,
