@@ -72,6 +72,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               emit(AuthState.error(e.toString()));
             }
           },
+          forgotPassword: (String email) async {
+            try {
+              await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+              emit(AuthState.forgotPassword(email));
+            } on FirebaseAuthException catch (e) {
+              emit(AuthState.error(e.code));
+            }
+          },
           delete: () async {
             try {
               await FirebaseAuth.instance.currentUser?.delete();
@@ -93,6 +101,8 @@ class AuthState with _$AuthState {
   const factory AuthState.registered(AppUser? user) = _Registered;
   const factory AuthState.loggedIn(AppUser? user) = _LoggedIn;
   const factory AuthState.loggedOut() = _LoggedOut;
+  const factory AuthState.forgotPassword(String email) =
+      _ForgotPasswordEmailSent;
   const factory AuthState.deletedAccount() = _Deleted;
   const factory AuthState.error(String exception) = _Error;
 }
@@ -110,4 +120,5 @@ class AuthEvent with _$AuthEvent {
   ) = _LogIn;
   const factory AuthEvent.logOut() = _LogOut;
   const factory AuthEvent.delete() = _Delete;
+  const factory AuthEvent.forgotPassword(String email) = _ForgotPassword;
 }

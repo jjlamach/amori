@@ -1,5 +1,8 @@
+import 'package:amori/app/screens/signin/state/auth_bloc.dart';
+import 'package:amori/common/common.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class ForgottenPasswordPage extends StatefulWidget {
@@ -57,6 +60,7 @@ class _ForgottenPasswordPageState extends State<ForgottenPasswordPage> {
                 ),
                 const SizedBox(height: 20.0),
                 TextFormField(
+                  controller: _email,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Email field required.";
@@ -73,19 +77,37 @@ class _ForgottenPasswordPageState extends State<ForgottenPasswordPage> {
                   keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 20.0),
-                SizedBox(
-                  width: double.infinity,
-                  height: 46,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      _formKey.currentState?.validate();
-                    },
-                    child: Text(
-                      'Reset password',
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontSize: 20,
-                          ),
+                BlocListener<AuthBloc, AuthState>(
+                  listener: (context, state) {
+                    state.whenOrNull(
+                      forgotPassword: (email) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          Common.showAppSnackBar('Reset email sent to: $email'),
+                        );
+                        Future.delayed(const Duration(seconds: 2))
+                            .then((value) => AutoRouter.of(context).pop());
+                      },
+                    );
+                  },
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 46,
+                    child: OutlinedButton(
+                      onPressed: () {
+                        bool? isValid = _formKey.currentState?.validate();
+                        if (isValid == true && _email.text.isNotEmpty) {
+                          context.read<AuthBloc>().add(
+                                AuthEvent.forgotPassword(_email.text),
+                              );
+                        }
+                      },
+                      child: Text(
+                        'Reset password',
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontSize: 20,
+                            ),
+                      ),
                     ),
                   ),
                 ),
