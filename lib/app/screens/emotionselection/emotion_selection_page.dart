@@ -128,8 +128,10 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                                 recordedAt: DateTime.now(),
                               );
                               FirebaseStorageHelper.addOrUpdateFeelingForToday(
-                                  FirebaseAuth.instance.currentUser?.uid ?? '',
-                                  entry);
+                                FirebaseAuth.instance.currentUser?.uid ?? '',
+                                entry,
+                                widget.emotion,
+                              );
                               _emotion.clear();
                               context.read<TagCubit>().resetTag();
                               ScaffoldMessenger.of(context).showSnackBar(

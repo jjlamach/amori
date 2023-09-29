@@ -38,7 +38,7 @@ class FirebaseStorageHelper {
   }
 
   static Future<void> addOrUpdateFeelingForToday(
-      String uid, FeelingEntry newFeeling) async {
+      String uid, FeelingEntry newFeeling, String emotionOfToday) async {
     try {
       CollectionReference users =
           FirebaseFirestore.instance.collection('users');
@@ -48,7 +48,10 @@ class FirebaseStorageHelper {
       String today = DateTime.now().toIso8601String().split('T')[0];
 
       // Update the feeling log for today's date
-      await userDoc.update({'feelingLog.records.$today': newFeeling.toJson()});
+      await userDoc.update({
+        'feelingLog.records.$today': newFeeling.toJson(),
+        'emotionOfToday': emotionOfToday,
+      });
       kLogger.i('Feeling recorded successfully');
     } on Exception catch (error) {
       kLogger.e('Failed to record feeling for today. $error');
