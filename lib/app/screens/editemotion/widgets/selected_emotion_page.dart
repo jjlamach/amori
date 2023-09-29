@@ -1,5 +1,5 @@
 import 'package:amori/app/auto_route.gr.dart';
-import 'package:amori/app/screens/home/state/home_cubit.dart';
+import 'package:amori/app/screens/editemotion/state/edit_emotion_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +41,7 @@ class SelectedEmotionPage extends StatelessWidget {
               ],
             ),
             SliverToBoxAdapter(
-              child: BlocBuilder<HomeCubit, HomeState>(
+              child: BlocBuilder<EditEmotionCubit, EditEmotionState>(
                 builder: (context, state) => Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -78,7 +78,8 @@ class SelectedEmotionPage extends StatelessWidget {
                       height: 40,
                       child: OutlinedButton(
                         onPressed: () {
-                          context.read<HomeCubit>().resetState();
+                          AutoRouter.of(context)
+                              .pushNamed('/select-new-emotion');
                         },
                         child: Text(
                           'Edit',

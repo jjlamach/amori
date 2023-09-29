@@ -1,7 +1,8 @@
+import 'package:amori/app/auto_route.gr.dart';
+import 'package:amori/app/screens/editemotion/state/edit_emotion_cubit.dart';
 import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
 import 'package:amori/app/screens/emotionselection/widgets/emotion_field_view.dart';
 import 'package:amori/app/screens/emotionselection/widgets/tags_view.dart';
-import 'package:amori/app/screens/home/state/home_cubit.dart';
 import 'package:amori/common/common.dart';
 import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
 import 'package:amori/domain/models/feeling/feeling_entry.dart';
@@ -135,12 +136,16 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                                 Common.showAppSnackBar(
                                     "Feeling recorded successfully."),
                               );
-                              Future.delayed(const Duration(seconds: 2)).then(
+                              Future.delayed(const Duration(seconds: 1)).then(
                                 (value) => {
                                   context
-                                      .read<HomeCubit>()
+                                      .read<EditEmotionCubit>()
                                       .emotionSelected(widget.emotion),
-                                  AutoRouter.of(context).pop(),
+                                  AutoRouter.of(context).replaceAll(
+                                    [
+                                      const HomeRoute(),
+                                    ],
+                                  ),
                                 },
                               );
                             }
