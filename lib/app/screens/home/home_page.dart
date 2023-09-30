@@ -22,11 +22,12 @@ class HomePage extends StatelessWidget {
               actions: [
                 BlocListener<AuthBloc, AuthState>(
                   listener: (context, state) {
-                    state.whenOrNull(
-                      loggedOut: () => AutoRouter.of(context).replace(
+                    state.whenOrNull(loggedOut: () {
+                      context.read<EmotionCubit>().initial();
+                      AutoRouter.of(context).replace(
                         const SignInRoute(),
-                      ),
-                    );
+                      );
+                    });
                   },
                   child: TextButton(
                     onPressed: () {
@@ -203,7 +204,7 @@ class HomePage extends StatelessWidget {
                               );
                             }
                           },
-                          orElse: () => const SizedBox.shrink(),
+                          orElse: () => const SliverToBoxAdapter(),
                         );
                       },
                     ),

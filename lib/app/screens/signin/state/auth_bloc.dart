@@ -8,6 +8,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'auth_bloc.freezed.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
+  AppUser? currentUser;
   AuthBloc() : super(const _Initial()) {
     on<AuthEvent>(
       (event, emit) async {
@@ -57,6 +58,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               final AppUser? user =
                   await FirebaseStorageHelper.getUserFromFirestore(
                       userCredential.user?.uid ?? '');
+              currentUser = user;
               emit(const AuthState.loading());
               emit(AuthState.loggedIn(user));
             } on FirebaseAuthException catch (e) {

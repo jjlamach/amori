@@ -1,3 +1,4 @@
+import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -10,7 +11,8 @@ class EmotionCubit extends Cubit<EmotionState> {
     emit(const EmotionState.initial());
   }
 
-  void emotionSelected(String uid, String emotion) {
+  void emotionSelected(String uid, String emotion) async {
+    await FirebaseStorageHelper.updateFeeling(uid, emotion);
     emit(EmotionState.emotionSelected(emotion));
   }
 }
