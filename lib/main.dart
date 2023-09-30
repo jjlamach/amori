@@ -1,5 +1,5 @@
 import 'package:amori/app/auto_route.dart';
-import 'package:amori/app/screens/editemotion/state/edit_emotion_cubit.dart';
+import 'package:amori/app/screens/editemotion/state/emotion_cubit.dart';
 import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
 import 'package:amori/app/screens/home/state/home_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
@@ -75,7 +75,7 @@ void setUpCubits() {
   );
   getIt.registerFactory(() => TagCubit());
   getIt.registerFactory(() => HomeCubit());
-  getIt.registerFactory(() => EditEmotionCubit());
+  getIt.registerFactory(() => EmotionCubit());
 }
 
 class AmoriApp extends StatelessWidget {
@@ -95,8 +95,8 @@ class AmoriApp extends StatelessWidget {
         BlocProvider<AuthBloc>(create: (_) => getIt<AuthBloc>()),
         BlocProvider<TagCubit>(create: (_) => getIt<TagCubit>()),
         BlocProvider<HomeCubit>(create: (_) => getIt<HomeCubit>()),
-        BlocProvider<EditEmotionCubit>(
-          create: (_) => getIt<EditEmotionCubit>(),
+        BlocProvider<EmotionCubit>(
+          create: (_) => getIt<EmotionCubit>(),
         ),
       ],
       child: MaterialApp.router(

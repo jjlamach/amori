@@ -76,4 +76,19 @@ class FirebaseStorageHelper {
     }
     return null;
   }
+
+  static Future<void> updateFeeling(String uid, String updatedEmotion) async {
+    try {
+      CollectionReference users =
+          FirebaseFirestore.instance.collection('users');
+      DocumentReference userDoc = users.doc(uid);
+
+      await userDoc.update({
+        'emotionOfToday': updatedEmotion,
+      });
+      kLogger.i('Feeling updated successfully');
+    } on Exception catch (error) {
+      kLogger.e('Failed to update feeling for today. $error');
+    }
+  }
 }

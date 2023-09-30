@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'edit_emotion_cubit.dart';
+part of 'emotion_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$EditEmotionState {
+mixin _$EmotionState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -69,16 +69,16 @@ mixin _$EditEmotionState {
 }
 
 /// @nodoc
-abstract class $EditEmotionStateCopyWith<$Res> {
-  factory $EditEmotionStateCopyWith(
-          EditEmotionState value, $Res Function(EditEmotionState) then) =
-      _$EditEmotionStateCopyWithImpl<$Res, EditEmotionState>;
+abstract class $EmotionStateCopyWith<$Res> {
+  factory $EmotionStateCopyWith(
+          EmotionState value, $Res Function(EmotionState) then) =
+      _$EmotionStateCopyWithImpl<$Res, EmotionState>;
 }
 
 /// @nodoc
-class _$EditEmotionStateCopyWithImpl<$Res, $Val extends EditEmotionState>
-    implements $EditEmotionStateCopyWith<$Res> {
-  _$EditEmotionStateCopyWithImpl(this._value, this._then);
+class _$EmotionStateCopyWithImpl<$Res, $Val extends EmotionState>
+    implements $EmotionStateCopyWith<$Res> {
+  _$EmotionStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -95,7 +95,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$EditEmotionStateCopyWithImpl<$Res, _$_Initial>
+    extends _$EmotionStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -108,7 +108,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'EditEmotionState.initial()';
+    return 'EmotionState.initial()';
   }
 
   @override
@@ -195,7 +195,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements EditEmotionState {
+abstract class _Initial implements EmotionState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -208,7 +208,7 @@ abstract class _$$_EditingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_EditingCopyWithImpl<$Res>
-    extends _$EditEmotionStateCopyWithImpl<$Res, _$_Editing>
+    extends _$EmotionStateCopyWithImpl<$Res, _$_Editing>
     implements _$$_EditingCopyWith<$Res> {
   __$$_EditingCopyWithImpl(_$_Editing _value, $Res Function(_$_Editing) _then)
       : super(_value, _then);
@@ -221,7 +221,7 @@ class _$_Editing implements _Editing {
 
   @override
   String toString() {
-    return 'EditEmotionState.editingEmotion()';
+    return 'EmotionState.editingEmotion()';
   }
 
   @override
@@ -308,7 +308,7 @@ class _$_Editing implements _Editing {
   }
 }
 
-abstract class _Editing implements EditEmotionState {
+abstract class _Editing implements EmotionState {
   const factory _Editing() = _$_Editing;
 }
 
@@ -320,7 +320,7 @@ abstract class _$$_DoneCopyWith<$Res> {
 
 /// @nodoc
 class __$$_DoneCopyWithImpl<$Res>
-    extends _$EditEmotionStateCopyWithImpl<$Res, _$_Done>
+    extends _$EmotionStateCopyWithImpl<$Res, _$_Done>
     implements _$$_DoneCopyWith<$Res> {
   __$$_DoneCopyWithImpl(_$_Done _value, $Res Function(_$_Done) _then)
       : super(_value, _then);
@@ -333,7 +333,7 @@ class _$_Done implements _Done {
 
   @override
   String toString() {
-    return 'EditEmotionState.editingDone()';
+    return 'EmotionState.editingDone()';
   }
 
   @override
@@ -420,7 +420,7 @@ class _$_Done implements _Done {
   }
 }
 
-abstract class _Done implements EditEmotionState {
+abstract class _Done implements EmotionState {
   const factory _Done() = _$_Done;
 }
 
@@ -435,7 +435,7 @@ abstract class _$$_SelectedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_SelectedCopyWithImpl<$Res>
-    extends _$EditEmotionStateCopyWithImpl<$Res, _$_Selected>
+    extends _$EmotionStateCopyWithImpl<$Res, _$_Selected>
     implements _$$_SelectedCopyWith<$Res> {
   __$$_SelectedCopyWithImpl(
       _$_Selected _value, $Res Function(_$_Selected) _then)
@@ -465,7 +465,7 @@ class _$_Selected implements _Selected {
 
   @override
   String toString() {
-    return 'EditEmotionState.emotionSelected(emotion: $emotion)';
+    return 'EmotionState.emotionSelected(emotion: $emotion)';
   }
 
   @override
@@ -560,7 +560,7 @@ class _$_Selected implements _Selected {
   }
 }
 
-abstract class _Selected implements EditEmotionState {
+abstract class _Selected implements EmotionState {
   const factory _Selected(final String emotion) = _$_Selected;
 
   String get emotion;
