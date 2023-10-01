@@ -23,7 +23,8 @@ class HomePage extends StatelessWidget {
                 BlocListener<AuthBloc, AuthState>(
                   listener: (context, state) {
                     state.whenOrNull(loggedOut: () {
-                      context.read<EmotionCubit>().initial();
+                      /// reset emotion selection, etc
+                      context.read<EmotionCubit>().resetState();
                       AutoRouter.of(context).replace(
                         const SignInRoute(),
                       );
@@ -118,7 +119,9 @@ class HomePage extends StatelessWidget {
                             width: double.infinity,
                             height: 200,
                           ),
-                          const SizedBox(height: 20.0),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.1,
+                          ),
                           SizedBox(
                             width: 157,
                             height: 40,
@@ -158,7 +161,10 @@ class HomePage extends StatelessWidget {
                                       width: double.infinity,
                                       height: 200,
                                     ),
-                                    const SizedBox(height: 20.0),
+                                    SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.1),
                                     SizedBox(
                                       width: 157,
                                       height: 40,
@@ -182,7 +188,10 @@ class HomePage extends StatelessWidget {
                                   ],
                                 ),
                               );
-                            } else {
+                            }
+
+                            /// User logs in for the first time
+                            else {
                               return SliverGrid.count(
                                 crossAxisCount: 3,
                                 mainAxisSpacing: 20.0,

@@ -7,7 +7,7 @@ part 'emotion_cubit.freezed.dart';
 class EmotionCubit extends Cubit<EmotionState> {
   EmotionCubit() : super(const _Initial());
 
-  void initial() {
+  void resetState() {
     emit(const EmotionState.initial());
   }
 
