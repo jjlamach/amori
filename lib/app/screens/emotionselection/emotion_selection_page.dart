@@ -32,7 +32,6 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
   late GlobalKey<FormState> _formKey;
   @override
   void initState() {
-    print('Description: ${widget.emotionDescription}');
     super.initState();
     _emotion = TextEditingController(
       text: widget.emotionDescription,
