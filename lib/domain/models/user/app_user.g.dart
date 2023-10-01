@@ -24,6 +24,7 @@ _$_AppUser _$$_AppUserFromJson(Map<String, dynamic> json) => _$_AppUser(
           : DailyFeelingLog.fromJson(
               json['feelingLog'] as Map<String, dynamic>),
       emotionOfToday: json['emotionOfToday'] as String?,
+      emotionDescription: json['emotionDescription'] as String?,
     );
 
 Map<String, dynamic> _$$_AppUserToJson(_$_AppUser instance) =>
@@ -38,4 +39,5 @@ Map<String, dynamic> _$$_AppUserToJson(_$_AppUser instance) =>
       'lastSignedIn': instance.lastSignedIn?.toIso8601String(),
       'feelingLog': instance.feelingLog,
       'emotionOfToday': instance.emotionOfToday,
+      'emotionDescription': instance.emotionDescription,
     };

@@ -32,19 +32,29 @@ class SelectNewEmotionView extends StatelessWidget {
                   return BlocBuilder<EmotionCubit, EmotionState>(
                     builder: (context, state) {
                       return state.maybeWhen(
-                        emotionSelected: (emotion) {
+                        emotionSelected: (emotion, description) {
                           if (emotion == Assets.emotions[index]) {
-                            return Container(
-                              decoration: const BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: Colors.black,
-                                    width: 2,
+                            return GestureDetector(
+                              onTap: () {
+                                AutoRouter.of(context).push(
+                                  EmotionSelectionRoute(
+                                    emotion: emotion,
+                                    emotionDescription: description,
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: Colors.black,
+                                      width: 2,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              child: SvgPicture.asset(
-                                emotion,
+                                child: SvgPicture.asset(
+                                  emotion,
+                                ),
                               ),
                             );
                           } else {
@@ -68,17 +78,30 @@ class SelectNewEmotionView extends StatelessWidget {
                               loggedIn: (user) {
                                 if (user?.emotionOfToday ==
                                     Assets.emotions[index]) {
-                                  return Container(
-                                    decoration: const BoxDecoration(
-                                      border: Border(
-                                        bottom: BorderSide(
-                                          color: Colors.black,
-                                          width: 2,
+                                  return GestureDetector(
+                                    onTap: () {
+                                      AutoRouter.of(context).push(
+                                        EmotionSelectionRoute(
+                                          emotion: user?.emotionOfToday ?? '',
+                                          emotionDescription: context
+                                              .read<AuthBloc>()
+                                              .currentUser
+                                              ?.emotionDescription,
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        border: Border(
+                                          bottom: BorderSide(
+                                            color: Colors.black,
+                                            width: 2,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    child: SvgPicture.asset(
-                                      user?.emotionOfToday ?? '',
+                                      child: SvgPicture.asset(
+                                        user?.emotionOfToday ?? '',
+                                      ),
                                     ),
                                   );
                                 } else {

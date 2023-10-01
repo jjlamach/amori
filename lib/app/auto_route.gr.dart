@@ -43,6 +43,7 @@ abstract class $AmoriAppRouter extends _i12.RootStackRouter {
         routeData: routeData,
         child: _i2.EmotionSelectionPage(
           emotion: args.emotion,
+          emotionDescription: args.emotionDescription,
           key: args.key,
         ),
       );
@@ -124,12 +125,14 @@ class EmotionSelectionRoute
     extends _i12.PageRouteInfo<EmotionSelectionRouteArgs> {
   EmotionSelectionRoute({
     required String emotion,
+    String? emotionDescription,
     _i13.Key? key,
     List<_i12.PageRouteInfo>? children,
   }) : super(
           EmotionSelectionRoute.name,
           args: EmotionSelectionRouteArgs(
             emotion: emotion,
+            emotionDescription: emotionDescription,
             key: key,
           ),
           initialChildren: children,
@@ -144,16 +147,19 @@ class EmotionSelectionRoute
 class EmotionSelectionRouteArgs {
   const EmotionSelectionRouteArgs({
     required this.emotion,
+    this.emotionDescription,
     this.key,
   });
 
   final String emotion;
 
+  final String? emotionDescription;
+
   final _i13.Key? key;
 
   @override
   String toString() {
-    return 'EmotionSelectionRouteArgs{emotion: $emotion, key: $key}';
+    return 'EmotionSelectionRouteArgs{emotion: $emotion, emotionDescription: $emotionDescription, key: $key}';
   }
 }
 

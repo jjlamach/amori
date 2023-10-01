@@ -113,7 +113,8 @@ class HomePage extends StatelessWidget {
                 builder: (context, state) {
                   return state.maybeWhen(
                     /// Here emotion has been selected so we display it
-                    emotionSelected: (emotion) => SliverToBoxAdapter(
+                    emotionSelected: (emotion, description) =>
+                        SliverToBoxAdapter(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -129,7 +130,7 @@ class HomePage extends StatelessWidget {
                             width: 157,
                             height: 40,
                             child: OutlinedButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 AutoRouter.of(context)
                                     .pushNamed('/select-new-emotion');
                               },

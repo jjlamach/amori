@@ -16,7 +16,12 @@ import 'package:flutter_svg/svg.dart';
 @RoutePage()
 class EmotionSelectionPage extends StatefulWidget {
   final String emotion;
-  const EmotionSelectionPage({required this.emotion, super.key});
+  final String? emotionDescription;
+  const EmotionSelectionPage({
+    required this.emotion,
+    this.emotionDescription,
+    super.key,
+  });
 
   @override
   State<EmotionSelectionPage> createState() => _EmotionSelectionPageState();
@@ -27,8 +32,11 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
   late GlobalKey<FormState> _formKey;
   @override
   void initState() {
+    print('Description: ${widget.emotionDescription}');
     super.initState();
-    _emotion = TextEditingController();
+    _emotion = TextEditingController(
+      text: widget.emotionDescription,
+    );
     _formKey = GlobalKey();
   }
 
@@ -129,11 +137,12 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                                 recordedAt: DateTime.now(),
                               );
                               FirebaseStorageHelper.addOrUpdateFeelingForToday(
-                                FirebaseAuth.instance.currentUser?.uid ?? '',
-                                entry,
-                                widget.emotion,
+                                uid: FirebaseAuth.instance.currentUser?.uid ??
+                                    '',
+                                newFeeling: entry,
+                                emotionOfToday: widget.emotion,
+                                emotionDescriptionOfToday: _emotion.text,
                               );
-                              _emotion.clear();
                               context.read<TagCubit>().resetTag();
                               ScaffoldMessenger.of(context).showSnackBar(
                                 Common.showAppSnackBar(
@@ -146,7 +155,11 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                                             loggedIn: (user) => user,
                                           );
                                   context.read<EmotionCubit>().emotionSelected(
-                                      user?.uid ?? '', widget.emotion);
+                                        user?.uid ?? '',
+                                        widget.emotion,
+                                        _emotion.text,
+                                      );
+                                  _emotion.clear();
                                   AutoRouter.of(context).replaceAll(
                                     [
                                       const HomeRoute(),

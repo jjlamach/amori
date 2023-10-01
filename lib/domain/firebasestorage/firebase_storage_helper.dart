@@ -37,8 +37,12 @@ class FirebaseStorageHelper {
     }
   }
 
-  static Future<void> addOrUpdateFeelingForToday(
-      String uid, FeelingEntry newFeeling, String emotionOfToday) async {
+  static Future<void> addOrUpdateFeelingForToday({
+    required String uid,
+    required FeelingEntry newFeeling,
+    required String emotionOfToday,
+    required String emotionDescriptionOfToday,
+  }) async {
     try {
       CollectionReference users =
           FirebaseFirestore.instance.collection('users');
@@ -51,6 +55,7 @@ class FirebaseStorageHelper {
       await userDoc.update({
         'feelingLog.records.$today': newFeeling.toJson(),
         'emotionOfToday': emotionOfToday,
+        'emotionDescription': emotionDescriptionOfToday,
       });
       kLogger.i('Feeling recorded successfully');
     } on Exception catch (error) {
@@ -58,7 +63,7 @@ class FirebaseStorageHelper {
     }
   }
 
-  Future<DailyFeelingLog?> fetchUserFeelings(String uid) async {
+  static Future<DailyFeelingLog?> fetchUserFeelings(String uid) async {
     try {
       CollectionReference users =
           FirebaseFirestore.instance.collection('users');
@@ -77,7 +82,35 @@ class FirebaseStorageHelper {
     return null;
   }
 
-  static Future<void> updateFeeling(String uid, String updatedEmotion) async {
+  static Future<String?> getFeelingDescriptionOfToday(
+    String uid,
+  ) async {
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    DocumentReference userDoc = users.doc(uid);
+
+    DocumentSnapshot snapshot = await userDoc.get();
+    Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>?;
+    try {
+      if (data != null && data.containsKey('feelingLog')) {
+        DailyFeelingLog log = DailyFeelingLog.fromJson(data['feelingLog']);
+
+        /// Feeling of today
+        String today = DateTime.now().toIso8601String().split('T')[0];
+
+        final todayEntry =
+            log.records?.entries.where((element) => element.key == today);
+        final String? result = todayEntry?.first.value.feeling;
+        kLogger.i('Feeling caught successfully');
+        return result;
+      }
+    } on Exception catch (e) {
+      kLogger.e('Error getting the feeling of today: $e');
+    }
+    return null;
+  }
+
+  static Future<void> updateFeeling(
+      String uid, String updatedEmotion, String updatedEmotionDescr) async {
     try {
       CollectionReference users =
           FirebaseFirestore.instance.collection('users');
@@ -85,6 +118,7 @@ class FirebaseStorageHelper {
 
       await userDoc.update({
         'emotionOfToday': updatedEmotion,
+        'emotionDescription': updatedEmotionDescr,
       });
       kLogger.i('Feeling updated successfully');
     } on Exception catch (error) {

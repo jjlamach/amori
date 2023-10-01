@@ -21,7 +21,8 @@ mixin _$EmotionState {
     required TResult Function() initial,
     required TResult Function() editingEmotion,
     required TResult Function() editingDone,
-    required TResult Function(String emotion) emotionSelected,
+    required TResult Function(String emotion, String emotionDescription)
+        emotionSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +30,8 @@ mixin _$EmotionState {
     TResult? Function()? initial,
     TResult? Function()? editingEmotion,
     TResult? Function()? editingDone,
-    TResult? Function(String emotion)? emotionSelected,
+    TResult? Function(String emotion, String emotionDescription)?
+        emotionSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +39,8 @@ mixin _$EmotionState {
     TResult Function()? initial,
     TResult Function()? editingEmotion,
     TResult Function()? editingDone,
-    TResult Function(String emotion)? emotionSelected,
+    TResult Function(String emotion, String emotionDescription)?
+        emotionSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,7 +129,8 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() editingEmotion,
     required TResult Function() editingDone,
-    required TResult Function(String emotion) emotionSelected,
+    required TResult Function(String emotion, String emotionDescription)
+        emotionSelected,
   }) {
     return initial();
   }
@@ -137,7 +141,8 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? editingEmotion,
     TResult? Function()? editingDone,
-    TResult? Function(String emotion)? emotionSelected,
+    TResult? Function(String emotion, String emotionDescription)?
+        emotionSelected,
   }) {
     return initial?.call();
   }
@@ -148,7 +153,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? editingEmotion,
     TResult Function()? editingDone,
-    TResult Function(String emotion)? emotionSelected,
+    TResult Function(String emotion, String emotionDescription)?
+        emotionSelected,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -239,7 +245,8 @@ class _$_Editing implements _Editing {
     required TResult Function() initial,
     required TResult Function() editingEmotion,
     required TResult Function() editingDone,
-    required TResult Function(String emotion) emotionSelected,
+    required TResult Function(String emotion, String emotionDescription)
+        emotionSelected,
   }) {
     return editingEmotion();
   }
@@ -250,7 +257,8 @@ class _$_Editing implements _Editing {
     TResult? Function()? initial,
     TResult? Function()? editingEmotion,
     TResult? Function()? editingDone,
-    TResult? Function(String emotion)? emotionSelected,
+    TResult? Function(String emotion, String emotionDescription)?
+        emotionSelected,
   }) {
     return editingEmotion?.call();
   }
@@ -261,7 +269,8 @@ class _$_Editing implements _Editing {
     TResult Function()? initial,
     TResult Function()? editingEmotion,
     TResult Function()? editingDone,
-    TResult Function(String emotion)? emotionSelected,
+    TResult Function(String emotion, String emotionDescription)?
+        emotionSelected,
     required TResult orElse(),
   }) {
     if (editingEmotion != null) {
@@ -351,7 +360,8 @@ class _$_Done implements _Done {
     required TResult Function() initial,
     required TResult Function() editingEmotion,
     required TResult Function() editingDone,
-    required TResult Function(String emotion) emotionSelected,
+    required TResult Function(String emotion, String emotionDescription)
+        emotionSelected,
   }) {
     return editingDone();
   }
@@ -362,7 +372,8 @@ class _$_Done implements _Done {
     TResult? Function()? initial,
     TResult? Function()? editingEmotion,
     TResult? Function()? editingDone,
-    TResult? Function(String emotion)? emotionSelected,
+    TResult? Function(String emotion, String emotionDescription)?
+        emotionSelected,
   }) {
     return editingDone?.call();
   }
@@ -373,7 +384,8 @@ class _$_Done implements _Done {
     TResult Function()? initial,
     TResult Function()? editingEmotion,
     TResult Function()? editingDone,
-    TResult Function(String emotion)? emotionSelected,
+    TResult Function(String emotion, String emotionDescription)?
+        emotionSelected,
     required TResult orElse(),
   }) {
     if (editingDone != null) {
@@ -430,7 +442,7 @@ abstract class _$$_SelectedCopyWith<$Res> {
           _$_Selected value, $Res Function(_$_Selected) then) =
       __$$_SelectedCopyWithImpl<$Res>;
   @useResult
-  $Res call({String emotion});
+  $Res call({String emotion, String emotionDescription});
 }
 
 /// @nodoc
@@ -445,11 +457,16 @@ class __$$_SelectedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? emotion = null,
+    Object? emotionDescription = null,
   }) {
     return _then(_$_Selected(
       null == emotion
           ? _value.emotion
           : emotion // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == emotionDescription
+          ? _value.emotionDescription
+          : emotionDescription // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -458,14 +475,16 @@ class __$$_SelectedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Selected implements _Selected {
-  const _$_Selected(this.emotion);
+  const _$_Selected(this.emotion, this.emotionDescription);
 
   @override
   final String emotion;
+  @override
+  final String emotionDescription;
 
   @override
   String toString() {
-    return 'EmotionState.emotionSelected(emotion: $emotion)';
+    return 'EmotionState.emotionSelected(emotion: $emotion, emotionDescription: $emotionDescription)';
   }
 
   @override
@@ -473,11 +492,13 @@ class _$_Selected implements _Selected {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Selected &&
-            (identical(other.emotion, emotion) || other.emotion == emotion));
+            (identical(other.emotion, emotion) || other.emotion == emotion) &&
+            (identical(other.emotionDescription, emotionDescription) ||
+                other.emotionDescription == emotionDescription));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, emotion);
+  int get hashCode => Object.hash(runtimeType, emotion, emotionDescription);
 
   @JsonKey(ignore: true)
   @override
@@ -491,9 +512,10 @@ class _$_Selected implements _Selected {
     required TResult Function() initial,
     required TResult Function() editingEmotion,
     required TResult Function() editingDone,
-    required TResult Function(String emotion) emotionSelected,
+    required TResult Function(String emotion, String emotionDescription)
+        emotionSelected,
   }) {
-    return emotionSelected(emotion);
+    return emotionSelected(emotion, emotionDescription);
   }
 
   @override
@@ -502,9 +524,10 @@ class _$_Selected implements _Selected {
     TResult? Function()? initial,
     TResult? Function()? editingEmotion,
     TResult? Function()? editingDone,
-    TResult? Function(String emotion)? emotionSelected,
+    TResult? Function(String emotion, String emotionDescription)?
+        emotionSelected,
   }) {
-    return emotionSelected?.call(emotion);
+    return emotionSelected?.call(emotion, emotionDescription);
   }
 
   @override
@@ -513,11 +536,12 @@ class _$_Selected implements _Selected {
     TResult Function()? initial,
     TResult Function()? editingEmotion,
     TResult Function()? editingDone,
-    TResult Function(String emotion)? emotionSelected,
+    TResult Function(String emotion, String emotionDescription)?
+        emotionSelected,
     required TResult orElse(),
   }) {
     if (emotionSelected != null) {
-      return emotionSelected(emotion);
+      return emotionSelected(emotion, emotionDescription);
     }
     return orElse();
   }
@@ -561,9 +585,11 @@ class _$_Selected implements _Selected {
 }
 
 abstract class _Selected implements EmotionState {
-  const factory _Selected(final String emotion) = _$_Selected;
+  const factory _Selected(
+      final String emotion, final String emotionDescription) = _$_Selected;
 
   String get emotion;
+  String get emotionDescription;
   @JsonKey(ignore: true)
   _$$_SelectedCopyWith<_$_Selected> get copyWith =>
       throw _privateConstructorUsedError;
