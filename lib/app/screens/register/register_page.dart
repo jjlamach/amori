@@ -1,9 +1,9 @@
-import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/app/screens/register/widgets/already_have_an_account_label_view.dart';
 import 'package:amori/app/screens/register/widgets/confirm_password_field_view.dart';
 import 'package:amori/app/screens/register/widgets/email_field_view.dart';
 import 'package:amori/app/screens/register/widgets/password_field_view.dart';
 import 'package:amori/app/screens/register/widgets/username_field_view.dart';
+import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/common.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -65,6 +65,7 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Form(
             key: _formKey,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: MediaQuery.of(context).size.height * 0.1),

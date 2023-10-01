@@ -37,7 +37,9 @@ class HomePage extends StatelessWidget {
                     child: const Text(
                       'Log out',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20.0),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                      ),
                     ),
                   ),
                 ),
@@ -113,14 +115,15 @@ class HomePage extends StatelessWidget {
                     /// Here emotion has been selected so we display it
                     emotionSelected: (emotion) => SliverToBoxAdapter(
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           SvgPicture.asset(
                             emotion,
                             width: double.infinity,
                             height: 200,
                           ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.1,
+                          const SizedBox(
+                            height: 20.0,
                           ),
                           SizedBox(
                             width: 157,
@@ -155,16 +158,14 @@ class HomePage extends StatelessWidget {
                             if (user?.emotionOfToday?.isNotEmpty == true) {
                               return SliverToBoxAdapter(
                                 child: Column(
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
                                     SvgPicture.asset(
                                       "${user?.emotionOfToday}",
                                       width: double.infinity,
                                       height: 200,
                                     ),
-                                    SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.1),
+                                    const SizedBox(height: 20.0),
                                     SizedBox(
                                       width: 157,
                                       height: 40,
