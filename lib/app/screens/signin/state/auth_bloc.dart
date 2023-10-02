@@ -55,8 +55,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 email: email,
                 password: password,
               );
+              // Save the user in a local variable for easy access.
               final AppUser? user =
-                  await FirebaseStorageHelper.getUserFromFirestore(
+                  await FirebaseStorageHelper.getUserFromFireStore(
                       userCredential.user?.uid ?? '');
               currentUser = user;
               emit(const AuthState.loading());

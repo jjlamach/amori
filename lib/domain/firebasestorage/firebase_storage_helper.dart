@@ -1,4 +1,3 @@
-import 'package:amori/domain/models/feeling/daily_feeling_log.dart';
 import 'package:amori/domain/models/feeling/feeling_entry.dart';
 import 'package:amori/domain/models/user/app_user.dart';
 import 'package:amori/main.dart';
@@ -7,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FirebaseStorageHelper {
   FirebaseStorageHelper();
 
-  static Future<AppUser?> getUserFromFirestore(String uid) async {
+  static Future<AppUser?> getUserFromFireStore(String uid) async {
     try {
       CollectionReference users =
           FirebaseFirestore.instance.collection('users');
@@ -61,52 +60,6 @@ class FirebaseStorageHelper {
     } on Exception catch (error) {
       kLogger.e('Failed to record feeling for today. $error');
     }
-  }
-
-  static Future<DailyFeelingLog?> fetchUserFeelings(String uid) async {
-    try {
-      CollectionReference users =
-          FirebaseFirestore.instance.collection('users');
-      DocumentReference userDoc = users.doc(uid);
-
-      DocumentSnapshot snapshot = await userDoc.get();
-      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>?;
-
-      if (data != null && data.containsKey('feelingLog')) {
-        kLogger.i('Feelings fetched successfully');
-        return DailyFeelingLog.fromJson(data['feelingLog']);
-      }
-    } on Exception catch (e) {
-      kLogger.e('Could not fetch AppUsers feelings. $e');
-    }
-    return null;
-  }
-
-  static Future<String?> getFeelingDescriptionOfToday(
-    String uid,
-  ) async {
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
-    DocumentReference userDoc = users.doc(uid);
-
-    DocumentSnapshot snapshot = await userDoc.get();
-    Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>?;
-    try {
-      if (data != null && data.containsKey('feelingLog')) {
-        DailyFeelingLog log = DailyFeelingLog.fromJson(data['feelingLog']);
-
-        /// Feeling of today
-        String today = DateTime.now().toIso8601String().split('T')[0];
-
-        final todayEntry =
-            log.records?.entries.where((element) => element.key == today);
-        final String? result = todayEntry?.first.value.feeling;
-        kLogger.i('Feeling caught successfully');
-        return result;
-      }
-    } on Exception catch (e) {
-      kLogger.e('Error getting the feeling of today: $e');
-    }
-    return null;
   }
 
   static Future<void> updateFeeling(
