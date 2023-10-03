@@ -130,7 +130,21 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                         child: OutlinedButton(
                           onPressed: () async {
                             final isValid = _formKey.currentState?.validate();
-                            if ((isValid == true) && _emotion.text.isNotEmpty) {
+                            final tagSelected = context
+                                .read<TagCubit>()
+                                .state
+                                .whenOrNull(
+                                  family: (tagName, selected) => tagName,
+                                  friends: (tagName, selected) => tagName,
+                                  personal: (tagName, selected) => tagName,
+                                  relationships: (tagName, selected) => tagName,
+                                  work: (tagName, selected) => tagName,
+                                  noTag: () => "",
+                                  others: (tagName, selected) => tagName,
+                                );
+                            if ((isValid == true) &&
+                                _emotion.text.isNotEmpty &&
+                                tagSelected != null) {
                               FeelingEntry entry = FeelingEntry(
                                 feeling: _emotion.text,
                                 recordedAt: DateTime.now(),
@@ -141,8 +155,8 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                                 newFeeling: entry,
                                 emotionOfToday: widget.emotion,
                                 emotionDescriptionOfToday: _emotion.text,
+                                tagSelected: tagSelected,
                               );
-                              context.read<TagCubit>().resetTag();
                               ScaffoldMessenger.of(context).showSnackBar(
                                 Common.showAppSnackBar(
                                     "Feeling recorded successfully."),
@@ -157,6 +171,7 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                                         user?.uid ?? '',
                                         widget.emotion,
                                         _emotion.text,
+                                        tagSelected,
                                       );
                                   _emotion.clear();
                                   AutoRouter.of(context).replaceAll(

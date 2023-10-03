@@ -18,6 +18,7 @@ class AppUser with _$AppUser {
     DailyFeelingLog? feelingLog,
     String? emotionOfToday,
     String? emotionDescription,
+    String? tag,
   }) = _AppUser;
 
   factory AppUser.fromJson(Map<String, dynamic> json) =>

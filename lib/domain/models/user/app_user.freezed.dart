@@ -31,6 +31,7 @@ mixin _$AppUser {
   DailyFeelingLog? get feelingLog => throw _privateConstructorUsedError;
   String? get emotionOfToday => throw _privateConstructorUsedError;
   String? get emotionDescription => throw _privateConstructorUsedError;
+  String? get tag => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,7 +54,8 @@ abstract class $AppUserCopyWith<$Res> {
       DateTime? lastSignedIn,
       DailyFeelingLog? feelingLog,
       String? emotionOfToday,
-      String? emotionDescription});
+      String? emotionDescription,
+      String? tag});
 
   $DailyFeelingLogCopyWith<$Res>? get feelingLog;
 }
@@ -82,6 +84,7 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? feelingLog = freezed,
     Object? emotionOfToday = freezed,
     Object? emotionDescription = freezed,
+    Object? tag = freezed,
   }) {
     return _then(_value.copyWith(
       uid: freezed == uid
@@ -128,6 +131,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.emotionDescription
           : emotionDescription // ignore: cast_nullable_to_non_nullable
               as String?,
+      tag: freezed == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -162,7 +169,8 @@ abstract class _$$_AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       DateTime? lastSignedIn,
       DailyFeelingLog? feelingLog,
       String? emotionOfToday,
-      String? emotionDescription});
+      String? emotionDescription,
+      String? tag});
 
   @override
   $DailyFeelingLogCopyWith<$Res>? get feelingLog;
@@ -189,6 +197,7 @@ class __$$_AppUserCopyWithImpl<$Res>
     Object? feelingLog = freezed,
     Object? emotionOfToday = freezed,
     Object? emotionDescription = freezed,
+    Object? tag = freezed,
   }) {
     return _then(_$_AppUser(
       uid: freezed == uid
@@ -235,6 +244,10 @@ class __$$_AppUserCopyWithImpl<$Res>
           ? _value.emotionDescription
           : emotionDescription // ignore: cast_nullable_to_non_nullable
               as String?,
+      tag: freezed == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -253,7 +266,8 @@ class _$_AppUser implements _AppUser {
       this.lastSignedIn,
       this.feelingLog,
       this.emotionOfToday,
-      this.emotionDescription});
+      this.emotionDescription,
+      this.tag});
 
   factory _$_AppUser.fromJson(Map<String, dynamic> json) =>
       _$$_AppUserFromJson(json);
@@ -280,10 +294,12 @@ class _$_AppUser implements _AppUser {
   final String? emotionOfToday;
   @override
   final String? emotionDescription;
+  @override
+  final String? tag;
 
   @override
   String toString() {
-    return 'AppUser(uid: $uid, email: $email, photoURL: $photoURL, phoneNumber: $phoneNumber, isAnonymous: $isAnonymous, displayName: $displayName, creationTime: $creationTime, lastSignedIn: $lastSignedIn, feelingLog: $feelingLog, emotionOfToday: $emotionOfToday, emotionDescription: $emotionDescription)';
+    return 'AppUser(uid: $uid, email: $email, photoURL: $photoURL, phoneNumber: $phoneNumber, isAnonymous: $isAnonymous, displayName: $displayName, creationTime: $creationTime, lastSignedIn: $lastSignedIn, feelingLog: $feelingLog, emotionOfToday: $emotionOfToday, emotionDescription: $emotionDescription, tag: $tag)';
   }
 
   @override
@@ -310,7 +326,8 @@ class _$_AppUser implements _AppUser {
             (identical(other.emotionOfToday, emotionOfToday) ||
                 other.emotionOfToday == emotionOfToday) &&
             (identical(other.emotionDescription, emotionDescription) ||
-                other.emotionDescription == emotionDescription));
+                other.emotionDescription == emotionDescription) &&
+            (identical(other.tag, tag) || other.tag == tag));
   }
 
   @JsonKey(ignore: true)
@@ -327,7 +344,8 @@ class _$_AppUser implements _AppUser {
       lastSignedIn,
       feelingLog,
       emotionOfToday,
-      emotionDescription);
+      emotionDescription,
+      tag);
 
   @JsonKey(ignore: true)
   @override
@@ -355,7 +373,8 @@ abstract class _AppUser implements AppUser {
       final DateTime? lastSignedIn,
       final DailyFeelingLog? feelingLog,
       final String? emotionOfToday,
-      final String? emotionDescription}) = _$_AppUser;
+      final String? emotionDescription,
+      final String? tag}) = _$_AppUser;
 
   factory _AppUser.fromJson(Map<String, dynamic> json) = _$_AppUser.fromJson;
 
@@ -381,6 +400,8 @@ abstract class _AppUser implements AppUser {
   String? get emotionOfToday;
   @override
   String? get emotionDescription;
+  @override
+  String? get tag;
   @override
   @JsonKey(ignore: true)
   _$$_AppUserCopyWith<_$_AppUser> get copyWith =>

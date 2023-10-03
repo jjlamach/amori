@@ -12,9 +12,10 @@ class EmotionCubit extends Cubit<EmotionState> {
   }
 
   void emotionSelected(
-      String uid, String emotion, String emotionDescription) async {
-    await FirebaseStorageHelper.updateFeeling(uid, emotion, emotionDescription);
-    emit(EmotionState.emotionSelected(emotion, emotionDescription));
+      String uid, String emotion, String emotionDescription, String tag) async {
+    await FirebaseStorageHelper.updateFeeling(
+        uid, emotion, emotionDescription, tag);
+    emit(EmotionState.emotionSelected(emotion, emotionDescription, tag));
   }
 }
 
@@ -24,5 +25,5 @@ class EmotionState with _$EmotionState {
   const factory EmotionState.editingEmotion() = _Editing;
   const factory EmotionState.editingDone() = _Done;
   const factory EmotionState.emotionSelected(
-      String emotion, String emotionDescription) = _Selected;
+      String emotion, String emotionDescription, String tag) = _Selected;
 }

@@ -113,7 +113,7 @@ class HomePage extends StatelessWidget {
                 builder: (context, state) {
                   return state.maybeWhen(
                     /// Here emotion has been selected so we display it
-                    emotionSelected: (emotion, description) =>
+                    emotionSelected: (emotion, description, tag) =>
                         SliverToBoxAdapter(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,

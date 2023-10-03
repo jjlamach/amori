@@ -32,7 +32,7 @@ class SelectNewEmotionView extends StatelessWidget {
                   return BlocBuilder<EmotionCubit, EmotionState>(
                     builder: (context, state) {
                       return state.maybeWhen(
-                        emotionSelected: (emotion, description) {
+                        emotionSelected: (emotion, description, tag) {
                           if (emotion == Assets.emotions[index]) {
                             return GestureDetector(
                               onTap: () {

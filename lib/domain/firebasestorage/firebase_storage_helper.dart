@@ -41,6 +41,7 @@ class FirebaseStorageHelper {
     required FeelingEntry newFeeling,
     required String emotionOfToday,
     required String emotionDescriptionOfToday,
+    required String tagSelected,
   }) async {
     try {
       CollectionReference users =
@@ -55,6 +56,7 @@ class FirebaseStorageHelper {
         'feelingLog.records.$today': newFeeling.toJson(),
         'emotionOfToday': emotionOfToday,
         'emotionDescription': emotionDescriptionOfToday,
+        'tag': tagSelected,
       });
       kLogger.i('Feeling recorded successfully');
     } on Exception catch (error) {
@@ -62,8 +64,8 @@ class FirebaseStorageHelper {
     }
   }
 
-  static Future<void> updateFeeling(
-      String uid, String updatedEmotion, String updatedEmotionDescr) async {
+  static Future<void> updateFeeling(String uid, String updatedEmotion,
+      String updatedEmotionDescr, String tag) async {
     try {
       CollectionReference users =
           FirebaseFirestore.instance.collection('users');
@@ -72,6 +74,7 @@ class FirebaseStorageHelper {
       await userDoc.update({
         'emotionOfToday': updatedEmotion,
         'emotionDescription': updatedEmotionDescr,
+        'tag': tag,
       });
       kLogger.i('Feeling updated successfully');
     } on Exception catch (error) {
