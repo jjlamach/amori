@@ -1,11 +1,12 @@
 import 'package:amori/app/auto_route.gr.dart';
 import 'package:amori/app/screens/editemotion/state/emotion_cubit.dart';
+import 'package:amori/app/screens/home/widgets/default_emotion_view.dart';
+import 'package:amori/app/screens/home/widgets/emotion_selected_view.dart';
+import 'package:amori/app/screens/home/widgets/recorded_emotion_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
-import 'package:amori/common/assets.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
@@ -114,41 +115,7 @@ class HomePage extends StatelessWidget {
                   return state.maybeWhen(
                     /// Here emotion has been selected so we display it
                     emotionSelected: (emotion, description, tag) =>
-                        SliverToBoxAdapter(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SvgPicture.asset(
-                            emotion,
-                            width: double.infinity,
-                            height: 200,
-                          ),
-                          const SizedBox(
-                            height: 20.0,
-                          ),
-                          SizedBox(
-                            width: 157,
-                            height: 40,
-                            child: OutlinedButton(
-                              onPressed: () async {
-                                AutoRouter.of(context)
-                                    .pushNamed('/select-new-emotion');
-                              },
-                              child: Text(
-                                'Edit',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelLarge
-                                    ?.copyWith(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                        EmotionSelectedView(emotion: emotion),
 
                     /// When the user logs in, check the emotion saved
                     /// if it does not have any display emotions
@@ -157,62 +124,16 @@ class HomePage extends StatelessWidget {
                         return state.maybeWhen(
                           loggedIn: (user) {
                             if (user?.emotionOfToday?.isNotEmpty == true) {
-                              return SliverToBoxAdapter(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    SvgPicture.asset(
-                                      "${user?.emotionOfToday}",
-                                      width: double.infinity,
-                                      height: 200,
-                                    ),
-                                    const SizedBox(height: 20.0),
-                                    SizedBox(
-                                      width: 157,
-                                      height: 40,
-                                      child: OutlinedButton(
-                                        onPressed: () {
-                                          AutoRouter.of(context)
-                                              .pushNamed('/select-new-emotion');
-                                        },
-                                        child: Text(
-                                          'Edit',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelLarge
-                                              ?.copyWith(
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
+                              if (user != null) {
+                                return RecordedEmotion(appUser: user);
+                              } else {
+                                return const SizedBox.shrink();
+                              }
                             }
 
                             /// User logs in for the first time
                             else {
-                              return SliverGrid.count(
-                                crossAxisCount: 3,
-                                mainAxisSpacing: 20.0,
-                                children: List.generate(
-                                  Assets.emotions.length,
-                                  (index) => GestureDetector(
-                                    onTap: () {
-                                      AutoRouter.of(context).push(
-                                        EmotionSelectionRoute(
-                                          emotion: Assets.emotions[index],
-                                        ),
-                                      );
-                                    },
-                                    child: SvgPicture.asset(
-                                      Assets.emotions[index],
-                                    ),
-                                  ),
-                                ),
-                              );
+                              return const DefaultEmotionView();
                             }
                           },
                           orElse: () => const SliverToBoxAdapter(),
