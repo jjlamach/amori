@@ -1,3 +1,4 @@
+import 'package:amori/domain/models/feeling/feeling.dart';
 import 'package:amori/domain/models/user/amori_user.dart';
 import 'package:amori/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,8 +15,22 @@ class FirebaseStorageHelper {
       DocumentSnapshot snapshot = await userDoc.get();
       if (snapshot.exists) {
         Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+
+        List<dynamic> feelingsDynamic =
+            data['feelings']; // Assume data['feelings'] returns List<dynamic>
+
+        List<Feeling> feelings =
+            feelingsDynamic.map((f) => Feeling.fromMap(f)).toList();
+
+        final amori = AmoriUser(
+          email: data['email'],
+          uid: data['uid'],
+          password: data['password'],
+          displayName: data['displayName'],
+          feelings: feelings,
+        );
         kLogger.i('User retrieved successfully');
-        return AmoriUser.fromJson(data);
+        return amori;
       }
     } on Exception catch (e) {
       kLogger.e('Error trying to get user. $e');
@@ -37,10 +52,10 @@ class FirebaseStorageHelper {
 
   static Future<void> addOrUpdateFeelingForToday({
     required String uid,
-    // required FeelingEntry newFeeling,
+    // // required FeelingEntry newFeeling,
     required String emotionOfToday,
     required String emotionDescriptionOfToday,
-    required String tagSelected,
+    // required String tagSelected,
   }) async {
     try {
       CollectionReference users =
@@ -50,12 +65,13 @@ class FirebaseStorageHelper {
       // Convert today's date to the format YYYY-MM-DD
       String today = DateTime.now().toIso8601String().split('T')[0];
 
-      // Update the feeling log for today's date
+      Feeling feeling = Feeling(
+        feelingDescription: emotionDescriptionOfToday,
+        feeling: emotionOfToday,
+        dateTime: DateTime.now().toUtc(),
+      );
       await userDoc.update({
-        // 'feelingLog.records.$today': newFeeling.toJson(),
-        'emotionOfToday': emotionOfToday,
-        'emotionDescription': emotionDescriptionOfToday,
-        'tag': tagSelected,
+        'feelings': [feeling],
       });
       kLogger.i('Feeling recorded successfully');
     } on Exception catch (error) {

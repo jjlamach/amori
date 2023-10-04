@@ -24,7 +24,7 @@ mixin _$AmoriUser {
   String? get displayName => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
-  Map<DateTime, Feeling>? get feelings => throw _privateConstructorUsedError;
+  List<Feeling>? get feelings => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +42,7 @@ abstract class $AmoriUserCopyWith<$Res> {
       String? displayName,
       String? email,
       String? password,
-      Map<DateTime, Feeling>? feelings});
+      List<Feeling>? feelings});
 }
 
 /// @nodoc
@@ -84,7 +84,7 @@ class _$AmoriUserCopyWithImpl<$Res, $Val extends AmoriUser>
       feelings: freezed == feelings
           ? _value.feelings
           : feelings // ignore: cast_nullable_to_non_nullable
-              as Map<DateTime, Feeling>?,
+              as List<Feeling>?,
     ) as $Val);
   }
 }
@@ -101,7 +101,7 @@ abstract class _$$_AmoriUserCopyWith<$Res> implements $AmoriUserCopyWith<$Res> {
       String? displayName,
       String? email,
       String? password,
-      Map<DateTime, Feeling>? feelings});
+      List<Feeling>? feelings});
 }
 
 /// @nodoc
@@ -141,7 +141,7 @@ class __$$_AmoriUserCopyWithImpl<$Res>
       feelings: freezed == feelings
           ? _value._feelings
           : feelings // ignore: cast_nullable_to_non_nullable
-              as Map<DateTime, Feeling>?,
+              as List<Feeling>?,
     ));
   }
 }
@@ -154,7 +154,7 @@ class _$_AmoriUser implements _AmoriUser {
       this.displayName = '',
       this.email = '',
       this.password = '',
-      final Map<DateTime, Feeling>? feelings = const {}})
+      final List<Feeling>? feelings = const []})
       : _feelings = feelings;
 
   factory _$_AmoriUser.fromJson(Map<String, dynamic> json) =>
@@ -172,15 +172,15 @@ class _$_AmoriUser implements _AmoriUser {
   @override
   @JsonKey()
   final String? password;
-  final Map<DateTime, Feeling>? _feelings;
+  final List<Feeling>? _feelings;
   @override
   @JsonKey()
-  Map<DateTime, Feeling>? get feelings {
+  List<Feeling>? get feelings {
     final value = _feelings;
     if (value == null) return null;
-    if (_feelings is EqualUnmodifiableMapView) return _feelings;
+    if (_feelings is EqualUnmodifiableListView) return _feelings;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -227,7 +227,7 @@ abstract class _AmoriUser implements AmoriUser {
       final String? displayName,
       final String? email,
       final String? password,
-      final Map<DateTime, Feeling>? feelings}) = _$_AmoriUser;
+      final List<Feeling>? feelings}) = _$_AmoriUser;
 
   factory _AmoriUser.fromJson(Map<String, dynamic> json) =
       _$_AmoriUser.fromJson;
@@ -241,7 +241,7 @@ abstract class _AmoriUser implements AmoriUser {
   @override
   String? get password;
   @override
-  Map<DateTime, Feeling>? get feelings;
+  List<Feeling>? get feelings;
   @override
   @JsonKey(ignore: true)
   _$$_AmoriUserCopyWith<_$_AmoriUser> get copyWith =>

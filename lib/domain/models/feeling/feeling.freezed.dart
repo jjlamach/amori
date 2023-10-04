@@ -23,6 +23,7 @@ mixin _$Feeling {
   String get feeling => throw _privateConstructorUsedError;
   String get feelingDescription => throw _privateConstructorUsedError;
   bool get isFavorite => throw _privateConstructorUsedError;
+  DateTime? get dateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,11 @@ abstract class $FeelingCopyWith<$Res> {
   factory $FeelingCopyWith(Feeling value, $Res Function(Feeling) then) =
       _$FeelingCopyWithImpl<$Res, Feeling>;
   @useResult
-  $Res call({String feeling, String feelingDescription, bool isFavorite});
+  $Res call(
+      {String feeling,
+      String feelingDescription,
+      bool isFavorite,
+      DateTime? dateTime});
 }
 
 /// @nodoc
@@ -53,6 +58,7 @@ class _$FeelingCopyWithImpl<$Res, $Val extends Feeling>
     Object? feeling = null,
     Object? feelingDescription = null,
     Object? isFavorite = null,
+    Object? dateTime = freezed,
   }) {
     return _then(_value.copyWith(
       feeling: null == feeling
@@ -67,6 +73,10 @@ class _$FeelingCopyWithImpl<$Res, $Val extends Feeling>
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
               as bool,
+      dateTime: freezed == dateTime
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -78,7 +88,11 @@ abstract class _$$_FeelingCopyWith<$Res> implements $FeelingCopyWith<$Res> {
       __$$_FeelingCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String feeling, String feelingDescription, bool isFavorite});
+  $Res call(
+      {String feeling,
+      String feelingDescription,
+      bool isFavorite,
+      DateTime? dateTime});
 }
 
 /// @nodoc
@@ -94,6 +108,7 @@ class __$$_FeelingCopyWithImpl<$Res>
     Object? feeling = null,
     Object? feelingDescription = null,
     Object? isFavorite = null,
+    Object? dateTime = freezed,
   }) {
     return _then(_$_Feeling(
       feeling: null == feeling
@@ -108,17 +123,23 @@ class __$$_FeelingCopyWithImpl<$Res>
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
               as bool,
+      dateTime: freezed == dateTime
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Feeling implements _Feeling {
-  const _$_Feeling(
+class _$_Feeling extends _Feeling {
+  _$_Feeling(
       {this.feeling = '',
       this.feelingDescription = '',
-      this.isFavorite = false});
+      this.isFavorite = false,
+      this.dateTime})
+      : super._();
 
   factory _$_Feeling.fromJson(Map<String, dynamic> json) =>
       _$$_FeelingFromJson(json);
@@ -132,10 +153,12 @@ class _$_Feeling implements _Feeling {
   @override
   @JsonKey()
   final bool isFavorite;
+  @override
+  final DateTime? dateTime;
 
   @override
   String toString() {
-    return 'Feeling(feeling: $feeling, feelingDescription: $feelingDescription, isFavorite: $isFavorite)';
+    return 'Feeling(feeling: $feeling, feelingDescription: $feelingDescription, isFavorite: $isFavorite, dateTime: $dateTime)';
   }
 
   @override
@@ -147,13 +170,15 @@ class _$_Feeling implements _Feeling {
             (identical(other.feelingDescription, feelingDescription) ||
                 other.feelingDescription == feelingDescription) &&
             (identical(other.isFavorite, isFavorite) ||
-                other.isFavorite == isFavorite));
+                other.isFavorite == isFavorite) &&
+            (identical(other.dateTime, dateTime) ||
+                other.dateTime == dateTime));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, feeling, feelingDescription, isFavorite);
+  int get hashCode => Object.hash(
+      runtimeType, feeling, feelingDescription, isFavorite, dateTime);
 
   @JsonKey(ignore: true)
   @override
@@ -169,11 +194,13 @@ class _$_Feeling implements _Feeling {
   }
 }
 
-abstract class _Feeling implements Feeling {
-  const factory _Feeling(
+abstract class _Feeling extends Feeling {
+  factory _Feeling(
       {final String feeling,
       final String feelingDescription,
-      final bool isFavorite}) = _$_Feeling;
+      final bool isFavorite,
+      final DateTime? dateTime}) = _$_Feeling;
+  _Feeling._() : super._();
 
   factory _Feeling.fromJson(Map<String, dynamic> json) = _$_Feeling.fromJson;
 
@@ -183,6 +210,8 @@ abstract class _Feeling implements Feeling {
   String get feelingDescription;
   @override
   bool get isFavorite;
+  @override
+  DateTime? get dateTime;
   @override
   @JsonKey(ignore: true)
   _$$_FeelingCopyWith<_$_Feeling> get copyWith =>

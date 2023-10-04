@@ -26,6 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 email: email,
                 password: password,
                 displayName: username,
+                feelings: List.empty(growable: true),
               );
               currentUser = user;
               await FirebaseStorageHelper.saveUserToFireStore(user);

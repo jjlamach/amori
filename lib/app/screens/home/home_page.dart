@@ -71,7 +71,11 @@ class HomePage extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return const SizedBox.shrink();
+                      return Column(
+                        children: [
+                          Text('We here'),
+                        ],
+                      );
                     }
                   },
                   orElse: () => const SizedBox.shrink(),
