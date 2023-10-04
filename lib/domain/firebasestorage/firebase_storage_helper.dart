@@ -1,12 +1,11 @@
-import 'package:amori/domain/models/feeling/feeling_entry.dart';
-import 'package:amori/domain/models/user/app_user.dart';
+import 'package:amori/domain/models/user/amori_user.dart';
 import 'package:amori/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseStorageHelper {
   FirebaseStorageHelper();
 
-  static Future<AppUser?> getUserFromFireStore(String uid) async {
+  static Future<AmoriUser?> getUserFromFireStore(String uid) async {
     try {
       CollectionReference users =
           FirebaseFirestore.instance.collection('users');
@@ -16,7 +15,7 @@ class FirebaseStorageHelper {
       if (snapshot.exists) {
         Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
         kLogger.i('User retrieved successfully');
-        return AppUser.fromJson(data);
+        return AmoriUser.fromJson(data);
       }
     } on Exception catch (e) {
       kLogger.e('Error trying to get user. $e');
@@ -24,7 +23,7 @@ class FirebaseStorageHelper {
     return null;
   }
 
-  static Future<void> saveUserToFireStore(AppUser user) async {
+  static Future<void> saveUserToFireStore(AmoriUser user) async {
     try {
       await FirebaseFirestore.instance
           .collection('users')
@@ -38,7 +37,7 @@ class FirebaseStorageHelper {
 
   static Future<void> addOrUpdateFeelingForToday({
     required String uid,
-    required FeelingEntry newFeeling,
+    // required FeelingEntry newFeeling,
     required String emotionOfToday,
     required String emotionDescriptionOfToday,
     required String tagSelected,
@@ -53,7 +52,7 @@ class FirebaseStorageHelper {
 
       // Update the feeling log for today's date
       await userDoc.update({
-        'feelingLog.records.$today': newFeeling.toJson(),
+        // 'feelingLog.records.$today': newFeeling.toJson(),
         'emotionOfToday': emotionOfToday,
         'emotionDescription': emotionDescriptionOfToday,
         'tag': tagSelected,
@@ -79,6 +78,25 @@ class FirebaseStorageHelper {
       kLogger.i('Feeling updated successfully');
     } on Exception catch (error) {
       kLogger.e('Failed to update feeling for today. $error');
+    }
+  }
+
+  static Future<void> addFavorite(String uid, bool isFavorite) async {
+    try {
+      CollectionReference users =
+          FirebaseFirestore.instance.collection('users');
+      DocumentReference userDoc = users.doc(uid);
+
+      // Convert today's date to the format YYYY-MM-DD
+      String today = DateTime.now().toIso8601String().split('T')[0];
+
+      // Update the feeling log for today's date
+      await userDoc.update({
+        'feelingLog.records.$today.isAFavorite': isFavorite,
+      });
+      kLogger.i('Favorite feeling successfully.');
+    } on FirebaseException catch (e) {
+      kLogger.e('Could not favorite feeling. $e');
     }
   }
 }

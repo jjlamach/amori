@@ -5,10 +5,7 @@ import 'package:amori/app/screens/emotionselection/widgets/emotion_field_view.da
 import 'package:amori/app/screens/emotionselection/widgets/tags_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/common.dart';
-import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
-import 'package:amori/domain/models/feeling/feeling_entry.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -145,18 +142,18 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                             if ((isValid == true) &&
                                 _emotion.text.isNotEmpty &&
                                 tagSelected != null) {
-                              FeelingEntry entry = FeelingEntry(
-                                feeling: _emotion.text,
-                                recordedAt: DateTime.now(),
-                              );
-                              FirebaseStorageHelper.addOrUpdateFeelingForToday(
-                                uid: FirebaseAuth.instance.currentUser?.uid ??
-                                    '',
-                                newFeeling: entry,
-                                emotionOfToday: widget.emotion,
-                                emotionDescriptionOfToday: _emotion.text,
-                                tagSelected: tagSelected,
-                              );
+                              // FeelingEntry entry = FeelingEntry(
+                              //   feeling: _emotion.text,
+                              //   recordedAt: DateTime.now(),
+                              // );
+                              // FirebaseStorageHelper.addOrUpdateFeelingForToday(
+                              //   uid: FirebaseAuth.instance.currentUser?.uid ??
+                              //       '',
+                              //   newFeeling: entry,
+                              //   emotionOfToday: widget.emotion,
+                              //   emotionDescriptionOfToday: _emotion.text,
+                              //   tagSelected: tagSelected,
+                              // );
                               ScaffoldMessenger.of(context).showSnackBar(
                                 Common.showAppSnackBar(
                                     "Feeling recorded successfully."),

@@ -25,5 +25,8 @@ class EmotionState with _$EmotionState {
   const factory EmotionState.editingEmotion() = _Editing;
   const factory EmotionState.editingDone() = _Done;
   const factory EmotionState.emotionSelected(
-      String emotion, String emotionDescription, String tag) = _Selected;
+    String emotion,
+    String emotionDescription,
+    String tag,
+  ) = _Selected;
 }

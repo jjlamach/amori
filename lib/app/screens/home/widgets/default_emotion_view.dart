@@ -11,7 +11,10 @@ class DefaultEmotionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverGrid.count(
+    return GridView.count(
+      padding: const EdgeInsets.all(20.0),
+      // will occupy the minimum size needed to accommodate all of its children.
+      shrinkWrap: true,
       crossAxisCount: 3,
       mainAxisSpacing: 20.0,
       children: List.generate(

@@ -1,10 +1,10 @@
-import 'package:amori/domain/models/user/app_user.dart';
+import 'package:amori/domain/models/user/amori_user.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class RecordedEmotion extends StatelessWidget {
-  final AppUser appUser;
+  final AmoriUser appUser;
   const RecordedEmotion({
     required this.appUser,
     super.key,
@@ -17,7 +17,8 @@ class RecordedEmotion extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SvgPicture.asset(
-            "${appUser.emotionOfToday}",
+            // "${appUser.emotionOfToday}",
+            'Something here',
             width: double.infinity,
             height: 200,
           ),
