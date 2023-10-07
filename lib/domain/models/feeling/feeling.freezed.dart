@@ -24,6 +24,7 @@ mixin _$Feeling {
   String get feelingDescription => throw _privateConstructorUsedError;
   bool get isFavorite => throw _privateConstructorUsedError;
   DateTime? get dateTime => throw _privateConstructorUsedError;
+  String get tag => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +40,8 @@ abstract class $FeelingCopyWith<$Res> {
       {String feeling,
       String feelingDescription,
       bool isFavorite,
-      DateTime? dateTime});
+      DateTime? dateTime,
+      String tag});
 }
 
 /// @nodoc
@@ -59,6 +61,7 @@ class _$FeelingCopyWithImpl<$Res, $Val extends Feeling>
     Object? feelingDescription = null,
     Object? isFavorite = null,
     Object? dateTime = freezed,
+    Object? tag = null,
   }) {
     return _then(_value.copyWith(
       feeling: null == feeling
@@ -77,6 +80,10 @@ class _$FeelingCopyWithImpl<$Res, $Val extends Feeling>
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      tag: null == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -92,7 +99,8 @@ abstract class _$$_FeelingCopyWith<$Res> implements $FeelingCopyWith<$Res> {
       {String feeling,
       String feelingDescription,
       bool isFavorite,
-      DateTime? dateTime});
+      DateTime? dateTime,
+      String tag});
 }
 
 /// @nodoc
@@ -109,6 +117,7 @@ class __$$_FeelingCopyWithImpl<$Res>
     Object? feelingDescription = null,
     Object? isFavorite = null,
     Object? dateTime = freezed,
+    Object? tag = null,
   }) {
     return _then(_$_Feeling(
       feeling: null == feeling
@@ -127,6 +136,10 @@ class __$$_FeelingCopyWithImpl<$Res>
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      tag: null == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -138,7 +151,8 @@ class _$_Feeling extends _Feeling {
       {this.feeling = '',
       this.feelingDescription = '',
       this.isFavorite = false,
-      this.dateTime})
+      this.dateTime,
+      this.tag = ''})
       : super._();
 
   factory _$_Feeling.fromJson(Map<String, dynamic> json) =>
@@ -155,10 +169,13 @@ class _$_Feeling extends _Feeling {
   final bool isFavorite;
   @override
   final DateTime? dateTime;
+  @override
+  @JsonKey()
+  final String tag;
 
   @override
   String toString() {
-    return 'Feeling(feeling: $feeling, feelingDescription: $feelingDescription, isFavorite: $isFavorite, dateTime: $dateTime)';
+    return 'Feeling(feeling: $feeling, feelingDescription: $feelingDescription, isFavorite: $isFavorite, dateTime: $dateTime, tag: $tag)';
   }
 
   @override
@@ -172,13 +189,14 @@ class _$_Feeling extends _Feeling {
             (identical(other.isFavorite, isFavorite) ||
                 other.isFavorite == isFavorite) &&
             (identical(other.dateTime, dateTime) ||
-                other.dateTime == dateTime));
+                other.dateTime == dateTime) &&
+            (identical(other.tag, tag) || other.tag == tag));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, feeling, feelingDescription, isFavorite, dateTime);
+      runtimeType, feeling, feelingDescription, isFavorite, dateTime, tag);
 
   @JsonKey(ignore: true)
   @override
@@ -199,7 +217,8 @@ abstract class _Feeling extends Feeling {
       {final String feeling,
       final String feelingDescription,
       final bool isFavorite,
-      final DateTime? dateTime}) = _$_Feeling;
+      final DateTime? dateTime,
+      final String tag}) = _$_Feeling;
   _Feeling._() : super._();
 
   factory _Feeling.fromJson(Map<String, dynamic> json) = _$_Feeling.fromJson;
@@ -212,6 +231,8 @@ abstract class _Feeling extends Feeling {
   bool get isFavorite;
   @override
   DateTime? get dateTime;
+  @override
+  String get tag;
   @override
   @JsonKey(ignore: true)
   _$$_FeelingCopyWith<_$_Feeling> get copyWith =>

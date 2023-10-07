@@ -5,9 +5,7 @@ import 'package:amori/app/screens/emotionselection/widgets/emotion_field_view.da
 import 'package:amori/app/screens/emotionselection/widgets/tags_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/common.dart';
-import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -144,20 +142,25 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                             if ((isValid == true) &&
                                 _emotion.text.isNotEmpty &&
                                 tagSelected != null) {
-                              // FeelingEntry entry = FeelingEntry(
-                              //   feeling: _emotion.text,
-                              //   recordedAt: DateTime.now(),
+                              // FirebaseStorageRepository
+                              //     .addOrUpdateFeelingForToday(
+                              //   uid: FirebaseAuth.instance.currentUser?.uid ??
+                              //       '',
+                              //   emotionOfToday: widget.emotion,
+                              //   emotionDescriptionOfToday: _emotion.text,
+                              //   tagSelected: tagSelected,
+                              //   date: DateTime.now().toUtc(),
                               // );
-                              FirebaseStorageHelper.addOrUpdateFeelingForToday(
-                                uid: FirebaseAuth.instance.currentUser?.uid ??
-                                    '',
-                                emotionOfToday: widget.emotion,
-                                emotionDescriptionOfToday: _emotion.text,
-                                // newFeeling: entry,
-                                // emotionOfToday: widget.emotion,
-                                // emotionDescriptionOfToday: _emotion.text,
-                                // tagSelected: tagSelected,
-                              );
+                              final uid =
+                                  context.read<AuthBloc>().currentUser?.uid ??
+                                      '';
+                              context.read<EmotionCubit>().emotionSelected(
+                                    uid,
+                                    widget.emotion,
+                                    _emotion.text,
+                                    tagSelected,
+                                    DateTime.now().toUtc(),
+                                  );
                               ScaffoldMessenger.of(context).showSnackBar(
                                 Common.showAppSnackBar(
                                     "Feeling recorded successfully."),
@@ -166,14 +169,14 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                                 (value) {
                                   final user =
                                       context.read<AuthBloc>().state.whenOrNull(
-                                            loggedIn: (user) => user,
+                                            loggedIn: (user, _) => user,
                                           );
-                                  context.read<EmotionCubit>().emotionSelected(
-                                        user?.uid ?? '',
-                                        widget.emotion,
-                                        _emotion.text,
-                                        tagSelected,
-                                      );
+                                  // context.read<EmotionCubit>().emotionSelected(
+                                  //       user?.uid ?? '',
+                                  //       widget.emotion,
+                                  //       _emotion.text,
+                                  //       tagSelected,
+                                  //     );
                                   _emotion.clear();
                                   AutoRouter.of(context).replaceAll(
                                     [

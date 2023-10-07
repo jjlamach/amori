@@ -13,6 +13,7 @@ _$_Feeling _$$_FeelingFromJson(Map<String, dynamic> json) => _$_Feeling(
       dateTime: json['dateTime'] == null
           ? null
           : DateTime.parse(json['dateTime'] as String),
+      tag: json['tag'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_FeelingToJson(_$_Feeling instance) =>
@@ -21,4 +22,5 @@ Map<String, dynamic> _$$_FeelingToJson(_$_Feeling instance) =>
       'feelingDescription': instance.feelingDescription,
       'isFavorite': instance.isFavorite,
       'dateTime': instance.dateTime?.toIso8601String(),
+      'tag': instance.tag,
     };

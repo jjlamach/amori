@@ -161,7 +161,7 @@ class _SignInPageState extends State<SignInPage> {
                 BlocListener<AuthBloc, AuthState>(
                   listener: (context, state) {
                     state.whenOrNull(
-                      loggedIn: (user) {
+                      loggedIn: (user, _) {
                         _email.clear();
                         _password.clear();
                         AutoRouter.of(context).replaceNamed('/index');

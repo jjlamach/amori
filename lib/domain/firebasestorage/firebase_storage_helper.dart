@@ -3,24 +3,20 @@ import 'package:amori/domain/models/user/amori_user.dart';
 import 'package:amori/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class FirebaseStorageHelper {
-  FirebaseStorageHelper();
+class FirebaseStorageRepository {
+  final _db = FirebaseFirestore.instance;
 
-  static Future<AmoriUser?> getUserFromFireStore(String uid) async {
+  Future<AmoriUser?> getUserFromFireStore(String uid) async {
     try {
-      CollectionReference users =
-          FirebaseFirestore.instance.collection('users');
+      CollectionReference users = _db.collection('users');
       DocumentReference userDoc = users.doc(uid);
 
       DocumentSnapshot snapshot = await userDoc.get();
+
       if (snapshot.exists) {
         Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
 
-        List<dynamic> feelingsDynamic =
-            data['feelings']; // Assume data['feelings'] returns List<dynamic>
-
-        List<Feeling> feelings =
-            feelingsDynamic.map((f) => Feeling.fromMap(f)).toList();
+        final feelings = await getFeelingsOfUser(uid);
 
         final amori = AmoriUser(
           email: data['email'],
@@ -38,81 +34,54 @@ class FirebaseStorageHelper {
     return null;
   }
 
-  static Future<void> saveUserToFireStore(AmoriUser user) async {
+  Future<void> saveUserToFireStore(AmoriUser user) async {
     try {
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .set(user.toJson());
+      await _db.collection('users').doc(user.uid).set(user.toJson());
       kLogger.i('User saved successfully');
     } on Exception catch (e) {
       kLogger.e('Could not register and save user to FireStore. $e');
     }
   }
 
-  static Future<void> addOrUpdateFeelingForToday({
+  Future<void> addFeeling({
     required String uid,
-    // // required FeelingEntry newFeeling,
-    required String emotionOfToday,
-    required String emotionDescriptionOfToday,
-    // required String tagSelected,
+    required String feelingImg,
+    required String feelingDescription,
+    required DateTime dateTime,
+    required String tag,
+    bool? isFavorite,
   }) async {
-    try {
-      CollectionReference users =
-          FirebaseFirestore.instance.collection('users');
-      DocumentReference userDoc = users.doc(uid);
+    Feeling feeling = Feeling(
+      feeling: feelingImg,
+      feelingDescription: feelingDescription,
+      dateTime: dateTime,
+      tag: tag,
+      isFavorite: isFavorite ?? false,
+    );
 
-      // Convert today's date to the format YYYY-MM-DD
-      String today = DateTime.now().toIso8601String().split('T')[0];
+    String today =
+        DateTime.now().toString().substring(0, 10); // 'yyyy-MM-dd' format
 
-      Feeling feeling = Feeling(
-        feelingDescription: emotionDescriptionOfToday,
-        feeling: emotionOfToday,
-        dateTime: DateTime.now().toUtc(),
-      );
-      await userDoc.update({
-        'feelings': [feeling],
-      });
-      kLogger.i('Feeling recorded successfully');
-    } on Exception catch (error) {
-      kLogger.e('Failed to record feeling for today. $error');
-    }
+    await _db
+        .collection('users')
+        .doc(uid)
+        .collection('feelings')
+        .doc(today)
+        .set(feeling.toJson());
   }
 
-  static Future<void> updateFeeling(String uid, String updatedEmotion,
-      String updatedEmotionDescr, String tag) async {
-    try {
-      CollectionReference users =
-          FirebaseFirestore.instance.collection('users');
-      DocumentReference userDoc = users.doc(uid);
-
-      await userDoc.update({
-        'emotionOfToday': updatedEmotion,
-        'emotionDescription': updatedEmotionDescr,
-        'tag': tag,
-      });
-      kLogger.i('Feeling updated successfully');
-    } on Exception catch (error) {
-      kLogger.e('Failed to update feeling for today. $error');
+  /// Private methods
+  Future<List<Feeling>> getFeelingsOfUser(String uid) async {
+    QuerySnapshot feelingsCollection =
+        await _db.collection('users').doc(uid).collection('feelings').get();
+    List<Feeling> feelings = [];
+    for (var x in feelingsCollection.docs) {
+      final data = x.data() as Map<String, dynamic>;
+      final feeling = Feeling.fromJson(data);
+      if (!feelings.contains(feeling)) {
+        feelings.add(feeling);
+      }
     }
-  }
-
-  static Future<void> addFavorite(String uid, bool isFavorite) async {
-    try {
-      CollectionReference users =
-          FirebaseFirestore.instance.collection('users');
-      DocumentReference userDoc = users.doc(uid);
-
-      // Convert today's date to the format YYYY-MM-DD
-      String today = DateTime.now().toIso8601String().split('T')[0];
-
-      // Update the feeling log for today's date
-      await userDoc.update({
-        'feelingLog.records.$today.isAFavorite': isFavorite,
-      });
-      kLogger.i('Favorite feeling successfully.');
-    } on FirebaseException catch (e) {
-      kLogger.e('Could not favorite feeling. $e');
-    }
+    return feelings;
   }
 }

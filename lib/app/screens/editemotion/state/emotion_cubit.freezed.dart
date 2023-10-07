@@ -19,54 +19,78 @@ mixin _$EmotionState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<Feeling> feelings) loadedFeelings,
+    required TResult Function() emptyFeelingsList,
     required TResult Function() editingEmotion,
     required TResult Function() editingDone,
     required TResult Function(
             String emotion, String emotionDescription, String tag)
         emotionSelected,
+    required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<Feeling> feelings)? loadedFeelings,
+    TResult? Function()? emptyFeelingsList,
     TResult? Function()? editingEmotion,
     TResult? Function()? editingDone,
     TResult? Function(String emotion, String emotionDescription, String tag)?
         emotionSelected,
+    TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<Feeling> feelings)? loadedFeelings,
+    TResult Function()? emptyFeelingsList,
     TResult Function()? editingEmotion,
     TResult Function()? editingDone,
     TResult Function(String emotion, String emotionDescription, String tag)?
         emotionSelected,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loadedFeelings,
+    required TResult Function(_Empty value) emptyFeelingsList,
     required TResult Function(_Editing value) editingEmotion,
     required TResult Function(_Done value) editingDone,
     required TResult Function(_Selected value) emotionSelected,
+    required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loadedFeelings,
+    TResult? Function(_Empty value)? emptyFeelingsList,
     TResult? Function(_Editing value)? editingEmotion,
     TResult? Function(_Done value)? editingDone,
     TResult? Function(_Selected value)? emotionSelected,
+    TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loadedFeelings,
+    TResult Function(_Empty value)? emptyFeelingsList,
     TResult Function(_Editing value)? editingEmotion,
     TResult Function(_Done value)? editingDone,
     TResult Function(_Selected value)? emotionSelected,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,11 +152,15 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<Feeling> feelings) loadedFeelings,
+    required TResult Function() emptyFeelingsList,
     required TResult Function() editingEmotion,
     required TResult Function() editingDone,
     required TResult Function(
             String emotion, String emotionDescription, String tag)
         emotionSelected,
+    required TResult Function(String error) error,
   }) {
     return initial();
   }
@@ -141,10 +169,14 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<Feeling> feelings)? loadedFeelings,
+    TResult? Function()? emptyFeelingsList,
     TResult? Function()? editingEmotion,
     TResult? Function()? editingDone,
     TResult? Function(String emotion, String emotionDescription, String tag)?
         emotionSelected,
+    TResult? Function(String error)? error,
   }) {
     return initial?.call();
   }
@@ -153,10 +185,14 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<Feeling> feelings)? loadedFeelings,
+    TResult Function()? emptyFeelingsList,
     TResult Function()? editingEmotion,
     TResult Function()? editingDone,
     TResult Function(String emotion, String emotionDescription, String tag)?
         emotionSelected,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -169,9 +205,13 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loadedFeelings,
+    required TResult Function(_Empty value) emptyFeelingsList,
     required TResult Function(_Editing value) editingEmotion,
     required TResult Function(_Done value) editingDone,
     required TResult Function(_Selected value) emotionSelected,
+    required TResult Function(_Error value) error,
   }) {
     return initial(this);
   }
@@ -180,9 +220,13 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loadedFeelings,
+    TResult? Function(_Empty value)? emptyFeelingsList,
     TResult? Function(_Editing value)? editingEmotion,
     TResult? Function(_Done value)? editingDone,
     TResult? Function(_Selected value)? emotionSelected,
+    TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
   }
@@ -191,9 +235,13 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loadedFeelings,
+    TResult Function(_Empty value)? emptyFeelingsList,
     TResult Function(_Editing value)? editingEmotion,
     TResult Function(_Done value)? editingDone,
     TResult Function(_Selected value)? emotionSelected,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -205,6 +253,464 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements EmotionState {
   const factory _Initial() = _$_Initial;
+}
+
+/// @nodoc
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$EmotionStateCopyWithImpl<$Res, _$_Loading>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Loading implements _Loading {
+  const _$_Loading();
+
+  @override
+  String toString() {
+    return 'EmotionState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Loading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<Feeling> feelings) loadedFeelings,
+    required TResult Function() emptyFeelingsList,
+    required TResult Function() editingEmotion,
+    required TResult Function() editingDone,
+    required TResult Function(
+            String emotion, String emotionDescription, String tag)
+        emotionSelected,
+    required TResult Function(String error) error,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<Feeling> feelings)? loadedFeelings,
+    TResult? Function()? emptyFeelingsList,
+    TResult? Function()? editingEmotion,
+    TResult? Function()? editingDone,
+    TResult? Function(String emotion, String emotionDescription, String tag)?
+        emotionSelected,
+    TResult? Function(String error)? error,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<Feeling> feelings)? loadedFeelings,
+    TResult Function()? emptyFeelingsList,
+    TResult Function()? editingEmotion,
+    TResult Function()? editingDone,
+    TResult Function(String emotion, String emotionDescription, String tag)?
+        emotionSelected,
+    TResult Function(String error)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loadedFeelings,
+    required TResult Function(_Empty value) emptyFeelingsList,
+    required TResult Function(_Editing value) editingEmotion,
+    required TResult Function(_Done value) editingDone,
+    required TResult Function(_Selected value) emotionSelected,
+    required TResult Function(_Error value) error,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loadedFeelings,
+    TResult? Function(_Empty value)? emptyFeelingsList,
+    TResult? Function(_Editing value)? editingEmotion,
+    TResult? Function(_Done value)? editingDone,
+    TResult? Function(_Selected value)? emotionSelected,
+    TResult? Function(_Error value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loadedFeelings,
+    TResult Function(_Empty value)? emptyFeelingsList,
+    TResult Function(_Editing value)? editingEmotion,
+    TResult Function(_Done value)? editingDone,
+    TResult Function(_Selected value)? emotionSelected,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements EmotionState {
+  const factory _Loading() = _$_Loading;
+}
+
+/// @nodoc
+abstract class _$$_LoadedCopyWith<$Res> {
+  factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
+      __$$_LoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Feeling> feelings});
+}
+
+/// @nodoc
+class __$$_LoadedCopyWithImpl<$Res>
+    extends _$EmotionStateCopyWithImpl<$Res, _$_Loaded>
+    implements _$$_LoadedCopyWith<$Res> {
+  __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? feelings = null,
+  }) {
+    return _then(_$_Loaded(
+      null == feelings
+          ? _value._feelings
+          : feelings // ignore: cast_nullable_to_non_nullable
+              as List<Feeling>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Loaded implements _Loaded {
+  const _$_Loaded(final List<Feeling> feelings) : _feelings = feelings;
+
+  final List<Feeling> _feelings;
+  @override
+  List<Feeling> get feelings {
+    if (_feelings is EqualUnmodifiableListView) return _feelings;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_feelings);
+  }
+
+  @override
+  String toString() {
+    return 'EmotionState.loadedFeelings(feelings: $feelings)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Loaded &&
+            const DeepCollectionEquality().equals(other._feelings, _feelings));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_feelings));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+      __$$_LoadedCopyWithImpl<_$_Loaded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<Feeling> feelings) loadedFeelings,
+    required TResult Function() emptyFeelingsList,
+    required TResult Function() editingEmotion,
+    required TResult Function() editingDone,
+    required TResult Function(
+            String emotion, String emotionDescription, String tag)
+        emotionSelected,
+    required TResult Function(String error) error,
+  }) {
+    return loadedFeelings(feelings);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<Feeling> feelings)? loadedFeelings,
+    TResult? Function()? emptyFeelingsList,
+    TResult? Function()? editingEmotion,
+    TResult? Function()? editingDone,
+    TResult? Function(String emotion, String emotionDescription, String tag)?
+        emotionSelected,
+    TResult? Function(String error)? error,
+  }) {
+    return loadedFeelings?.call(feelings);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<Feeling> feelings)? loadedFeelings,
+    TResult Function()? emptyFeelingsList,
+    TResult Function()? editingEmotion,
+    TResult Function()? editingDone,
+    TResult Function(String emotion, String emotionDescription, String tag)?
+        emotionSelected,
+    TResult Function(String error)? error,
+    required TResult orElse(),
+  }) {
+    if (loadedFeelings != null) {
+      return loadedFeelings(feelings);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loadedFeelings,
+    required TResult Function(_Empty value) emptyFeelingsList,
+    required TResult Function(_Editing value) editingEmotion,
+    required TResult Function(_Done value) editingDone,
+    required TResult Function(_Selected value) emotionSelected,
+    required TResult Function(_Error value) error,
+  }) {
+    return loadedFeelings(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loadedFeelings,
+    TResult? Function(_Empty value)? emptyFeelingsList,
+    TResult? Function(_Editing value)? editingEmotion,
+    TResult? Function(_Done value)? editingDone,
+    TResult? Function(_Selected value)? emotionSelected,
+    TResult? Function(_Error value)? error,
+  }) {
+    return loadedFeelings?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loadedFeelings,
+    TResult Function(_Empty value)? emptyFeelingsList,
+    TResult Function(_Editing value)? editingEmotion,
+    TResult Function(_Done value)? editingDone,
+    TResult Function(_Selected value)? emotionSelected,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (loadedFeelings != null) {
+      return loadedFeelings(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loaded implements EmotionState {
+  const factory _Loaded(final List<Feeling> feelings) = _$_Loaded;
+
+  List<Feeling> get feelings;
+  @JsonKey(ignore: true)
+  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_EmptyCopyWith<$Res> {
+  factory _$$_EmptyCopyWith(_$_Empty value, $Res Function(_$_Empty) then) =
+      __$$_EmptyCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_EmptyCopyWithImpl<$Res>
+    extends _$EmotionStateCopyWithImpl<$Res, _$_Empty>
+    implements _$$_EmptyCopyWith<$Res> {
+  __$$_EmptyCopyWithImpl(_$_Empty _value, $Res Function(_$_Empty) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Empty implements _Empty {
+  const _$_Empty();
+
+  @override
+  String toString() {
+    return 'EmotionState.emptyFeelingsList()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Empty);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<Feeling> feelings) loadedFeelings,
+    required TResult Function() emptyFeelingsList,
+    required TResult Function() editingEmotion,
+    required TResult Function() editingDone,
+    required TResult Function(
+            String emotion, String emotionDescription, String tag)
+        emotionSelected,
+    required TResult Function(String error) error,
+  }) {
+    return emptyFeelingsList();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<Feeling> feelings)? loadedFeelings,
+    TResult? Function()? emptyFeelingsList,
+    TResult? Function()? editingEmotion,
+    TResult? Function()? editingDone,
+    TResult? Function(String emotion, String emotionDescription, String tag)?
+        emotionSelected,
+    TResult? Function(String error)? error,
+  }) {
+    return emptyFeelingsList?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<Feeling> feelings)? loadedFeelings,
+    TResult Function()? emptyFeelingsList,
+    TResult Function()? editingEmotion,
+    TResult Function()? editingDone,
+    TResult Function(String emotion, String emotionDescription, String tag)?
+        emotionSelected,
+    TResult Function(String error)? error,
+    required TResult orElse(),
+  }) {
+    if (emptyFeelingsList != null) {
+      return emptyFeelingsList();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loadedFeelings,
+    required TResult Function(_Empty value) emptyFeelingsList,
+    required TResult Function(_Editing value) editingEmotion,
+    required TResult Function(_Done value) editingDone,
+    required TResult Function(_Selected value) emotionSelected,
+    required TResult Function(_Error value) error,
+  }) {
+    return emptyFeelingsList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loadedFeelings,
+    TResult? Function(_Empty value)? emptyFeelingsList,
+    TResult? Function(_Editing value)? editingEmotion,
+    TResult? Function(_Done value)? editingDone,
+    TResult? Function(_Selected value)? emotionSelected,
+    TResult? Function(_Error value)? error,
+  }) {
+    return emptyFeelingsList?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loadedFeelings,
+    TResult Function(_Empty value)? emptyFeelingsList,
+    TResult Function(_Editing value)? editingEmotion,
+    TResult Function(_Done value)? editingDone,
+    TResult Function(_Selected value)? emotionSelected,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (emptyFeelingsList != null) {
+      return emptyFeelingsList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Empty implements EmotionState {
+  const factory _Empty() = _$_Empty;
 }
 
 /// @nodoc
@@ -245,11 +751,15 @@ class _$_Editing implements _Editing {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<Feeling> feelings) loadedFeelings,
+    required TResult Function() emptyFeelingsList,
     required TResult Function() editingEmotion,
     required TResult Function() editingDone,
     required TResult Function(
             String emotion, String emotionDescription, String tag)
         emotionSelected,
+    required TResult Function(String error) error,
   }) {
     return editingEmotion();
   }
@@ -258,10 +768,14 @@ class _$_Editing implements _Editing {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<Feeling> feelings)? loadedFeelings,
+    TResult? Function()? emptyFeelingsList,
     TResult? Function()? editingEmotion,
     TResult? Function()? editingDone,
     TResult? Function(String emotion, String emotionDescription, String tag)?
         emotionSelected,
+    TResult? Function(String error)? error,
   }) {
     return editingEmotion?.call();
   }
@@ -270,10 +784,14 @@ class _$_Editing implements _Editing {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<Feeling> feelings)? loadedFeelings,
+    TResult Function()? emptyFeelingsList,
     TResult Function()? editingEmotion,
     TResult Function()? editingDone,
     TResult Function(String emotion, String emotionDescription, String tag)?
         emotionSelected,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (editingEmotion != null) {
@@ -286,9 +804,13 @@ class _$_Editing implements _Editing {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loadedFeelings,
+    required TResult Function(_Empty value) emptyFeelingsList,
     required TResult Function(_Editing value) editingEmotion,
     required TResult Function(_Done value) editingDone,
     required TResult Function(_Selected value) emotionSelected,
+    required TResult Function(_Error value) error,
   }) {
     return editingEmotion(this);
   }
@@ -297,9 +819,13 @@ class _$_Editing implements _Editing {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loadedFeelings,
+    TResult? Function(_Empty value)? emptyFeelingsList,
     TResult? Function(_Editing value)? editingEmotion,
     TResult? Function(_Done value)? editingDone,
     TResult? Function(_Selected value)? emotionSelected,
+    TResult? Function(_Error value)? error,
   }) {
     return editingEmotion?.call(this);
   }
@@ -308,9 +834,13 @@ class _$_Editing implements _Editing {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loadedFeelings,
+    TResult Function(_Empty value)? emptyFeelingsList,
     TResult Function(_Editing value)? editingEmotion,
     TResult Function(_Done value)? editingDone,
     TResult Function(_Selected value)? emotionSelected,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (editingEmotion != null) {
@@ -361,11 +891,15 @@ class _$_Done implements _Done {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<Feeling> feelings) loadedFeelings,
+    required TResult Function() emptyFeelingsList,
     required TResult Function() editingEmotion,
     required TResult Function() editingDone,
     required TResult Function(
             String emotion, String emotionDescription, String tag)
         emotionSelected,
+    required TResult Function(String error) error,
   }) {
     return editingDone();
   }
@@ -374,10 +908,14 @@ class _$_Done implements _Done {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<Feeling> feelings)? loadedFeelings,
+    TResult? Function()? emptyFeelingsList,
     TResult? Function()? editingEmotion,
     TResult? Function()? editingDone,
     TResult? Function(String emotion, String emotionDescription, String tag)?
         emotionSelected,
+    TResult? Function(String error)? error,
   }) {
     return editingDone?.call();
   }
@@ -386,10 +924,14 @@ class _$_Done implements _Done {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<Feeling> feelings)? loadedFeelings,
+    TResult Function()? emptyFeelingsList,
     TResult Function()? editingEmotion,
     TResult Function()? editingDone,
     TResult Function(String emotion, String emotionDescription, String tag)?
         emotionSelected,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (editingDone != null) {
@@ -402,9 +944,13 @@ class _$_Done implements _Done {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loadedFeelings,
+    required TResult Function(_Empty value) emptyFeelingsList,
     required TResult Function(_Editing value) editingEmotion,
     required TResult Function(_Done value) editingDone,
     required TResult Function(_Selected value) emotionSelected,
+    required TResult Function(_Error value) error,
   }) {
     return editingDone(this);
   }
@@ -413,9 +959,13 @@ class _$_Done implements _Done {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loadedFeelings,
+    TResult? Function(_Empty value)? emptyFeelingsList,
     TResult? Function(_Editing value)? editingEmotion,
     TResult? Function(_Done value)? editingDone,
     TResult? Function(_Selected value)? emotionSelected,
+    TResult? Function(_Error value)? error,
   }) {
     return editingDone?.call(this);
   }
@@ -424,9 +974,13 @@ class _$_Done implements _Done {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loadedFeelings,
+    TResult Function(_Empty value)? emptyFeelingsList,
     TResult Function(_Editing value)? editingEmotion,
     TResult Function(_Done value)? editingDone,
     TResult Function(_Selected value)? emotionSelected,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (editingDone != null) {
@@ -523,11 +1077,15 @@ class _$_Selected implements _Selected {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<Feeling> feelings) loadedFeelings,
+    required TResult Function() emptyFeelingsList,
     required TResult Function() editingEmotion,
     required TResult Function() editingDone,
     required TResult Function(
             String emotion, String emotionDescription, String tag)
         emotionSelected,
+    required TResult Function(String error) error,
   }) {
     return emotionSelected(emotion, emotionDescription, tag);
   }
@@ -536,10 +1094,14 @@ class _$_Selected implements _Selected {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<Feeling> feelings)? loadedFeelings,
+    TResult? Function()? emptyFeelingsList,
     TResult? Function()? editingEmotion,
     TResult? Function()? editingDone,
     TResult? Function(String emotion, String emotionDescription, String tag)?
         emotionSelected,
+    TResult? Function(String error)? error,
   }) {
     return emotionSelected?.call(emotion, emotionDescription, tag);
   }
@@ -548,10 +1110,14 @@ class _$_Selected implements _Selected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<Feeling> feelings)? loadedFeelings,
+    TResult Function()? emptyFeelingsList,
     TResult Function()? editingEmotion,
     TResult Function()? editingDone,
     TResult Function(String emotion, String emotionDescription, String tag)?
         emotionSelected,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (emotionSelected != null) {
@@ -564,9 +1130,13 @@ class _$_Selected implements _Selected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loadedFeelings,
+    required TResult Function(_Empty value) emptyFeelingsList,
     required TResult Function(_Editing value) editingEmotion,
     required TResult Function(_Done value) editingDone,
     required TResult Function(_Selected value) emotionSelected,
+    required TResult Function(_Error value) error,
   }) {
     return emotionSelected(this);
   }
@@ -575,9 +1145,13 @@ class _$_Selected implements _Selected {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loadedFeelings,
+    TResult? Function(_Empty value)? emptyFeelingsList,
     TResult? Function(_Editing value)? editingEmotion,
     TResult? Function(_Done value)? editingDone,
     TResult? Function(_Selected value)? emotionSelected,
+    TResult? Function(_Error value)? error,
   }) {
     return emotionSelected?.call(this);
   }
@@ -586,9 +1160,13 @@ class _$_Selected implements _Selected {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loadedFeelings,
+    TResult Function(_Empty value)? emptyFeelingsList,
     TResult Function(_Editing value)? editingEmotion,
     TResult Function(_Done value)? editingDone,
     TResult Function(_Selected value)? emotionSelected,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (emotionSelected != null) {
@@ -607,5 +1185,176 @@ abstract class _Selected implements EmotionState {
   String get tag;
   @JsonKey(ignore: true)
   _$$_SelectedCopyWith<_$_Selected> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ErrorCopyWith<$Res> {
+  factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
+      __$$_ErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String error});
+}
+
+/// @nodoc
+class __$$_ErrorCopyWithImpl<$Res>
+    extends _$EmotionStateCopyWithImpl<$Res, _$_Error>
+    implements _$$_ErrorCopyWith<$Res> {
+  __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$_Error(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Error implements _Error {
+  const _$_Error(this.error);
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'EmotionState.error(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Error &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+      __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<Feeling> feelings) loadedFeelings,
+    required TResult Function() emptyFeelingsList,
+    required TResult Function() editingEmotion,
+    required TResult Function() editingDone,
+    required TResult Function(
+            String emotion, String emotionDescription, String tag)
+        emotionSelected,
+    required TResult Function(String error) error,
+  }) {
+    return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<Feeling> feelings)? loadedFeelings,
+    TResult? Function()? emptyFeelingsList,
+    TResult? Function()? editingEmotion,
+    TResult? Function()? editingDone,
+    TResult? Function(String emotion, String emotionDescription, String tag)?
+        emotionSelected,
+    TResult? Function(String error)? error,
+  }) {
+    return error?.call(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<Feeling> feelings)? loadedFeelings,
+    TResult Function()? emptyFeelingsList,
+    TResult Function()? editingEmotion,
+    TResult Function()? editingDone,
+    TResult Function(String emotion, String emotionDescription, String tag)?
+        emotionSelected,
+    TResult Function(String error)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loadedFeelings,
+    required TResult Function(_Empty value) emptyFeelingsList,
+    required TResult Function(_Editing value) editingEmotion,
+    required TResult Function(_Done value) editingDone,
+    required TResult Function(_Selected value) emotionSelected,
+    required TResult Function(_Error value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loadedFeelings,
+    TResult? Function(_Empty value)? emptyFeelingsList,
+    TResult? Function(_Editing value)? editingEmotion,
+    TResult? Function(_Done value)? editingDone,
+    TResult? Function(_Selected value)? emotionSelected,
+    TResult? Function(_Error value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loadedFeelings,
+    TResult Function(_Empty value)? emptyFeelingsList,
+    TResult Function(_Editing value)? editingEmotion,
+    TResult Function(_Done value)? editingDone,
+    TResult Function(_Selected value)? emotionSelected,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Error implements EmotionState {
+  const factory _Error(final String error) = _$_Error;
+
+  String get error;
+  @JsonKey(ignore: true)
+  _$$_ErrorCopyWith<_$_Error> get copyWith =>
       throw _privateConstructorUsedError;
 }

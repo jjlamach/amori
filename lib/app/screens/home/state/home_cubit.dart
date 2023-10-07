@@ -1,4 +1,3 @@
-import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -12,7 +11,6 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void favorite(String uid, bool favorite) async {
-    await FirebaseStorageHelper.addFavorite(uid, favorite);
     emit(HomeState.favorite(value: favorite));
   }
 

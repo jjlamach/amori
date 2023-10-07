@@ -21,7 +21,7 @@ mixin _$AuthState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AmoriUser user) registered,
-    required TResult Function(AmoriUser user) loggedIn,
+    required TResult Function(AmoriUser user, List<Feeling> feelings) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function(String email) forgotPassword,
     required TResult Function() deletedAccount,
@@ -33,7 +33,7 @@ mixin _$AuthState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AmoriUser user)? registered,
-    TResult? Function(AmoriUser user)? loggedIn,
+    TResult? Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function(String email)? forgotPassword,
     TResult? Function()? deletedAccount,
@@ -45,7 +45,7 @@ mixin _$AuthState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AmoriUser user)? registered,
-    TResult Function(AmoriUser user)? loggedIn,
+    TResult Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function(String email)? forgotPassword,
     TResult Function()? deletedAccount,
@@ -149,7 +149,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AmoriUser user) registered,
-    required TResult Function(AmoriUser user) loggedIn,
+    required TResult Function(AmoriUser user, List<Feeling> feelings) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function(String email) forgotPassword,
     required TResult Function() deletedAccount,
@@ -164,7 +164,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AmoriUser user)? registered,
-    TResult? Function(AmoriUser user)? loggedIn,
+    TResult? Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function(String email)? forgotPassword,
     TResult? Function()? deletedAccount,
@@ -179,7 +179,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AmoriUser user)? registered,
-    TResult Function(AmoriUser user)? loggedIn,
+    TResult Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function(String email)? forgotPassword,
     TResult Function()? deletedAccount,
@@ -286,7 +286,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AmoriUser user) registered,
-    required TResult Function(AmoriUser user) loggedIn,
+    required TResult Function(AmoriUser user, List<Feeling> feelings) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function(String email) forgotPassword,
     required TResult Function() deletedAccount,
@@ -301,7 +301,7 @@ class _$_Loading implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AmoriUser user)? registered,
-    TResult? Function(AmoriUser user)? loggedIn,
+    TResult? Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function(String email)? forgotPassword,
     TResult? Function()? deletedAccount,
@@ -316,7 +316,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AmoriUser user)? registered,
-    TResult Function(AmoriUser user)? loggedIn,
+    TResult Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function(String email)? forgotPassword,
     TResult Function()? deletedAccount,
@@ -460,7 +460,7 @@ class _$_Registered implements _Registered {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AmoriUser user) registered,
-    required TResult Function(AmoriUser user) loggedIn,
+    required TResult Function(AmoriUser user, List<Feeling> feelings) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function(String email) forgotPassword,
     required TResult Function() deletedAccount,
@@ -475,7 +475,7 @@ class _$_Registered implements _Registered {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AmoriUser user)? registered,
-    TResult? Function(AmoriUser user)? loggedIn,
+    TResult? Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function(String email)? forgotPassword,
     TResult? Function()? deletedAccount,
@@ -490,7 +490,7 @@ class _$_Registered implements _Registered {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AmoriUser user)? registered,
-    TResult Function(AmoriUser user)? loggedIn,
+    TResult Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function(String email)? forgotPassword,
     TResult Function()? deletedAccount,
@@ -568,7 +568,7 @@ abstract class _$$_LoggedInCopyWith<$Res> {
           _$_LoggedIn value, $Res Function(_$_LoggedIn) then) =
       __$$_LoggedInCopyWithImpl<$Res>;
   @useResult
-  $Res call({AmoriUser user});
+  $Res call({AmoriUser user, List<Feeling> feelings});
 
   $AmoriUserCopyWith<$Res> get user;
 }
@@ -585,12 +585,17 @@ class __$$_LoggedInCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = null,
+    Object? feelings = null,
   }) {
     return _then(_$_LoggedIn(
       null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as AmoriUser,
+      null == feelings
+          ? _value._feelings
+          : feelings // ignore: cast_nullable_to_non_nullable
+              as List<Feeling>,
     ));
   }
 
@@ -606,14 +611,22 @@ class __$$_LoggedInCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoggedIn implements _LoggedIn {
-  const _$_LoggedIn(this.user);
+  const _$_LoggedIn(this.user, final List<Feeling> feelings)
+      : _feelings = feelings;
 
   @override
   final AmoriUser user;
+  final List<Feeling> _feelings;
+  @override
+  List<Feeling> get feelings {
+    if (_feelings is EqualUnmodifiableListView) return _feelings;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_feelings);
+  }
 
   @override
   String toString() {
-    return 'AuthState.loggedIn(user: $user)';
+    return 'AuthState.loggedIn(user: $user, feelings: $feelings)';
   }
 
   @override
@@ -621,11 +634,13 @@ class _$_LoggedIn implements _LoggedIn {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoggedIn &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality().equals(other._feelings, _feelings));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode => Object.hash(
+      runtimeType, user, const DeepCollectionEquality().hash(_feelings));
 
   @JsonKey(ignore: true)
   @override
@@ -639,13 +654,13 @@ class _$_LoggedIn implements _LoggedIn {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AmoriUser user) registered,
-    required TResult Function(AmoriUser user) loggedIn,
+    required TResult Function(AmoriUser user, List<Feeling> feelings) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function(String email) forgotPassword,
     required TResult Function() deletedAccount,
     required TResult Function(String exception) error,
   }) {
-    return loggedIn(user);
+    return loggedIn(user, feelings);
   }
 
   @override
@@ -654,13 +669,13 @@ class _$_LoggedIn implements _LoggedIn {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AmoriUser user)? registered,
-    TResult? Function(AmoriUser user)? loggedIn,
+    TResult? Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function(String email)? forgotPassword,
     TResult? Function()? deletedAccount,
     TResult? Function(String exception)? error,
   }) {
-    return loggedIn?.call(user);
+    return loggedIn?.call(user, feelings);
   }
 
   @override
@@ -669,7 +684,7 @@ class _$_LoggedIn implements _LoggedIn {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AmoriUser user)? registered,
-    TResult Function(AmoriUser user)? loggedIn,
+    TResult Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function(String email)? forgotPassword,
     TResult Function()? deletedAccount,
@@ -677,7 +692,7 @@ class _$_LoggedIn implements _LoggedIn {
     required TResult orElse(),
   }) {
     if (loggedIn != null) {
-      return loggedIn(user);
+      return loggedIn(user, feelings);
     }
     return orElse();
   }
@@ -733,9 +748,11 @@ class _$_LoggedIn implements _LoggedIn {
 }
 
 abstract class _LoggedIn implements AuthState {
-  const factory _LoggedIn(final AmoriUser user) = _$_LoggedIn;
+  const factory _LoggedIn(final AmoriUser user, final List<Feeling> feelings) =
+      _$_LoggedIn;
 
   AmoriUser get user;
+  List<Feeling> get feelings;
   @JsonKey(ignore: true)
   _$$_LoggedInCopyWith<_$_LoggedIn> get copyWith =>
       throw _privateConstructorUsedError;
@@ -782,7 +799,7 @@ class _$_LoggedOut implements _LoggedOut {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AmoriUser user) registered,
-    required TResult Function(AmoriUser user) loggedIn,
+    required TResult Function(AmoriUser user, List<Feeling> feelings) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function(String email) forgotPassword,
     required TResult Function() deletedAccount,
@@ -797,7 +814,7 @@ class _$_LoggedOut implements _LoggedOut {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AmoriUser user)? registered,
-    TResult? Function(AmoriUser user)? loggedIn,
+    TResult? Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function(String email)? forgotPassword,
     TResult? Function()? deletedAccount,
@@ -812,7 +829,7 @@ class _$_LoggedOut implements _LoggedOut {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AmoriUser user)? registered,
-    TResult Function(AmoriUser user)? loggedIn,
+    TResult Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function(String email)? forgotPassword,
     TResult Function()? deletedAccount,
@@ -948,7 +965,7 @@ class _$_ForgotPasswordEmailSent implements _ForgotPasswordEmailSent {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AmoriUser user) registered,
-    required TResult Function(AmoriUser user) loggedIn,
+    required TResult Function(AmoriUser user, List<Feeling> feelings) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function(String email) forgotPassword,
     required TResult Function() deletedAccount,
@@ -963,7 +980,7 @@ class _$_ForgotPasswordEmailSent implements _ForgotPasswordEmailSent {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AmoriUser user)? registered,
-    TResult? Function(AmoriUser user)? loggedIn,
+    TResult? Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function(String email)? forgotPassword,
     TResult? Function()? deletedAccount,
@@ -978,7 +995,7 @@ class _$_ForgotPasswordEmailSent implements _ForgotPasswordEmailSent {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AmoriUser user)? registered,
-    TResult Function(AmoriUser user)? loggedIn,
+    TResult Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function(String email)? forgotPassword,
     TResult Function()? deletedAccount,
@@ -1091,7 +1108,7 @@ class _$_Deleted implements _Deleted {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AmoriUser user) registered,
-    required TResult Function(AmoriUser user) loggedIn,
+    required TResult Function(AmoriUser user, List<Feeling> feelings) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function(String email) forgotPassword,
     required TResult Function() deletedAccount,
@@ -1106,7 +1123,7 @@ class _$_Deleted implements _Deleted {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AmoriUser user)? registered,
-    TResult? Function(AmoriUser user)? loggedIn,
+    TResult? Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function(String email)? forgotPassword,
     TResult? Function()? deletedAccount,
@@ -1121,7 +1138,7 @@ class _$_Deleted implements _Deleted {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AmoriUser user)? registered,
-    TResult Function(AmoriUser user)? loggedIn,
+    TResult Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function(String email)? forgotPassword,
     TResult Function()? deletedAccount,
@@ -1254,7 +1271,7 @@ class _$_Error implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AmoriUser user) registered,
-    required TResult Function(AmoriUser user) loggedIn,
+    required TResult Function(AmoriUser user, List<Feeling> feelings) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function(String email) forgotPassword,
     required TResult Function() deletedAccount,
@@ -1269,7 +1286,7 @@ class _$_Error implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AmoriUser user)? registered,
-    TResult? Function(AmoriUser user)? loggedIn,
+    TResult? Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult? Function()? loggedOut,
     TResult? Function(String email)? forgotPassword,
     TResult? Function()? deletedAccount,
@@ -1284,7 +1301,7 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AmoriUser user)? registered,
-    TResult Function(AmoriUser user)? loggedIn,
+    TResult Function(AmoriUser user, List<Feeling> feelings)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function(String email)? forgotPassword,
     TResult Function()? deletedAccount,

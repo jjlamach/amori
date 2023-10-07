@@ -50,11 +50,11 @@ void setUpAppDependencies() {
 void setUpServices() {
   getIt.registerFactory(() => TextEditingController());
   getIt.registerFactory(() => GlobalKey<FormState>());
-  getIt.registerSingleton(() => FirebaseStorageHelper());
+  getIt.registerFactory(() => FirebaseStorageRepository());
 }
 
 void setUpCubits() {
-  getIt.registerFactory(() => AuthBloc());
+  getIt.registerFactory(() => AuthBloc(getIt.get()));
   getIt.registerFactory(
     () => SignInFormCubit(
       getIt.get(),
@@ -75,7 +75,7 @@ void setUpCubits() {
   );
   getIt.registerFactory(() => TagCubit());
   getIt.registerFactory(() => HomeCubit());
-  getIt.registerFactory(() => EmotionCubit());
+  getIt.registerFactory(() => EmotionCubit(getIt.get()));
 }
 
 class AmoriApp extends StatelessWidget {
@@ -95,9 +95,7 @@ class AmoriApp extends StatelessWidget {
         BlocProvider<AuthBloc>(create: (_) => getIt<AuthBloc>()),
         BlocProvider<TagCubit>(create: (_) => getIt<TagCubit>()),
         BlocProvider<HomeCubit>(create: (_) => getIt<HomeCubit>()),
-        BlocProvider<EmotionCubit>(
-          create: (_) => getIt<EmotionCubit>(),
-        ),
+        BlocProvider<EmotionCubit>(create: (_) => getIt<EmotionCubit>()),
       ],
       child: MaterialApp.router(
         routerConfig: _router.config(),
