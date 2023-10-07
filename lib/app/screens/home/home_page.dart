@@ -52,11 +52,14 @@ class HomePage extends StatelessWidget {
                       loggedIn: (user, feelings) {
                         return BlocBuilder<EmotionCubit, EmotionState>(
                           builder: (context, state) {
-                            print('State: $state');
                             return state.maybeWhen(
                               emotionSelected:
                                   (emotion, emotionDescription, tag) => Column(
                                 children: [
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.1,
+                                  ),
                                   Text(
                                     'Hello, ${user.displayName}',
                                     style: Theme.of(context)
@@ -66,6 +69,7 @@ class HomePage extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                         ),
                                   ),
+                                  const SizedBox(height: 20.0),
                                   Text(
                                     "Today's feeling: ",
                                     style: Theme.of(context)
@@ -80,15 +84,30 @@ class HomePage extends StatelessWidget {
                                   OutlinedButton(
                                     onPressed: () {
                                       AutoRouter.of(context).push(
-                                        SelectNewEmotionView(),
+                                        const SelectNewEmotionView(),
                                       );
                                     },
-                                    child: Text('Edit'),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 40.0,
+                                        vertical: 2.0,
+                                      ),
+                                      child: Text(
+                                        'Edit',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge,
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
                               emptyFeelingsList: () => Column(
                                 children: [
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.1,
+                                  ),
                                   Text(
                                     'Hello, ${user.displayName}',
                                     style: Theme.of(context)
@@ -110,6 +129,10 @@ class HomePage extends StatelessWidget {
                               ),
                               loadedFeelings: (feelings) => Column(
                                 children: [
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.1,
+                                  ),
                                   Text(
                                     'Hello, ${user.displayName}',
                                     style: Theme.of(context)
@@ -117,28 +140,41 @@ class HomePage extends StatelessWidget {
                                         .headlineLarge
                                         ?.copyWith(
                                           fontWeight: FontWeight.bold,
+                                          fontSize: 40.0,
                                         ),
                                   ),
+                                  const SizedBox(height: 20.0),
                                   Text(
-                                    'Most recent feeling recorded:',
+                                    'Last feeling recorded:',
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headlineSmall,
+                                        .headlineSmall
+                                        ?.copyWith(
+                                          fontSize: 24.0,
+                                        ),
                                   ),
                                   SvgPicture.asset(
                                     feelings.last.feeling,
                                     width: double.infinity,
-                                    height: 200,
+                                    height: 207,
                                   ),
+                                  const SizedBox(height: 40.0),
                                   OutlinedButton(
                                     onPressed: () {
                                       AutoRouter.of(context)
                                           .push(const SelectNewEmotionView());
                                     },
-                                    child: Text(
-                                      'Edit',
-                                      style:
-                                          Theme.of(context).textTheme.bodyLarge,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 40.0,
+                                        vertical: 2.0,
+                                      ),
+                                      child: Text(
+                                        'Edit',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge,
+                                      ),
                                     ),
                                   ),
                                 ],
