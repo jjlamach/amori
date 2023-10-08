@@ -21,8 +21,6 @@ mixin _$HomeState {
     required TResult Function() initial,
     required TResult Function(Exception e) error,
     required TResult Function(String emotionSelected) emotionSelected,
-    required TResult Function(bool value) favorite,
-    required TResult Function(bool value) unfavorite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,8 +28,6 @@ mixin _$HomeState {
     TResult? Function()? initial,
     TResult? Function(Exception e)? error,
     TResult? Function(String emotionSelected)? emotionSelected,
-    TResult? Function(bool value)? favorite,
-    TResult? Function(bool value)? unfavorite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,8 +35,6 @@ mixin _$HomeState {
     TResult Function()? initial,
     TResult Function(Exception e)? error,
     TResult Function(String emotionSelected)? emotionSelected,
-    TResult Function(bool value)? favorite,
-    TResult Function(bool value)? unfavorite,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,8 +43,6 @@ mixin _$HomeState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Error value) error,
     required TResult Function(_EmotionSelected value) emotionSelected,
-    required TResult Function(_Favorite value) favorite,
-    required TResult Function(_Unfavorite value) unfavorite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,8 +50,6 @@ mixin _$HomeState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Error value)? error,
     TResult? Function(_EmotionSelected value)? emotionSelected,
-    TResult? Function(_Favorite value)? favorite,
-    TResult? Function(_Unfavorite value)? unfavorite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,8 +57,6 @@ mixin _$HomeState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Error value)? error,
     TResult Function(_EmotionSelected value)? emotionSelected,
-    TResult Function(_Favorite value)? favorite,
-    TResult Function(_Unfavorite value)? unfavorite,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -131,8 +119,6 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function(Exception e) error,
     required TResult Function(String emotionSelected) emotionSelected,
-    required TResult Function(bool value) favorite,
-    required TResult Function(bool value) unfavorite,
   }) {
     return initial();
   }
@@ -143,8 +129,6 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function(Exception e)? error,
     TResult? Function(String emotionSelected)? emotionSelected,
-    TResult? Function(bool value)? favorite,
-    TResult? Function(bool value)? unfavorite,
   }) {
     return initial?.call();
   }
@@ -155,8 +139,6 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function(Exception e)? error,
     TResult Function(String emotionSelected)? emotionSelected,
-    TResult Function(bool value)? favorite,
-    TResult Function(bool value)? unfavorite,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -171,8 +153,6 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Error value) error,
     required TResult Function(_EmotionSelected value) emotionSelected,
-    required TResult Function(_Favorite value) favorite,
-    required TResult Function(_Unfavorite value) unfavorite,
   }) {
     return initial(this);
   }
@@ -183,8 +163,6 @@ class _$_Initial implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Error value)? error,
     TResult? Function(_EmotionSelected value)? emotionSelected,
-    TResult? Function(_Favorite value)? favorite,
-    TResult? Function(_Unfavorite value)? unfavorite,
   }) {
     return initial?.call(this);
   }
@@ -195,8 +173,6 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Error value)? error,
     TResult Function(_EmotionSelected value)? emotionSelected,
-    TResult Function(_Favorite value)? favorite,
-    TResult Function(_Unfavorite value)? unfavorite,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -275,8 +251,6 @@ class _$_Error implements _Error {
     required TResult Function() initial,
     required TResult Function(Exception e) error,
     required TResult Function(String emotionSelected) emotionSelected,
-    required TResult Function(bool value) favorite,
-    required TResult Function(bool value) unfavorite,
   }) {
     return error(e);
   }
@@ -287,8 +261,6 @@ class _$_Error implements _Error {
     TResult? Function()? initial,
     TResult? Function(Exception e)? error,
     TResult? Function(String emotionSelected)? emotionSelected,
-    TResult? Function(bool value)? favorite,
-    TResult? Function(bool value)? unfavorite,
   }) {
     return error?.call(e);
   }
@@ -299,8 +271,6 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function(Exception e)? error,
     TResult Function(String emotionSelected)? emotionSelected,
-    TResult Function(bool value)? favorite,
-    TResult Function(bool value)? unfavorite,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -315,8 +285,6 @@ class _$_Error implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Error value) error,
     required TResult Function(_EmotionSelected value) emotionSelected,
-    required TResult Function(_Favorite value) favorite,
-    required TResult Function(_Unfavorite value) unfavorite,
   }) {
     return error(this);
   }
@@ -327,8 +295,6 @@ class _$_Error implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Error value)? error,
     TResult? Function(_EmotionSelected value)? emotionSelected,
-    TResult? Function(_Favorite value)? favorite,
-    TResult? Function(_Unfavorite value)? unfavorite,
   }) {
     return error?.call(this);
   }
@@ -339,8 +305,6 @@ class _$_Error implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Error value)? error,
     TResult Function(_EmotionSelected value)? emotionSelected,
-    TResult Function(_Favorite value)? favorite,
-    TResult Function(_Unfavorite value)? unfavorite,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -427,8 +391,6 @@ class _$_EmotionSelected implements _EmotionSelected {
     required TResult Function() initial,
     required TResult Function(Exception e) error,
     required TResult Function(String emotionSelected) emotionSelected,
-    required TResult Function(bool value) favorite,
-    required TResult Function(bool value) unfavorite,
   }) {
     return emotionSelected(this.emotionSelected);
   }
@@ -439,8 +401,6 @@ class _$_EmotionSelected implements _EmotionSelected {
     TResult? Function()? initial,
     TResult? Function(Exception e)? error,
     TResult? Function(String emotionSelected)? emotionSelected,
-    TResult? Function(bool value)? favorite,
-    TResult? Function(bool value)? unfavorite,
   }) {
     return emotionSelected?.call(this.emotionSelected);
   }
@@ -451,8 +411,6 @@ class _$_EmotionSelected implements _EmotionSelected {
     TResult Function()? initial,
     TResult Function(Exception e)? error,
     TResult Function(String emotionSelected)? emotionSelected,
-    TResult Function(bool value)? favorite,
-    TResult Function(bool value)? unfavorite,
     required TResult orElse(),
   }) {
     if (emotionSelected != null) {
@@ -467,8 +425,6 @@ class _$_EmotionSelected implements _EmotionSelected {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Error value) error,
     required TResult Function(_EmotionSelected value) emotionSelected,
-    required TResult Function(_Favorite value) favorite,
-    required TResult Function(_Unfavorite value) unfavorite,
   }) {
     return emotionSelected(this);
   }
@@ -479,8 +435,6 @@ class _$_EmotionSelected implements _EmotionSelected {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Error value)? error,
     TResult? Function(_EmotionSelected value)? emotionSelected,
-    TResult? Function(_Favorite value)? favorite,
-    TResult? Function(_Unfavorite value)? unfavorite,
   }) {
     return emotionSelected?.call(this);
   }
@@ -491,8 +445,6 @@ class _$_EmotionSelected implements _EmotionSelected {
     TResult Function(_Initial value)? initial,
     TResult Function(_Error value)? error,
     TResult Function(_EmotionSelected value)? emotionSelected,
-    TResult Function(_Favorite value)? favorite,
-    TResult Function(_Unfavorite value)? unfavorite,
     required TResult orElse(),
   }) {
     if (emotionSelected != null) {
@@ -509,309 +461,5 @@ abstract class _EmotionSelected implements HomeState {
   String get emotionSelected;
   @JsonKey(ignore: true)
   _$$_EmotionSelectedCopyWith<_$_EmotionSelected> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_FavoriteCopyWith<$Res> {
-  factory _$$_FavoriteCopyWith(
-          _$_Favorite value, $Res Function(_$_Favorite) then) =
-      __$$_FavoriteCopyWithImpl<$Res>;
-  @useResult
-  $Res call({bool value});
-}
-
-/// @nodoc
-class __$$_FavoriteCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$_Favorite>
-    implements _$$_FavoriteCopyWith<$Res> {
-  __$$_FavoriteCopyWithImpl(
-      _$_Favorite _value, $Res Function(_$_Favorite) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(_$_Favorite(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_Favorite implements _Favorite {
-  const _$_Favorite({this.value = true});
-
-  @override
-  @JsonKey()
-  final bool value;
-
-  @override
-  String toString() {
-    return 'HomeState.favorite(value: $value)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Favorite &&
-            (identical(other.value, value) || other.value == value));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, value);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_FavoriteCopyWith<_$_Favorite> get copyWith =>
-      __$$_FavoriteCopyWithImpl<_$_Favorite>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(Exception e) error,
-    required TResult Function(String emotionSelected) emotionSelected,
-    required TResult Function(bool value) favorite,
-    required TResult Function(bool value) unfavorite,
-  }) {
-    return favorite(value);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(Exception e)? error,
-    TResult? Function(String emotionSelected)? emotionSelected,
-    TResult? Function(bool value)? favorite,
-    TResult? Function(bool value)? unfavorite,
-  }) {
-    return favorite?.call(value);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Exception e)? error,
-    TResult Function(String emotionSelected)? emotionSelected,
-    TResult Function(bool value)? favorite,
-    TResult Function(bool value)? unfavorite,
-    required TResult orElse(),
-  }) {
-    if (favorite != null) {
-      return favorite(value);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Error value) error,
-    required TResult Function(_EmotionSelected value) emotionSelected,
-    required TResult Function(_Favorite value) favorite,
-    required TResult Function(_Unfavorite value) unfavorite,
-  }) {
-    return favorite(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Error value)? error,
-    TResult? Function(_EmotionSelected value)? emotionSelected,
-    TResult? Function(_Favorite value)? favorite,
-    TResult? Function(_Unfavorite value)? unfavorite,
-  }) {
-    return favorite?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Error value)? error,
-    TResult Function(_EmotionSelected value)? emotionSelected,
-    TResult Function(_Favorite value)? favorite,
-    TResult Function(_Unfavorite value)? unfavorite,
-    required TResult orElse(),
-  }) {
-    if (favorite != null) {
-      return favorite(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Favorite implements HomeState {
-  const factory _Favorite({final bool value}) = _$_Favorite;
-
-  bool get value;
-  @JsonKey(ignore: true)
-  _$$_FavoriteCopyWith<_$_Favorite> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_UnfavoriteCopyWith<$Res> {
-  factory _$$_UnfavoriteCopyWith(
-          _$_Unfavorite value, $Res Function(_$_Unfavorite) then) =
-      __$$_UnfavoriteCopyWithImpl<$Res>;
-  @useResult
-  $Res call({bool value});
-}
-
-/// @nodoc
-class __$$_UnfavoriteCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$_Unfavorite>
-    implements _$$_UnfavoriteCopyWith<$Res> {
-  __$$_UnfavoriteCopyWithImpl(
-      _$_Unfavorite _value, $Res Function(_$_Unfavorite) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(_$_Unfavorite(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_Unfavorite implements _Unfavorite {
-  const _$_Unfavorite({this.value = false});
-
-  @override
-  @JsonKey()
-  final bool value;
-
-  @override
-  String toString() {
-    return 'HomeState.unfavorite(value: $value)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Unfavorite &&
-            (identical(other.value, value) || other.value == value));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, value);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_UnfavoriteCopyWith<_$_Unfavorite> get copyWith =>
-      __$$_UnfavoriteCopyWithImpl<_$_Unfavorite>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(Exception e) error,
-    required TResult Function(String emotionSelected) emotionSelected,
-    required TResult Function(bool value) favorite,
-    required TResult Function(bool value) unfavorite,
-  }) {
-    return unfavorite(value);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(Exception e)? error,
-    TResult? Function(String emotionSelected)? emotionSelected,
-    TResult? Function(bool value)? favorite,
-    TResult? Function(bool value)? unfavorite,
-  }) {
-    return unfavorite?.call(value);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Exception e)? error,
-    TResult Function(String emotionSelected)? emotionSelected,
-    TResult Function(bool value)? favorite,
-    TResult Function(bool value)? unfavorite,
-    required TResult orElse(),
-  }) {
-    if (unfavorite != null) {
-      return unfavorite(value);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Error value) error,
-    required TResult Function(_EmotionSelected value) emotionSelected,
-    required TResult Function(_Favorite value) favorite,
-    required TResult Function(_Unfavorite value) unfavorite,
-  }) {
-    return unfavorite(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Error value)? error,
-    TResult? Function(_EmotionSelected value)? emotionSelected,
-    TResult? Function(_Favorite value)? favorite,
-    TResult? Function(_Unfavorite value)? unfavorite,
-  }) {
-    return unfavorite?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Error value)? error,
-    TResult Function(_EmotionSelected value)? emotionSelected,
-    TResult Function(_Favorite value)? favorite,
-    TResult Function(_Unfavorite value)? unfavorite,
-    required TResult orElse(),
-  }) {
-    if (unfavorite != null) {
-      return unfavorite(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Unfavorite implements HomeState {
-  const factory _Unfavorite({final bool value}) = _$_Unfavorite;
-
-  bool get value;
-  @JsonKey(ignore: true)
-  _$$_UnfavoriteCopyWith<_$_Unfavorite> get copyWith =>
       throw _privateConstructorUsedError;
 }

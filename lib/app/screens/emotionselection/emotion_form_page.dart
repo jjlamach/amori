@@ -61,11 +61,25 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                 ),
               ),
               SliverToBoxAdapter(
-                child: SvgPicture.asset(
-                  widget.emotion,
-                  width: double.infinity,
-                  height: 200,
-                  // fit: BoxFit.fill,
+                child: Stack(
+                  children: [
+                    Center(
+                      child: SvgPicture.asset(
+                        widget.emotion,
+                        width: double.infinity,
+                        height: 200,
+                      ),
+                    ),
+                    const Positioned(
+                      top: 30,
+                      right: 100,
+                      child: Icon(
+                        Icons.favorite,
+                        size: 40,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SliverToBoxAdapter(child: SizedBox(height: 40.0)),

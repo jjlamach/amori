@@ -12,6 +12,7 @@ enum Tags {
   Other,
 }
 
+// TODO: Refactor
 class TagsView extends StatelessWidget {
   const TagsView({
     super.key,

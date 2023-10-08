@@ -1,6 +1,7 @@
 import 'package:amori/app/auto_route.dart';
 import 'package:amori/app/screens/editemotion/state/emotion_cubit.dart';
 import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
+import 'package:amori/app/screens/favorites/state/favorites_cubit.dart';
 import 'package:amori/app/screens/home/state/home_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/app/screens/signin/state/register_form_cubit.dart';
@@ -48,13 +49,16 @@ void setUpAppDependencies() {
 }
 
 void setUpServices() {
+  getIt.registerSingleton<FirebaseStorageRepository>(
+    FirebaseStorageRepository(),
+  );
   getIt.registerFactory(() => TextEditingController());
-  getIt.registerFactory(() => GlobalKey<FormState>());
-  getIt.registerFactory(() => FirebaseStorageRepository());
 }
 
 void setUpCubits() {
-  getIt.registerFactory(() => AuthBloc(getIt.get()));
+  getIt.registerSingleton<AuthBloc>(
+    AuthBloc(getIt.get()),
+  );
   getIt.registerFactory(
     () => SignInFormCubit(
       getIt.get(),
@@ -76,6 +80,7 @@ void setUpCubits() {
   getIt.registerFactory(() => TagCubit());
   getIt.registerFactory(() => HomeCubit());
   getIt.registerFactory(() => EmotionCubit(getIt.get()));
+  getIt.registerFactory(() => FavoriteCubit());
 }
 
 class AmoriApp extends StatelessWidget {
