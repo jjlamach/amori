@@ -10,7 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:amori/app/screens/editemotion/widgets/select_new_emotion_view.dart'
     as _i9;
-import 'package:amori/app/screens/emotionselection/emotion_selection_page.dart'
+import 'package:amori/app/screens/emotionselection/emotion_form_page.dart'
     as _i2;
 import 'package:amori/app/screens/favorites/favorites_page.dart' as _i3;
 import 'package:amori/app/screens/feelings/feelings_page.dart' as _i4;
@@ -37,11 +37,11 @@ abstract class $AmoriAppRouter extends _i12.RootStackRouter {
         child: const _i1.BottomNavigationBarPage(),
       );
     },
-    EmotionSelectionRoute.name: (routeData) {
-      final args = routeData.argsAs<EmotionSelectionRouteArgs>();
+    EmotionFormRoute.name: (routeData) {
+      final args = routeData.argsAs<EmotionFormRouteArgs>();
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i2.EmotionSelectionPage(
+        child: _i2.EmotionFormPage(
           emotion: args.emotion,
           emotionDescription: args.emotionDescription,
           key: args.key,
@@ -126,17 +126,16 @@ class BottomNavigationBarRoute extends _i12.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.EmotionSelectionPage]
-class EmotionSelectionRoute
-    extends _i12.PageRouteInfo<EmotionSelectionRouteArgs> {
-  EmotionSelectionRoute({
+/// [_i2.EmotionFormPage]
+class EmotionFormRoute extends _i12.PageRouteInfo<EmotionFormRouteArgs> {
+  EmotionFormRoute({
     required String emotion,
     String? emotionDescription,
     _i13.Key? key,
     List<_i12.PageRouteInfo>? children,
   }) : super(
-          EmotionSelectionRoute.name,
-          args: EmotionSelectionRouteArgs(
+          EmotionFormRoute.name,
+          args: EmotionFormRouteArgs(
             emotion: emotion,
             emotionDescription: emotionDescription,
             key: key,
@@ -144,14 +143,14 @@ class EmotionSelectionRoute
           initialChildren: children,
         );
 
-  static const String name = 'EmotionSelectionRoute';
+  static const String name = 'EmotionFormRoute';
 
-  static const _i12.PageInfo<EmotionSelectionRouteArgs> page =
-      _i12.PageInfo<EmotionSelectionRouteArgs>(name);
+  static const _i12.PageInfo<EmotionFormRouteArgs> page =
+      _i12.PageInfo<EmotionFormRouteArgs>(name);
 }
 
-class EmotionSelectionRouteArgs {
-  const EmotionSelectionRouteArgs({
+class EmotionFormRouteArgs {
+  const EmotionFormRouteArgs({
     required this.emotion,
     this.emotionDescription,
     this.key,
@@ -165,7 +164,7 @@ class EmotionSelectionRouteArgs {
 
   @override
   String toString() {
-    return 'EmotionSelectionRouteArgs{emotion: $emotion, emotionDescription: $emotionDescription, key: $key}';
+    return 'EmotionFormRouteArgs{emotion: $emotion, emotionDescription: $emotionDescription, key: $key}';
   }
 }
 

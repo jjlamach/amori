@@ -11,20 +11,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
-class EmotionSelectionPage extends StatefulWidget {
+class EmotionFormPage extends StatefulWidget {
   final String emotion;
   final String? emotionDescription;
-  const EmotionSelectionPage({
+  const EmotionFormPage({
     required this.emotion,
     this.emotionDescription,
     super.key,
   });
 
   @override
-  State<EmotionSelectionPage> createState() => _EmotionSelectionPageState();
+  State<EmotionFormPage> createState() => _EmotionFormPageState();
 }
 
-class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
+class _EmotionFormPageState extends State<EmotionFormPage> {
   late TextEditingController _emotion;
   late GlobalKey<FormState> _formKey;
   @override

@@ -31,14 +31,14 @@ class SelectNewEmotionView extends StatelessWidget {
                   onTap: () {
                     if (Assets.emotions[index] == emotion) {
                       AutoRouter.of(context).push(
-                        EmotionSelectionRoute(
+                        EmotionFormRoute(
                           emotion: Assets.emotions[index],
                           emotionDescription: emotionDescription,
                         ),
                       );
                     } else {
                       AutoRouter.of(context).push(
-                        EmotionSelectionRoute(
+                        EmotionFormRoute(
                           emotion: Assets.emotions[index],
                         ),
                       );

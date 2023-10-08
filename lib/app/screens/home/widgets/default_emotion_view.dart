@@ -22,7 +22,7 @@ class DefaultEmotionView extends StatelessWidget {
         (index) => GestureDetector(
           onTap: () {
             AutoRouter.of(context).push(
-              EmotionSelectionRoute(
+              EmotionFormRoute(
                 emotion: Assets.emotions[index],
               ),
             );
