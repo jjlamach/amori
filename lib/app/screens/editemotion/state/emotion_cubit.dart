@@ -29,10 +29,6 @@ class EmotionCubit extends Cubit<EmotionState> {
     }
   }
 
-  /// TODO: STATE => fetch any feeling
-  /// TODO: STATE => no feeling just all emotions
-  /// TODO: STATE => selected emotion always show most recent
-
   void emotionSelected(
     String uid,
     String emotion,

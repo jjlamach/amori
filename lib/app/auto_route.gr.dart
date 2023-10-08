@@ -85,9 +85,15 @@ abstract class $AmoriAppRouter extends _i12.RootStackRouter {
       );
     },
     SelectNewEmotionView.name: (routeData) {
+      final args = routeData.argsAs<SelectNewEmotionViewArgs>(
+          orElse: () => const SelectNewEmotionViewArgs());
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.SelectNewEmotionView(),
+        child: _i9.SelectNewEmotionView(
+          emotion: args.emotion,
+          emotionDescription: args.emotionDescription,
+          key: args.key,
+        ),
       );
     },
     SignInRoute.name: (routeData) {
@@ -249,16 +255,46 @@ class RegisterRoute extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.SelectNewEmotionView]
-class SelectNewEmotionView extends _i12.PageRouteInfo<void> {
-  const SelectNewEmotionView({List<_i12.PageRouteInfo>? children})
-      : super(
+class SelectNewEmotionView
+    extends _i12.PageRouteInfo<SelectNewEmotionViewArgs> {
+  SelectNewEmotionView({
+    String? emotion,
+    String? emotionDescription,
+    _i13.Key? key,
+    List<_i12.PageRouteInfo>? children,
+  }) : super(
           SelectNewEmotionView.name,
+          args: SelectNewEmotionViewArgs(
+            emotion: emotion,
+            emotionDescription: emotionDescription,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'SelectNewEmotionView';
 
-  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
+  static const _i12.PageInfo<SelectNewEmotionViewArgs> page =
+      _i12.PageInfo<SelectNewEmotionViewArgs>(name);
+}
+
+class SelectNewEmotionViewArgs {
+  const SelectNewEmotionViewArgs({
+    this.emotion,
+    this.emotionDescription,
+    this.key,
+  });
+
+  final String? emotion;
+
+  final String? emotionDescription;
+
+  final _i13.Key? key;
+
+  @override
+  String toString() {
+    return 'SelectNewEmotionViewArgs{emotion: $emotion, emotionDescription: $emotionDescription, key: $key}';
+  }
 }
 
 /// generated route for

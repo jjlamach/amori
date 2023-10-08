@@ -81,10 +81,15 @@ class HomePage extends StatelessWidget {
                                     width: double.infinity,
                                     height: 200,
                                   ),
+                                  const SizedBox(height: 40.0),
                                   OutlinedButton(
                                     onPressed: () {
                                       AutoRouter.of(context).push(
-                                        const SelectNewEmotionView(),
+                                        SelectNewEmotionView(
+                                          emotion: emotion,
+                                          emotionDescription:
+                                              emotionDescription,
+                                        ),
                                       );
                                     },
                                     child: Padding(
@@ -161,8 +166,13 @@ class HomePage extends StatelessWidget {
                                   const SizedBox(height: 40.0),
                                   OutlinedButton(
                                     onPressed: () {
-                                      AutoRouter.of(context)
-                                          .push(const SelectNewEmotionView());
+                                      AutoRouter.of(context).push(
+                                        SelectNewEmotionView(
+                                          emotion: feelings.last.feeling,
+                                          emotionDescription:
+                                              feelings.last.feelingDescription,
+                                        ),
+                                      );
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(

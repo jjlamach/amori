@@ -6,7 +6,10 @@ import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
 class SelectNewEmotionView extends StatelessWidget {
-  const SelectNewEmotionView({super.key});
+  final String? emotion;
+  final String? emotionDescription;
+  const SelectNewEmotionView(
+      {this.emotion, this.emotionDescription, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +29,38 @@ class SelectNewEmotionView extends StatelessWidget {
               children: List.generate(Assets.emotions.length, (index) {
                 return GestureDetector(
                   onTap: () {
-                    AutoRouter.of(context).push(
-                      EmotionSelectionRoute(
-                        emotion: Assets.emotions[index],
-                      ),
-                    );
+                    if (Assets.emotions[index] == emotion) {
+                      AutoRouter.of(context).push(
+                        EmotionSelectionRoute(
+                          emotion: Assets.emotions[index],
+                          emotionDescription: emotionDescription,
+                        ),
+                      );
+                    } else {
+                      AutoRouter.of(context).push(
+                        EmotionSelectionRoute(
+                          emotion: Assets.emotions[index],
+                        ),
+                      );
+                    }
                   },
-                  child: SvgPicture.asset(
-                    Assets.emotions[index],
-                  ),
+                  child: emotion == Assets.emotions[index]
+                      ? Container(
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: Colors.black,
+                                width: 2,
+                              ),
+                            ),
+                          ),
+                          child: SvgPicture.asset(
+                            Assets.emotions[index],
+                          ),
+                        )
+                      : SvgPicture.asset(
+                          Assets.emotions[index],
+                        ),
                 );
               }),
             ),

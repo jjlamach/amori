@@ -64,7 +64,7 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                 child: SvgPicture.asset(
                   widget.emotion,
                   width: double.infinity,
-                  height: 150,
+                  height: 200,
                   // fit: BoxFit.fill,
                 ),
               ),
@@ -73,7 +73,7 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(left: 8.0),
                       child: Row(
                         children: [
                           Text(
@@ -120,83 +120,61 @@ class _EmotionSelectionPageState extends State<EmotionSelectionPage> {
                     const SizedBox(
                       height: 20.0,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: OutlinedButton(
-                          onPressed: () async {
-                            final isValid = _formKey.currentState?.validate();
-                            final tagSelected = context
-                                .read<TagCubit>()
-                                .state
-                                .whenOrNull(
-                                  family: (tagName, selected) => tagName,
-                                  friends: (tagName, selected) => tagName,
-                                  personal: (tagName, selected) => tagName,
-                                  relationships: (tagName, selected) => tagName,
-                                  work: (tagName, selected) => tagName,
-                                  noTag: () => "",
-                                  others: (tagName, selected) => tagName,
+                    SizedBox(
+                      width: 337,
+                      child: OutlinedButton(
+                        onPressed: () async {
+                          final isValid = _formKey.currentState?.validate();
+                          final tagSelected = context
+                              .read<TagCubit>()
+                              .state
+                              .whenOrNull(
+                                family: (tagName, selected) => tagName,
+                                friends: (tagName, selected) => tagName,
+                                personal: (tagName, selected) => tagName,
+                                relationships: (tagName, selected) => tagName,
+                                work: (tagName, selected) => tagName,
+                                noTag: () => "",
+                                others: (tagName, selected) => tagName,
+                              );
+                          if ((isValid == true) &&
+                              _emotion.text.isNotEmpty &&
+                              tagSelected != null) {
+                            final uid =
+                                context.read<AuthBloc>().currentUser?.uid ?? '';
+                            context.read<EmotionCubit>().emotionSelected(
+                                  uid,
+                                  widget.emotion,
+                                  _emotion.text,
+                                  tagSelected,
+                                  DateTime.now().toUtc(),
                                 );
-                            if ((isValid == true) &&
-                                _emotion.text.isNotEmpty &&
-                                tagSelected != null) {
-                              // FirebaseStorageRepository
-                              //     .addOrUpdateFeelingForToday(
-                              //   uid: FirebaseAuth.instance.currentUser?.uid ??
-                              //       '',
-                              //   emotionOfToday: widget.emotion,
-                              //   emotionDescriptionOfToday: _emotion.text,
-                              //   tagSelected: tagSelected,
-                              //   date: DateTime.now().toUtc(),
-                              // );
-                              final uid =
-                                  context.read<AuthBloc>().currentUser?.uid ??
-                                      '';
-                              context.read<EmotionCubit>().emotionSelected(
-                                    uid,
-                                    widget.emotion,
-                                    _emotion.text,
-                                    tagSelected,
-                                    DateTime.now().toUtc(),
-                                  );
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                Common.showAppSnackBar(
-                                    "Feeling recorded successfully."),
-                              );
-                              Future.delayed(const Duration(seconds: 1)).then(
-                                (value) {
-                                  final user =
-                                      context.read<AuthBloc>().state.whenOrNull(
-                                            loggedIn: (user, _) => user,
-                                          );
-                                  // context.read<EmotionCubit>().emotionSelected(
-                                  //       user?.uid ?? '',
-                                  //       widget.emotion,
-                                  //       _emotion.text,
-                                  //       tagSelected,
-                                  //     );
-                                  _emotion.clear();
-                                  AutoRouter.of(context).replaceAll(
-                                    [
-                                      const HomeRoute(),
-                                    ],
-                                  );
-                                },
-                              );
-                            }
-                          },
-                          child: Text(
-                            'Save',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelLarge
-                                ?.copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontSize: 20,
-                                ),
-                          ),
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              Common.showAppSnackBar(
+                                  "Feeling recorded successfully."),
+                            );
+                            Future.delayed(const Duration(seconds: 1)).then(
+                              (value) {
+                                _emotion.clear();
+                                context.read<TagCubit>().resetTag();
+                                AutoRouter.of(context).replaceAll(
+                                  [
+                                    const HomeRoute(),
+                                  ],
+                                );
+                              },
+                            );
+                          }
+                        },
+                        child: Text(
+                          'Save',
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelLarge
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontSize: 20,
+                              ),
                         ),
                       ),
                     ),
