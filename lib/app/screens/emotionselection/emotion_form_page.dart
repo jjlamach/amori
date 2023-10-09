@@ -17,9 +17,11 @@ import 'package:intl/intl.dart';
 class EmotionFormPage extends StatefulWidget {
   final String emotion;
   final String? emotionDescription;
+  final bool? isFavoriteFeeling;
   const EmotionFormPage({
     required this.emotion,
     this.emotionDescription,
+    this.isFavoriteFeeling,
     super.key,
   });
 
@@ -73,15 +75,17 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                         height: 200,
                       ),
                     ),
-                    const Positioned(
-                      top: 30,
-                      right: 100,
-                      child: Icon(
-                        Icons.favorite,
-                        size: 40,
-                        color: Colors.red,
-                      ),
-                    ),
+                    widget.isFavoriteFeeling == true
+                        ? const Positioned(
+                            top: 30,
+                            right: 100,
+                            child: Icon(
+                              Icons.favorite,
+                              size: 40,
+                              color: Colors.red,
+                            ),
+                          )
+                        : const SizedBox.shrink(),
                   ],
                 ),
               ),

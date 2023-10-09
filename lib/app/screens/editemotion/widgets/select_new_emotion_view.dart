@@ -38,6 +38,7 @@ class SelectNewEmotionView extends StatelessWidget {
                           EmotionFormRoute(
                             emotion: Assets.emotions[index],
                             emotionDescription: feeling.feelingDescription,
+                            isFavoriteFeeling: feeling.isFavorite,
                           ),
                         );
                       } else {

@@ -45,6 +45,7 @@ abstract class $AmoriAppRouter extends _i12.RootStackRouter {
         child: _i2.EmotionFormPage(
           emotion: args.emotion,
           emotionDescription: args.emotionDescription,
+          isFavoriteFeeling: args.isFavoriteFeeling,
           key: args.key,
         ),
       );
@@ -130,6 +131,7 @@ class EmotionFormRoute extends _i12.PageRouteInfo<EmotionFormRouteArgs> {
   EmotionFormRoute({
     required String emotion,
     String? emotionDescription,
+    bool? isFavoriteFeeling,
     _i13.Key? key,
     List<_i12.PageRouteInfo>? children,
   }) : super(
@@ -137,6 +139,7 @@ class EmotionFormRoute extends _i12.PageRouteInfo<EmotionFormRouteArgs> {
           args: EmotionFormRouteArgs(
             emotion: emotion,
             emotionDescription: emotionDescription,
+            isFavoriteFeeling: isFavoriteFeeling,
             key: key,
           ),
           initialChildren: children,
@@ -152,6 +155,7 @@ class EmotionFormRouteArgs {
   const EmotionFormRouteArgs({
     required this.emotion,
     this.emotionDescription,
+    this.isFavoriteFeeling,
     this.key,
   });
 
@@ -159,11 +163,13 @@ class EmotionFormRouteArgs {
 
   final String? emotionDescription;
 
+  final bool? isFavoriteFeeling;
+
   final _i13.Key? key;
 
   @override
   String toString() {
-    return 'EmotionFormRouteArgs{emotion: $emotion, emotionDescription: $emotionDescription, key: $key}';
+    return 'EmotionFormRouteArgs{emotion: $emotion, emotionDescription: $emotionDescription, isFavoriteFeeling: $isFavoriteFeeling, key: $key}';
   }
 }
 
