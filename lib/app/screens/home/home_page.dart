@@ -25,26 +25,31 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           leading: BlocBuilder<EmotionCubit, List<Feeling>>(
             builder: (context, state) {
-              final feeling = state.last.isFavorite;
-              if (feeling) {
-                return IconButton(
-                  onPressed: () {
-                    context.read<EmotionCubit>().unfavoriteFeeling(
-                          user?.uid ?? '',
-                          state.last.dateTime,
-                        );
-                  },
-                  icon: const Icon(Icons.favorite, color: Colors.red, size: 40),
-                );
+              if (state.isEmpty) {
+                return const SizedBox.shrink();
               } else {
-                return IconButton(
-                  onPressed: () {
-                    context
-                        .read<EmotionCubit>()
-                        .favoriteFeeling(user?.uid ?? '', state.last.dateTime);
-                  },
-                  icon: const Icon(Icons.favorite_border, size: 40),
-                );
+                final feeling =
+                    state.isNotEmpty ? state.last.isFavorite : false;
+                if (feeling) {
+                  return IconButton(
+                    onPressed: () {
+                      context.read<EmotionCubit>().unfavoriteFeeling(
+                            user?.uid ?? '',
+                            state.last.dateTime,
+                          );
+                    },
+                    icon:
+                        const Icon(Icons.favorite, color: Colors.red, size: 40),
+                  );
+                } else {
+                  return IconButton(
+                    onPressed: () {
+                      context.read<EmotionCubit>().favoriteFeeling(
+                          user?.uid ?? '', state.last.dateTime);
+                    },
+                    icon: const Icon(Icons.favorite_border, size: 40),
+                  );
+                }
               }
             },
           ),
