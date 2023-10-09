@@ -1,3 +1,4 @@
+import 'package:amori/domain/models/user/amori_user.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -14,7 +15,6 @@ class HomeCubit extends Cubit<HomeState> {
 @freezed
 class HomeState with _$HomeState {
   const factory HomeState.initial() = _Initial;
-  const factory HomeState.error(Exception e) = _Error;
-  const factory HomeState.emotionSelected(String emotionSelected) =
-      _EmotionSelected;
+  const factory HomeState.user(AmoriUser user) = _User;
+  const factory HomeState.error(String e) = _Error;
 }

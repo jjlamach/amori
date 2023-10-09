@@ -1,4 +1,3 @@
-import 'package:amori/domain/models/feeling/feeling.dart';
 import 'package:amori/domain/models/user/amori_user.dart';
 import 'package:amori/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,14 +15,11 @@ class FirebaseStorageRepository {
       if (snapshot.exists) {
         Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
 
-        final feelings = await getFeelingsOfUser(uid);
-
         final amori = AmoriUser(
           email: data['email'],
           uid: data['uid'],
           password: data['password'],
           displayName: data['displayName'],
-          feelings: feelings,
         );
         kLogger.i('User retrieved successfully');
         return amori;
@@ -43,45 +39,35 @@ class FirebaseStorageRepository {
     }
   }
 
-  Future<void> addFeeling({
-    required String uid,
-    required String feelingImg,
-    required String feelingDescription,
-    required DateTime dateTime,
-    required String tag,
-    bool? isFavorite,
-  }) async {
-    Feeling feeling = Feeling(
-      feeling: feelingImg,
-      feelingDescription: feelingDescription,
-      dateTime: dateTime,
-      tag: tag,
-      isFavorite: isFavorite ?? false,
-    );
-
-    String today =
-        DateTime.now().toString().substring(0, 10); // 'yyyy-MM-dd' format
-
-    await _db
-        .collection('users')
-        .doc(uid)
-        .collection('feelings')
-        .doc(today)
-        .set(feeling.toJson());
+  Future<void> favoriteFeeling(String uid, String dateRecorded) async {
+    try {
+      await _db
+          .collection('users')
+          .doc(uid)
+          .collection('feelings')
+          .doc(dateRecorded)
+          .update({
+        'isFavorite': true,
+      });
+      kLogger.i('Feeling was added to favorites.');
+    } on FirebaseException catch (e) {
+      kLogger.e('Could not favorite feeling. $e');
+    }
   }
 
-  /// Private methods
-  Future<List<Feeling>> getFeelingsOfUser(String uid) async {
-    QuerySnapshot feelingsCollection =
-        await _db.collection('users').doc(uid).collection('feelings').get();
-    List<Feeling> feelings = [];
-    for (var x in feelingsCollection.docs) {
-      final data = x.data() as Map<String, dynamic>;
-      final feeling = Feeling.fromJson(data);
-      if (!feelings.contains(feeling)) {
-        feelings.add(feeling);
-      }
+  Future<void> unfavoriteFeeling(String uid, String dateRecorded) async {
+    try {
+      await _db
+          .collection('users')
+          .doc(uid)
+          .collection('feelings')
+          .doc(dateRecorded)
+          .update({
+        'isFavorite': false,
+      });
+      kLogger.i('Feeling was removed from favorites.');
+    } on FirebaseException catch (e) {
+      kLogger.e('Could not unfavorite feeling. $e');
     }
-    return feelings;
   }
 }

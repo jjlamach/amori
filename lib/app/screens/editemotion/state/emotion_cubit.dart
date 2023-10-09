@@ -1,65 +1,81 @@
-import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
+import 'dart:async';
+
 import 'package:amori/domain/models/feeling/feeling.dart';
+import 'package:amori/main.dart';
 import 'package:bloc/bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 
 part 'emotion_cubit.freezed.dart';
 
-class EmotionCubit extends Cubit<EmotionState> {
-  final FirebaseStorageRepository _repository;
-  EmotionCubit(this._repository) : super(const _Initial());
+class EmotionCubit extends Cubit<List<Feeling>> {
+  final userCollection = FirebaseFirestore.instance.collection('users');
+  StreamSubscription? _subscription;
+  EmotionCubit() : super([]);
 
-  void resetState() {
-    emit(const EmotionState.initial());
+  void watchFeelings(String userId) {
+    _subscription?.cancel();
+    _subscription = userCollection
+        .doc(userId)
+        .collection('feelings')
+        .snapshots()
+        .listen((snapshot) {
+      final feelings =
+          snapshot.docs.map((doc) => Feeling.fromJson(doc.data())).toList();
+      emit(feelings);
+    });
   }
 
-  void fetchCurrentFeelings() async {
+  Future<void> addFeeling(String userId, Feeling newFeeling) async {
+    final String dateId = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    final docRef =
+        userCollection.doc(userId).collection('feelings').doc(dateId);
+
+    // final docSnap = await docRef.get();
+
+    // if (docSnap.exists) {
+    //   // Already added a feeling today
+    //   return;
+    // }
+
+    await docRef.set(newFeeling.toJson());
+  }
+
+  Future<void> favoriteFeeling(String uid, String dateId) async {
     try {
-      final uid = FirebaseAuth.instance.currentUser?.uid ?? '';
-      final List<Feeling> feelings = await _repository.getFeelingsOfUser(uid);
-      if (feelings.isNotEmpty) {
-        emit(const EmotionState.loading());
-        emit(EmotionState.loadedFeelings(feelings));
-      } else {
-        emit(const EmotionState.emptyFeelingsList());
-      }
+      userCollection.doc(uid).collection('feelings').doc(dateId).update(
+        {
+          'isFavorite': true,
+        },
+      );
+      kLogger.i('Feeling was added to Favorites.');
     } on FirebaseException catch (e) {
-      emit(EmotionState.error(e.code));
+      kLogger.e('Could not favorite Feeling., ${e.code}');
     }
   }
 
-  void emotionSelected(
-    String uid,
-    String emotion,
-    String emotionDescription,
-    String tag,
-    DateTime dateTime,
-  ) async {
-    await _repository.addFeeling(
-      uid: uid,
-      feelingImg: emotion,
-      feelingDescription: emotionDescription,
-      dateTime: dateTime,
-      tag: tag,
-    );
-    emit(EmotionState.emotionSelected(emotion, emotionDescription, tag));
+  Future<void> unfavoriteFeeling(String uid, String dateId) async {
+    try {
+      userCollection.doc(uid).collection('feelings').doc(dateId).update(
+        {
+          'isFavorite': false,
+        },
+      );
+      kLogger.i('Feeling was removed from Favorites.');
+    } on FirebaseException catch (e) {
+      kLogger.e('Could not remove Feeling from Favorites, ${e.code}');
+    }
+  }
+
+  @override
+  Future<void> close() {
+    _subscription?.cancel();
+    return super.close();
   }
 }
 
 @freezed
 class EmotionState with _$EmotionState {
-  const factory EmotionState.initial() = _Initial;
-  const factory EmotionState.loading() = _Loading;
-  const factory EmotionState.loadedFeelings(List<Feeling> feelings) = _Loaded;
-  const factory EmotionState.emptyFeelingsList() = _Empty;
-  const factory EmotionState.editingEmotion() = _Editing;
-  const factory EmotionState.editingDone() = _Done;
-  const factory EmotionState.emotionSelected(
-    String emotion,
-    String emotionDescription,
-    String tag,
-  ) = _Selected;
-
   const factory EmotionState.error(String error) = _Error;
 }

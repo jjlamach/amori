@@ -24,7 +24,6 @@ mixin _$AmoriUser {
   String? get displayName => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
-  List<Feeling>? get feelings => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,11 +37,7 @@ abstract class $AmoriUserCopyWith<$Res> {
       _$AmoriUserCopyWithImpl<$Res, AmoriUser>;
   @useResult
   $Res call(
-      {String? uid,
-      String? displayName,
-      String? email,
-      String? password,
-      List<Feeling>? feelings});
+      {String? uid, String? displayName, String? email, String? password});
 }
 
 /// @nodoc
@@ -62,7 +57,6 @@ class _$AmoriUserCopyWithImpl<$Res, $Val extends AmoriUser>
     Object? displayName = freezed,
     Object? email = freezed,
     Object? password = freezed,
-    Object? feelings = freezed,
   }) {
     return _then(_value.copyWith(
       uid: freezed == uid
@@ -81,10 +75,6 @@ class _$AmoriUserCopyWithImpl<$Res, $Val extends AmoriUser>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
-      feelings: freezed == feelings
-          ? _value.feelings
-          : feelings // ignore: cast_nullable_to_non_nullable
-              as List<Feeling>?,
     ) as $Val);
   }
 }
@@ -97,11 +87,7 @@ abstract class _$$_AmoriUserCopyWith<$Res> implements $AmoriUserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? uid,
-      String? displayName,
-      String? email,
-      String? password,
-      List<Feeling>? feelings});
+      {String? uid, String? displayName, String? email, String? password});
 }
 
 /// @nodoc
@@ -119,7 +105,6 @@ class __$$_AmoriUserCopyWithImpl<$Res>
     Object? displayName = freezed,
     Object? email = freezed,
     Object? password = freezed,
-    Object? feelings = freezed,
   }) {
     return _then(_$_AmoriUser(
       uid: freezed == uid
@@ -138,10 +123,6 @@ class __$$_AmoriUserCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
-      feelings: freezed == feelings
-          ? _value._feelings
-          : feelings // ignore: cast_nullable_to_non_nullable
-              as List<Feeling>?,
     ));
   }
 }
@@ -153,9 +134,7 @@ class _$_AmoriUser implements _AmoriUser {
       {this.uid = '',
       this.displayName = '',
       this.email = '',
-      this.password = '',
-      final List<Feeling>? feelings = const []})
-      : _feelings = feelings;
+      this.password = ''});
 
   factory _$_AmoriUser.fromJson(Map<String, dynamic> json) =>
       _$$_AmoriUserFromJson(json);
@@ -172,20 +151,10 @@ class _$_AmoriUser implements _AmoriUser {
   @override
   @JsonKey()
   final String? password;
-  final List<Feeling>? _feelings;
-  @override
-  @JsonKey()
-  List<Feeling>? get feelings {
-    final value = _feelings;
-    if (value == null) return null;
-    if (_feelings is EqualUnmodifiableListView) return _feelings;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
 
   @override
   String toString() {
-    return 'AmoriUser(uid: $uid, displayName: $displayName, email: $email, password: $password, feelings: $feelings)';
+    return 'AmoriUser(uid: $uid, displayName: $displayName, email: $email, password: $password)';
   }
 
   @override
@@ -198,14 +167,13 @@ class _$_AmoriUser implements _AmoriUser {
                 other.displayName == displayName) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password) &&
-            const DeepCollectionEquality().equals(other._feelings, _feelings));
+                other.password == password));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, uid, displayName, email,
-      password, const DeepCollectionEquality().hash(_feelings));
+  int get hashCode =>
+      Object.hash(runtimeType, uid, displayName, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -226,8 +194,7 @@ abstract class _AmoriUser implements AmoriUser {
       {final String? uid,
       final String? displayName,
       final String? email,
-      final String? password,
-      final List<Feeling>? feelings}) = _$_AmoriUser;
+      final String? password}) = _$_AmoriUser;
 
   factory _AmoriUser.fromJson(Map<String, dynamic> json) =
       _$_AmoriUser.fromJson;
@@ -240,8 +207,6 @@ abstract class _AmoriUser implements AmoriUser {
   String? get email;
   @override
   String? get password;
-  @override
-  List<Feeling>? get feelings;
   @override
   @JsonKey(ignore: true)
   _$$_AmoriUserCopyWith<_$_AmoriUser> get copyWith =>

@@ -23,6 +23,7 @@ import 'package:amori/app/screens/onboarding/onboarding_page.dart' as _i7;
 import 'package:amori/app/screens/register/register_page.dart' as _i8;
 import 'package:amori/app/screens/signin/sign_in_page.dart' as _i10;
 import 'package:amori/app/screens/splashscreen/splash_screen.dart' as _i11;
+import 'package:amori/domain/models/feeling/feeling.dart' as _i14;
 import 'package:auto_route/auto_route.dart' as _i12;
 import 'package:flutter/material.dart' as _i13;
 
@@ -85,13 +86,11 @@ abstract class $AmoriAppRouter extends _i12.RootStackRouter {
       );
     },
     SelectNewEmotionView.name: (routeData) {
-      final args = routeData.argsAs<SelectNewEmotionViewArgs>(
-          orElse: () => const SelectNewEmotionViewArgs());
+      final args = routeData.argsAs<SelectNewEmotionViewArgs>();
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i9.SelectNewEmotionView(
-          emotion: args.emotion,
-          emotionDescription: args.emotionDescription,
+          feeling: args.feeling,
           key: args.key,
         ),
       );
@@ -257,15 +256,13 @@ class RegisterRoute extends _i12.PageRouteInfo<void> {
 class SelectNewEmotionView
     extends _i12.PageRouteInfo<SelectNewEmotionViewArgs> {
   SelectNewEmotionView({
-    String? emotion,
-    String? emotionDescription,
+    required _i14.Feeling feeling,
     _i13.Key? key,
     List<_i12.PageRouteInfo>? children,
   }) : super(
           SelectNewEmotionView.name,
           args: SelectNewEmotionViewArgs(
-            emotion: emotion,
-            emotionDescription: emotionDescription,
+            feeling: feeling,
             key: key,
           ),
           initialChildren: children,
@@ -279,20 +276,17 @@ class SelectNewEmotionView
 
 class SelectNewEmotionViewArgs {
   const SelectNewEmotionViewArgs({
-    this.emotion,
-    this.emotionDescription,
+    required this.feeling,
     this.key,
   });
 
-  final String? emotion;
-
-  final String? emotionDescription;
+  final _i14.Feeling feeling;
 
   final _i13.Key? key;
 
   @override
   String toString() {
-    return 'SelectNewEmotionViewArgs{emotion: $emotion, emotionDescription: $emotionDescription, key: $key}';
+    return 'SelectNewEmotionViewArgs{feeling: $feeling, key: $key}';
   }
 }
 

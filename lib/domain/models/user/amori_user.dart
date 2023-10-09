@@ -11,7 +11,6 @@ class AmoriUser with _$AmoriUser {
     @Default('') String? displayName,
     @Default('') String? email,
     @Default('') String? password,
-    @Default([]) List<Feeling>? feelings,
   }) = _AmoriUser;
 
   factory AmoriUser.fromJson(Map<String, dynamic> json) =>

@@ -11,7 +11,7 @@ class Feeling with _$Feeling {
     @Default('') String feeling,
     @Default('') String feelingDescription,
     @Default(false) bool isFavorite,
-    DateTime? dateTime,
+    @Default('') String dateTime,
     @Default('') String tag,
   }) = _Feeling;
 

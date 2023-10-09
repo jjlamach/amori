@@ -5,10 +5,13 @@ import 'package:amori/app/screens/emotionselection/widgets/emotion_field_view.da
 import 'package:amori/app/screens/emotionselection/widgets/tags_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/common.dart';
+import 'package:amori/domain/models/feeling/feeling.dart';
+import 'package:amori/main.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 
 @RoutePage()
 class EmotionFormPage extends StatefulWidget {
@@ -156,13 +159,17 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                               tagSelected != null) {
                             final uid =
                                 context.read<AuthBloc>().currentUser?.uid ?? '';
-                            context.read<EmotionCubit>().emotionSelected(
-                                  uid,
-                                  widget.emotion,
-                                  _emotion.text,
-                                  tagSelected,
+                            getIt<EmotionCubit>().addFeeling(
+                              uid,
+                              Feeling(
+                                feeling: widget.emotion,
+                                feelingDescription: _emotion.text,
+                                tag: tagSelected,
+                                dateTime: DateFormat('yyyy-MM-dd').format(
                                   DateTime.now().toUtc(),
-                                );
+                                ),
+                              ),
+                            );
                             ScaffoldMessenger.of(context).showSnackBar(
                               Common.showAppSnackBar(
                                   "Feeling recorded successfully."),

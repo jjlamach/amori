@@ -23,7 +23,7 @@ mixin _$Feeling {
   String get feeling => throw _privateConstructorUsedError;
   String get feelingDescription => throw _privateConstructorUsedError;
   bool get isFavorite => throw _privateConstructorUsedError;
-  DateTime? get dateTime => throw _privateConstructorUsedError;
+  String get dateTime => throw _privateConstructorUsedError;
   String get tag => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $FeelingCopyWith<$Res> {
       {String feeling,
       String feelingDescription,
       bool isFavorite,
-      DateTime? dateTime,
+      String dateTime,
       String tag});
 }
 
@@ -60,7 +60,7 @@ class _$FeelingCopyWithImpl<$Res, $Val extends Feeling>
     Object? feeling = null,
     Object? feelingDescription = null,
     Object? isFavorite = null,
-    Object? dateTime = freezed,
+    Object? dateTime = null,
     Object? tag = null,
   }) {
     return _then(_value.copyWith(
@@ -76,10 +76,10 @@ class _$FeelingCopyWithImpl<$Res, $Val extends Feeling>
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
               as bool,
-      dateTime: freezed == dateTime
+      dateTime: null == dateTime
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String,
       tag: null == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
@@ -99,7 +99,7 @@ abstract class _$$_FeelingCopyWith<$Res> implements $FeelingCopyWith<$Res> {
       {String feeling,
       String feelingDescription,
       bool isFavorite,
-      DateTime? dateTime,
+      String dateTime,
       String tag});
 }
 
@@ -116,7 +116,7 @@ class __$$_FeelingCopyWithImpl<$Res>
     Object? feeling = null,
     Object? feelingDescription = null,
     Object? isFavorite = null,
-    Object? dateTime = freezed,
+    Object? dateTime = null,
     Object? tag = null,
   }) {
     return _then(_$_Feeling(
@@ -132,10 +132,10 @@ class __$$_FeelingCopyWithImpl<$Res>
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
               as bool,
-      dateTime: freezed == dateTime
+      dateTime: null == dateTime
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String,
       tag: null == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
@@ -151,7 +151,7 @@ class _$_Feeling extends _Feeling {
       {this.feeling = '',
       this.feelingDescription = '',
       this.isFavorite = false,
-      this.dateTime,
+      this.dateTime = '',
       this.tag = ''})
       : super._();
 
@@ -168,7 +168,8 @@ class _$_Feeling extends _Feeling {
   @JsonKey()
   final bool isFavorite;
   @override
-  final DateTime? dateTime;
+  @JsonKey()
+  final String dateTime;
   @override
   @JsonKey()
   final String tag;
@@ -217,7 +218,7 @@ abstract class _Feeling extends Feeling {
       {final String feeling,
       final String feelingDescription,
       final bool isFavorite,
-      final DateTime? dateTime,
+      final String dateTime,
       final String tag}) = _$_Feeling;
   _Feeling._() : super._();
 
@@ -230,7 +231,7 @@ abstract class _Feeling extends Feeling {
   @override
   bool get isFavorite;
   @override
-  DateTime? get dateTime;
+  String get dateTime;
   @override
   String get tag;
   @override

@@ -16,23 +16,25 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$FavoriteState {
-  bool get value => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool value) favorite,
-    required TResult Function(bool value) unfavorite,
+    required TResult Function() favorite,
+    required TResult Function() unfavorite,
+    required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool value)? favorite,
-    TResult? Function(bool value)? unfavorite,
+    TResult? Function()? favorite,
+    TResult? Function()? unfavorite,
+    TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool value)? favorite,
-    TResult Function(bool value)? unfavorite,
+    TResult Function()? favorite,
+    TResult Function()? unfavorite,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -40,24 +42,23 @@ mixin _$FavoriteState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Favorite value) favorite,
     required TResult Function(_Unfavorite value) unfavorite,
+    required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Favorite value)? favorite,
     TResult? Function(_Unfavorite value)? unfavorite,
+    TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Favorite value)? favorite,
     TResult Function(_Unfavorite value)? unfavorite,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $FavoriteStateCopyWith<FavoriteState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -66,8 +67,6 @@ abstract class $FavoriteStateCopyWith<$Res> {
   factory $FavoriteStateCopyWith(
           FavoriteState value, $Res Function(FavoriteState) then) =
       _$FavoriteStateCopyWithImpl<$Res, FavoriteState>;
-  @useResult
-  $Res call({bool value});
 }
 
 /// @nodoc
@@ -79,30 +78,13 @@ class _$FavoriteStateCopyWithImpl<$Res, $Val extends FavoriteState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(_value.copyWith(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_FavoriteCopyWith<$Res>
-    implements $FavoriteStateCopyWith<$Res> {
+abstract class _$$_FavoriteCopyWith<$Res> {
   factory _$$_FavoriteCopyWith(
           _$_Favorite value, $Res Function(_$_Favorite) then) =
       __$$_FavoriteCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool value});
 }
 
 /// @nodoc
@@ -112,78 +94,57 @@ class __$$_FavoriteCopyWithImpl<$Res>
   __$$_FavoriteCopyWithImpl(
       _$_Favorite _value, $Res Function(_$_Favorite) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(_$_Favorite(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_Favorite implements _Favorite {
-  const _$_Favorite({required this.value});
-
-  @override
-  final bool value;
+  const _$_Favorite();
 
   @override
   String toString() {
-    return 'FavoriteState.favorite(value: $value)';
+    return 'FavoriteState.favorite()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Favorite &&
-            (identical(other.value, value) || other.value == value));
+        (other.runtimeType == runtimeType && other is _$_Favorite);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, value);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_FavoriteCopyWith<_$_Favorite> get copyWith =>
-      __$$_FavoriteCopyWithImpl<_$_Favorite>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool value) favorite,
-    required TResult Function(bool value) unfavorite,
+    required TResult Function() favorite,
+    required TResult Function() unfavorite,
+    required TResult Function(String error) error,
   }) {
-    return favorite(value);
+    return favorite();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool value)? favorite,
-    TResult? Function(bool value)? unfavorite,
+    TResult? Function()? favorite,
+    TResult? Function()? unfavorite,
+    TResult? Function(String error)? error,
   }) {
-    return favorite?.call(value);
+    return favorite?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool value)? favorite,
-    TResult Function(bool value)? unfavorite,
+    TResult Function()? favorite,
+    TResult Function()? unfavorite,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (favorite != null) {
-      return favorite(value);
+      return favorite();
     }
     return orElse();
   }
@@ -193,6 +154,7 @@ class _$_Favorite implements _Favorite {
   TResult map<TResult extends Object?>({
     required TResult Function(_Favorite value) favorite,
     required TResult Function(_Unfavorite value) unfavorite,
+    required TResult Function(_Error value) error,
   }) {
     return favorite(this);
   }
@@ -202,6 +164,7 @@ class _$_Favorite implements _Favorite {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Favorite value)? favorite,
     TResult? Function(_Unfavorite value)? unfavorite,
+    TResult? Function(_Error value)? error,
   }) {
     return favorite?.call(this);
   }
@@ -211,6 +174,7 @@ class _$_Favorite implements _Favorite {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Favorite value)? favorite,
     TResult Function(_Unfavorite value)? unfavorite,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (favorite != null) {
@@ -221,25 +185,14 @@ class _$_Favorite implements _Favorite {
 }
 
 abstract class _Favorite implements FavoriteState {
-  const factory _Favorite({required final bool value}) = _$_Favorite;
-
-  @override
-  bool get value;
-  @override
-  @JsonKey(ignore: true)
-  _$$_FavoriteCopyWith<_$_Favorite> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _Favorite() = _$_Favorite;
 }
 
 /// @nodoc
-abstract class _$$_UnfavoriteCopyWith<$Res>
-    implements $FavoriteStateCopyWith<$Res> {
+abstract class _$$_UnfavoriteCopyWith<$Res> {
   factory _$$_UnfavoriteCopyWith(
           _$_Unfavorite value, $Res Function(_$_Unfavorite) then) =
       __$$_UnfavoriteCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool value});
 }
 
 /// @nodoc
@@ -249,78 +202,57 @@ class __$$_UnfavoriteCopyWithImpl<$Res>
   __$$_UnfavoriteCopyWithImpl(
       _$_Unfavorite _value, $Res Function(_$_Unfavorite) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(_$_Unfavorite(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_Unfavorite implements _Unfavorite {
-  const _$_Unfavorite({required this.value});
-
-  @override
-  final bool value;
+  const _$_Unfavorite();
 
   @override
   String toString() {
-    return 'FavoriteState.unfavorite(value: $value)';
+    return 'FavoriteState.unfavorite()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Unfavorite &&
-            (identical(other.value, value) || other.value == value));
+        (other.runtimeType == runtimeType && other is _$_Unfavorite);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, value);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_UnfavoriteCopyWith<_$_Unfavorite> get copyWith =>
-      __$$_UnfavoriteCopyWithImpl<_$_Unfavorite>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool value) favorite,
-    required TResult Function(bool value) unfavorite,
+    required TResult Function() favorite,
+    required TResult Function() unfavorite,
+    required TResult Function(String error) error,
   }) {
-    return unfavorite(value);
+    return unfavorite();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool value)? favorite,
-    TResult? Function(bool value)? unfavorite,
+    TResult? Function()? favorite,
+    TResult? Function()? unfavorite,
+    TResult? Function(String error)? error,
   }) {
-    return unfavorite?.call(value);
+    return unfavorite?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool value)? favorite,
-    TResult Function(bool value)? unfavorite,
+    TResult Function()? favorite,
+    TResult Function()? unfavorite,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (unfavorite != null) {
-      return unfavorite(value);
+      return unfavorite();
     }
     return orElse();
   }
@@ -330,6 +262,7 @@ class _$_Unfavorite implements _Unfavorite {
   TResult map<TResult extends Object?>({
     required TResult Function(_Favorite value) favorite,
     required TResult Function(_Unfavorite value) unfavorite,
+    required TResult Function(_Error value) error,
   }) {
     return unfavorite(this);
   }
@@ -339,6 +272,7 @@ class _$_Unfavorite implements _Unfavorite {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Favorite value)? favorite,
     TResult? Function(_Unfavorite value)? unfavorite,
+    TResult? Function(_Error value)? error,
   }) {
     return unfavorite?.call(this);
   }
@@ -348,6 +282,7 @@ class _$_Unfavorite implements _Unfavorite {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Favorite value)? favorite,
     TResult Function(_Unfavorite value)? unfavorite,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (unfavorite != null) {
@@ -358,12 +293,142 @@ class _$_Unfavorite implements _Unfavorite {
 }
 
 abstract class _Unfavorite implements FavoriteState {
-  const factory _Unfavorite({required final bool value}) = _$_Unfavorite;
+  const factory _Unfavorite() = _$_Unfavorite;
+}
+
+/// @nodoc
+abstract class _$$_ErrorCopyWith<$Res> {
+  factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
+      __$$_ErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String error});
+}
+
+/// @nodoc
+class __$$_ErrorCopyWithImpl<$Res>
+    extends _$FavoriteStateCopyWithImpl<$Res, _$_Error>
+    implements _$$_ErrorCopyWith<$Res> {
+  __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$_Error(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Error implements _Error {
+  const _$_Error(this.error);
 
   @override
-  bool get value;
+  final String error;
+
   @override
+  String toString() {
+    return 'FavoriteState.error(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Error &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
   @JsonKey(ignore: true)
-  _$$_UnfavoriteCopyWith<_$_Unfavorite> get copyWith =>
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+      __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() favorite,
+    required TResult Function() unfavorite,
+    required TResult Function(String error) error,
+  }) {
+    return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? favorite,
+    TResult? Function()? unfavorite,
+    TResult? Function(String error)? error,
+  }) {
+    return error?.call(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? favorite,
+    TResult Function()? unfavorite,
+    TResult Function(String error)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Favorite value) favorite,
+    required TResult Function(_Unfavorite value) unfavorite,
+    required TResult Function(_Error value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Favorite value)? favorite,
+    TResult? Function(_Unfavorite value)? unfavorite,
+    TResult? Function(_Error value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Favorite value)? favorite,
+    TResult Function(_Unfavorite value)? unfavorite,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Error implements FavoriteState {
+  const factory _Error(final String error) = _$_Error;
+
+  String get error;
+  @JsonKey(ignore: true)
+  _$$_ErrorCopyWith<_$_Error> get copyWith =>
       throw _privateConstructorUsedError;
 }

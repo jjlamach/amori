@@ -79,8 +79,8 @@ void setUpCubits() {
   );
   getIt.registerFactory(() => TagCubit());
   getIt.registerFactory(() => HomeCubit());
-  getIt.registerFactory(() => EmotionCubit(getIt.get()));
-  getIt.registerFactory(() => FavoriteCubit());
+  getIt.registerFactory(() => EmotionCubit());
+  getIt.registerFactory(() => FavoriteCubit(getIt.get()));
 }
 
 class AmoriApp extends StatelessWidget {

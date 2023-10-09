@@ -1,5 +1,4 @@
 import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
-import 'package:amori/domain/models/feeling/feeling.dart';
 import 'package:amori/domain/models/user/amori_user.dart';
 import 'package:amori/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -68,15 +67,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 password: currentUser?.password,
                 email: currentUser?.email,
                 uid: currentUser?.uid,
-                feelings: currentUser?.feelings,
               );
 
               emit(const AuthState.loading());
               emit(
-                AuthState.loggedIn(
-                  user,
-                  user.feelings ?? List<Feeling>.empty(),
-                ),
+                AuthState.loggedIn(user),
               );
             } on FirebaseAuthException catch (e) {
               emit(const AuthState.error('Invalid login credentials.'));
@@ -120,8 +115,7 @@ class AuthState with _$AuthState {
   const factory AuthState.initial() = _Initial;
   const factory AuthState.loading() = _Loading;
   const factory AuthState.registered(AmoriUser user) = _Registered;
-  const factory AuthState.loggedIn(AmoriUser user, List<Feeling> feelings) =
-      _LoggedIn;
+  const factory AuthState.loggedIn(AmoriUser user) = _LoggedIn;
   const factory AuthState.loggedOut() = _LoggedOut;
   const factory AuthState.forgotPassword(String email) =
       _ForgotPasswordEmailSent;

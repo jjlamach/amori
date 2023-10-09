@@ -11,10 +11,6 @@ _$_AmoriUser _$$_AmoriUserFromJson(Map<String, dynamic> json) => _$_AmoriUser(
       displayName: json['displayName'] as String? ?? '',
       email: json['email'] as String? ?? '',
       password: json['password'] as String? ?? '',
-      feelings: (json['feelings'] as List<dynamic>?)
-              ?.map((e) => Feeling.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
     );
 
 Map<String, dynamic> _$$_AmoriUserToJson(_$_AmoriUser instance) =>
@@ -23,5 +19,4 @@ Map<String, dynamic> _$$_AmoriUserToJson(_$_AmoriUser instance) =>
       'displayName': instance.displayName,
       'email': instance.email,
       'password': instance.password,
-      'feelings': instance.feelings,
     };
