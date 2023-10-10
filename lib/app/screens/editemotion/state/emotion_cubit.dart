@@ -5,18 +5,18 @@ import 'package:amori/main.dart';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:intl/intl.dart';
 
 part 'emotion_cubit.freezed.dart';
 
 class EmotionCubit extends Cubit<List<Feeling>> {
   final userCollection = FirebaseFirestore.instance.collection('users');
-  StreamSubscription? _subscription;
+  StreamSubscription? _feelingsSubscription;
+  StreamSubscription? _favoriteStreamSubscription;
   EmotionCubit() : super([]);
 
   void watchFeelings(String userId) {
-    _subscription?.cancel();
-    _subscription = userCollection
+    _feelingsSubscription?.cancel();
+    _feelingsSubscription = userCollection
         .doc(userId)
         .collection('feelings')
         .snapshots()
@@ -27,8 +27,23 @@ class EmotionCubit extends Cubit<List<Feeling>> {
     });
   }
 
+  void watchFavoriteFeelings(String userId) {
+    _favoriteStreamSubscription?.cancel();
+    _favoriteStreamSubscription = userCollection
+        .doc(userId)
+        .collection('feelings')
+        .where('isFavorite', isEqualTo: true)
+        .snapshots()
+        .listen((snapshot) {
+      final List<Feeling> updatedFavoriteFeelings = snapshot.docs.map((doc) {
+        return Feeling.fromJson(doc.data());
+      }).toList();
+      emit(updatedFavoriteFeelings);
+    });
+  }
+
   Future<void> addFeeling(String userId, Feeling newFeeling) async {
-    final String dateId = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    final String dateId = newFeeling.dateTime;
     final docRef =
         userCollection.doc(userId).collection('feelings').doc(dateId);
 
@@ -68,9 +83,23 @@ class EmotionCubit extends Cubit<List<Feeling>> {
     }
   }
 
+  Future<List<Feeling>> getFavoriteFeelings(String uid) async {
+    final Query query = FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .collection('feelings')
+        .where('isFavorite', isEqualTo: true);
+
+    final QuerySnapshot querySnapshot = await query.get();
+
+    return querySnapshot.docs.map((doc) {
+      return Feeling.fromJson(doc.data() as Map<String, dynamic>);
+    }).toList();
+  }
+
   @override
   Future<void> close() {
-    _subscription?.cancel();
+    _feelingsSubscription?.cancel();
     return super.close();
   }
 }
