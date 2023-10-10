@@ -105,7 +105,7 @@ class HomePage extends StatelessWidget {
                       : Column(
                           children: [
                             Text(
-                              "Today's feeling:",
+                              "Last feeling recorded:",
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
                             SvgPicture.asset(

@@ -46,7 +46,9 @@ class FavoritesPage extends StatelessWidget {
               Expanded(
                 child: BlocBuilder<EmotionCubit, List<Feeling>>(
                   builder: (context, state) {
-                    return ListView.builder(
+                    return ListView.separated(
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 20.0),
                       shrinkWrap: true,
                       itemCount: state.length,
                       itemBuilder: (context, index) {
@@ -92,8 +94,37 @@ class FavoritesPage extends StatelessWidget {
                           );
                         } else {
                           return Container(
-                            color: Colors.blue,
-                            height: 10,
+                            decoration: BoxDecoration(
+                              color: const Color.fromRGBO(226, 235, 255, 1),
+                              borderRadius: BorderRadius.circular(
+                                40,
+                              ),
+                            ),
+                            height: 59,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    formattedDate,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelLarge
+                                        ?.copyWith(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                  ),
+                                  SvgPicture.asset(
+                                    state[index].feeling,
+                                    width: 50,
+                                    height: 49,
+                                  ),
+                                ],
+                              ),
+                            ),
                           );
                         }
                       },
