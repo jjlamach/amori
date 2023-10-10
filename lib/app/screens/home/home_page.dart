@@ -8,6 +8,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
@@ -104,10 +105,7 @@ class HomePage extends StatelessWidget {
                         )
                       : Column(
                           children: [
-                            Text(
-                              "Last feeling recorded:",
-                              style: Theme.of(context).textTheme.titleLarge,
-                            ),
+                            _checkLatestFeeling(feelings, context),
                             SvgPicture.asset(
                               feelings.last.feeling,
                               height: 207,
@@ -139,5 +137,36 @@ class HomePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Text _checkLatestFeeling(List<Feeling> feelings, BuildContext context) {
+    final TextStyle? style = Theme.of(context).textTheme.headlineMedium;
+    if (feelings.isEmpty) {
+      return Text(
+        "How are we feeling today?",
+        style: style,
+      );
+    }
+
+    DateTime latestFeelingDate =
+        DateTime.parse(feelings.last.dateTime).toLocal();
+    DateTime todayDate = DateTime.now();
+
+    // Format to a comparable string format
+    String formattedLatestFeelingDate =
+        DateFormat('MMMM d, y').format(latestFeelingDate);
+    String formattedTodayDate = DateFormat('MMMM d, y').format(todayDate);
+
+    if (formattedLatestFeelingDate == formattedTodayDate) {
+      return Text(
+        "Today you are feeling:",
+        style: style,
+      );
+    } else {
+      return Text(
+        'Last feeling recorded:',
+        style: style,
+      );
+    }
   }
 }

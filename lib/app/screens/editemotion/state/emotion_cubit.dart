@@ -4,17 +4,16 @@ import 'package:amori/domain/models/feeling/feeling.dart';
 import 'package:amori/main.dart';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'emotion_cubit.freezed.dart';
-
+/// This Cubit subscribes to streams from FireStore and emit states as changes occur
 class EmotionCubit extends Cubit<List<Feeling>> {
   final userCollection = FirebaseFirestore.instance.collection('users');
   StreamSubscription? _feelingsSubscription;
   StreamSubscription? _favoriteStreamSubscription;
   EmotionCubit() : super([]);
 
-  void watchFeelings(String userId) {
+  void watchFeelings(String userId) async {
+    // cancel any existing subscription to the stream before creating a new one
     _feelingsSubscription?.cancel();
     _feelingsSubscription = userCollection
         .doc(userId)
@@ -27,7 +26,7 @@ class EmotionCubit extends Cubit<List<Feeling>> {
     });
   }
 
-  void watchFavoriteFeelings(String userId) {
+  void watchFavoriteFeelings(String userId) async {
     _favoriteStreamSubscription?.cancel();
     _favoriteStreamSubscription = userCollection
         .doc(userId)
@@ -46,14 +45,6 @@ class EmotionCubit extends Cubit<List<Feeling>> {
     final String dateId = newFeeling.dateTime;
     final docRef =
         userCollection.doc(userId).collection('feelings').doc(dateId);
-
-    // final docSnap = await docRef.get();
-
-    // if (docSnap.exists) {
-    //   // Already added a feeling today
-    //   return;
-    // }
-
     await docRef.set(newFeeling.toJson());
   }
 
@@ -100,11 +91,7 @@ class EmotionCubit extends Cubit<List<Feeling>> {
   @override
   Future<void> close() {
     _feelingsSubscription?.cancel();
+    _favoriteStreamSubscription?.cancel();
     return super.close();
   }
-}
-
-@freezed
-class EmotionState with _$EmotionState {
-  const factory EmotionState.error(String error) = _Error;
 }
