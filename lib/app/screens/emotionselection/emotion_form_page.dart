@@ -165,15 +165,14 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                             getIt<EmotionCubit>().addFeeling(
                               uid,
                               Feeling(
-                                  feeling: widget.emotion,
-                                  feelingDescription: _emotion.text,
-                                  tag: tagSelected,
-                                  dateTime:
-                                      DateTime.now().toUtc().toIso8601String()
-                                  // dateTime: DateFormat('yyyy-MM-dd').format(
-                                  //   DateTime.now().toUtc(),
-                                  // ),
-                                  ),
+                                feeling: widget.emotion,
+                                feelingDescription: _emotion.text,
+                                tag: tagSelected,
+                                dateTime: DateTime.now()
+                                    .toUtc()
+                                    .toIso8601String()
+                                    .split('T')[0],
+                              ),
                             );
                             ScaffoldMessenger.of(context).showSnackBar(
                               Common.showAppSnackBar(
