@@ -81,6 +81,7 @@ flutter:
     - lib/assets/icon _microphone_.svg
     - lib/assets/normal.svg
     - lib/assets/husky.svg
+    - lib/assets/trash_icon.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

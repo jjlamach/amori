@@ -88,6 +88,26 @@ class EmotionCubit extends Cubit<List<Feeling>> {
     }).toList();
   }
 
+  Future<Feeling?> getFeelingById(String userId, String dateId) async {
+    try {
+      final docSnapshot = await userCollection
+          .doc(userId)
+          .collection('feelings')
+          .doc(dateId)
+          .get();
+      if (docSnapshot.exists) {
+        final data = docSnapshot.data();
+        if (data?.isNotEmpty == true) {
+          kLogger.i('Feeling found for that date.');
+          return Feeling.fromJson(data!);
+        }
+      }
+    } on FirebaseException catch (e) {
+      kLogger.e('Feeling does not exist for that date.');
+    }
+    return null;
+  }
+
   @override
   Future<void> close() {
     _feelingsSubscription?.cancel();

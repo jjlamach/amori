@@ -162,16 +162,18 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                               tagSelected != null) {
                             final uid =
                                 context.read<AuthBloc>().currentUser?.uid ?? '';
+
+                            DateTime now = DateTime.now();
+                            String dateId =
+                                '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
+
                             getIt<EmotionCubit>().addFeeling(
                               uid,
                               Feeling(
                                 feeling: widget.emotion,
                                 feelingDescription: _emotion.text,
                                 tag: tagSelected,
-                                dateTime: DateTime.now()
-                                    .toUtc()
-                                    .toIso8601String()
-                                    .split('T')[0],
+                                dateTime: dateId,
                               ),
                             );
                             ScaffoldMessenger.of(context).showSnackBar(
