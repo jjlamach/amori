@@ -14,11 +14,11 @@ import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
 class EmotionFormPage extends StatefulWidget {
-  final String emotion;
+  final String? emotion;
   final String? emotionDescription;
   final bool? isFavoriteFeeling;
   const EmotionFormPage({
-    required this.emotion,
+    this.emotion,
     this.emotionDescription,
     this.isFavoriteFeeling,
     super.key,
@@ -69,7 +69,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                   children: [
                     Center(
                       child: SvgPicture.asset(
-                        widget.emotion,
+                        widget.emotion ?? '',
                         width: double.infinity,
                         height: 200,
                       ),
@@ -170,7 +170,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                             getIt<EmotionCubit>().addFeeling(
                               uid,
                               Feeling(
-                                feeling: widget.emotion,
+                                feeling: widget.emotion ?? '',
                                 feelingDescription: _emotion.text,
                                 tag: tagSelected,
                                 dateTime: dateId,

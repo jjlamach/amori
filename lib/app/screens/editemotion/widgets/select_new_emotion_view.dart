@@ -7,9 +7,9 @@ import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
 class SelectNewEmotionView extends StatelessWidget {
-  final Feeling feeling;
+  final Feeling? feeling;
   const SelectNewEmotionView({
-    required this.feeling,
+    this.feeling,
     super.key,
   });
 
@@ -33,12 +33,12 @@ class SelectNewEmotionView extends StatelessWidget {
                 (index) {
                   return GestureDetector(
                     onTap: () {
-                      if (Assets.emotions[index] == feeling.feeling) {
+                      if (Assets.emotions[index] == feeling?.feeling) {
                         AutoRouter.of(context).push(
                           EmotionFormRoute(
                             emotion: Assets.emotions[index],
-                            emotionDescription: feeling.feelingDescription,
-                            isFavoriteFeeling: feeling.isFavorite,
+                            emotionDescription: feeling?.feelingDescription,
+                            isFavoriteFeeling: feeling?.isFavorite,
                           ),
                         );
                       } else {
@@ -49,7 +49,7 @@ class SelectNewEmotionView extends StatelessWidget {
                         );
                       }
                     },
-                    child: feeling.feeling == Assets.emotions[index]
+                    child: feeling?.feeling == Assets.emotions[index]
                         ? Container(
                             decoration: const BoxDecoration(
                               border: Border(

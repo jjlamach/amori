@@ -1,3 +1,4 @@
+import 'package:amori/app/auto_route.gr.dart';
 import 'package:amori/app/screens/feelings/state/feelings_cubit.dart';
 import 'package:amori/app/screens/feelings/widgets/calendar_feeling_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
@@ -59,28 +60,50 @@ class FeelingsPage extends StatelessWidget {
                       height: 40.0,
                     ),
                     state.feeling.isEmpty
-                        ? Container(
-                            height: 200,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: const Color.fromRGBO(226, 235, 255, 1),
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                            child: Center(
-                              child: Text('No entry',
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge
-                                      ?.copyWith(
-                                        fontWeight: FontWeight.w700,
-                                        color: const Color.fromRGBO(
-                                          131,
-                                          165,
-                                          255,
-                                          1,
-                                        ),
-                                      )),
+                        ? Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 200,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        const Color.fromRGBO(226, 235, 255, 1),
+                                    borderRadius: BorderRadius.circular(40.0),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'No entry',
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w700,
+                                            color: const Color.fromRGBO(
+                                              131,
+                                              165,
+                                              255,
+                                              1,
+                                            ),
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 20.0),
+                                OutlinedButton(
+                                  onPressed: () {
+                                    AutoRouter.of(context)
+                                        .push(SelectNewEmotionView());
+                                  },
+                                  child: Text(
+                                    'Add one',
+                                    style:
+                                        Theme.of(context).textTheme.labelLarge,
+                                  ),
+                                ),
+                              ],
                             ),
                           )
                         : CalendarFeelingView(feeling: state),

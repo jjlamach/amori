@@ -41,7 +41,8 @@ abstract class $AmoriAppRouter extends _i13.RootStackRouter {
       );
     },
     EmotionFormRoute.name: (routeData) {
-      final args = routeData.argsAs<EmotionFormRouteArgs>();
+      final args = routeData.argsAs<EmotionFormRouteArgs>(
+          orElse: () => const EmotionFormRouteArgs());
       return _i13.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i2.EmotionFormPage(
@@ -89,7 +90,8 @@ abstract class $AmoriAppRouter extends _i13.RootStackRouter {
       );
     },
     SelectNewEmotionView.name: (routeData) {
-      final args = routeData.argsAs<SelectNewEmotionViewArgs>();
+      final args = routeData.argsAs<SelectNewEmotionViewArgs>(
+          orElse: () => const SelectNewEmotionViewArgs());
       return _i13.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i9.SelectNewEmotionView(
@@ -141,7 +143,7 @@ class BottomNavigationBarRoute extends _i13.PageRouteInfo<void> {
 /// [_i2.EmotionFormPage]
 class EmotionFormRoute extends _i13.PageRouteInfo<EmotionFormRouteArgs> {
   EmotionFormRoute({
-    required String emotion,
+    String? emotion,
     String? emotionDescription,
     bool? isFavoriteFeeling,
     _i14.Key? key,
@@ -165,13 +167,13 @@ class EmotionFormRoute extends _i13.PageRouteInfo<EmotionFormRouteArgs> {
 
 class EmotionFormRouteArgs {
   const EmotionFormRouteArgs({
-    required this.emotion,
+    this.emotion,
     this.emotionDescription,
     this.isFavoriteFeeling,
     this.key,
   });
 
-  final String emotion;
+  final String? emotion;
 
   final String? emotionDescription;
 
@@ -274,7 +276,7 @@ class RegisterRoute extends _i13.PageRouteInfo<void> {
 class SelectNewEmotionView
     extends _i13.PageRouteInfo<SelectNewEmotionViewArgs> {
   SelectNewEmotionView({
-    required _i15.Feeling feeling,
+    _i15.Feeling? feeling,
     _i14.Key? key,
     List<_i13.PageRouteInfo>? children,
   }) : super(
@@ -294,11 +296,11 @@ class SelectNewEmotionView
 
 class SelectNewEmotionViewArgs {
   const SelectNewEmotionViewArgs({
-    required this.feeling,
+    this.feeling,
     this.key,
   });
 
-  final _i15.Feeling feeling;
+  final _i15.Feeling? feeling;
 
   final _i14.Key? key;
 
