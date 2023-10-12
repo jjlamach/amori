@@ -1,3 +1,4 @@
+import 'package:amori/app/auto_route.gr.dart';
 import 'package:amori/app/screens/forgottenpassword/forgotten_password_page.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/assets.dart';
@@ -164,7 +165,8 @@ class _SignInPageState extends State<SignInPage> {
                       loggedIn: (user) {
                         _email.clear();
                         _password.clear();
-                        AutoRouter.of(context).replaceNamed('/index');
+                        AutoRouter.of(context)
+                            .replace(const BottomNavigationBarRoute());
                       },
                       error: (exception) {
                         ScaffoldMessenger.of(context).showSnackBar(
