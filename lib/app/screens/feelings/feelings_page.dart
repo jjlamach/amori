@@ -15,6 +15,7 @@ class FeelingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<FeelingsCubit>();
     final uid = context.read<AuthBloc>().currentUser?.uid ?? '';
+    var differentDate;
 
     /// This will fetch the feeling data for the initial date once the widget is built.
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -54,6 +55,7 @@ class FeelingsPage extends StatelessWidget {
                           uid,
                           '${value.year}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}',
                         ),
+                        differentDate = value,
                       },
                     ),
                     const SizedBox(
@@ -94,8 +96,11 @@ class FeelingsPage extends StatelessWidget {
                                 const SizedBox(height: 20.0),
                                 OutlinedButton(
                                   onPressed: () {
-                                    AutoRouter.of(context)
-                                        .push(SelectNewEmotionView());
+                                    AutoRouter.of(context).push(
+                                      SelectNewEmotionView(
+                                        differentDate: differentDate,
+                                      ),
+                                    );
                                   },
                                   child: Text(
                                     'Add one',

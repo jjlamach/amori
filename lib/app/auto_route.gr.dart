@@ -49,6 +49,7 @@ abstract class $AmoriAppRouter extends _i13.RootStackRouter {
           emotion: args.emotion,
           emotionDescription: args.emotionDescription,
           isFavoriteFeeling: args.isFavoriteFeeling,
+          differentDate: args.differentDate,
           key: args.key,
         ),
       );
@@ -96,6 +97,7 @@ abstract class $AmoriAppRouter extends _i13.RootStackRouter {
         routeData: routeData,
         child: _i9.SelectNewEmotionView(
           feeling: args.feeling,
+          differentDate: args.differentDate,
           key: args.key,
         ),
       );
@@ -146,6 +148,7 @@ class EmotionFormRoute extends _i13.PageRouteInfo<EmotionFormRouteArgs> {
     String? emotion,
     String? emotionDescription,
     bool? isFavoriteFeeling,
+    DateTime? differentDate,
     _i14.Key? key,
     List<_i13.PageRouteInfo>? children,
   }) : super(
@@ -154,6 +157,7 @@ class EmotionFormRoute extends _i13.PageRouteInfo<EmotionFormRouteArgs> {
             emotion: emotion,
             emotionDescription: emotionDescription,
             isFavoriteFeeling: isFavoriteFeeling,
+            differentDate: differentDate,
             key: key,
           ),
           initialChildren: children,
@@ -170,6 +174,7 @@ class EmotionFormRouteArgs {
     this.emotion,
     this.emotionDescription,
     this.isFavoriteFeeling,
+    this.differentDate,
     this.key,
   });
 
@@ -179,11 +184,13 @@ class EmotionFormRouteArgs {
 
   final bool? isFavoriteFeeling;
 
+  final DateTime? differentDate;
+
   final _i14.Key? key;
 
   @override
   String toString() {
-    return 'EmotionFormRouteArgs{emotion: $emotion, emotionDescription: $emotionDescription, isFavoriteFeeling: $isFavoriteFeeling, key: $key}';
+    return 'EmotionFormRouteArgs{emotion: $emotion, emotionDescription: $emotionDescription, isFavoriteFeeling: $isFavoriteFeeling, differentDate: $differentDate, key: $key}';
   }
 }
 
@@ -277,12 +284,14 @@ class SelectNewEmotionView
     extends _i13.PageRouteInfo<SelectNewEmotionViewArgs> {
   SelectNewEmotionView({
     _i15.Feeling? feeling,
+    DateTime? differentDate,
     _i14.Key? key,
     List<_i13.PageRouteInfo>? children,
   }) : super(
           SelectNewEmotionView.name,
           args: SelectNewEmotionViewArgs(
             feeling: feeling,
+            differentDate: differentDate,
             key: key,
           ),
           initialChildren: children,
@@ -297,16 +306,19 @@ class SelectNewEmotionView
 class SelectNewEmotionViewArgs {
   const SelectNewEmotionViewArgs({
     this.feeling,
+    this.differentDate,
     this.key,
   });
 
   final _i15.Feeling? feeling;
 
+  final DateTime? differentDate;
+
   final _i14.Key? key;
 
   @override
   String toString() {
-    return 'SelectNewEmotionViewArgs{feeling: $feeling, key: $key}';
+    return 'SelectNewEmotionViewArgs{feeling: $feeling, differentDate: $differentDate, key: $key}';
   }
 }
 

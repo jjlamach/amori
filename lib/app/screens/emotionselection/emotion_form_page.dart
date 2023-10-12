@@ -17,10 +17,12 @@ class EmotionFormPage extends StatefulWidget {
   final String? emotion;
   final String? emotionDescription;
   final bool? isFavoriteFeeling;
+  final DateTime? differentDate;
   const EmotionFormPage({
     this.emotion,
     this.emotionDescription,
     this.isFavoriteFeeling,
+    this.differentDate,
     super.key,
   });
 
@@ -163,19 +165,35 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                             final uid =
                                 context.read<AuthBloc>().currentUser?.uid ?? '';
 
-                            DateTime now = DateTime.now();
-                            String dateId =
-                                '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
+                            /// If this is not null it means the user is gonna add a feeling from a different date
+                            /// that is not today
+                            if (widget.differentDate != null) {
+                              String differentDateId =
+                                  '${widget.differentDate?.year}-${widget.differentDate?.month.toString().padLeft(2, '0')}-${widget.differentDate?.day.toString().padLeft(2, '0')}';
+                              getIt<EmotionCubit>().addFeeling(
+                                uid,
+                                Feeling(
+                                  feeling: widget.emotion ?? '',
+                                  feelingDescription: _emotion.text,
+                                  tag: tagSelected,
+                                  dateTime: differentDateId,
+                                ),
+                              );
+                            } else {
+                              DateTime now = DateTime.now();
+                              String dateId =
+                                  '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
 
-                            getIt<EmotionCubit>().addFeeling(
-                              uid,
-                              Feeling(
-                                feeling: widget.emotion ?? '',
-                                feelingDescription: _emotion.text,
-                                tag: tagSelected,
-                                dateTime: dateId,
-                              ),
-                            );
+                              getIt<EmotionCubit>().addFeeling(
+                                uid,
+                                Feeling(
+                                  feeling: widget.emotion ?? '',
+                                  feelingDescription: _emotion.text,
+                                  tag: tagSelected,
+                                  dateTime: dateId,
+                                ),
+                              );
+                            }
                             ScaffoldMessenger.of(context).showSnackBar(
                               Common.showAppSnackBar(
                                   "Feeling recorded successfully."),

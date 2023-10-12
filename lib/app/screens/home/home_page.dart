@@ -30,13 +30,13 @@ class HomePage extends StatelessWidget {
                 return const SizedBox.shrink();
               } else {
                 final feeling =
-                    state.isNotEmpty ? state.last.isFavorite : false;
+                    state.isNotEmpty ? state.first.isFavorite : false;
                 if (feeling) {
                   return IconButton(
                     onPressed: () {
                       context.read<EmotionCubit>().unfavoriteFeeling(
                             user?.uid ?? '',
-                            state.last.dateTime,
+                            state.first.dateTime,
                           );
                     },
                     icon:
@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
                   return IconButton(
                     onPressed: () {
                       context.read<EmotionCubit>().favoriteFeeling(
-                          user?.uid ?? '', state.last.dateTime);
+                          user?.uid ?? '', state.first.dateTime);
                     },
                     icon: const Icon(Icons.favorite_border, size: 40),
                   );
@@ -107,14 +107,14 @@ class HomePage extends StatelessWidget {
                           children: [
                             _checkLatestFeeling(feelings, context),
                             SvgPicture.asset(
-                              feelings.last.feeling,
+                              feelings.first.feeling,
                               height: 207,
                             ),
                             const SizedBox(height: 20.0),
                             OutlinedButton(
                               onPressed: () {
                                 AutoRouter.of(context).push(
-                                  SelectNewEmotionView(feeling: feelings.last),
+                                  SelectNewEmotionView(feeling: feelings.first),
                                 );
                               },
                               child: Padding(
@@ -149,7 +149,7 @@ class HomePage extends StatelessWidget {
     }
 
     DateTime latestFeelingDate =
-        DateTime.parse(feelings.last.dateTime).toLocal();
+        DateTime.parse(feelings.first.dateTime).toLocal();
     DateTime todayDate = DateTime.now();
 
     // Format to a comparable string format

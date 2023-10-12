@@ -8,8 +8,10 @@ import 'package:flutter_svg/svg.dart';
 @RoutePage()
 class SelectNewEmotionView extends StatelessWidget {
   final Feeling? feeling;
+  final DateTime? differentDate;
   const SelectNewEmotionView({
     this.feeling,
+    this.differentDate,
     super.key,
   });
 
@@ -45,6 +47,9 @@ class SelectNewEmotionView extends StatelessWidget {
                         AutoRouter.of(context).push(
                           EmotionFormRoute(
                             emotion: Assets.emotions[index],
+
+                            /// Different day other than today
+                            differentDate: differentDate,
                           ),
                         );
                       }

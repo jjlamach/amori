@@ -18,6 +18,7 @@ class EmotionCubit extends Cubit<List<Feeling>> {
     _feelingsSubscription = userCollection
         .doc(userId)
         .collection('feelings')
+        .orderBy('dateTime', descending: true)
         .snapshots()
         .listen((snapshot) {
       final feelings =
