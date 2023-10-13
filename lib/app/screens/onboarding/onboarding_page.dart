@@ -17,6 +17,7 @@ class OnBoardingPage extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
+              SizedBox(height: MediaQuery.of(context).size.height * 0.1),
               Text(
                 Strings.appMoto,
                 textAlign: TextAlign.center,
@@ -34,20 +35,21 @@ class OnBoardingPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.2,
-              ), // 20%
-              TextButton(
-                style: Theme.of(context).outlinedButtonTheme.style?.copyWith(
-                      padding: const MaterialStatePropertyAll(
-                        EdgeInsets.symmetric(
-                          horizontal: 100,
-                          vertical: 10,
-                        ),
-                      ),
-                      backgroundColor: const MaterialStatePropertyAll(
-                        Color.fromRGBO(172, 196, 254, 1),
-                      ),
-                    ),
+                height: MediaQuery.of(context).size.height * 0.1,
+              ),
+              OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 40),
+                  backgroundColor: const Color.fromRGBO(
+                      172, 196, 254, 1), // Approximated color from the image
+                  side: const BorderSide(
+                    color: Color.fromRGBO(172, 196, 254, 1),
+                    width: 2.0,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                ),
                 onPressed: () =>
                     AutoRouter.of(context).replaceNamed('/sign-in'),
                 child: Text(

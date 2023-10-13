@@ -1,5 +1,4 @@
 import 'package:amori/app/auto_route.gr.dart';
-import 'package:amori/app/screens/forgottenpassword/forgotten_password_page.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/assets.dart';
 import 'package:amori/common/common.dart';
@@ -7,7 +6,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 @RoutePage()
 class SignInPage extends StatefulWidget {
@@ -42,60 +40,57 @@ class _SignInPageState extends State<SignInPage> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Amori',
-            style: GoogleFonts.slacksideOne(
-              fontSize: 50,
-              color: const Color.fromRGBO(131, 165, 255, 1),
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(20.0),
-          child: Form(
-            key: _formKey,
+        body: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(20.0),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: MediaQuery.of(context).size.height * 0.2),
-                const Text(
-                  'Sign In',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w400,
+                SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+                Image.asset('lib/assets/mhi.png', height: 200),
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Sign In',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10.0),
-                RichText(
-                  text: TextSpan(
-                    children: [
-                      const TextSpan(
-                        text: "Don't have an account yet?",
-                        style: TextStyle(
-                          color: Color.fromRGBO(0, 0, 0, 1),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: "Don't have an account yet?",
+                          style: TextStyle(
+                            color: Color.fromRGBO(0, 0, 0, 1),
+                          ),
                         ),
-                      ),
-                      TextSpan(
-                        text: ' Register',
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color:
-                                  Theme.of(context).colorScheme.inversePrimary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            setState(() {
-                              _email.clear();
-                              _password.clear();
-                              _formKey.currentState?.reset();
-                            });
-                            AutoRouter.of(context).pushNamed('/register');
-                          },
-                      ),
-                    ],
+                        TextSpan(
+                          text: ' Register',
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelLarge
+                              ?.copyWith(
+                                color: const Color.fromRGBO(131, 165, 255, 1),
+                                fontWeight: FontWeight.bold,
+                              ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              setState(() {
+                                _email.clear();
+                                _password.clear();
+                                _formKey.currentState?.reset();
+                              });
+                              AutoRouter.of(context).pushNamed('/register');
+                            },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20.0),
@@ -112,9 +107,26 @@ class _SignInPageState extends State<SignInPage> {
                     }
                     return null;
                   },
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      borderSide: const BorderSide(
+                        width: 2.0,
+                        color: Color.fromRGBO(172, 196, 254, 1),
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      borderSide: const BorderSide(
+                        width: 2.0,
+                        color: Color.fromRGBO(172, 196, 254, 1),
+                      ),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
                     labelText: "Email",
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                     ),
@@ -131,9 +143,26 @@ class _SignInPageState extends State<SignInPage> {
                     }
                     return null;
                   },
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      borderSide: const BorderSide(
+                        width: 2.0,
+                        color: Color.fromRGBO(172, 196, 254, 1),
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      borderSide: const BorderSide(
+                        width: 2.0,
+                        color: Color.fromRGBO(172, 196, 254, 1),
+                      ),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
                     labelText: "Password",
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                     ),
@@ -142,23 +171,26 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 Align(
                   alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const ForgottenPasswordPage(),
+                  child: GestureDetector(
+                    onTap: () => {
+                      AutoRouter.of(context).push(
+                        const ForgottenPasswordRoute(),
                       ),
-                    ),
-                    child: Text(
-                      "Forgotten Password?",
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            fontSize: 16,
-                            color: Theme.of(context).colorScheme.inversePrimary,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Text(
+                        "Forgotten Password?",
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                              fontSize: 16,
+                              color: const Color.fromRGBO(131, 165, 255, 1),
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 20.0),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                 BlocListener<AuthBloc, AuthState>(
                   listener: (context, state) {
                     state.whenOrNull(
@@ -179,6 +211,18 @@ class _SignInPageState extends State<SignInPage> {
                     width: double.infinity,
                     height: 46,
                     child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        minimumSize: const Size(double.infinity, 40),
+                        backgroundColor: const Color.fromRGBO(172, 196, 254,
+                            1), // Approximated color from the image
+                        side: const BorderSide(
+                          color: Color.fromRGBO(172, 196, 254, 1),
+                          width: 2.0,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+                      ),
                       onPressed: () {
                         final isFormValid = _formKey.currentState?.validate();
                         if (isFormValid == true) {
@@ -193,7 +237,7 @@ class _SignInPageState extends State<SignInPage> {
                       child: Text(
                         'Sign in',
                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color: Theme.of(context).colorScheme.primary,
+                              color: Colors.white,
                               fontSize: 20,
                             ),
                       ),

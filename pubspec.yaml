@@ -82,6 +82,7 @@ flutter:
     - lib/assets/normal.svg
     - lib/assets/husky.svg
     - lib/assets/trash_icon.png
+    - lib/assets/mhi.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
