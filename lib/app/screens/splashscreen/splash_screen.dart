@@ -31,9 +31,11 @@ class _SplashScreenState extends State<SplashScreen> {
     //       },
     //     );
     //
-    AutoRouter.of(context).replaceNamed('/onboarding');
     //   },
     // );
+    Future.delayed(const Duration(seconds: 2), () {
+      AutoRouter.of(context).replaceNamed('/onboarding');
+    });
   }
 
   @override
@@ -53,6 +55,10 @@ class _SplashScreenState extends State<SplashScreen> {
                 stops: [0, 1],
               ),
             ),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: Image.asset('lib/assets/amoriLogoNoBG.png'),
           ),
         ],
       ),

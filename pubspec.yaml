@@ -84,6 +84,7 @@ flutter:
     - lib/assets/trash_icon.png
     - lib/assets/mhi.png
     - lib/assets/questionMarkNoBG.png
+    - lib/assets/amoriLogoNoBG.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
