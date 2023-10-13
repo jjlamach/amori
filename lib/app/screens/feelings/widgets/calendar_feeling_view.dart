@@ -121,56 +121,47 @@ class CalendarFeelingView extends StatelessWidget {
           ),
         ),
         Center(
-          child: BlocListener<DeletionCubit, DeletionState>(
-            listener: (context, state) {
-              if (state == DeletionState.deleted) {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text('Feeling deleted'),
-                ));
-              }
-            },
-            child: IconButton(
-              onPressed: () => showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: const Text('Delete Feeling'),
-                  content: const Text(
-                      'Are you sure you want to delete this feeling?'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        AutoRouter.of(context).pop(); // Close the dialog
-                        final uid =
-                            context.read<AuthBloc>().currentUser?.uid ?? '';
-                        context
-                            .read<DeletionCubit>()
-                            .deleteFeeling(uid, feeling.dateTime);
-                      },
-                      child: const Text(
-                        'Yes',
-                        style: TextStyle(fontWeight: FontWeight.w700),
-                      ),
+          child: IconButton(
+            onPressed: () => showDialog(
+              context: context,
+              builder: (dialogContext) => AlertDialog(
+                title: const Text('Delete Feeling'),
+                content:
+                    const Text('Are you sure you want to delete this feeling?'),
+                actions: [
+                  TextButton(
+                    onPressed: () async {
+                      AutoRouter.of(dialogContext).pop(); // Close the dialog
+                      final uid =
+                          context.read<AuthBloc>().currentUser?.uid ?? '';
+                      context
+                          .read<DeletionCubit>()
+                          .deleteFeeling(uid, feeling.dateTime);
+                    },
+                    child: const Text(
+                      'Yes',
+                      style: TextStyle(fontWeight: FontWeight.w700),
                     ),
-                    TextButton(
-                      onPressed: () =>
-                          AutoRouter.of(context).pop(), // Close the dialog
-                      child: const Text('No'),
-                    ),
-                  ],
-                ),
-              ),
-              icon: Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color.fromRGBO(255, 226, 226, 1),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Image.asset(
-                    'lib/assets/trash_icon.png',
-                    width: 31,
-                    height: 34,
                   ),
+                  TextButton(
+                    onPressed: () =>
+                        AutoRouter.of(context).pop(), // Close the dialog
+                    child: const Text('No'),
+                  ),
+                ],
+              ),
+            ),
+            icon: Container(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color.fromRGBO(255, 226, 226, 1),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Image.asset(
+                  'lib/assets/trash_icon.png',
+                  width: 31,
+                  height: 34,
                 ),
               ),
             ),
