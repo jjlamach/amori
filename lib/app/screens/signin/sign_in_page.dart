@@ -167,7 +167,6 @@ class _SignInPageState extends State<SignInPage> {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  keyboardType: TextInputType.visiblePassword,
                 ),
                 Align(
                   alignment: Alignment.centerRight,

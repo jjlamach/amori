@@ -2,13 +2,13 @@ import 'package:amori/app/screens/register/widgets/already_have_an_account_label
 import 'package:amori/app/screens/register/widgets/confirm_password_field_view.dart';
 import 'package:amori/app/screens/register/widgets/email_field_view.dart';
 import 'package:amori/app/screens/register/widgets/password_field_view.dart';
+import 'package:amori/app/screens/register/widgets/register_label_view.dart';
 import 'package:amori/app/screens/register/widgets/username_field_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/common.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 @RoutePage()
 class RegisterPage extends StatefulWidget {
@@ -49,31 +49,23 @@ class _RegisterPageState extends State<RegisterPage> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: AppBar(
-          leading: const SizedBox.shrink(),
-          title: Text(
-            'Amori',
-            style: GoogleFonts.slacksideOne(
-              fontSize: 50,
-              color: const Color.fromRGBO(131, 165, 255, 1),
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(20.0),
-          child: Form(
-            key: _formKey,
+        body: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(20.0),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-                const Text(
-                  'Register',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w400,
+                Image.asset('lib/assets/mhi.png', height: 200),
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Register',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
                 const AlreadyHaveAnAccountLabelView(),
@@ -93,6 +85,17 @@ class _RegisterPageState extends State<RegisterPage> {
                   width: double.infinity,
                   height: 46,
                   child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      minimumSize: const Size(double.infinity, 40),
+                      backgroundColor: const Color.fromRGBO(172, 196, 254, 1),
+                      side: const BorderSide(
+                        color: Color.fromRGBO(172, 196, 254, 1),
+                        width: 2.0,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                    ),
                     onPressed: () {
                       final confirmPass = _confirmPassword.text;
                       final pass = _password.text;
@@ -132,25 +135,16 @@ class _RegisterPageState extends State<RegisterPage> {
                         );
                       },
                       builder: (context, state) => state.maybeWhen(
-                        initial: () => Text(
-                          'Register',
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                                fontSize: 20,
-                              ),
-                        ),
-                        loading: () => const SizedBox.shrink(),
-                        loggedOut: () => const Text('Register'),
+                        initial: () => const RegisterLabelView(),
+                        loggedOut: () => const RegisterLabelView(),
                         registered: (user) => const SizedBox.shrink(),
-                        error: (_) => const Text('Register'),
+                        error: (_) => const RegisterLabelView(),
                         orElse: () => const SizedBox.shrink(),
                       ),
                     ),
                   ),
                 ),
+                const SizedBox(height: 40.0),
               ],
             ),
           ),

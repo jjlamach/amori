@@ -4,9 +4,6 @@ import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
 import 'package:amori/app/screens/feelings/state/delete_feeling_cubit.dart';
 import 'package:amori/app/screens/feelings/state/feelings_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
-import 'package:amori/app/screens/signin/state/register_form_cubit.dart';
-import 'package:amori/app/screens/signin/state/sign_in_form_cubit.dart';
-import 'package:amori/app/screens/signin/state/sign_in_ui_cubit.dart';
 import 'package:amori/common/navigation_cubit.dart';
 import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
 import 'package:amori/firebase_options.dart';
@@ -56,24 +53,6 @@ void setUpCubits() {
   getIt.registerSingleton<AuthBloc>(
     AuthBloc(getIt.get()),
   );
-  getIt.registerFactory(
-    () => SignInFormCubit(
-      getIt.get(),
-      getIt.get(),
-      getIt.get(),
-    ),
-  );
-  getIt.registerFactory(
-    () => SignInUICubit(),
-  );
-  getIt.registerFactory(
-    () => RegisterFormCubit(
-      getIt.get(),
-      getIt.get(),
-      getIt.get(),
-      getIt.get(),
-    ),
-  );
   getIt.registerFactory(() => TagCubit());
   getIt.registerFactory(() => EmotionCubit());
   getIt.registerFactory(() => FeelingsCubit());
@@ -88,10 +67,6 @@ class AmoriApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<SignInUICubit>(create: (_) => getIt<SignInUICubit>()),
-        BlocProvider<SignInFormCubit>(create: (_) => getIt<SignInFormCubit>()),
-        BlocProvider<RegisterFormCubit>(
-            create: (_) => getIt<RegisterFormCubit>()),
         BlocProvider<NavigationCubit>(create: (_) => getIt<NavigationCubit>()),
         BlocProvider<AuthBloc>(create: (_) => getIt<AuthBloc>()),
         BlocProvider<TagCubit>(create: (_) => getIt<TagCubit>()),
