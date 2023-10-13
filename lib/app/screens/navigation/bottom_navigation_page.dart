@@ -15,46 +15,23 @@ class BottomNavigationBarPage extends StatelessWidget {
         FavoritesRoute(),
       ],
       bottomNavigationBuilder: (context, tabsRouter) {
-        return Container(
-          decoration: const BoxDecoration(
-            border: Border(
-              top: BorderSide(
-                color: Color.fromRGBO(201, 201, 201, 1),
-              ),
+        return BottomNavigationBar(
+          currentIndex: tabsRouter.activeIndex,
+          onTap: tabsRouter.setActiveIndex,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite_border),
+              label: "Feelings",
             ),
-          ),
-          child: BottomNavigationBar(
-            selectedItemColor: const Color.fromRGBO(166, 166, 166, 1),
-            selectedLabelStyle: const TextStyle(
-              fontSize: 16,
-              color: Color.fromRGBO(166, 166, 166, 1),
-              fontWeight: FontWeight.w400,
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Home",
             ),
-            iconSize: 34,
-            selectedIconTheme: IconThemeData(
-              size: 40,
-              color: Theme.of(context).colorScheme.primary,
+            BottomNavigationBarItem(
+              icon: Icon(Icons.mood),
+              label: "Favorites",
             ),
-            unselectedIconTheme: const IconThemeData(
-              color: Color.fromRGBO(0, 0, 0, 1),
-            ),
-            currentIndex: tabsRouter.activeIndex,
-            onTap: tabsRouter.setActiveIndex,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite_border),
-                label: "Feelings",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: "Home",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.mood),
-                label: "Favorites",
-              ),
-            ],
-          ),
+          ],
         );
       },
     );

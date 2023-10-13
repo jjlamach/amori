@@ -46,22 +46,6 @@ class EmotionFieldView extends StatelessWidget {
             return null;
           },
           controller: _emotion,
-          decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(Dimen.borderRadiusCircular),
-              borderSide: const BorderSide(
-                color: Color.fromRGBO(233, 233, 233, 1),
-                width: 2.0,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(Dimen.borderRadiusCircular),
-              borderSide: const BorderSide(
-                color: Color.fromRGBO(172, 196, 254, 1),
-                width: 2.0,
-              ),
-            ),
-          ),
           maxLength: 250, // Counter - bottom right
           maxLines: 250, // Box increases height for 250
         ),

@@ -104,7 +104,7 @@ class _ForgottenPasswordPageState extends State<ForgottenPasswordPage> {
                       child: Text(
                         'Reset password',
                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color: Theme.of(context).colorScheme.primary,
+                              color: Colors.white,
                               fontSize: 20,
                             ),
                       ),

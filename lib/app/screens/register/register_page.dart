@@ -85,17 +85,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   width: double.infinity,
                   height: 46,
                   child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      minimumSize: const Size(double.infinity, 40),
-                      backgroundColor: const Color.fromRGBO(172, 196, 254, 1),
-                      side: const BorderSide(
-                        color: Color.fromRGBO(172, 196, 254, 1),
-                        width: 2.0,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                    ),
                     onPressed: () {
                       final confirmPass = _confirmPassword.text;
                       final pass = _password.text;

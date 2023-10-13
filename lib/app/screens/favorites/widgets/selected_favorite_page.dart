@@ -1,3 +1,5 @@
+import 'package:amori/common/favorite_label_view.dart';
+import 'package:amori/common/tag_label_view.dart';
 import 'package:amori/domain/models/feeling/feeling.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -103,31 +105,10 @@ class SelectedFavoritePage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                          color: const Color.fromRGBO(172, 196, 254, 1),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 2, horizontal: 10),
-                          child: Text(feeling.tag),
-                        ),
-                      ),
+                      TagLabelView(feeling: feeling),
                       const SizedBox(width: 20.0),
                       feeling.isFavorite
-                          ? Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.0),
-                                color: const Color.fromRGBO(172, 196, 254, 1),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 2, horizontal: 10),
-                                child: Text(
-                                    'A ${String.fromCharCode(0x2764) + String.fromCharCode(0xFE0F)}one'),
-                              ),
-                            )
+                          ? const FavoriteLabelView()
                           : const SizedBox.shrink(),
                     ],
                   ),

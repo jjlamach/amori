@@ -1,5 +1,4 @@
 import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
-import 'package:amori/common/dimen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,17 +36,10 @@ class TagsView extends StatelessWidget {
                   cubit.tagPersonal(selected);
                 }
               },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                  Dimen.borderRadiusCircular,
-                ),
-                side: BorderSide.none,
-              ),
               selected: state.whenOrNull(
                     personal: (tagName, selected) => selected,
                   ) ??
                   false,
-              showCheckmark: false,
             ),
             FilterChip(
               label: Text(Tags.values[1].name),
@@ -58,16 +50,10 @@ class TagsView extends StatelessWidget {
                   cubit.tagWork(selected);
                 }
               },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                  Dimen.borderRadiusCircular,
-                ),
-              ),
               selected: state.whenOrNull(
                     work: (tagName, selected) => selected,
                   ) ??
                   false,
-              showCheckmark: false,
             ),
             FilterChip(
               selected: state.whenOrNull(
@@ -82,16 +68,6 @@ class TagsView extends StatelessWidget {
                   cubit.tagFamily(selected);
                 }
               },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                  Dimen.borderRadiusCircular,
-                ),
-                side: const BorderSide(
-                  color: Color.fromRGBO(172, 196, 254, 1),
-                  width: 2,
-                ),
-              ),
-              showCheckmark: false,
             ),
             FilterChip(
               label: Text(Tags.values[3].name),
@@ -102,16 +78,10 @@ class TagsView extends StatelessWidget {
                   cubit.tagRelationships(selected);
                 }
               },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                  Dimen.borderRadiusCircular,
-                ),
-              ),
               selected: state.whenOrNull(
                     relationships: (tagName, selected) => selected,
                   ) ??
                   false,
-              showCheckmark: false,
             ),
             FilterChip(
               label: Text(Tags.values[4].name),
@@ -122,16 +92,10 @@ class TagsView extends StatelessWidget {
                   cubit.tagFriends(selected);
                 }
               },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                  Dimen.borderRadiusCircular,
-                ),
-              ),
               selected: state.whenOrNull(
                     friends: (tagName, selected) => selected,
                   ) ??
                   false,
-              showCheckmark: false,
             ),
             FilterChip(
               label: Text(Tags.values[5].name),
@@ -142,16 +106,10 @@ class TagsView extends StatelessWidget {
                   cubit.tagOthers(selected);
                 }
               },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                  Dimen.borderRadiusCircular,
-                ),
-              ),
               selected: state.whenOrNull(
                     others: (tagName, selected) => selected,
                   ) ??
                   false,
-              showCheckmark: false,
             ),
           ],
         );

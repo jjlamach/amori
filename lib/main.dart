@@ -4,7 +4,7 @@ import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
 import 'package:amori/app/screens/feelings/state/delete_feeling_cubit.dart';
 import 'package:amori/app/screens/feelings/state/feelings_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
-import 'package:amori/common/navigation_cubit.dart';
+import 'package:amori/common/dimen.dart';
 import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
 import 'package:amori/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -67,7 +67,6 @@ class AmoriApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<NavigationCubit>(create: (_) => getIt<NavigationCubit>()),
         BlocProvider<AuthBloc>(create: (_) => getIt<AuthBloc>()),
         BlocProvider<TagCubit>(create: (_) => getIt<TagCubit>()),
         BlocProvider<EmotionCubit>(create: (_) => getIt<EmotionCubit>()),
@@ -77,8 +76,96 @@ class AmoriApp extends StatelessWidget {
         BlocProvider<DeletionCubit>(create: (context) => DeletionCubit()),
       ],
       child: MaterialApp.router(
+        theme: ThemeData(
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          useMaterial3: true,
+          appBarTheme: const AppBarTheme(
+            color: Colors.transparent,
+            surfaceTintColor: Colors.transparent,
+          ),
+          outlinedButtonTheme: OutlinedButtonThemeData(
+            style: ButtonStyle(
+              backgroundColor: const MaterialStatePropertyAll(
+                Color.fromRGBO(172, 196, 254, 1),
+              ),
+              side: const MaterialStatePropertyAll(
+                BorderSide(
+                  color: Color.fromRGBO(172, 196, 254, 1),
+                  width: 2.0,
+                ),
+              ),
+              shape: MaterialStatePropertyAll(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                ),
+              ),
+            ),
+          ),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromRGBO(131, 165, 255, 1),
+            brightness: Brightness.light,
+            background: Colors.white,
+            error: Colors.red,
+          ),
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            selectedIconTheme: IconThemeData(
+              size: 40,
+              color: Color.fromRGBO(131, 165, 255, 1),
+            ),
+            unselectedIconTheme: IconThemeData(
+              size: 40,
+              color: Color.fromRGBO(0, 0, 0, 1),
+            ),
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(Dimen.borderRadiusCircular),
+              borderSide: const BorderSide(
+                color: Color.fromRGBO(172, 196, 254, 1),
+                width: 2.0,
+              ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(Dimen.borderRadiusCircular),
+              borderSide: const BorderSide(
+                color: Color.fromRGBO(233, 233, 233, 1),
+                width: 2.0,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(Dimen.borderRadiusCircular),
+              borderSide: const BorderSide(
+                color: Color.fromRGBO(172, 196, 254, 1),
+                width: 2.0,
+              ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(Dimen.borderRadiusCircular),
+              borderSide: const BorderSide(
+                color: Colors.redAccent,
+                width: 2.0,
+              ),
+            ),
+          ),
+          chipTheme: ChipThemeData(
+            side: const BorderSide(
+              color: Color.fromRGBO(131, 165, 255, 1),
+              width: 2.0,
+            ),
+            selectedColor: const Color.fromRGBO(131, 165, 255, 1),
+            showCheckmark: false,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                Dimen.borderRadiusCircular,
+              ),
+            ),
+          ),
+          dialogTheme: const DialogTheme(
+            surfaceTintColor: Colors.transparent,
+          ),
+        ),
         routerConfig: _router.config(),
-        title: 'Amori App',
+        title: 'Amori',
       ),
     );
   }

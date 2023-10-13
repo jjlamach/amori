@@ -195,8 +195,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                               );
                             }
                             ScaffoldMessenger.of(context).showSnackBar(
-                              Common.showAppSnackBar(
-                                  "Feeling recorded successfully."),
+                              Common.showAppSnackBar("Feeling recorded"),
                             );
                             Future.delayed(const Duration(seconds: 1)).then(
                               (value) {
@@ -213,16 +212,15 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                         },
                         child: Text(
                           'Save',
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                                fontSize: 20,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.labelLarge?.copyWith(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
                         ),
                       ),
                     ),
+                    const SizedBox(height: 40.0),
                   ],
                 ),
               ),

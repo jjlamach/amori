@@ -110,7 +110,9 @@ class HomePage extends StatelessWidget {
                               feelings.first.feeling,
                               height: 207,
                             ),
-                            const SizedBox(height: 20.0),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.1),
                             OutlinedButton(
                               onPressed: () {
                                 AutoRouter.of(context).push(
@@ -124,7 +126,12 @@ class HomePage extends StatelessWidget {
                                 ),
                                 child: Text(
                                   'Edit',
-                                  style: Theme.of(context).textTheme.bodyLarge,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge
+                                      ?.copyWith(
+                                        color: Colors.white,
+                                      ),
                                 ),
                               ),
                             )

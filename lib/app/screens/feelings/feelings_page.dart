@@ -75,21 +75,11 @@ class FeelingsPage extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(40.0),
                                   ),
                                   child: Center(
-                                    child: Text(
-                                      'No entry',
-                                      textAlign: TextAlign.center,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.w700,
-                                            color: const Color.fromRGBO(
-                                              131,
-                                              165,
-                                              255,
-                                              1,
-                                            ),
-                                          ),
+                                    child: Image.asset(
+                                      height: 100,
+                                      width: 100,
+                                      'lib/assets/questionMarkNoBG.png',
+                                      fit: BoxFit.contain,
                                     ),
                                   ),
                                 ),
@@ -104,8 +94,12 @@ class FeelingsPage extends StatelessWidget {
                                   },
                                   child: Text(
                                     'Add one',
-                                    style:
-                                        Theme.of(context).textTheme.labelLarge,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelLarge
+                                        ?.copyWith(
+                                          color: Colors.white,
+                                        ),
                                   ),
                                 ),
                               ],
