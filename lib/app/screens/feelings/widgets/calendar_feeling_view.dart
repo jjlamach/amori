@@ -145,7 +145,7 @@ class CalendarFeelingView extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () =>
-                        AutoRouter.of(context).pop(), // Close the dialog
+                        AutoRouter.of(dialogContext).pop(), // Close the dialog
                     child: const Text('No'),
                   ),
                 ],
