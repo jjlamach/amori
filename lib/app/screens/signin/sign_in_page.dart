@@ -213,8 +213,7 @@ class _SignInPageState extends State<SignInPage> {
                     child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
                         minimumSize: const Size(double.infinity, 40),
-                        backgroundColor: const Color.fromRGBO(172, 196, 254,
-                            1), // Approximated color from the image
+                        backgroundColor: const Color.fromRGBO(172, 196, 254, 1),
                         side: const BorderSide(
                           color: Color.fromRGBO(172, 196, 254, 1),
                           width: 2.0,
