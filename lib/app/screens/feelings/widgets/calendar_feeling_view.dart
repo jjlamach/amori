@@ -34,7 +34,7 @@ class CalendarFeelingView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'On this day you were feeling:',
+                  'On this day you were feeling',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: const Color.fromRGBO(
@@ -103,48 +103,51 @@ class CalendarFeelingView extends StatelessWidget {
             ],
           ),
         ),
-        Center(
-          child: GestureDetector(
-            onTap: () => showDialog(
-              context: context,
-              builder: (dialogContext) => AlertDialog(
-                title: const Text('Delete Feeling'),
-                content:
-                    const Text('Are you sure you want to delete this feeling?'),
-                actions: [
-                  TextButton(
-                    onPressed: () async {
-                      AutoRouter.of(dialogContext).pop(); // Close the dialog
-                      final uid =
-                          context.read<AuthBloc>().currentUser?.uid ?? '';
-                      context
-                          .read<DeletionCubit>()
-                          .deleteFeeling(uid, feeling.dateTime);
-                    },
-                    child: const Text(
-                      'Yes',
-                      style: TextStyle(fontWeight: FontWeight.w700),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Center(
+            child: GestureDetector(
+              onTap: () => showDialog(
+                context: context,
+                builder: (dialogContext) => AlertDialog(
+                  title: const Text('Delete Feeling'),
+                  content: const Text(
+                      'Are you sure you want to delete this feeling?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () async {
+                        AutoRouter.of(dialogContext).pop(); // Close the dialog
+                        final uid =
+                            context.read<AuthBloc>().currentUser?.uid ?? '';
+                        context
+                            .read<DeletionCubit>()
+                            .deleteFeeling(uid, feeling.dateTime);
+                      },
+                      child: const Text(
+                        'Yes',
+                        style: TextStyle(fontWeight: FontWeight.w700),
+                      ),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: () =>
-                        AutoRouter.of(dialogContext).pop(), // Close the dialog
-                    child: const Text('No'),
-                  ),
-                ],
+                    TextButton(
+                      onPressed: () => AutoRouter.of(dialogContext)
+                          .pop(), // Close the dialog
+                      child: const Text('No'),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            child: Container(
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Color.fromRGBO(255, 226, 226, 1),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Image.asset(
-                  'lib/assets/trash_icon.png',
-                  width: 31,
-                  height: 34,
+              child: Container(
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color.fromRGBO(255, 226, 226, 1),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Image.asset(
+                    'lib/assets/trash_icon.png',
+                    width: 31,
+                    height: 34,
+                  ),
                 ),
               ),
             ),

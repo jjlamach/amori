@@ -131,6 +131,7 @@ class HomePage extends StatelessWidget {
                                       .bodyLarge
                                       ?.copyWith(
                                         color: Colors.white,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                 ),
                               ),
@@ -166,12 +167,12 @@ class HomePage extends StatelessWidget {
 
     if (formattedLatestFeelingDate == formattedTodayDate) {
       return Text(
-        "Today you are feeling:",
+        "Today you are feeling",
         style: style,
       );
     } else {
       return Text(
-        'Last feeling recorded:',
+        'Last feeling recorded',
         style: style,
       );
     }

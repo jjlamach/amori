@@ -43,13 +43,12 @@ class FeelingsPage extends StatelessWidget {
               builder: (context, state) {
                 DateTime now = DateTime.now();
                 DateTime firstDate = DateTime(now.year, 1, 1);
-                DateTime lastDate = DateTime(now.year, 12, 31);
                 return Column(
                   children: [
                     CalendarDatePicker(
                       initialDate: DateTime.now(),
                       firstDate: firstDate,
-                      lastDate: lastDate,
+                      lastDate: now,
                       onDateChanged: (value) => {
                         cubit.watchFeeling(
                           uid,

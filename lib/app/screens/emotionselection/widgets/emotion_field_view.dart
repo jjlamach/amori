@@ -16,7 +16,7 @@ class EmotionFieldView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 350,
+      width: double.infinity,
       height: 218,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(

@@ -23,7 +23,7 @@ class SelectNewEmotionView extends StatelessWidget {
         slivers: [
           const SliverAppBar(
             centerTitle: false,
-            title: Text('Select your feeling:'),
+            title: Text('Select your feeling'),
           ),
           SliverPadding(
             padding: const EdgeInsets.all(20.0),

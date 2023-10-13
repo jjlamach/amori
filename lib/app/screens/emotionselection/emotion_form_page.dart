@@ -59,7 +59,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
             slivers: [
               const SliverAppBar(
                 title: Text(
-                  'What is making you?:',
+                  'What is making you?',
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w400,
@@ -140,10 +140,10 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                     ),
                     const TagsView(),
                     const SizedBox(
-                      height: 20.0,
+                      height: 40.0,
                     ),
                     SizedBox(
-                      width: 337,
+                      width: double.infinity,
                       child: OutlinedButton(
                         onPressed: () async {
                           final isValid = _formKey.currentState?.validate();
