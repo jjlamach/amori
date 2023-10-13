@@ -1,6 +1,7 @@
 import 'package:amori/app/auto_route.dart';
 import 'package:amori/app/screens/editemotion/state/emotion_cubit.dart';
 import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
+import 'package:amori/app/screens/feelings/state/delete_feeling_cubit.dart';
 import 'package:amori/app/screens/feelings/state/feelings_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/app/screens/signin/state/register_form_cubit.dart';
@@ -101,6 +102,7 @@ class AmoriApp extends StatelessWidget {
         BlocProvider<FeelingsCubit>(
           create: (context) => getIt<FeelingsCubit>(),
         ),
+        BlocProvider<DeletionCubit>(create: (context) => DeletionCubit()),
       ],
       child: MaterialApp.router(
         routerConfig: _router.config(),

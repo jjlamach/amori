@@ -1,5 +1,9 @@
+import 'package:amori/app/screens/feelings/state/delete_feeling_cubit.dart';
+import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/domain/models/feeling/feeling.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CalendarFeelingView extends StatelessWidget {
@@ -117,19 +121,56 @@ class CalendarFeelingView extends StatelessWidget {
           ),
         ),
         Center(
-          child: IconButton(
-            onPressed: () {},
-            icon: Container(
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Color.fromRGBO(255, 226, 226, 1),
+          child: BlocListener<DeletionCubit, DeletionState>(
+            listener: (context, state) {
+              if (state == DeletionState.deleted) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Feeling deleted'),
+                ));
+              }
+            },
+            child: IconButton(
+              onPressed: () => showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Delete Feeling'),
+                  content: const Text(
+                      'Are you sure you want to delete this feeling?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        AutoRouter.of(context).pop(); // Close the dialog
+                        final uid =
+                            context.read<AuthBloc>().currentUser?.uid ?? '';
+                        context
+                            .read<DeletionCubit>()
+                            .deleteFeeling(uid, feeling.dateTime);
+                      },
+                      child: const Text(
+                        'Yes',
+                        style: TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () =>
+                          AutoRouter.of(context).pop(), // Close the dialog
+                      child: const Text('No'),
+                    ),
+                  ],
+                ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Image.asset(
-                  'lib/assets/trash_icon.png',
-                  width: 31,
-                  height: 34,
+              icon: Container(
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color.fromRGBO(255, 226, 226, 1),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Image.asset(
+                    'lib/assets/trash_icon.png',
+                    width: 31,
+                    height: 34,
+                  ),
                 ),
               ),
             ),
