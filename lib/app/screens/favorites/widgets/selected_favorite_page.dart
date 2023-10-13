@@ -101,7 +101,7 @@ class SelectedFavoritePage extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(40.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

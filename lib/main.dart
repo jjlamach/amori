@@ -76,6 +76,7 @@ class AmoriApp extends StatelessWidget {
         BlocProvider<DeletionCubit>(create: (context) => DeletionCubit()),
       ],
       child: MaterialApp.router(
+        debugShowCheckedModeBanner: true,
         theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
           useMaterial3: true,

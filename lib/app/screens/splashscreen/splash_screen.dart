@@ -33,9 +33,9 @@ class _SplashScreenState extends State<SplashScreen> {
     //
     //   },
     // );
-    Future.delayed(const Duration(seconds: 2), () {
-      AutoRouter.of(context).replaceNamed('/onboarding');
-    });
+    // Future.delayed(const Duration(seconds: 2), () {
+    AutoRouter.of(context).replaceNamed('/onboarding');
+    // });
   }
 
   @override

@@ -49,92 +49,94 @@ class _RegisterPageState extends State<RegisterPage> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        body: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-                Image.asset('lib/assets/mhi.png', height: 200),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Register',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-                const AlreadyHaveAnAccountLabelView(),
-                const SizedBox(height: 20.0),
-                EmailFieldView(email: _email),
-                const SizedBox(height: 20.0),
-                UsernameFieldView(username: _username),
-                const SizedBox(height: 20.0),
-                PasswordFieldView(password: _password),
-                const SizedBox(height: 20.0),
-                ConfirmPasswordFieldView(
-                  confirmPassword: _confirmPassword,
-                  password: _password,
-                ),
-                const SizedBox(height: 40.0),
-                SizedBox(
-                  width: double.infinity,
-                  height: 46,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      final confirmPass = _confirmPassword.text;
-                      final pass = _password.text;
-                      final isFormValid = _formKey.currentState?.validate();
-                      if (isFormValid == true &&
-                          (pass == confirmPass && _username.text.isNotEmpty)) {
-                        context.read<AuthBloc>().add(
-                              AuthEvent.register(
-                                _email.text,
-                                pass,
-                                _username.text,
-                              ),
-                            );
-
-                        _confirmPassword.clear();
-                        _password.clear();
-                        _email.clear();
-                        _username.clear();
-                      }
-                    },
-                    child: BlocConsumer<AuthBloc, AuthState>(
-                      listener: (context, state) {
-                        state.whenOrNull(
-                          error: (exception) =>
-                              ScaffoldMessenger.of(context).showSnackBar(
-                            Common.showAppSnackBar(exception),
-                          ),
-                          registered: (user) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              Common.showAppSnackBar(
-                                  'You have been registered.'),
-                            );
-                            Future.delayed(const Duration(seconds: 1)).then(
-                              (value) => AutoRouter.of(context).pop(),
-                            );
-                          },
-                        );
-                      },
-                      builder: (context, state) => state.maybeWhen(
-                        initial: () => const RegisterLabelView(),
-                        loggedOut: () => const RegisterLabelView(),
-                        registered: (user) => const SizedBox.shrink(),
-                        error: (_) => const RegisterLabelView(),
-                        orElse: () => const SizedBox.shrink(),
+        body: SafeArea(
+          child: Form(
+            key: _formKey,
+            child: Center(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Register',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ),
-                  ),
+                    const AlreadyHaveAnAccountLabelView(),
+                    const SizedBox(height: 20.0),
+                    EmailFieldView(email: _email),
+                    const SizedBox(height: 20.0),
+                    UsernameFieldView(username: _username),
+                    const SizedBox(height: 20.0),
+                    PasswordFieldView(password: _password),
+                    const SizedBox(height: 20.0),
+                    ConfirmPasswordFieldView(
+                      confirmPassword: _confirmPassword,
+                      password: _password,
+                    ),
+                    const SizedBox(height: 40.0),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 46,
+                      child: OutlinedButton(
+                        onPressed: () {
+                          final confirmPass = _confirmPassword.text;
+                          final pass = _password.text;
+                          final isFormValid = _formKey.currentState?.validate();
+                          if (isFormValid == true &&
+                              (pass == confirmPass &&
+                                  _username.text.isNotEmpty)) {
+                            context.read<AuthBloc>().add(
+                                  AuthEvent.register(
+                                    _email.text,
+                                    pass,
+                                    _username.text,
+                                  ),
+                                );
+
+                            _confirmPassword.clear();
+                            _password.clear();
+                            _email.clear();
+                            _username.clear();
+                          }
+                        },
+                        child: BlocConsumer<AuthBloc, AuthState>(
+                          listener: (context, state) {
+                            state.whenOrNull(
+                              error: (exception) =>
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                Common.showAppSnackBar(exception),
+                              ),
+                              registered: (user) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  Common.showAppSnackBar(
+                                      'You have been registered.'),
+                                );
+                                Future.delayed(const Duration(seconds: 1)).then(
+                                  (value) => AutoRouter.of(context).pop(),
+                                );
+                              },
+                            );
+                          },
+                          builder: (context, state) => state.maybeWhen(
+                            initial: () => const RegisterLabelView(),
+                            loggedOut: () => const RegisterLabelView(),
+                            registered: (user) => const SizedBox.shrink(),
+                            error: (_) => const RegisterLabelView(),
+                            orElse: () => const SizedBox.shrink(),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 40.0),
+                  ],
                 ),
-                const SizedBox(height: 40.0),
-              ],
+              ),
             ),
           ),
         ),
