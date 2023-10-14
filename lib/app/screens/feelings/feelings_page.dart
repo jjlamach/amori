@@ -74,11 +74,20 @@ class FeelingsPage extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(40.0),
                                   ),
                                   child: Center(
-                                    child: Image.asset(
-                                      height: 100,
-                                      width: 100,
-                                      'lib/assets/questionMarkNoBG.png',
-                                      fit: BoxFit.contain,
+                                    child: Text(
+                                      'Nope. Nothing to see here.',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w700,
+                                            color: const Color.fromRGBO(
+                                              131,
+                                              165,
+                                              255,
+                                              1,
+                                            ),
+                                          ),
                                     ),
                                   ),
                                 ),
