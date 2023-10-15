@@ -24,18 +24,17 @@ import 'package:amori/app/screens/navigation/bottom_navigation_page.dart'
 import 'package:amori/app/screens/onboarding/onboarding_page.dart' as _i7;
 import 'package:amori/app/screens/register/register_page.dart' as _i8;
 import 'package:amori/app/screens/signin/sign_in_page.dart' as _i11;
-import 'package:amori/app/screens/splashscreen/splash_screen.dart' as _i12;
-import 'package:amori/domain/models/feeling/feeling.dart' as _i15;
-import 'package:auto_route/auto_route.dart' as _i13;
-import 'package:flutter/material.dart' as _i14;
+import 'package:amori/domain/models/feeling/feeling.dart' as _i14;
+import 'package:auto_route/auto_route.dart' as _i12;
+import 'package:flutter/material.dart' as _i13;
 
-abstract class $AmoriAppRouter extends _i13.RootStackRouter {
+abstract class $AmoriAppRouter extends _i12.RootStackRouter {
   $AmoriAppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i13.PageFactory> pagesMap = {
+  final Map<String, _i12.PageFactory> pagesMap = {
     BottomNavigationBarRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.BottomNavigationBarPage(),
       );
@@ -43,7 +42,7 @@ abstract class $AmoriAppRouter extends _i13.RootStackRouter {
     EmotionFormRoute.name: (routeData) {
       final args = routeData.argsAs<EmotionFormRouteArgs>(
           orElse: () => const EmotionFormRouteArgs());
-      return _i13.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i2.EmotionFormPage(
           emotion: args.emotion,
@@ -55,37 +54,37 @@ abstract class $AmoriAppRouter extends _i13.RootStackRouter {
       );
     },
     FavoritesRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i3.FavoritesPage(),
       );
     },
     FeelingsRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i4.FeelingsPage(),
       );
     },
     ForgottenPasswordRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i5.ForgottenPasswordPage(),
       );
     },
     HomeRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i6.HomePage(),
       );
     },
     OnBoardingRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i7.OnBoardingPage(),
       );
     },
     RegisterRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i8.RegisterPage(),
       );
@@ -93,7 +92,7 @@ abstract class $AmoriAppRouter extends _i13.RootStackRouter {
     SelectNewEmotionView.name: (routeData) {
       final args = routeData.argsAs<SelectNewEmotionViewArgs>(
           orElse: () => const SelectNewEmotionViewArgs());
-      return _i13.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i9.SelectNewEmotionView(
           feeling: args.feeling,
@@ -104,7 +103,7 @@ abstract class $AmoriAppRouter extends _i13.RootStackRouter {
     },
     SelectedFav.name: (routeData) {
       final args = routeData.argsAs<SelectedFavArgs>();
-      return _i13.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i10.SelectedFavoritePage(
           feeling: args.feeling,
@@ -113,15 +112,9 @@ abstract class $AmoriAppRouter extends _i13.RootStackRouter {
       );
     },
     SignInRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i11.SignInPage(),
-      );
-    },
-    SplashRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i12.SplashScreen(),
       );
     },
   };
@@ -129,8 +122,8 @@ abstract class $AmoriAppRouter extends _i13.RootStackRouter {
 
 /// generated route for
 /// [_i1.BottomNavigationBarPage]
-class BottomNavigationBarRoute extends _i13.PageRouteInfo<void> {
-  const BottomNavigationBarRoute({List<_i13.PageRouteInfo>? children})
+class BottomNavigationBarRoute extends _i12.PageRouteInfo<void> {
+  const BottomNavigationBarRoute({List<_i12.PageRouteInfo>? children})
       : super(
           BottomNavigationBarRoute.name,
           initialChildren: children,
@@ -138,19 +131,19 @@ class BottomNavigationBarRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'BottomNavigationBarRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.EmotionFormPage]
-class EmotionFormRoute extends _i13.PageRouteInfo<EmotionFormRouteArgs> {
+class EmotionFormRoute extends _i12.PageRouteInfo<EmotionFormRouteArgs> {
   EmotionFormRoute({
     String? emotion,
     String? emotionDescription,
     bool? isFavoriteFeeling,
     DateTime? differentDate,
-    _i14.Key? key,
-    List<_i13.PageRouteInfo>? children,
+    _i13.Key? key,
+    List<_i12.PageRouteInfo>? children,
   }) : super(
           EmotionFormRoute.name,
           args: EmotionFormRouteArgs(
@@ -165,8 +158,8 @@ class EmotionFormRoute extends _i13.PageRouteInfo<EmotionFormRouteArgs> {
 
   static const String name = 'EmotionFormRoute';
 
-  static const _i13.PageInfo<EmotionFormRouteArgs> page =
-      _i13.PageInfo<EmotionFormRouteArgs>(name);
+  static const _i12.PageInfo<EmotionFormRouteArgs> page =
+      _i12.PageInfo<EmotionFormRouteArgs>(name);
 }
 
 class EmotionFormRouteArgs {
@@ -186,7 +179,7 @@ class EmotionFormRouteArgs {
 
   final DateTime? differentDate;
 
-  final _i14.Key? key;
+  final _i13.Key? key;
 
   @override
   String toString() {
@@ -196,8 +189,8 @@ class EmotionFormRouteArgs {
 
 /// generated route for
 /// [_i3.FavoritesPage]
-class FavoritesRoute extends _i13.PageRouteInfo<void> {
-  const FavoritesRoute({List<_i13.PageRouteInfo>? children})
+class FavoritesRoute extends _i12.PageRouteInfo<void> {
+  const FavoritesRoute({List<_i12.PageRouteInfo>? children})
       : super(
           FavoritesRoute.name,
           initialChildren: children,
@@ -205,13 +198,13 @@ class FavoritesRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'FavoritesRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i4.FeelingsPage]
-class FeelingsRoute extends _i13.PageRouteInfo<void> {
-  const FeelingsRoute({List<_i13.PageRouteInfo>? children})
+class FeelingsRoute extends _i12.PageRouteInfo<void> {
+  const FeelingsRoute({List<_i12.PageRouteInfo>? children})
       : super(
           FeelingsRoute.name,
           initialChildren: children,
@@ -219,13 +212,13 @@ class FeelingsRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'FeelingsRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i5.ForgottenPasswordPage]
-class ForgottenPasswordRoute extends _i13.PageRouteInfo<void> {
-  const ForgottenPasswordRoute({List<_i13.PageRouteInfo>? children})
+class ForgottenPasswordRoute extends _i12.PageRouteInfo<void> {
+  const ForgottenPasswordRoute({List<_i12.PageRouteInfo>? children})
       : super(
           ForgottenPasswordRoute.name,
           initialChildren: children,
@@ -233,13 +226,13 @@ class ForgottenPasswordRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'ForgottenPasswordRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i6.HomePage]
-class HomeRoute extends _i13.PageRouteInfo<void> {
-  const HomeRoute({List<_i13.PageRouteInfo>? children})
+class HomeRoute extends _i12.PageRouteInfo<void> {
+  const HomeRoute({List<_i12.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
           initialChildren: children,
@@ -247,13 +240,13 @@ class HomeRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i7.OnBoardingPage]
-class OnBoardingRoute extends _i13.PageRouteInfo<void> {
-  const OnBoardingRoute({List<_i13.PageRouteInfo>? children})
+class OnBoardingRoute extends _i12.PageRouteInfo<void> {
+  const OnBoardingRoute({List<_i12.PageRouteInfo>? children})
       : super(
           OnBoardingRoute.name,
           initialChildren: children,
@@ -261,13 +254,13 @@ class OnBoardingRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'OnBoardingRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i8.RegisterPage]
-class RegisterRoute extends _i13.PageRouteInfo<void> {
-  const RegisterRoute({List<_i13.PageRouteInfo>? children})
+class RegisterRoute extends _i12.PageRouteInfo<void> {
+  const RegisterRoute({List<_i12.PageRouteInfo>? children})
       : super(
           RegisterRoute.name,
           initialChildren: children,
@@ -275,18 +268,18 @@ class RegisterRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'RegisterRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i9.SelectNewEmotionView]
 class SelectNewEmotionView
-    extends _i13.PageRouteInfo<SelectNewEmotionViewArgs> {
+    extends _i12.PageRouteInfo<SelectNewEmotionViewArgs> {
   SelectNewEmotionView({
-    _i15.Feeling? feeling,
+    _i14.Feeling? feeling,
     DateTime? differentDate,
-    _i14.Key? key,
-    List<_i13.PageRouteInfo>? children,
+    _i13.Key? key,
+    List<_i12.PageRouteInfo>? children,
   }) : super(
           SelectNewEmotionView.name,
           args: SelectNewEmotionViewArgs(
@@ -299,8 +292,8 @@ class SelectNewEmotionView
 
   static const String name = 'SelectNewEmotionView';
 
-  static const _i13.PageInfo<SelectNewEmotionViewArgs> page =
-      _i13.PageInfo<SelectNewEmotionViewArgs>(name);
+  static const _i12.PageInfo<SelectNewEmotionViewArgs> page =
+      _i12.PageInfo<SelectNewEmotionViewArgs>(name);
 }
 
 class SelectNewEmotionViewArgs {
@@ -310,11 +303,11 @@ class SelectNewEmotionViewArgs {
     this.key,
   });
 
-  final _i15.Feeling? feeling;
+  final _i14.Feeling? feeling;
 
   final DateTime? differentDate;
 
-  final _i14.Key? key;
+  final _i13.Key? key;
 
   @override
   String toString() {
@@ -324,11 +317,11 @@ class SelectNewEmotionViewArgs {
 
 /// generated route for
 /// [_i10.SelectedFavoritePage]
-class SelectedFav extends _i13.PageRouteInfo<SelectedFavArgs> {
+class SelectedFav extends _i12.PageRouteInfo<SelectedFavArgs> {
   SelectedFav({
-    required _i15.Feeling feeling,
-    _i14.Key? key,
-    List<_i13.PageRouteInfo>? children,
+    required _i14.Feeling feeling,
+    _i13.Key? key,
+    List<_i12.PageRouteInfo>? children,
   }) : super(
           SelectedFav.name,
           args: SelectedFavArgs(
@@ -340,8 +333,8 @@ class SelectedFav extends _i13.PageRouteInfo<SelectedFavArgs> {
 
   static const String name = 'SelectedFav';
 
-  static const _i13.PageInfo<SelectedFavArgs> page =
-      _i13.PageInfo<SelectedFavArgs>(name);
+  static const _i12.PageInfo<SelectedFavArgs> page =
+      _i12.PageInfo<SelectedFavArgs>(name);
 }
 
 class SelectedFavArgs {
@@ -350,9 +343,9 @@ class SelectedFavArgs {
     this.key,
   });
 
-  final _i15.Feeling feeling;
+  final _i14.Feeling feeling;
 
-  final _i14.Key? key;
+  final _i13.Key? key;
 
   @override
   String toString() {
@@ -362,8 +355,8 @@ class SelectedFavArgs {
 
 /// generated route for
 /// [_i11.SignInPage]
-class SignInRoute extends _i13.PageRouteInfo<void> {
-  const SignInRoute({List<_i13.PageRouteInfo>? children})
+class SignInRoute extends _i12.PageRouteInfo<void> {
+  const SignInRoute({List<_i12.PageRouteInfo>? children})
       : super(
           SignInRoute.name,
           initialChildren: children,
@@ -371,19 +364,5 @@ class SignInRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'SignInRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i12.SplashScreen]
-class SplashRoute extends _i13.PageRouteInfo<void> {
-  const SplashRoute({List<_i13.PageRouteInfo>? children})
-      : super(
-          SplashRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'SplashRoute';
-
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }

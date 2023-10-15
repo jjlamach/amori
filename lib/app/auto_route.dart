@@ -6,11 +6,6 @@ class AmoriAppRouter extends $AmoriAppRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
-          page: SplashRoute.page,
-          initial: true,
-          path: '/splash',
-        ),
-        AutoRoute(
           page: SignInRoute.page,
           path: '/sign-in',
         ),
@@ -25,6 +20,7 @@ class AmoriAppRouter extends $AmoriAppRouter {
         AutoRoute(
           page: OnBoardingRoute.page,
           path: '/onboarding',
+          initial: true,
         ),
         AutoRoute(
           page: BottomNavigationBarRoute.page,
