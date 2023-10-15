@@ -5,6 +5,7 @@
 - Sign up/log in and have an account with your saved feelings in Firestore
 
 **Design:** Yamei Lama
+**Artwork:** erigami.studio (Instagram page)
   
 <img src="https://github.com/jjlamach/amori/assets/32489610/3a461c63-f1c5-4176-a1e8-580942033efd" width="300">
 <img src="https://github.com/jjlamach/amori/assets/32489610/8d0d6dff-1c76-42c9-856e-1b52327df954" width="300">
