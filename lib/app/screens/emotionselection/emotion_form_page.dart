@@ -163,7 +163,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                               _emotion.text.isNotEmpty &&
                               tagSelected != null) {
                             final uid =
-                                context.read<AuthBloc>().user?.uid ?? '';
+                                context.read<AuthBloc>().getUser() ?? '';
 
                             /// If this is not null it means the user is gonna add a feeling from a different date
                             /// that is not today

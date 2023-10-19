@@ -18,16 +18,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.read<AuthBloc>().user;
+    final uid = context.read<AuthBloc>().getUser() ?? '';
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              getIt.get<FeelingsCubit>()..watchFeelings(user?.uid ?? ''),
+          create: (context) => getIt.get<FeelingsCubit>()..watchFeelings(uid),
         ),
         BlocProvider(
-          create: (context) =>
-              getIt.get<HomeCubit>()..getUsername(user?.uid ?? ''),
+          create: (context) => getIt.get<HomeCubit>()..getUsername(uid),
         ),
       ],
       child: Scaffold(
@@ -43,7 +41,7 @@ class HomePage extends StatelessWidget {
                   return IconButton(
                     onPressed: () {
                       context.read<FeelingsCubit>().unfavoriteFeeling(
-                            user?.uid ?? '',
+                            uid,
                             state.first.dateTime,
                           );
                     },
@@ -54,7 +52,9 @@ class HomePage extends StatelessWidget {
                   return IconButton(
                     onPressed: () {
                       context.read<FeelingsCubit>().favoriteFeeling(
-                          user?.uid ?? '', state.first.dateTime);
+                            uid,
+                            state.first.dateTime,
+                          );
                     },
                     icon: const Icon(Icons.favorite_border, size: 40),
                   );

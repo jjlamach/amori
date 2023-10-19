@@ -15,9 +15,10 @@ class FavoritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final uid = getIt<AuthBloc>().user?.uid;
+    final uid = getIt<AuthBloc>().getUser() ?? '';
     return BlocProvider(
-      create: (context) => getIt.get<FeelingsCubit>()..watchFeelings(uid ?? ''),
+      create: (context) =>
+          getIt.get<FeelingsCubit>()..watchFavoriteFeelings(uid ?? ''),
       child: Scaffold(
         appBar: AppBar(
           centerTitle: false,

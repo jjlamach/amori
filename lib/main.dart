@@ -56,7 +56,10 @@ void setUpServices() {
 
 void setUpCubits() {
   getIt.registerSingleton<AuthBloc>(
-    AuthBloc(getIt.get()),
+    AuthBloc(
+      getIt.get(),
+      getIt.get(),
+    ),
   );
   getIt.registerFactory(() => TagCubit());
   getIt.registerFactory(() => FeelingsCubit());

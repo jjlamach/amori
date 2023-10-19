@@ -69,6 +69,12 @@ class _SignInPageState extends State<SignInPage> {
                         state.whenOrNull(
                           loggedOut: () => AutoRouter.of(context)
                               .replace(const SignInRoute()),
+                          registered: (uid) =>
+                              AutoRouter.of(context).replaceAll(
+                            [
+                              BottomNavigationBarRoute(),
+                            ],
+                          ),
                           loggedIn: (user) {
                             _email.clear();
                             _password.clear();

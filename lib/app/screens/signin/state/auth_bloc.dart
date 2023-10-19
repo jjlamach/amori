@@ -1,6 +1,6 @@
+import 'package:amori/domain/firebaseauthrepository/firebase_storage_repository_impl.dart';
 import 'package:amori/domain/firebasecloudrepository/firebase_cloud_storage_impl.dart';
 import 'package:amori/domain/models/user/amori_user.dart';
-import 'package:amori/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -8,83 +8,56 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'auth_bloc.freezed.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  User? user;
+  // User? user;
+  String? uid;
   final FirebaseCloudStorageImpl _repository;
+  final FirebaseAuthRepositoryImpl _authRepo;
 
-  AuthBloc(this._repository) : super(const _Initial()) {
+  AuthBloc(this._repository, this._authRepo) : super(const _Initial()) {
     on<AuthEvent>(
       (event, emit) async {
         await event.when(
           startApp: () async {
-            await emit.forEach(FirebaseAuth.instance.authStateChanges(),
-                onData: (currentUser) {
-              if (currentUser != null) {
-                user = currentUser;
-                return AuthState.loggedIn(currentUser);
-              } else {
-                return const AuthState.loggedOut();
-              }
-            });
+            await emit.forEach(
+              FirebaseAuth.instance.authStateChanges(),
+              onData: (currentUser) {
+                if (currentUser != null) {
+                  // user = currentUser;
+                  uid = currentUser.uid;
+                  return AuthState.loggedIn(uid!);
+                } else {
+                  return const AuthState.loggedOut();
+                }
+              },
+            );
           },
           register: (email, password, username) async {
-            try {
-              UserCredential userCredential =
-                  await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                email: email,
-                password: password,
-              );
-
+            final String? uid = await _authRepo.register(email, password);
+            if (uid?.isNotEmpty == true) {
               AmoriUser user = AmoriUser(
-                uid: userCredential.user?.uid,
+                uid: uid,
                 email: email,
                 password: password,
                 displayName: username,
               );
               await _repository.saveUserToFireStore(user);
               emit(const AuthState.loading());
-              emit(AuthState.registered(user));
-              // Reset state after registering user
+              emit(AuthState.registered(uid!));
               emit(const AuthState.initial());
-            } on FirebaseAuthException catch (e) {
-              if (e.code == 'weak-password') {
-                emit(const AuthState.error('Password is too weak.'));
-                emit(const AuthState.initial());
-                kLogger.e('Password provided is too weak.');
-              } else if (e.code == 'email-already-in-use') {
-                emit(const AuthState.error('Email is already in use.'));
-                emit(const AuthState.initial());
-                kLogger.i('Email provided is already in use.');
-              }
-            } catch (e) {
-              emit(const AuthState.initial());
-              kLogger.e('Error: $e');
             }
           },
           logIn: (email, password) async {
-            try {
-              UserCredential userCredential =
-                  await FirebaseAuth.instance.signInWithEmailAndPassword(
-                email: email,
-                password: password,
-              );
-              user = userCredential.user;
+            final String? uid = await _authRepo.signIn(email, password);
+            if (uid?.isNotEmpty == true) {
+              this.uid = uid;
               emit(const AuthState.loading());
-              emit(
-                AuthState.loggedIn(user!),
-              );
-            } on FirebaseAuthException catch (e) {
-              emit(const AuthState.error('Invalid login credentials.'));
-              emit(const AuthState.initial());
+              emit(AuthState.loggedIn(this.uid!));
             }
           },
           logOut: () async {
-            try {
-              user = null;
-              await FirebaseAuth.instance.signOut();
-              emit(const AuthState.loggedOut());
-            } catch (e) {
-              emit(AuthState.error(e.toString()));
-            }
+            uid = "";
+            await _authRepo.logOut();
+            emit(const AuthState.loggedOut());
           },
           forgotPassword: (String email) async {
             try {
@@ -95,22 +68,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             }
           },
           delete: () async {
-            try {
-              await FirebaseAuth.instance.currentUser?.delete();
-              kLogger.i('Account deleted.');
-              emit(const AuthState.deletedAccount());
-            } on FirebaseAuthException catch (e) {
-              kLogger.e('Could not delete account');
-              emit(AuthState.error(e.code));
-            }
+            uid = "";
+            await _authRepo.delete();
+            emit(const AuthState.deletedAccount());
           },
         );
       },
     );
   }
 
-  Future<AmoriUser?> getUser() async {
-    return await _repository.getUser(user?.uid ?? '');
+  String? getUser() {
+    return uid;
   }
 }
 
@@ -118,8 +86,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 class AuthState with _$AuthState {
   const factory AuthState.initial() = _Initial;
   const factory AuthState.loading() = _Loading;
-  const factory AuthState.registered(AmoriUser user) = _Registered;
-  const factory AuthState.loggedIn(User user) = _LoggedIn;
+  const factory AuthState.registered(String uid) = _Registered;
+  const factory AuthState.loggedIn(String uid) = _LoggedIn;
   const factory AuthState.loggedOut() = _LoggedOut;
   const factory AuthState.forgotPassword(String email) =
       _ForgotPasswordEmailSent;

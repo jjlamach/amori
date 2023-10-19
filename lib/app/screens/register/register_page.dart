@@ -117,9 +117,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                   Common.showAppSnackBar(
                                       'You have been registered.'),
                                 );
-                                Future.delayed(const Duration(seconds: 1)).then(
-                                  (value) => AutoRouter.of(context).pop(),
-                                );
+                                // Future.delayed(const Duration(seconds: 1)).then(
+                                //     (value) => AutoRouter.of(context)
+                                //         .replaceNamed("/index"));
                               },
                             );
                           },

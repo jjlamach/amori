@@ -15,7 +15,7 @@ class FeelingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final uid = context.read<AuthBloc>().user?.uid ?? '';
+    final uid = context.read<AuthBloc>().getUser() ?? '';
     var differentDate;
 
     final DateTime initialDate = DateTime.now();
