@@ -82,7 +82,6 @@ flutter:
     - lib/assets/normal.svg
     - lib/assets/husky.svg
     - lib/assets/trash_icon.png
-    - lib/assets/mhi.png
     - lib/assets/questionMarkNoBG.png
     - lib/assets/amoriLogoNoBG.png
 

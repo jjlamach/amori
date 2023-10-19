@@ -8,12 +8,23 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'auth_bloc.freezed.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AmoriUser? currentUser;
+  User? user;
   final FirebaseStorageRepository _repository;
   AuthBloc(this._repository) : super(const _Initial()) {
     on<AuthEvent>(
       (event, emit) async {
         await event.when(
+          startApp: () async {
+            await emit.forEach(FirebaseAuth.instance.authStateChanges(),
+                onData: (currentUser) {
+              if (currentUser != null) {
+                user = currentUser;
+                return AuthState.loggedIn(currentUser);
+              } else {
+                return const AuthState.loggedOut();
+              }
+            });
+          },
           register: (email, password, username) async {
             try {
               UserCredential userCredential =
@@ -28,7 +39,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 password: password,
                 displayName: username,
               );
-              currentUser = user;
               await _repository.saveUserToFireStore(user);
               emit(const AuthState.loading());
               emit(AuthState.registered(user));
@@ -56,22 +66,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 email: email,
                 password: password,
               );
-
-              // Get user saved in database
-              currentUser = await _repository
-                  .getUserFromFireStore(userCredential.user?.uid ?? '');
-
-              // pass a non-nullable user copy of it
-              final user = AmoriUser(
-                displayName: currentUser?.displayName,
-                password: currentUser?.password,
-                email: currentUser?.email,
-                uid: currentUser?.uid,
-              );
-
+              user = userCredential.user;
               emit(const AuthState.loading());
               emit(
-                AuthState.loggedIn(user),
+                AuthState.loggedIn(user!),
               );
             } on FirebaseAuthException catch (e) {
               emit(const AuthState.error('Invalid login credentials.'));
@@ -80,6 +78,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           },
           logOut: () async {
             try {
+              user = null;
               await FirebaseAuth.instance.signOut();
               emit(const AuthState.loggedOut());
             } catch (e) {
@@ -115,16 +114,18 @@ class AuthState with _$AuthState {
   const factory AuthState.initial() = _Initial;
   const factory AuthState.loading() = _Loading;
   const factory AuthState.registered(AmoriUser user) = _Registered;
-  const factory AuthState.loggedIn(AmoriUser user) = _LoggedIn;
+  const factory AuthState.loggedIn(User user) = _LoggedIn;
   const factory AuthState.loggedOut() = _LoggedOut;
   const factory AuthState.forgotPassword(String email) =
       _ForgotPasswordEmailSent;
   const factory AuthState.deletedAccount() = _Deleted;
   const factory AuthState.error(String exception) = _Error;
+  const factory AuthState.appStarted() = _AppStarted;
 }
 
 @freezed
 class AuthEvent with _$AuthEvent {
+  const factory AuthEvent.startApp() = _StartApp;
   const factory AuthEvent.register(
     String email,
     String password,

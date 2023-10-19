@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCoRM9VO3y2kjOaXnwEnxoyUhgkZaE3aCw',
-    appId: '1:229279446684:android:457a6cc9e517d711105f59',
+    appId: '1:229279446684:android:78320cc78550858e105f59',
     messagingSenderId: '229279446684',
     projectId: 'amori-5d70e',
     storageBucket: 'amori-5d70e.appspot.com',
@@ -59,11 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyA-BeKo0n9AcWbFPADMNmY_W79zx76fxy8',
-    appId: '1:229279446684:ios:245b4264eb131ac3105f59',
+    appId: '1:229279446684:ios:72b0f72574ecfcd5105f59',
     messagingSenderId: '229279446684',
     projectId: 'amori-5d70e',
     storageBucket: 'amori-5d70e.appspot.com',
-    iosClientId: '229279446684-pp2hblm7hehgukk75bhegde63bj7plio.apps.googleusercontent.com',
-    iosBundleId: 'com.julama',
+    iosClientId: '229279446684-rr58c39n7egbbto3onvnfujqo8qlo8mg.apps.googleusercontent.com',
+    iosBundleId: 'com.julama.amori',
   );
 }

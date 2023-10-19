@@ -38,36 +38,4 @@ class FirebaseStorageRepository {
       kLogger.e('Could not register and save user to FireStore. $e');
     }
   }
-
-  Future<void> favoriteFeeling(String uid, String dateRecorded) async {
-    try {
-      await _db
-          .collection('users')
-          .doc(uid)
-          .collection('feelings')
-          .doc(dateRecorded)
-          .update({
-        'isFavorite': true,
-      });
-      kLogger.i('Feeling was added to favorites.');
-    } on FirebaseException catch (e) {
-      kLogger.e('Could not favorite feeling. $e');
-    }
-  }
-
-  Future<void> unfavoriteFeeling(String uid, String dateRecorded) async {
-    try {
-      await _db
-          .collection('users')
-          .doc(uid)
-          .collection('feelings')
-          .doc(dateRecorded)
-          .update({
-        'isFavorite': false,
-      });
-      kLogger.i('Feeling was removed from favorites.');
-    } on FirebaseException catch (e) {
-      kLogger.e('Could not unfavorite feeling. $e');
-    }
-  }
 }

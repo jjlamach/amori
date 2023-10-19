@@ -1,9 +1,12 @@
 import 'package:amori/app/auto_route.gr.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
-import 'package:amori/common/assets.dart';
+import 'package:amori/app/screens/signin/widgets/dont_have_an_account_label_view.dart';
+import 'package:amori/app/screens/signin/widgets/email_field_form_view.dart';
+import 'package:amori/app/screens/signin/widgets/forgotten_password_label.dart';
+import 'package:amori/app/screens/signin/widgets/password_form_field_view.dart';
+import 'package:amori/app/screens/signin/widgets/sign_in_label_view.dart';
 import 'package:amori/common/common.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -48,155 +51,24 @@ class _SignInPageState extends State<SignInPage> {
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Sign In',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
+                    const SignInLabelView(),
                     const SizedBox(height: 10.0),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: RichText(
-                        text: TextSpan(
-                          children: [
-                            const TextSpan(
-                              text: "Don't have an account yet?",
-                              style: TextStyle(
-                                color: Color.fromRGBO(0, 0, 0, 1),
-                              ),
-                            ),
-                            TextSpan(
-                              text: ' Register',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelLarge
-                                  ?.copyWith(
-                                    color:
-                                        const Color.fromRGBO(131, 165, 255, 1),
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  setState(() {
-                                    _email.clear();
-                                    _password.clear();
-                                    _formKey.currentState?.reset();
-                                  });
-                                  AutoRouter.of(context).pushNamed('/register');
-                                },
-                            ),
-                          ],
-                        ),
-                      ),
+                    DontHaveAnAccountLabelView(
+                      email: _email,
+                      password: _password,
+                      formKey: _formKey,
                     ),
                     const SizedBox(height: 20.0),
-                    TextFormField(
-                      controller: _email,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Email field required.";
-                        } else if (value.isNotEmpty) {
-                          final isValid = value.isValidEmail();
-                          if (!isValid) {
-                            return "Not a valid email.";
-                          }
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                          borderSide: const BorderSide(
-                            width: 2.0,
-                            color: Color.fromRGBO(172, 196, 254, 1),
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                          borderSide: const BorderSide(
-                            width: 2.0,
-                            color: Color.fromRGBO(172, 196, 254, 1),
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        labelText: "Email",
-                        labelStyle: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                    ),
+                    EmailFieldFormView(email: _email),
                     const SizedBox(height: 20.0),
-                    TextFormField(
-                      obscureText: true,
-                      controller: _password,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Password field required.";
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                          borderSide: const BorderSide(
-                            width: 2.0,
-                            color: Color.fromRGBO(172, 196, 254, 1),
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                          borderSide: const BorderSide(
-                            width: 2.0,
-                            color: Color.fromRGBO(172, 196, 254, 1),
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        labelText: "Password",
-                        labelStyle: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: GestureDetector(
-                        onTap: () => {
-                          AutoRouter.of(context).push(
-                            const ForgottenPasswordRoute(),
-                          ),
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Text(
-                            "Forgotten Password?",
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelLarge
-                                ?.copyWith(
-                                  fontSize: 16,
-                                  color: const Color.fromRGBO(131, 165, 255, 1),
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    PasswordFormFieldView(password: _password),
+                    const ForgottenPasswordLabel(),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                     BlocListener<AuthBloc, AuthState>(
                       listener: (context, state) {
                         state.whenOrNull(
+                          loggedOut: () => AutoRouter.of(context)
+                              .replace(const SignInRoute()),
                           loggedIn: (user) {
                             _email.clear();
                             _password.clear();
@@ -214,6 +86,7 @@ class _SignInPageState extends State<SignInPage> {
                         width: double.infinity,
                         height: 46,
                         child: OutlinedButton(
+                          style: Theme.of(context).outlinedButtonTheme.style,
                           onPressed: () {
                             final isFormValid =
                                 _formKey.currentState?.validate();
@@ -226,15 +99,8 @@ class _SignInPageState extends State<SignInPage> {
                                   );
                             }
                           },
-                          child: Text(
+                          child: const Text(
                             'Sign in',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelLarge
-                                ?.copyWith(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
                           ),
                         ),
                       ),

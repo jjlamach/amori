@@ -16,15 +16,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.read<AuthBloc>().currentUser;
-    return BlocProvider<EmotionCubit>(
-      create: (context) => getIt<EmotionCubit>()
+    final user = context.read<AuthBloc>().user;
+    return BlocProvider<FeelingsCubit>(
+      create: (context) => getIt<FeelingsCubit>()
         ..watchFeelings(
           user?.uid ?? '',
         ),
       child: Scaffold(
         appBar: AppBar(
-          leading: BlocBuilder<EmotionCubit, List<Feeling>>(
+          leading: BlocBuilder<FeelingsCubit, List<Feeling>>(
             builder: (context, state) {
               if (state.isEmpty) {
                 return const SizedBox.shrink();
@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
                 if (feeling) {
                   return IconButton(
                     onPressed: () {
-                      context.read<EmotionCubit>().unfavoriteFeeling(
+                      context.read<FeelingsCubit>().unfavoriteFeeling(
                             user?.uid ?? '',
                             state.first.dateTime,
                           );
@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
                 } else {
                   return IconButton(
                     onPressed: () {
-                      context.read<EmotionCubit>().favoriteFeeling(
+                      context.read<FeelingsCubit>().favoriteFeeling(
                           user?.uid ?? '', state.first.dateTime);
                     },
                     icon: const Icon(Icons.favorite_border, size: 40),
@@ -78,7 +78,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
         body: Center(
-          child: BlocBuilder<EmotionCubit, List<Feeling>>(
+          child: BlocBuilder<FeelingsCubit, List<Feeling>>(
             builder: (context, feelings) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

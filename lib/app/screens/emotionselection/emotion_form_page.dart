@@ -163,14 +163,14 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                               _emotion.text.isNotEmpty &&
                               tagSelected != null) {
                             final uid =
-                                context.read<AuthBloc>().currentUser?.uid ?? '';
+                                context.read<AuthBloc>().user?.uid ?? '';
 
                             /// If this is not null it means the user is gonna add a feeling from a different date
                             /// that is not today
                             if (widget.differentDate != null) {
                               String differentDateId =
                                   '${widget.differentDate?.year}-${widget.differentDate?.month.toString().padLeft(2, '0')}-${widget.differentDate?.day.toString().padLeft(2, '0')}';
-                              getIt<EmotionCubit>().addFeeling(
+                              getIt<FeelingsCubit>().addFeeling(
                                 uid,
                                 Feeling(
                                   feeling: widget.emotion ?? '',
@@ -184,7 +184,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                               String dateId =
                                   '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
 
-                              getIt<EmotionCubit>().addFeeling(
+                              getIt<FeelingsCubit>().addFeeling(
                                 uid,
                                 Feeling(
                                   feeling: widget.emotion ?? '',

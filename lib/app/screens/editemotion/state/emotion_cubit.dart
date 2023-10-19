@@ -6,11 +6,11 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 /// This Cubit subscribes to streams from FireStore and emit states as changes occur
-class EmotionCubit extends Cubit<List<Feeling>> {
+class FeelingsCubit extends Cubit<List<Feeling>> {
   final userCollection = FirebaseFirestore.instance.collection('users');
   StreamSubscription? _feelingsSubscription;
   StreamSubscription? _favoriteStreamSubscription;
-  EmotionCubit() : super([]);
+  FeelingsCubit() : super([]);
 
   void watchFeelings(String userId) async {
     // cancel any existing subscription to the stream before creating a new one
@@ -107,6 +107,12 @@ class EmotionCubit extends Cubit<List<Feeling>> {
       kLogger.e('Feeling does not exist for that date.');
     }
     return null;
+  }
+
+  @override
+  void onChange(Change<List<Feeling>> change) {
+    super.onChange(change);
+    kLogger.i('$change');
   }
 
   @override

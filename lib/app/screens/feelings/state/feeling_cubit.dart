@@ -4,11 +4,11 @@ import 'package:amori/domain/models/feeling/feeling.dart';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class FeelingsCubit extends Cubit<Feeling> {
+class FeelingCubit extends Cubit<Feeling> {
   StreamSubscription? _feelingSubscription;
   final userCollection = FirebaseFirestore.instance.collection('users');
 
-  FeelingsCubit() : super(Feeling());
+  FeelingCubit() : super(Feeling());
 
   void watchFeeling(String userId, String dateTime) async {
     _feelingSubscription?.cancel();

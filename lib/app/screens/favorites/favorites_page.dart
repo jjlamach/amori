@@ -16,8 +16,8 @@ class FavoritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final uid = getIt<AuthBloc>().currentUser?.uid;
-      context.read<EmotionCubit>().watchFavoriteFeelings(uid ?? '');
+      final uid = getIt<AuthBloc>().user?.uid;
+      context.read<FeelingsCubit>().watchFavoriteFeelings(uid ?? '');
     });
 
     return Scaffold(
@@ -46,7 +46,7 @@ class FavoritesPage extends StatelessWidget {
             ),
             const SizedBox(height: 40.0),
             Expanded(
-              child: BlocBuilder<EmotionCubit, List<Feeling>>(
+              child: BlocBuilder<FeelingsCubit, List<Feeling>>(
                 builder: (context, state) {
                   return ListView.separated(
                     separatorBuilder: (context, index) =>

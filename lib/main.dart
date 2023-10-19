@@ -2,7 +2,7 @@ import 'package:amori/app/auto_route.dart';
 import 'package:amori/app/screens/editemotion/state/emotion_cubit.dart';
 import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
 import 'package:amori/app/screens/feelings/state/delete_feeling_cubit.dart';
-import 'package:amori/app/screens/feelings/state/feelings_cubit.dart';
+import 'package:amori/app/screens/feelings/state/feeling_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/dimen.dart';
 import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
@@ -54,8 +54,8 @@ void setUpCubits() {
     AuthBloc(getIt.get()),
   );
   getIt.registerFactory(() => TagCubit());
-  getIt.registerFactory(() => EmotionCubit());
   getIt.registerFactory(() => FeelingsCubit());
+  getIt.registerFactory(() => FeelingCubit());
 }
 
 class AmoriApp extends StatelessWidget {
@@ -67,11 +67,12 @@ class AmoriApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AuthBloc>(create: (_) => getIt<AuthBloc>()),
+        BlocProvider<AuthBloc>(
+            create: (_) => getIt<AuthBloc>()..add(const AuthEvent.startApp())),
         BlocProvider<TagCubit>(create: (_) => getIt<TagCubit>()),
-        BlocProvider<EmotionCubit>(create: (_) => getIt<EmotionCubit>()),
-        BlocProvider<FeelingsCubit>(
-          create: (context) => getIt<FeelingsCubit>(),
+        BlocProvider<FeelingsCubit>(create: (_) => getIt<FeelingsCubit>()),
+        BlocProvider<FeelingCubit>(
+          create: (context) => getIt<FeelingCubit>(),
         ),
         BlocProvider<DeletionCubit>(create: (context) => DeletionCubit()),
       ],
@@ -84,29 +85,43 @@ class AmoriApp extends StatelessWidget {
             color: Colors.transparent,
             surfaceTintColor: Colors.transparent,
           ),
-          outlinedButtonTheme: OutlinedButtonThemeData(
+          outlinedButtonTheme: const OutlinedButtonThemeData(
             style: ButtonStyle(
-              backgroundColor: const MaterialStatePropertyAll(
-                Color.fromRGBO(172, 196, 254, 1),
-              ),
-              side: const MaterialStatePropertyAll(
-                BorderSide(
-                  color: Color.fromRGBO(172, 196, 254, 1),
-                  width: 2.0,
+              padding: MaterialStatePropertyAll(
+                EdgeInsets.symmetric(
+                  horizontal: 100,
                 ),
               ),
-              shape: MaterialStatePropertyAll(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25.0),
+              foregroundColor: MaterialStatePropertyAll(Colors.white),
+              textStyle: MaterialStatePropertyAll(
+                TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              backgroundColor: MaterialStatePropertyAll(
+                Color(0xffACC4FE),
+              ),
+              side: MaterialStatePropertyAll(
+                BorderSide(
+                  color: Color(0xffACC4FE),
+                  width: 2.0,
                 ),
               ),
             ),
           ),
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromRGBO(131, 165, 255, 1),
+          colorScheme: const ColorScheme(
             brightness: Brightness.light,
-            background: Colors.white,
-            error: Colors.red,
+            primary: Color(0xffACC4FE),
+            onPrimary: Colors.white,
+            secondary: Color(0xff83A5FF),
+            onSecondary: Colors.white,
+            error: Colors.redAccent,
+            onError: Colors.black,
+            background: Color(0xffFFFFFF),
+            onBackground: Colors.black,
+            surface: Color(0xffFFFFFF),
+            onSurface: Colors.black,
           ),
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             selectedIconTheme: IconThemeData(

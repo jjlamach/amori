@@ -1,5 +1,5 @@
 import 'package:amori/app/auto_route.gr.dart';
-import 'package:amori/app/screens/feelings/state/feelings_cubit.dart';
+import 'package:amori/app/screens/feelings/state/feeling_cubit.dart';
 import 'package:amori/app/screens/feelings/widgets/calendar_feeling_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/domain/models/feeling/feeling.dart';
@@ -13,8 +13,8 @@ class FeelingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<FeelingsCubit>();
-    final uid = context.read<AuthBloc>().currentUser?.uid ?? '';
+    final cubit = context.read<FeelingCubit>();
+    final uid = context.read<AuthBloc>().user?.uid ?? '';
     var differentDate;
 
     /// This will fetch the feeling data for the initial date once the widget is built.
@@ -39,7 +39,7 @@ class FeelingsPage extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: BlocBuilder<FeelingsCubit, Feeling>(
+            child: BlocBuilder<FeelingCubit, Feeling>(
               builder: (context, state) {
                 DateTime now = DateTime.now();
                 DateTime firstDate = DateTime(now.year, 1, 1);

@@ -117,8 +117,7 @@ class CalendarFeelingView extends StatelessWidget {
                     TextButton(
                       onPressed: () async {
                         AutoRouter.of(dialogContext).pop(); // Close the dialog
-                        final uid =
-                            context.read<AuthBloc>().currentUser?.uid ?? '';
+                        final uid = context.read<AuthBloc>().user?.uid ?? '';
                         context
                             .read<DeletionCubit>()
                             .deleteFeeling(uid, feeling.dateTime);
