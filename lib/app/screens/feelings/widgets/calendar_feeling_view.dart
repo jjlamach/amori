@@ -37,12 +37,7 @@ class CalendarFeelingView extends StatelessWidget {
                   'On this day you were feeling',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontWeight: FontWeight.w700,
-                        color: const Color.fromRGBO(
-                          131,
-                          165,
-                          255,
-                          1,
-                        ),
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                 ),
                 const SizedBox(height: 10.0),
@@ -58,12 +53,7 @@ class CalendarFeelingView extends StatelessWidget {
         Text(
           'Here’s what happened',
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: const Color.fromRGBO(
-                  131,
-                  165,
-                  255,
-                  1,
-                ),
+                color: Theme.of(context).colorScheme.secondary,
                 fontWeight: FontWeight.w700,
               ),
         ),

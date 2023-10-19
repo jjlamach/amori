@@ -1,13 +1,17 @@
+import 'dart:async';
+
+import 'package:amori/domain/firebasecloudrepository/firebase_cloud_storage.dart';
 import 'package:amori/domain/models/user/amori_user.dart';
 import 'package:amori/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class FirebaseStorageRepository {
-  final _db = FirebaseFirestore.instance;
+class FirebaseCloudStorageImpl extends FirebaseCloudStorage {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<AmoriUser?> getUserFromFireStore(String uid) async {
+  @override
+  Future<AmoriUser?> getUser(String uid) async {
     try {
-      CollectionReference users = _db.collection('users');
+      CollectionReference users = _firestore.collection('users');
       DocumentReference userDoc = users.doc(uid);
 
       DocumentSnapshot snapshot = await userDoc.get();
@@ -30,9 +34,10 @@ class FirebaseStorageRepository {
     return null;
   }
 
+  @override
   Future<void> saveUserToFireStore(AmoriUser user) async {
     try {
-      await _db.collection('users').doc(user.uid).set(user.toJson());
+      await _firestore.collection('users').doc(user.uid).set(user.toJson());
       kLogger.i('User saved successfully');
     } on Exception catch (e) {
       kLogger.e('Could not register and save user to FireStore. $e');

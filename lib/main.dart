@@ -3,9 +3,11 @@ import 'package:amori/app/screens/editemotion/state/emotion_cubit.dart';
 import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
 import 'package:amori/app/screens/feelings/state/delete_feeling_cubit.dart';
 import 'package:amori/app/screens/feelings/state/feeling_cubit.dart';
+import 'package:amori/app/screens/home/state/home_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/dimen.dart';
-import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
+import 'package:amori/domain/firebaseauthrepository/firebase_storage_repository_impl.dart';
+import 'package:amori/domain/firebasecloudrepository/firebase_cloud_storage_impl.dart';
 import 'package:amori/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -43,8 +45,11 @@ void setUpAppDependencies() {
 }
 
 void setUpServices() {
-  getIt.registerSingleton<FirebaseStorageRepository>(
-    FirebaseStorageRepository(),
+  getIt.registerSingleton<FirebaseCloudStorageImpl>(
+    FirebaseCloudStorageImpl(),
+  );
+  getIt.registerSingleton<FirebaseAuthRepositoryImpl>(
+    FirebaseAuthRepositoryImpl(),
   );
   getIt.registerFactory(() => TextEditingController());
 }
@@ -56,6 +61,8 @@ void setUpCubits() {
   getIt.registerFactory(() => TagCubit());
   getIt.registerFactory(() => FeelingsCubit());
   getIt.registerFactory(() => FeelingCubit());
+  getIt.registerFactory(() => HomeCubit(getIt.get()));
+  getIt.registerFactory(() => DeletionCubit());
 }
 
 class AmoriApp extends StatelessWidget {
@@ -68,13 +75,12 @@ class AmoriApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthBloc>(
-            create: (_) => getIt<AuthBloc>()..add(const AuthEvent.startApp())),
-        BlocProvider<TagCubit>(create: (_) => getIt<TagCubit>()),
-        BlocProvider<FeelingsCubit>(create: (_) => getIt<FeelingsCubit>()),
-        BlocProvider<FeelingCubit>(
-          create: (context) => getIt<FeelingCubit>(),
+          create: (_) => getIt<AuthBloc>()
+            ..add(
+              const AuthEvent.startApp(),
+            ),
         ),
-        BlocProvider<DeletionCubit>(create: (context) => DeletionCubit()),
+        BlocProvider<TagCubit>(create: (_) => getIt<TagCubit>()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

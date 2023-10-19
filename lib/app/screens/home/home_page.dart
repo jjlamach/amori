@@ -1,8 +1,10 @@
 import 'package:amori/app/auto_route.gr.dart';
 import 'package:amori/app/screens/editemotion/state/emotion_cubit.dart';
+import 'package:amori/app/screens/home/state/home_cubit.dart';
 import 'package:amori/app/screens/home/widgets/default_emotion_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/domain/models/feeling/feeling.dart';
+import 'package:amori/domain/models/user/amori_user.dart';
 import 'package:amori/main.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -17,11 +19,17 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = context.read<AuthBloc>().user;
-    return BlocProvider<FeelingsCubit>(
-      create: (context) => getIt<FeelingsCubit>()
-        ..watchFeelings(
-          user?.uid ?? '',
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              getIt.get<FeelingsCubit>()..watchFeelings(user?.uid ?? ''),
         ),
+        BlocProvider(
+          create: (context) =>
+              getIt.get<HomeCubit>()..getUsername(user?.uid ?? ''),
+        ),
+      ],
       child: Scaffold(
         appBar: AppBar(
           leading: BlocBuilder<FeelingsCubit, List<Feeling>>(
@@ -84,12 +92,15 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-                  Text(
-                    'Hello, ${user?.displayName}',
-                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                          fontSize: 40.0,
-                          fontWeight: FontWeight.w700,
-                        ),
+                  BlocBuilder<HomeCubit, AmoriUser>(
+                    builder: (context, state) => Text(
+                      'Hello, ${state.displayName}',
+                      style:
+                          Theme.of(context).textTheme.headlineLarge?.copyWith(
+                                fontSize: 40.0,
+                                fontWeight: FontWeight.w700,
+                              ),
+                    ),
                   ),
                   const SizedBox(height: 20.0),
                   feelings.isEmpty

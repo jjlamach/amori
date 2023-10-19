@@ -15,134 +15,133 @@ class FavoritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final uid = getIt<AuthBloc>().user?.uid;
-      context.read<FeelingsCubit>().watchFavoriteFeelings(uid ?? '');
-    });
-
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        title: const Text(
-          'Favorites',
-          style: TextStyle(
-            fontSize: 35,
-            fontWeight: FontWeight.w700,
-            color: Color.fromRGBO(0, 0, 0, 1),
+    final uid = getIt<AuthBloc>().user?.uid;
+    return BlocProvider(
+      create: (context) => getIt.get<FeelingsCubit>()..watchFeelings(uid ?? ''),
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: false,
+          title: const Text(
+            'Favorites',
+            style: TextStyle(
+              fontSize: 35,
+              fontWeight: FontWeight.w700,
+              color: Color.fromRGBO(0, 0, 0, 1),
+            ),
           ),
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Click on a day to relive your best moments',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
+        body: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Click on a day to relive your best moments',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-            ),
-            const SizedBox(height: 40.0),
-            Expanded(
-              child: BlocBuilder<FeelingsCubit, List<Feeling>>(
-                builder: (context, state) {
-                  return ListView.separated(
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(height: 20.0),
-                    shrinkWrap: true,
-                    itemCount: state.length,
-                    itemBuilder: (context, index) {
-                      final date = state[index].dateTime;
+              const SizedBox(height: 40.0),
+              Expanded(
+                child: BlocBuilder<FeelingsCubit, List<Feeling>>(
+                  builder: (context, state) {
+                    return ListView.separated(
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 20.0),
+                      shrinkWrap: true,
+                      itemCount: state.length,
+                      itemBuilder: (context, index) {
+                        final date = state[index].dateTime;
 
-                      /// From UTC to LocalDate
-                      DateTime toDate = DateTime.parse(date).toLocal();
-                      final formattedDate =
-                          DateFormat('MMMM d, y').format(toDate);
-                      if (index % 2 == 0) {
-                        return GestureDetector(
-                          onTap: () => AutoRouter.of(context)
-                              .push(SelectedFav(feeling: state[index])),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: const Color.fromRGBO(255, 252, 201, 1),
-                              borderRadius: BorderRadius.circular(
-                                40,
+                        /// From UTC to LocalDate
+                        DateTime toDate = DateTime.parse(date).toLocal();
+                        final formattedDate =
+                            DateFormat('MMMM d, y').format(toDate);
+                        if (index % 2 == 0) {
+                          return GestureDetector(
+                            onTap: () => AutoRouter.of(context)
+                                .push(SelectedFav(feeling: state[index])),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: const Color.fromRGBO(255, 252, 201, 1),
+                                borderRadius: BorderRadius.circular(
+                                  40,
+                                ),
+                              ),
+                              height: 59,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      formattedDate,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelLarge
+                                          ?.copyWith(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                    ),
+                                    SvgPicture.asset(
+                                      state[index].feeling,
+                                      width: 50,
+                                      height: 49,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                            height: 59,
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    formattedDate,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelLarge
-                                        ?.copyWith(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                  ),
-                                  SvgPicture.asset(
-                                    state[index].feeling,
-                                    width: 50,
-                                    height: 49,
-                                  ),
-                                ],
+                          );
+                        } else {
+                          return GestureDetector(
+                            onTap: () => AutoRouter.of(context)
+                                .push(SelectedFav(feeling: state[index])),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: const Color.fromRGBO(226, 235, 255, 1),
+                                borderRadius: BorderRadius.circular(
+                                  40,
+                                ),
+                              ),
+                              height: 59,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      formattedDate,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelLarge
+                                          ?.copyWith(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                    ),
+                                    SvgPicture.asset(
+                                      state[index].feeling,
+                                      width: 50,
+                                      height: 49,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      } else {
-                        return GestureDetector(
-                          onTap: () => AutoRouter.of(context)
-                              .push(SelectedFav(feeling: state[index])),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: const Color.fromRGBO(226, 235, 255, 1),
-                              borderRadius: BorderRadius.circular(
-                                40,
-                              ),
-                            ),
-                            height: 59,
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    formattedDate,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelLarge
-                                        ?.copyWith(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                  ),
-                                  SvgPicture.asset(
-                                    state[index].feeling,
-                                    width: 50,
-                                    height: 49,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                  );
-                },
+                          );
+                        }
+                      },
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

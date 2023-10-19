@@ -1,4 +1,4 @@
-import 'package:amori/domain/firebasestorage/firebase_storage_helper.dart';
+import 'package:amori/domain/firebasecloudrepository/firebase_cloud_storage_impl.dart';
 import 'package:amori/domain/models/user/amori_user.dart';
 import 'package:amori/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,7 +9,8 @@ part 'auth_bloc.freezed.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   User? user;
-  final FirebaseStorageRepository _repository;
+  final FirebaseCloudStorageImpl _repository;
+
   AuthBloc(this._repository) : super(const _Initial()) {
     on<AuthEvent>(
       (event, emit) async {
@@ -106,6 +107,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         );
       },
     );
+  }
+
+  Future<AmoriUser?> getUser() async {
+    return await _repository.getUser(user?.uid ?? '');
   }
 }
 
