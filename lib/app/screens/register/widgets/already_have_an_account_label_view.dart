@@ -1,3 +1,4 @@
+import 'package:amori/common/strings.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class AlreadyHaveAnAccountLabelView extends StatelessWidget {
         text: TextSpan(
           children: [
             const TextSpan(
-              text: "Already have an account?",
+              text: Strings.alreadyHaveAnAccount,
               style: TextStyle(
                 color: Color.fromRGBO(0, 0, 0, 1),
               ),

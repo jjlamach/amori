@@ -1,3 +1,4 @@
+import 'package:amori/common/strings.dart';
 import 'package:flutter/material.dart';
 
 class PasswordFieldView extends StatelessWidget {
@@ -15,7 +16,7 @@ class PasswordFieldView extends StatelessWidget {
       controller: _password,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return "Password field required.";
+          return Strings.passwordFieldRequired;
         }
         return null;
       },
@@ -37,7 +38,7 @@ class PasswordFieldView extends StatelessWidget {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        labelText: "Password",
+        labelText: Strings.password,
         labelStyle: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w400,

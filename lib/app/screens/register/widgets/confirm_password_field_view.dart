@@ -1,3 +1,4 @@
+import 'package:amori/common/strings.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmPasswordFieldView extends StatelessWidget {
@@ -18,10 +19,10 @@ class ConfirmPasswordFieldView extends StatelessWidget {
       controller: _confirmPassword,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return "Confirm Password field required.";
+          return Strings.confirmPasswordField;
         }
         if (value.isNotEmpty && value != _password.text) {
-          return "Password must match.";
+          return Strings.passwordMustMatch;
         }
         return null;
       },
@@ -43,7 +44,7 @@ class ConfirmPasswordFieldView extends StatelessWidget {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        labelText: "Confirm Password",
+        labelText: Strings.confirmPassword,
         labelStyle: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w400,

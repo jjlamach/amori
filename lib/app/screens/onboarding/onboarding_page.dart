@@ -1,4 +1,5 @@
 import 'package:amori/app/auto_route.gr.dart';
+import 'package:amori/common/assets.dart';
 import 'package:amori/common/strings.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +61,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               ),
               Flexible(
                 flex: 3,
-                child: SvgPicture.asset('assets/husky.svg'),
+                child: SvgPicture.asset(Assets.husky),
               ),
             ],
           ),

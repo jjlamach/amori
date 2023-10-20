@@ -7,6 +7,12 @@ class Assets {
     'assets/angry.svg',
     'assets/normal.svg',
   ];
+
+  static const String iconHeart = 'assets/icon _heart_.svg';
+  static const String iconMic = 'assets/icon_microphone.svg';
+  static const String iconPencil = 'assets/icon _pencil_.svg';
+  static const String trashIcon = 'assets/trash_icon.png';
+  static const String husky = 'assets/husky.svg';
 }
 
 extension EmailValidation on String {

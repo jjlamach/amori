@@ -1,3 +1,4 @@
+import 'package:amori/common/strings.dart';
 import 'package:flutter/material.dart';
 
 class UsernameFieldView extends StatelessWidget {
@@ -14,7 +15,7 @@ class UsernameFieldView extends StatelessWidget {
       controller: _username,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return "Username field required.";
+          return Strings.usernameRequired;
         }
         return null;
       },
@@ -36,7 +37,7 @@ class UsernameFieldView extends StatelessWidget {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        labelText: "Username",
+        labelText: Strings.username,
         labelStyle: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w400,

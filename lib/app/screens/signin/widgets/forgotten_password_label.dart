@@ -1,4 +1,5 @@
 import 'package:amori/app/auto_route.gr.dart';
+import 'package:amori/common/strings.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class ForgottenPasswordLabel extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Text(
-            "Forgotten Password?",
+            Strings.forgottenPassword,
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   fontSize: 16,
                   color: Theme.of(context).colorScheme.secondary,

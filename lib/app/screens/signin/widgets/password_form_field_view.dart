@@ -1,3 +1,4 @@
+import 'package:amori/common/strings.dart';
 import 'package:flutter/material.dart';
 
 class PasswordFormFieldView extends StatelessWidget {
@@ -15,7 +16,7 @@ class PasswordFormFieldView extends StatelessWidget {
       controller: _password,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return "Password field required.";
+          return Strings.passwordFieldRequired;
         }
         return null;
       },
@@ -23,7 +24,7 @@ class PasswordFormFieldView extends StatelessWidget {
         focusedBorder: Theme.of(context).inputDecorationTheme.focusedBorder,
         enabledBorder: Theme.of(context).inputDecorationTheme.enabledBorder,
         border: Theme.of(context).inputDecorationTheme.border,
-        labelText: "Password",
+        labelText: Strings.password,
         labelStyle: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w400,

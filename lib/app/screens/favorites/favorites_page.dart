@@ -1,6 +1,7 @@
 import 'package:amori/app/auto_route.gr.dart';
 import 'package:amori/app/screens/editemotion/state/emotion_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
+import 'package:amori/common/strings.dart';
 import 'package:amori/domain/models/feeling/feeling.dart';
 import 'package:amori/main.dart';
 import 'package:auto_route/auto_route.dart';
@@ -23,7 +24,7 @@ class FavoritesPage extends StatelessWidget {
         appBar: AppBar(
           centerTitle: false,
           title: const Text(
-            'Favorites',
+            Strings.favorites,
             style: TextStyle(
               fontSize: 35,
               fontWeight: FontWeight.w700,
@@ -37,7 +38,7 @@ class FavoritesPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Click on a day to relive your best moments',
+                Strings.clickOnAdayToRelieve,
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w400,

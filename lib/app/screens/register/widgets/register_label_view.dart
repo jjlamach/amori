@@ -1,3 +1,4 @@
+import 'package:amori/common/strings.dart';
 import 'package:flutter/material.dart';
 
 class RegisterLabelView extends StatelessWidget {
@@ -8,7 +9,7 @@ class RegisterLabelView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Register',
+      Strings.register,
       style: Theme.of(context).textTheme.labelLarge?.copyWith(
             color: Colors.white,
             fontSize: 20,

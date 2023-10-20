@@ -4,7 +4,9 @@ import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
 import 'package:amori/app/screens/emotionselection/widgets/emotion_field_view.dart';
 import 'package:amori/app/screens/emotionselection/widgets/tags_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
+import 'package:amori/common/assets.dart';
 import 'package:amori/common/common.dart';
+import 'package:amori/common/strings.dart';
 import 'package:amori/domain/models/feeling/feeling.dart';
 import 'package:amori/main.dart';
 import 'package:auto_route/auto_route.dart';
@@ -67,7 +69,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                   icon: const Icon(Icons.arrow_back_ios),
                 ),
                 title: const Text(
-                  'What is making you?',
+                  Strings.whatIsMakingYou,
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w400,
@@ -107,7 +109,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                       child: Row(
                         children: [
                           Text(
-                            'Write it out',
+                            Strings.writeItOut,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleSmall
@@ -119,7 +121,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                                 ),
                           ),
                           const SizedBox(width: 10.0),
-                          SvgPicture.asset('lib/assets/icon _pencil_.svg'),
+                          SvgPicture.asset(Assets.iconPencil),
                         ],
                       ),
                     ),
@@ -133,7 +135,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0, bottom: 20.0),
                         child: Text(
-                          'Label it',
+                          Strings.labelIt,
                           style: Theme.of(context)
                               .textTheme
                               .titleSmall
@@ -203,7 +205,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                               );
                             }
                             ScaffoldMessenger.of(context).showSnackBar(
-                              Common.showAppSnackBar("Feeling recorded"),
+                              Common.showAppSnackBar(Strings.feelingRecorded),
                             );
                             Future.delayed(const Duration(seconds: 1)).then(
                               (value) {
@@ -219,7 +221,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                           }
                         },
                         child: const Text(
-                          'Save',
+                          Strings.save,
                         ),
                       ),
                     ),

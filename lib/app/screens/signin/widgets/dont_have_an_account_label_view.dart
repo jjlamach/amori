@@ -1,3 +1,4 @@
+import 'package:amori/common/strings.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -20,13 +21,13 @@ class DontHaveAnAccountLabelView extends StatelessWidget {
         text: TextSpan(
           children: [
             const TextSpan(
-              text: "Don't have an account yet?",
+              text: Strings.dontHaveAnAccountYet,
               style: TextStyle(
                 color: Color.fromRGBO(0, 0, 0, 1),
               ),
             ),
             TextSpan(
-              text: ' Register',
+              text: ' ${Strings.register}',
               style: Theme.of(context).textTheme.labelLarge?.copyWith(
                     color: Theme.of(context).colorScheme.secondary,
                     fontWeight: FontWeight.bold,

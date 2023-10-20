@@ -1,4 +1,5 @@
 import 'package:amori/app/auto_route.gr.dart';
+import 'package:amori/common/strings.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -21,15 +22,15 @@ class BottomNavigationBarPage extends StatelessWidget {
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.favorite_border),
-              label: "Feelings",
+              label: Strings.feelings,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: "Home",
+              label: Strings.home,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.mood),
-              label: "Favorites",
+              label: Strings.favorites,
             ),
           ],
         );

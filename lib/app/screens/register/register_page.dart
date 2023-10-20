@@ -5,6 +5,7 @@ import 'package:amori/app/screens/register/widgets/password_field_view.dart';
 import 'package:amori/app/screens/register/widgets/username_field_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/common.dart';
+import 'package:amori/common/strings.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,7 +60,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Register',
+                        Strings.register,
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w400,
@@ -121,7 +122,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               _username.clear();
                             }
                           },
-                          child: const Text("Register"),
+                          child: const Text(Strings.register),
                         ),
                       ),
                     ),

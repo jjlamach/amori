@@ -6,6 +6,7 @@ import 'package:amori/app/screens/signin/widgets/forgotten_password_label.dart';
 import 'package:amori/app/screens/signin/widgets/password_form_field_view.dart';
 import 'package:amori/app/screens/signin/widgets/sign_in_label_view.dart';
 import 'package:amori/common/common.dart';
+import 'package:amori/common/strings.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -72,7 +73,7 @@ class _SignInPageState extends State<SignInPage> {
                           registered: (uid) =>
                               AutoRouter.of(context).replaceAll(
                             [
-                              BottomNavigationBarRoute(),
+                              const BottomNavigationBarRoute(),
                             ],
                           ),
                           loggedIn: (user) {
@@ -106,7 +107,7 @@ class _SignInPageState extends State<SignInPage> {
                             }
                           },
                           child: const Text(
-                            'Sign in',
+                            Strings.signIn,
                           ),
                         ),
                       ),

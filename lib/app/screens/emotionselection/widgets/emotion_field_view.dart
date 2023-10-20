@@ -1,5 +1,6 @@
 import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
 import 'package:amori/common/dimen.dart';
+import 'package:amori/common/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,10 +39,10 @@ class EmotionFieldView extends StatelessWidget {
                       others: (tagName, selected) => tagName,
                     );
             if (value == null || value.isEmpty) {
-              return "Describe how you felt today.";
+              return Strings.describeHowYouFeltToday;
             }
             if (selectedTag == null) {
-              return "Select a tag for your feeling.";
+              return Strings.selectAtagForYourFeeling;
             }
             return null;
           },

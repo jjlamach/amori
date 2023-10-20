@@ -3,6 +3,7 @@ import 'package:amori/app/screens/feelings/state/delete_feeling_cubit.dart';
 import 'package:amori/app/screens/feelings/state/feeling_cubit.dart';
 import 'package:amori/app/screens/feelings/widgets/calendar_feeling_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
+import 'package:amori/common/strings.dart';
 import 'package:amori/domain/models/feeling/feeling.dart';
 import 'package:amori/main.dart';
 import 'package:auto_route/auto_route.dart';
@@ -38,7 +39,7 @@ class FeelingsPage extends StatelessWidget {
             const SliverAppBar(
               centerTitle: false,
               title: Text(
-                'Feelings',
+                Strings.feelings,
                 style: TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.w700,
@@ -81,24 +82,24 @@ class FeelingsPage extends StatelessWidget {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        'Nope. Nothing to see here.',
+                                        Strings.nothingToSeeHere,
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyLarge
                                             ?.copyWith(
                                               fontWeight: FontWeight.w700,
-                                              color: const Color.fromRGBO(
-                                                131,
-                                                165,
-                                                255,
-                                                1,
-                                              ),
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary,
                                             ),
                                       ),
                                     ),
                                   ),
                                   const SizedBox(height: 20.0),
                                   OutlinedButton(
+                                    style: Theme.of(context)
+                                        .outlinedButtonTheme
+                                        .style,
                                     onPressed: () {
                                       AutoRouter.of(context).push(
                                         SelectNewEmotionView(
@@ -106,14 +107,8 @@ class FeelingsPage extends StatelessWidget {
                                         ),
                                       );
                                     },
-                                    child: Text(
-                                      'Add one',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelLarge
-                                          ?.copyWith(
-                                            color: Colors.white,
-                                          ),
+                                    child: const Text(
+                                      Strings.addOne,
                                     ),
                                   ),
                                 ],

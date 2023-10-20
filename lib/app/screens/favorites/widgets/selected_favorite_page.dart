@@ -1,4 +1,5 @@
 import 'package:amori/common/favorite_label_view.dart';
+import 'package:amori/common/strings.dart';
 import 'package:amori/common/tag_label_view.dart';
 import 'package:amori/domain/models/feeling/feeling.dart';
 import 'package:auto_route/auto_route.dart';
@@ -55,7 +56,7 @@ class SelectedFavoritePage extends StatelessWidget {
                     ),
                     const SizedBox(height: 10.0),
                     Text(
-                      'On this day you were feeling:',
+                      Strings.onThisDayYouWereFeeling2,
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             color: const Color.fromRGBO(131, 165, 255, 1),
                             fontSize: 20,
@@ -74,7 +75,7 @@ class SelectedFavoritePage extends StatelessWidget {
               children: [
                 const SizedBox(height: 10.0),
                 Text(
-                  'Here is what happened',
+                  Strings.whatHappened,
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         color: const Color.fromRGBO(131, 165, 255, 1),
                         fontWeight: FontWeight.w700,

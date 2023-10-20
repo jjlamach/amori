@@ -1,3 +1,4 @@
+import 'package:amori/common/strings.dart';
 import 'package:flutter/material.dart';
 
 class SignInLabelView extends StatelessWidget {
@@ -10,7 +11,7 @@ class SignInLabelView extends StatelessWidget {
     return const Align(
       alignment: Alignment.centerLeft,
       child: Text(
-        'Sign In',
+        Strings.signIn,
         style: TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.w400,

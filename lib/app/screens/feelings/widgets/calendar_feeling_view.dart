@@ -1,6 +1,8 @@
 import 'package:amori/app/screens/feelings/state/delete_feeling_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
+import 'package:amori/common/assets.dart';
 import 'package:amori/common/favorite_label_view.dart';
+import 'package:amori/common/strings.dart';
 import 'package:amori/common/tag_label_view.dart';
 import 'package:amori/domain/models/feeling/feeling.dart';
 import 'package:auto_route/auto_route.dart';
@@ -34,7 +36,7 @@ class CalendarFeelingView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'On this day you were feeling',
+                  Strings.onThisDay,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: Theme.of(context).colorScheme.secondary,
@@ -51,7 +53,7 @@ class CalendarFeelingView extends StatelessWidget {
         ),
         const SizedBox(height: 10.0),
         Text(
-          'Here’s what happened',
+          Strings.whatHappened,
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 color: Theme.of(context).colorScheme.secondary,
                 fontWeight: FontWeight.w700,
@@ -100,9 +102,10 @@ class CalendarFeelingView extends StatelessWidget {
               onTap: () => showDialog(
                 context: context,
                 builder: (dialogContext) => AlertDialog(
-                  title: const Text('Delete Feeling'),
+                  title: const Text(Strings.deleteFeeling),
                   content: const Text(
-                      'Are you sure you want to delete this feeling?'),
+                    Strings.areYouSureYouWantToDelete,
+                  ),
                   actions: [
                     TextButton(
                       onPressed: () async {
@@ -113,14 +116,14 @@ class CalendarFeelingView extends StatelessWidget {
                             .deleteFeeling(uid, feeling.dateTime);
                       },
                       child: const Text(
-                        'Yes',
+                        Strings.yes,
                         style: TextStyle(fontWeight: FontWeight.w700),
                       ),
                     ),
                     TextButton(
                       onPressed: () => AutoRouter.of(dialogContext)
                           .pop(), // Close the dialog
-                      child: const Text('No'),
+                      child: const Text(Strings.no),
                     ),
                   ],
                 ),
@@ -133,7 +136,7 @@ class CalendarFeelingView extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Image.asset(
-                    'lib/assets/trash_icon.png',
+                    Assets.trashIcon,
                     width: 31,
                     height: 34,
                   ),

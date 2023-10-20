@@ -3,6 +3,7 @@ import 'package:amori/app/screens/editemotion/state/emotion_cubit.dart';
 import 'package:amori/app/screens/home/state/home_cubit.dart';
 import 'package:amori/app/screens/home/widgets/default_emotion_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
+import 'package:amori/common/strings.dart';
 import 'package:amori/domain/models/feeling/feeling.dart';
 import 'package:amori/domain/models/user/amori_user.dart';
 import 'package:amori/main.dart';
@@ -28,131 +29,125 @@ class HomePage extends StatelessWidget {
           create: (context) => getIt.get<HomeCubit>()..getUsername(uid),
         ),
       ],
-      child: Scaffold(
-        appBar: AppBar(
-          leading: BlocBuilder<FeelingsCubit, List<Feeling>>(
-            builder: (context, state) {
-              if (state.isEmpty) {
-                return const SizedBox.shrink();
-              } else {
-                final feeling =
-                    state.isNotEmpty ? state.first.isFavorite : false;
-                if (feeling) {
-                  return IconButton(
-                    onPressed: () {
-                      context.read<FeelingsCubit>().unfavoriteFeeling(
-                            uid,
-                            state.first.dateTime,
-                          );
-                    },
-                    icon:
-                        const Icon(Icons.favorite, color: Colors.red, size: 40),
-                  );
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Scaffold(
+          appBar: AppBar(
+            leading: BlocBuilder<FeelingsCubit, List<Feeling>>(
+              builder: (context, state) {
+                if (state.isEmpty) {
+                  return const SizedBox.shrink();
                 } else {
-                  return IconButton(
-                    onPressed: () {
-                      context.read<FeelingsCubit>().favoriteFeeling(
-                            uid,
-                            state.first.dateTime,
-                          );
-                    },
-                    icon: const Icon(Icons.favorite_border, size: 40),
-                  );
+                  final feeling =
+                      state.isNotEmpty ? state.first.isFavorite : false;
+                  if (feeling) {
+                    return IconButton(
+                      onPressed: () {
+                        context.read<FeelingsCubit>().unfavoriteFeeling(
+                              uid,
+                              state.first.dateTime,
+                            );
+                      },
+                      icon: const Icon(Icons.favorite,
+                          color: Colors.red, size: 40),
+                    );
+                  } else {
+                    return IconButton(
+                      onPressed: () {
+                        context.read<FeelingsCubit>().favoriteFeeling(
+                              uid,
+                              state.first.dateTime,
+                            );
+                      },
+                      icon: const Icon(Icons.favorite_border, size: 40),
+                    );
+                  }
                 }
-              }
-            },
-          ),
-          actions: [
-            BlocListener<AuthBloc, AuthState>(
-              listener: (context, state) {
-                state.whenOrNull(
-                  loggedOut: () =>
-                      AutoRouter.of(context).replace(const SignInRoute()),
-                );
               },
-              child: TextButton(
-                onPressed: () {
-                  context.read<AuthBloc>().add(const AuthEvent.logOut());
+            ),
+            actions: [
+              BlocListener<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  state.whenOrNull(
+                    loggedOut: () =>
+                        AutoRouter.of(context).replace(const SignInRoute()),
+                  );
                 },
-                child: Text(
-                  'Log Out',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontSize: 20,
-                        color: Theme.of(context).colorScheme.secondary,
-                        fontWeight: FontWeight.bold,
-                      ),
+                child: TextButton(
+                  onPressed: () {
+                    context.read<AuthBloc>().add(const AuthEvent.logOut());
+                  },
+                  child: Text(
+                    Strings.logOut,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.secondary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-        body: Center(
-          child: BlocBuilder<FeelingsCubit, List<Feeling>>(
-            builder: (context, feelings) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-                  BlocBuilder<HomeCubit, AmoriUser>(
-                    builder: (context, state) => Text(
-                      'Hello, ${state.displayName}',
-                      style:
-                          Theme.of(context).textTheme.headlineLarge?.copyWith(
-                                fontSize: 40.0,
-                                fontWeight: FontWeight.w700,
-                              ),
+            ],
+          ),
+          body: Center(
+            child: BlocBuilder<FeelingsCubit, List<Feeling>>(
+              builder: (context, feelings) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+                    BlocBuilder<HomeCubit, AmoriUser>(
+                      builder: (context, state) => Text(
+                        '${Strings.hello}${state.displayName}',
+                        style:
+                            Theme.of(context).textTheme.headlineLarge?.copyWith(
+                                  fontSize: 40.0,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 20.0),
-                  feelings.isEmpty
-                      ? Column(
-                          children: [
-                            Text(
-                              'How are we feeling today?',
-                              style: Theme.of(context).textTheme.headlineMedium,
-                            ),
-                            const SizedBox(height: 20.0),
-                            const DefaultEmotionView(),
-                          ],
-                        )
-                      : Column(
-                          children: [
-                            _checkLatestFeeling(feelings, context),
-                            SvgPicture.asset(
-                              feelings.first.feeling,
-                              height: 207,
-                            ),
-                            SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.1),
-                            OutlinedButton(
-                              onPressed: () {
-                                AutoRouter.of(context).push(
-                                  SelectNewEmotionView(feeling: feelings.first),
-                                );
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 20.0,
-                                  vertical: 1.0,
-                                ),
-                                child: Text(
-                                  'Edit',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge
-                                      ?.copyWith(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                ),
+                    const SizedBox(height: 20.0),
+                    feelings.isEmpty
+                        ? Column(
+                            children: [
+                              Text(
+                                Strings.howAreWeFeelingToday,
+                                style:
+                                    Theme.of(context).textTheme.headlineMedium,
                               ),
-                            )
-                          ],
-                        ),
-                ],
-              );
-            },
+                              const SizedBox(height: 20.0),
+                              const DefaultEmotionView(),
+                            ],
+                          )
+                        : Column(
+                            children: [
+                              _checkLatestFeeling(feelings, context),
+                              SvgPicture.asset(
+                                feelings.first.feeling,
+                                height: 207,
+                              ),
+                              SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1),
+                              OutlinedButton(
+                                style:
+                                    Theme.of(context).outlinedButtonTheme.style,
+                                onPressed: () {
+                                  AutoRouter.of(context).push(
+                                    SelectNewEmotionView(
+                                        feeling: feelings.first),
+                                  );
+                                },
+                                child: const Text(
+                                  Strings.edit,
+                                ),
+                              )
+                            ],
+                          ),
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),
@@ -163,7 +158,7 @@ class HomePage extends StatelessWidget {
     final TextStyle? style = Theme.of(context).textTheme.headlineMedium;
     if (feelings.isEmpty) {
       return Text(
-        "How are we feeling today?",
+        Strings.howAreWeFeelingToday,
         style: style,
       );
     }
@@ -179,12 +174,12 @@ class HomePage extends StatelessWidget {
 
     if (formattedLatestFeelingDate == formattedTodayDate) {
       return Text(
-        "Today you are feeling",
+        Strings.todayYouAreFeeling,
         style: style,
       );
     } else {
       return Text(
-        'Last feeling recorded',
+        Strings.lastFeelingRecorded,
         style: style,
       );
     }

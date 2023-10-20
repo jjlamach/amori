@@ -1,5 +1,6 @@
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/common.dart';
+import 'package:amori/common/strings.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,7 +44,7 @@ class _ForgottenPasswordPageState extends State<ForgottenPasswordPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Forgotten Password',
+                  Strings.forgottenPassword,
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w400,
@@ -51,7 +52,7 @@ class _ForgottenPasswordPageState extends State<ForgottenPasswordPage> {
                 ),
                 const SizedBox(height: 20.0),
                 const Text(
-                  'Provide an email and we will send you a link to reset your password.',
+                  Strings.provideEmailAndWillSend,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
@@ -63,12 +64,12 @@ class _ForgottenPasswordPageState extends State<ForgottenPasswordPage> {
                   controller: _email,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Email field required.";
+                      return Strings.emailRequired;
                     }
                     return null;
                   },
                   decoration: const InputDecoration(
-                    labelText: "Email",
+                    labelText: Strings.email,
                     labelStyle: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
@@ -82,7 +83,8 @@ class _ForgottenPasswordPageState extends State<ForgottenPasswordPage> {
                     state.whenOrNull(
                       forgotPassword: (email) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          Common.showAppSnackBar('Reset email sent to: $email'),
+                          Common.showAppSnackBar(
+                              '${Strings.resetEmailSentTo}$email'),
                         );
                         Future.delayed(const Duration(seconds: 2))
                             .then((value) => AutoRouter.of(context).pop());
@@ -101,7 +103,7 @@ class _ForgottenPasswordPageState extends State<ForgottenPasswordPage> {
                               );
                         }
                       },
-                      child: const Text('Reset Password'),
+                      child: const Text(Strings.resetPassword),
                     ),
                   ),
                 ),
@@ -112,7 +114,7 @@ class _ForgottenPasswordPageState extends State<ForgottenPasswordPage> {
                       AutoRouter.of(context).pop();
                     },
                     child: Text(
-                      'Go back',
+                      Strings.goBack,
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
                             color: Theme.of(context).colorScheme.primary,
                             fontSize: 20,

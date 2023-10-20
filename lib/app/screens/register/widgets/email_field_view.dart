@@ -1,4 +1,5 @@
 import 'package:amori/common/assets.dart';
+import 'package:amori/common/strings.dart';
 import 'package:flutter/material.dart';
 
 class EmailFieldView extends StatelessWidget {
@@ -15,11 +16,11 @@ class EmailFieldView extends StatelessWidget {
       controller: _email,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return "Email field required.";
+          return Strings.emailFieldRequired;
         } else if (value.isNotEmpty) {
           final isValid = value.isValidEmail();
           if (!isValid) {
-            return "Not a valid email.";
+            return Strings.notValidEmail;
           }
         }
         return null;
@@ -42,7 +43,7 @@ class EmailFieldView extends StatelessWidget {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        labelText: "Email",
+        labelText: Strings.email,
         labelStyle: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w400,
