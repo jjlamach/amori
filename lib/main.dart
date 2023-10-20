@@ -174,10 +174,10 @@ class AmoriApp extends StatelessWidget {
           ),
           chipTheme: ChipThemeData(
             side: const BorderSide(
-              color: Color.fromRGBO(131, 165, 255, 1),
-              width: 2.0,
+              color: Color.fromRGBO(172, 196, 254, 1),
+              width: 1.0,
             ),
-            selectedColor: const Color.fromRGBO(131, 165, 255, 1),
+            selectedColor: const Color.fromRGBO(172, 196, 254, 1),
             showCheckmark: false,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(
@@ -187,10 +187,15 @@ class AmoriApp extends StatelessWidget {
           ),
           dialogTheme: const DialogTheme(
             surfaceTintColor: Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(Dimen.borderRadiusCircular),
+              ),
+            ),
           ),
         ),
         routerConfig: _router.config(),
-        title: 'Amori',
+        title: 'Amori: Journal your feelings',
       ),
     );
   }

@@ -70,20 +70,16 @@ flutter:
   uses-material-design: true
 
   assets:
-    - lib/assets/splashscreen.jpeg
-    - lib/assets/hd_logo.png
-    - lib/assets/happy.svg
-    - lib/assets/anxious.svg
-    - lib/assets/angry.svg
-    - lib/assets/relaxed.svg
-    - lib/assets/sad.svg
-    - lib/assets/icon _pencil_.svg
-    - lib/assets/icon _microphone_.svg
-    - lib/assets/normal.svg
-    - lib/assets/husky.svg
-    - lib/assets/trash_icon.png
-    - lib/assets/questionMarkNoBG.png
-    - lib/assets/amoriLogoNoBG.png
+    - assets/happy.svg
+    - assets/anxious.svg
+    - assets/angry.svg
+    - assets/relaxed.svg
+    - assets/sad.svg
+    - assets/icon _pencil_.svg
+    - assets/icon _microphone_.svg
+    - assets/normal.svg
+    - assets/husky.svg
+    - assets/trash_icon.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

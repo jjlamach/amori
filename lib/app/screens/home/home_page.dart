@@ -78,6 +78,7 @@ class HomePage extends StatelessWidget {
                   'Log Out',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontSize: 20,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontWeight: FontWeight.bold,
                       ),
                 ),

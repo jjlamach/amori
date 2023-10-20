@@ -57,8 +57,16 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
           padding: const EdgeInsets.all(10.0),
           child: CustomScrollView(
             slivers: [
-              const SliverAppBar(
-                title: Text(
+              SliverAppBar(
+                leading: IconButton(
+                  onPressed: () {
+                    AutoRouter.of(context)
+                        .pop()
+                        .then((value) => context.read<TagCubit>().resetTag());
+                  },
+                  icon: const Icon(Icons.arrow_back_ios),
+                ),
+                title: const Text(
                   'What is making you?',
                   style: TextStyle(
                     fontSize: 25,
@@ -104,9 +112,8 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                                 .textTheme
                                 .titleSmall
                                 ?.copyWith(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .inversePrimary,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -127,14 +134,14 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                         padding: const EdgeInsets.only(left: 8.0, bottom: 20.0),
                         child: Text(
                           'Label it',
-                          style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .inversePrimary,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                              ),
                         ),
                       ),
                     ),
@@ -145,6 +152,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                     SizedBox(
                       width: double.infinity,
                       child: OutlinedButton(
+                        style: Theme.of(context).outlinedButtonTheme.style,
                         onPressed: () async {
                           final isValid = _formKey.currentState?.validate();
                           final tagSelected = context
@@ -210,13 +218,8 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                             );
                           }
                         },
-                        child: Text(
+                        child: const Text(
                           'Save',
-                          style:
-                              Theme.of(context).textTheme.labelLarge?.copyWith(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                  ),
                         ),
                       ),
                     ),

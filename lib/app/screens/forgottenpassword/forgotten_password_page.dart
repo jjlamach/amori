@@ -35,7 +35,7 @@ class _ForgottenPasswordPageState extends State<ForgottenPasswordPage> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(10.0),
           child: Form(
             key: _formKey,
             child: Column(
@@ -91,8 +91,8 @@ class _ForgottenPasswordPageState extends State<ForgottenPasswordPage> {
                   },
                   child: SizedBox(
                     width: double.infinity,
-                    height: 46,
                     child: OutlinedButton(
+                      style: Theme.of(context).outlinedButtonTheme.style,
                       onPressed: () {
                         bool? isValid = _formKey.currentState?.validate();
                         if (isValid == true && _email.text.isNotEmpty) {
@@ -101,13 +101,7 @@ class _ForgottenPasswordPageState extends State<ForgottenPasswordPage> {
                               );
                         }
                       },
-                      child: Text(
-                        'Reset password',
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),
-                      ),
+                      child: const Text('Reset Password'),
                     ),
                   ),
                 ),
