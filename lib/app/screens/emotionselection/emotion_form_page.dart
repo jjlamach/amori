@@ -59,16 +59,8 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
           padding: const EdgeInsets.all(10.0),
           child: CustomScrollView(
             slivers: [
-              SliverAppBar(
-                leading: IconButton(
-                  onPressed: () {
-                    AutoRouter.of(context)
-                        .pop()
-                        .then((value) => context.read<TagCubit>().resetTag());
-                  },
-                  icon: const Icon(Icons.arrow_back_ios),
-                ),
-                title: const Text(
+              const SliverAppBar(
+                title: Text(
                   Strings.whatIsMakingYou,
                   style: TextStyle(
                     fontSize: 25,
@@ -126,10 +118,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                       ),
                     ),
                     const SizedBox(height: 20.0),
-                    EmotionFieldView(
-                      emotion: _emotion,
-                      formKey: _formKey,
-                    ),
+                    EmotionFieldView(emotion: _emotion, formKey: _formKey),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
@@ -156,69 +145,62 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                       child: OutlinedButton(
                         style: Theme.of(context).outlinedButtonTheme.style,
                         onPressed: () async {
-                          final isValid = _formKey.currentState?.validate();
-                          final tagSelected = context
-                              .read<TagCubit>()
-                              .state
-                              .whenOrNull(
-                                family: (tagName, selected) => tagName,
-                                friends: (tagName, selected) => tagName,
-                                personal: (tagName, selected) => tagName,
-                                relationships: (tagName, selected) => tagName,
-                                work: (tagName, selected) => tagName,
-                                noTag: () => "",
-                                others: (tagName, selected) => tagName,
-                              );
-                          if ((isValid == true) &&
-                              _emotion.text.isNotEmpty &&
-                              tagSelected != null) {
-                            final uid =
-                                context.read<AuthBloc>().getUser() ?? '';
+                          final tag = context.read<TagCubit>().state.whenOrNull(
+                                    personal: (tagName, selected) => tagName,
+                                    family: (tagName, selected) => tagName,
+                                    relationships: (tagName, selected) =>
+                                        tagName,
+                                    work: (tagName, selected) => tagName,
+                                    friends: (tagName, selected) => tagName,
+                                    others: (tagName, selected) => tagName,
+                                    noTag: () => '',
+                                  ) ??
+                              '';
 
-                            /// If this is not null it means the user is gonna add a feeling from a different date
-                            /// that is not today
-                            if (widget.differentDate != null) {
-                              String differentDateId =
-                                  '${widget.differentDate?.year}-${widget.differentDate?.month.toString().padLeft(2, '0')}-${widget.differentDate?.day.toString().padLeft(2, '0')}';
-                              getIt<FeelingsCubit>().addFeeling(
-                                uid,
-                                Feeling(
-                                  feeling: widget.emotion ?? '',
-                                  feelingDescription: _emotion.text,
-                                  tag: tagSelected,
-                                  dateTime: differentDateId,
-                                ),
-                              );
-                            } else {
-                              DateTime now = DateTime.now();
-                              String dateId =
-                                  '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
-
-                              getIt<FeelingsCubit>().addFeeling(
-                                uid,
-                                Feeling(
-                                  feeling: widget.emotion ?? '',
-                                  feelingDescription: _emotion.text,
-                                  tag: tagSelected,
-                                  dateTime: dateId,
-                                ),
-                              );
-                            }
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              Common.showAppSnackBar(Strings.feelingRecorded),
+                          /// If this is not null it means the user is gonna add a feeling from a different date
+                          /// that is not today
+                          final uid = context.read<AuthBloc>().uid ?? '';
+                          if (widget.differentDate != null) {
+                            String differentDateId =
+                                '${widget.differentDate?.year}-${widget.differentDate?.month.toString().padLeft(2, '0')}-${widget.differentDate?.day.toString().padLeft(2, '0')}';
+                            getIt<FeelingsCubit>().addFeeling(
+                              uid,
+                              Feeling(
+                                feeling: widget.emotion ?? '',
+                                feelingDescription: _emotion.text,
+                                tag: tag,
+                                dateTime: differentDateId,
+                              ),
                             );
-                            Future.delayed(const Duration(seconds: 1)).then(
-                              (value) {
-                                _emotion.clear();
-                                context.read<TagCubit>().resetTag();
-                                AutoRouter.of(context).replaceAll(
-                                  [
-                                    const HomeRoute(),
-                                  ],
-                                );
-                              },
+                          } else {
+                            DateTime now = DateTime.now();
+                            String dateId =
+                                '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
+
+                            getIt<FeelingsCubit>().addFeeling(
+                              uid,
+                              Feeling(
+                                feeling: widget.emotion ?? '',
+                                feelingDescription: _emotion.text,
+                                tag: tag,
+                                dateTime: dateId,
+                              ),
                             );
                           }
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            Common.showAppSnackBar(Strings.feelingRecorded),
+                          );
+                          Future.delayed(const Duration(seconds: 1)).then(
+                            (value) {
+                              _emotion.clear();
+                              context.read<TagCubit>().resetTag();
+                              AutoRouter.of(context).replaceAll(
+                                [
+                                  const HomeRoute(),
+                                ],
+                              );
+                            },
+                          );
                         },
                         child: const Text(
                           Strings.save,

@@ -1,6 +1,5 @@
-import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
+import 'package:amori/app/screens/emotionselection/state/emotion_form_cubit.dart';
 import 'package:amori/common/dimen.dart';
-import 'package:amori/common/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,21 +27,14 @@ class EmotionFieldView extends StatelessWidget {
         key: formKey,
         child: TextFormField(
           keyboardType: TextInputType.text,
+          onChanged: (value) {
+            context.read<EmotionFormCubit>().fillingDescription(
+                  feelingDescription: value,
+                );
+          },
           validator: (value) {
-            final String? selectedTag =
-                context.read<TagCubit>().state.whenOrNull(
-                      personal: (tagName, selected) => tagName,
-                      family: (tagName, selected) => tagName,
-                      relationships: (tagName, selected) => tagName,
-                      work: (tagName, selected) => tagName,
-                      friends: (tagName, selected) => tagName,
-                      others: (tagName, selected) => tagName,
-                    );
-            if (value == null || value.isEmpty) {
-              return Strings.describeHowYouFeltToday;
-            }
-            if (selectedTag == null) {
-              return Strings.selectAtagForYourFeeling;
+            if ((value?.isEmpty == true) || value == null) {
+              return "Describe what made you feel that way.";
             }
             return null;
           },
