@@ -2,7 +2,6 @@ import 'package:amori/app/screens/register/widgets/already_have_an_account_label
 import 'package:amori/app/screens/register/widgets/confirm_password_field_view.dart';
 import 'package:amori/app/screens/register/widgets/email_field_view.dart';
 import 'package:amori/app/screens/register/widgets/password_field_view.dart';
-import 'package:amori/app/screens/register/widgets/register_label_view.dart';
 import 'package:amori/app/screens/register/widgets/username_field_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/common.dart';
@@ -80,56 +79,49 @@ class _RegisterPageState extends State<RegisterPage> {
                       password: _password,
                     ),
                     const SizedBox(height: 40.0),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 46,
-                      child: OutlinedButton(
-                        onPressed: () {
-                          final confirmPass = _confirmPassword.text;
-                          final pass = _password.text;
-                          final isFormValid = _formKey.currentState?.validate();
-                          if (isFormValid == true &&
-                              (pass == confirmPass &&
-                                  _username.text.isNotEmpty)) {
-                            context.read<AuthBloc>().add(
-                                  AuthEvent.register(
-                                    _email.text,
-                                    pass,
-                                    _username.text,
-                                  ),
-                                );
-
-                            _confirmPassword.clear();
-                            _password.clear();
-                            _email.clear();
-                            _username.clear();
-                          }
-                        },
-                        child: BlocConsumer<AuthBloc, AuthState>(
-                          listener: (context, state) {
-                            state.whenOrNull(
-                              error: (exception) =>
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                Common.showAppSnackBar(exception),
-                              ),
-                              registered: (user) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  Common.showAppSnackBar(
-                                      'You have been registered.'),
-                                );
-                                // Future.delayed(const Duration(seconds: 1)).then(
-                                //     (value) => AutoRouter.of(context)
-                                //         .replaceNamed("/index"));
-                              },
+                    BlocListener<AuthBloc, AuthState>(
+                      listener: (context, state) {
+                        state.whenOrNull(
+                          registered: (uid) {
+                            Future.delayed(const Duration(seconds: 2)).then(
+                              (value) =>
+                                  AutoRouter.of(context).replaceNamed("/index"),
                             );
                           },
-                          builder: (context, state) => state.maybeWhen(
-                            initial: () => const RegisterLabelView(),
-                            loggedOut: () => const RegisterLabelView(),
-                            registered: (user) => const SizedBox.shrink(),
-                            error: (_) => const RegisterLabelView(),
-                            orElse: () => const SizedBox.shrink(),
+                          error: (exception) =>
+                              ScaffoldMessenger.of(context).showSnackBar(
+                            Common.showAppSnackBar(exception),
                           ),
+                        );
+                      },
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 46,
+                        child: OutlinedButton(
+                          style: Theme.of(context).outlinedButtonTheme.style,
+                          onPressed: () {
+                            final confirmPass = _confirmPassword.text;
+                            final pass = _password.text;
+                            final isFormValid =
+                                _formKey.currentState?.validate();
+                            if (isFormValid == true &&
+                                (pass == confirmPass &&
+                                    _username.text.isNotEmpty)) {
+                              context.read<AuthBloc>().add(
+                                    AuthEvent.register(
+                                      _email.text,
+                                      pass,
+                                      _username.text,
+                                    ),
+                                  );
+
+                              _confirmPassword.clear();
+                              _password.clear();
+                              _email.clear();
+                              _username.clear();
+                            }
+                          },
+                          child: const Text("Register"),
                         ),
                       ),
                     ),

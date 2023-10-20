@@ -8,7 +8,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'auth_bloc.freezed.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  // User? user;
   String? uid;
   final FirebaseCloudStorageImpl _repository;
   final FirebaseAuthRepositoryImpl _authRepo;
@@ -22,7 +21,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               FirebaseAuth.instance.authStateChanges(),
               onData: (currentUser) {
                 if (currentUser != null) {
-                  // user = currentUser;
                   uid = currentUser.uid;
                   return AuthState.loggedIn(uid!);
                 } else {
