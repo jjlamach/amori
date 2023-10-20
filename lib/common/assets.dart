@@ -1,13 +1,11 @@
 class Assets {
-  static const String splashscreen = 'lib/assets/splashscreen.jpeg';
-  static const String logo2 = 'lib/assets/hd_logo.png';
   static const emotions = [
-    'lib/assets/happy.svg',
-    'lib/assets/sad.svg',
-    'lib/assets/relaxed.svg',
-    'lib/assets/anxious.svg',
-    'lib/assets/angry.svg',
-    'lib/assets/normal.svg',
+    'assets/happy.svg',
+    'assets/sad.svg',
+    'assets/relaxed.svg',
+    'assets/anxious.svg',
+    'assets/angry.svg',
+    'assets/normal.svg',
   ];
 }
 

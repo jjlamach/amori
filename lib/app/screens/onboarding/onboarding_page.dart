@@ -60,7 +60,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               ),
               Flexible(
                 flex: 3,
-                child: SvgPicture.asset('lib/assets/husky.svg'),
+                child: SvgPicture.asset('assets/husky.svg'),
               ),
             ],
           ),
