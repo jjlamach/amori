@@ -1,4 +1,3 @@
-import 'package:amori/domain/firebaseauthrepository/firebase_storage_repository_impl.dart';
 import 'package:amori/domain/firebasecloudrepository/firebase_cloud_storage_impl.dart';
 import 'package:amori/domain/models/user/amori_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,9 +9,8 @@ part 'auth_bloc.freezed.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   String? uid;
   final FirebaseCloudStorageImpl _repository;
-  final FirebaseAuthRepositoryImpl _authRepo;
 
-  AuthBloc(this._repository, this._authRepo) : super(const _Initial()) {
+  AuthBloc(this._repository) : super(const _Initial()) {
     on<AuthEvent>(
       (event, emit) async {
         await event.when(
@@ -30,32 +28,52 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             );
           },
           register: (email, password, username) async {
-            final String? uid = await _authRepo.register(email, password);
-            if (uid?.isNotEmpty == true) {
-              AmoriUser user = AmoriUser(
-                uid: uid,
-                email: email,
-                password: password,
-                displayName: username,
-              );
-              await _repository.saveUserToFireStore(user);
-              emit(const AuthState.loading());
-              emit(AuthState.registered(uid!));
+            try {
+              final credentials = await FirebaseAuth.instance
+                  .createUserWithEmailAndPassword(
+                      email: email, password: password);
+              final String? uid = credentials.user?.uid;
+              if (uid?.isNotEmpty == true) {
+                this.uid = uid;
+                AmoriUser user = AmoriUser(
+                  uid: uid,
+                  email: email,
+                  password: password,
+                  displayName: username,
+                );
+                await _repository.saveUserToFireStore(user);
+                emit(const AuthState.loading());
+                emit(AuthState.registered(uid!));
+                emit(const AuthState.initial());
+              }
+            } on FirebaseAuthException catch (e) {
+              emit(AuthState.error(e.code));
               emit(const AuthState.initial());
             }
           },
           logIn: (email, password) async {
-            final String? uid = await _authRepo.signIn(email, password);
-            if (uid?.isNotEmpty == true) {
-              this.uid = uid;
-              emit(const AuthState.loading());
-              emit(AuthState.loggedIn(this.uid!));
+            try {
+              final credentials = await FirebaseAuth.instance
+                  .signInWithEmailAndPassword(email: email, password: password);
+              final String uid = credentials.user?.uid ?? '';
+              if (uid.isNotEmpty == true) {
+                this.uid = uid;
+                emit(const AuthState.loading());
+                emit(AuthState.loggedIn(uid));
+              }
+            } on FirebaseAuthException catch (e) {
+              emit(AuthState.error(e.code));
+              emit(const AuthState.initial());
             }
           },
           logOut: () async {
-            uid = "";
-            await _authRepo.logOut();
-            emit(const AuthState.loggedOut());
+            try {
+              uid = "";
+              await FirebaseAuth.instance.signOut();
+              emit(const AuthState.loggedOut());
+            } on FirebaseAuthException catch (e) {
+              emit(AuthState.error(e.code));
+            }
           },
           forgotPassword: (String email) async {
             try {
@@ -67,7 +85,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           },
           delete: () async {
             uid = "";
-            await _authRepo.delete();
+            await FirebaseAuth.instance.currentUser?.delete();
             emit(const AuthState.deletedAccount());
           },
         );

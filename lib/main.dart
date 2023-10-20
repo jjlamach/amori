@@ -6,7 +6,6 @@ import 'package:amori/app/screens/feelings/state/feeling_cubit.dart';
 import 'package:amori/app/screens/home/state/home_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/dimen.dart';
-import 'package:amori/domain/firebaseauthrepository/firebase_storage_repository_impl.dart';
 import 'package:amori/domain/firebasecloudrepository/firebase_cloud_storage_impl.dart';
 import 'package:amori/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -48,16 +47,12 @@ void setUpServices() {
   getIt.registerSingleton<FirebaseCloudStorageImpl>(
     FirebaseCloudStorageImpl(),
   );
-  getIt.registerSingleton<FirebaseAuthRepositoryImpl>(
-    FirebaseAuthRepositoryImpl(),
-  );
   getIt.registerFactory(() => TextEditingController());
 }
 
 void setUpCubits() {
   getIt.registerSingleton<AuthBloc>(
     AuthBloc(
-      getIt.get(),
       getIt.get(),
     ),
   );

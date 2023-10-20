@@ -4,7 +4,6 @@ import 'package:amori/app/screens/register/widgets/email_field_view.dart';
 import 'package:amori/app/screens/register/widgets/password_field_view.dart';
 import 'package:amori/app/screens/register/widgets/username_field_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
-import 'package:amori/common/common.dart';
 import 'package:amori/common/strings.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -80,50 +79,28 @@ class _RegisterPageState extends State<RegisterPage> {
                       password: _password,
                     ),
                     const SizedBox(height: 40.0),
-                    BlocListener<AuthBloc, AuthState>(
-                      listener: (context, state) {
-                        state.whenOrNull(
-                          registered: (uid) {
-                            Future.delayed(const Duration(seconds: 2)).then(
-                              (value) =>
-                                  AutoRouter.of(context).replaceNamed("/index"),
-                            );
-                          },
-                          error: (exception) =>
-                              ScaffoldMessenger.of(context).showSnackBar(
-                            Common.showAppSnackBar(exception),
-                          ),
-                        );
-                      },
-                      child: SizedBox(
-                        width: double.infinity,
-                        height: 46,
-                        child: OutlinedButton(
-                          style: Theme.of(context).outlinedButtonTheme.style,
-                          onPressed: () {
-                            final confirmPass = _confirmPassword.text;
-                            final pass = _password.text;
-                            final isFormValid =
-                                _formKey.currentState?.validate();
-                            if (isFormValid == true &&
-                                (pass == confirmPass &&
-                                    _username.text.isNotEmpty)) {
-                              context.read<AuthBloc>().add(
-                                    AuthEvent.register(
-                                      _email.text,
-                                      pass,
-                                      _username.text,
-                                    ),
-                                  );
-
-                              _confirmPassword.clear();
-                              _password.clear();
-                              _email.clear();
-                              _username.clear();
-                            }
-                          },
-                          child: const Text(Strings.register),
-                        ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 46,
+                      child: OutlinedButton(
+                        style: Theme.of(context).outlinedButtonTheme.style,
+                        onPressed: () {
+                          final confirmPass = _confirmPassword.text;
+                          final pass = _password.text;
+                          final isFormValid = _formKey.currentState?.validate();
+                          if (isFormValid == true &&
+                              (pass == confirmPass &&
+                                  _username.text.isNotEmpty)) {
+                            context.read<AuthBloc>().add(
+                                  AuthEvent.register(
+                                    _email.text,
+                                    pass,
+                                    _username.text,
+                                  ),
+                                );
+                          }
+                        },
+                        child: const Text(Strings.register),
                       ),
                     ),
                     const SizedBox(height: 40.0),
