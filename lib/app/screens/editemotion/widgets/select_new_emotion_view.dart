@@ -1,9 +1,11 @@
 import 'package:amori/app/auto_route.gr.dart';
+import 'package:amori/app/screens/editemotion/state/emotion_cubit.dart';
 import 'package:amori/common/assets.dart';
 import 'package:amori/common/strings.dart';
 import 'package:amori/domain/models/feeling/feeling.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
@@ -43,9 +45,11 @@ class SelectNewEmotionView extends StatelessWidget {
                           ),
                         );
                       } else {
+                        /// Adding a feeling for a different date
                         AutoRouter.of(context).push(
                           EmotionFormRoute(
                             feelingImg: Assets.emotions[index],
+                            differentDate: differentDate,
                           ),
                         );
                       }
