@@ -1,14 +1,12 @@
 import 'package:amori/app/auto_route.gr.dart';
 import 'package:amori/app/screens/editemotion/state/emotion_cubit.dart';
 import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
-import 'package:amori/app/screens/emotionselection/widgets/emotion_field_view.dart';
-import 'package:amori/app/screens/emotionselection/widgets/tags_view.dart';
+import 'package:amori/app/screens/emotionselection/widgets/disabled_button_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/assets.dart';
-import 'package:amori/common/common.dart';
+import 'package:amori/common/dimen.dart';
 import 'package:amori/common/strings.dart';
 import 'package:amori/domain/models/feeling/feeling.dart';
-import 'package:amori/main.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,15 +14,10 @@ import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
 class EmotionFormPage extends StatefulWidget {
-  final String? emotion;
-  final String? emotionDescription;
-  final bool? isFavoriteFeeling;
-  final DateTime? differentDate;
+  final String? feelingImg;
+
   const EmotionFormPage({
-    this.emotion,
-    this.emotionDescription,
-    this.isFavoriteFeeling,
-    this.differentDate,
+    this.feelingImg,
     super.key,
   });
 
@@ -35,23 +28,45 @@ class EmotionFormPage extends StatefulWidget {
 class _EmotionFormPageState extends State<EmotionFormPage> {
   late TextEditingController _emotion;
   late GlobalKey<FormState> _formKey;
+  late String uid;
+  bool isFieldEmpty = true;
+
   @override
   void initState() {
     super.initState();
-    _emotion = TextEditingController(
-      text: widget.emotionDescription,
-    );
+
     _formKey = GlobalKey();
+
+    uid = context.read<AuthBloc>().uid ?? '';
+
+    if (context.read<FeelingsCubit>().state.firstOrNull?.feeling ==
+        widget.feelingImg) {
+      _emotion = TextEditingController(
+        text:
+            context.read<FeelingsCubit>().state.firstOrNull?.feelingDescription,
+      );
+    } else {
+      _emotion = TextEditingController();
+    }
   }
 
   @override
   void dispose() {
     super.dispose();
     _emotion.dispose();
+    _formKey.currentState?.reset();
   }
 
   @override
   Widget build(BuildContext context) {
+    final List<String> tags = [
+      "Personal",
+      "Work",
+      "Family",
+      "Relationship",
+      "Friends",
+      "Others"
+    ];
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -69,27 +84,12 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                 ),
               ),
               SliverToBoxAdapter(
-                child: Stack(
-                  children: [
-                    Center(
-                      child: SvgPicture.asset(
-                        widget.emotion ?? '',
-                        width: double.infinity,
-                        height: 200,
-                      ),
-                    ),
-                    widget.isFavoriteFeeling == true
-                        ? const Positioned(
-                            top: 30,
-                            right: 100,
-                            child: Icon(
-                              Icons.favorite,
-                              size: 40,
-                              color: Colors.red,
-                            ),
-                          )
-                        : const SizedBox.shrink(),
-                  ],
+                child: Center(
+                  child: SvgPicture.asset(
+                    widget.feelingImg ?? '',
+                    width: double.infinity,
+                    height: 200,
+                  ),
                 ),
               ),
               const SliverToBoxAdapter(child: SizedBox(height: 40.0)),
@@ -118,7 +118,41 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                       ),
                     ),
                     const SizedBox(height: 20.0),
-                    EmotionFieldView(emotion: _emotion, formKey: _formKey),
+                    Container(
+                      width: double.infinity,
+                      height: 218,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(Dimen.borderRadiusCircular),
+                        ),
+                      ),
+                      child: Form(
+                        key: _formKey,
+                        child: TextFormField(
+                          controller: _emotion,
+                          validator: (value) {
+                            final tag = context.read<TagCubit>().state;
+                            if (tag.isEmpty) {
+                              return "Select a tag";
+                            }
+                            return null;
+                          },
+                          onChanged: (value) {
+                            setState(() {
+                              if (value.isEmpty) {
+                                isFieldEmpty = true;
+                              } else {
+                                isFieldEmpty = false;
+                              }
+                            });
+                          },
+                          // controller: _emotion,
+                          keyboardType: TextInputType.text,
+                          maxLength: 250, // Counter - bottom right
+                          maxLines: 250, // Box increases height for 250
+                        ),
+                      ),
+                    ),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
@@ -136,82 +170,71 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                         ),
                       ),
                     ),
-                    const TagsView(),
-                    const SizedBox(
-                      height: 40.0,
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: OutlinedButton(
-                        style: Theme.of(context).outlinedButtonTheme.style,
-                        onPressed: () async {
-                          final tag = context.read<TagCubit>().state.whenOrNull(
-                                    personal: (tagName, selected) => tagName,
-                                    family: (tagName, selected) => tagName,
-                                    relationships: (tagName, selected) =>
-                                        tagName,
-                                    work: (tagName, selected) => tagName,
-                                    friends: (tagName, selected) => tagName,
-                                    others: (tagName, selected) => tagName,
-                                    noTag: () => '',
-                                  ) ??
-                              '';
-
-                          /// If this is not null it means the user is gonna add a feeling from a different date
-                          /// that is not today
-                          final uid = context.read<AuthBloc>().uid ?? '';
-                          if (widget.differentDate != null) {
-                            String differentDateId =
-                                '${widget.differentDate?.year}-${widget.differentDate?.month.toString().padLeft(2, '0')}-${widget.differentDate?.day.toString().padLeft(2, '0')}';
-                            getIt<FeelingsCubit>().addFeeling(
-                              uid,
-                              Feeling(
-                                feeling: widget.emotion ?? '',
-                                feelingDescription: _emotion.text,
-                                tag: tag,
-                                dateTime: differentDateId,
-                              ),
+                    BlocBuilder<TagCubit, String>(
+                      builder: (context, selectedTag) {
+                        return Wrap(
+                          spacing: 8.0,
+                          children: tags.map((tag) {
+                            return FilterChip(
+                              label: Text(tag),
+                              selected: selectedTag == tag,
+                              onSelected: (value) =>
+                                  context.read<TagCubit>().selectTag(tag),
                             );
-                          } else {
-                            DateTime now = DateTime.now();
-                            String dateId =
-                                '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
-
-                            getIt<FeelingsCubit>().addFeeling(
-                              uid,
-                              Feeling(
-                                feeling: widget.emotion ?? '',
-                                feelingDescription: _emotion.text,
-                                tag: tag,
-                                dateTime: dateId,
-                              ),
-                            );
-                          }
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            Common.showAppSnackBar(Strings.feelingRecorded),
-                          );
-                          Future.delayed(const Duration(seconds: 1)).then(
-                            (value) {
-                              _emotion.clear();
-                              context.read<TagCubit>().resetTag();
-                              AutoRouter.of(context).replaceAll(
-                                [
-                                  const HomeRoute(),
-                                ],
-                              );
-                            },
-                          );
-                        },
-                        child: const Text(
-                          Strings.save,
-                        ),
-                      ),
+                          }).toList(),
+                        );
+                      },
                     ),
                     const SizedBox(height: 40.0),
+                    isFieldEmpty == false
+                        ? _buildEnableButton(context)
+                        : const DisabledButtonView(),
                   ],
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  SizedBox _buildEnableButton(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: OutlinedButton(
+        style: Theme.of(context).outlinedButtonTheme.style,
+        onPressed: () {
+          final isValid = _formKey.currentState?.validate();
+          final tag = context.read<TagCubit>().state;
+          if (isValid == true && tag.isNotEmpty) {
+            context
+                .read<FeelingsCubit>()
+                .addFeeling(
+                    uid,
+                    Feeling(
+                      feeling: widget.feelingImg ?? '',
+                      tag: tag,
+                      isFavorite: false,
+                      dateTime: DateTime.now().formatMe(),
+                      feelingDescription: _emotion.text,
+                    ))
+                .then(
+              (value) {
+                context.read<TagCubit>().resetSelection();
+                AutoRouter.of(context).replaceAll(
+                  [
+                    const HomeRoute(),
+                  ],
+                );
+              },
+            );
+          }
+        },
+        child: const Text(
+          Strings.save,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

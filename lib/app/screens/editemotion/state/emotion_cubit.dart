@@ -62,6 +62,19 @@ class FeelingsCubit extends Cubit<List<Feeling>> {
     }
   }
 
+  Future<void> tagFeeling(String uid, String dateId, String tagName) async {
+    try {
+      userCollection.doc(uid).collection('feelings').doc(dateId).update(
+        {
+          'tag': tagName,
+        },
+      );
+      kLogger.i('Feeling was added to Favorites.');
+    } on FirebaseException catch (e) {
+      kLogger.e('Could not favorite Feeling., ${e.code}');
+    }
+  }
+
   Future<void> unfavoriteFeeling(String uid, String dateId) async {
     try {
       userCollection.doc(uid).collection('feelings').doc(dateId).update(

@@ -56,3 +56,10 @@ class Strings {
   static const String dontHaveAnAccountYet = "Don't have an account yet?";
   static const String notAvalidEmail = 'Not a valid email.';
 }
+
+enum kTags {
+  Personal,
+  Work,
+  Family,
+  Relationships,
+}

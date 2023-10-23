@@ -58,10 +58,10 @@ class FeelingsPage extends StatelessWidget {
                         initialDate: DateTime.now(),
                         firstDate: firstDate,
                         lastDate: now,
-                        onDateChanged: (value) => {
-                          context.read<FeelingCubit>().watchFeeling(uid,
-                              '${value.year}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}'),
-                          differentDate = value,
+                        onDateChanged: (value) {
+                          final date =
+                              '${value.year}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}';
+                          context.read<FeelingCubit>().watchFeeling(uid, date);
                         },
                       ),
                       const SizedBox(

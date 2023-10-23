@@ -21,3 +21,9 @@ extension EmailValidation on String {
     return emailRegex.hasMatch(this);
   }
 }
+
+extension DateFormatter on DateTime {
+  String formatMe() {
+    return '${this.year}-${this.month.toString().padLeft(2, '0')}-${this.day.toString().padLeft(2, '0')}';
+  }
+}

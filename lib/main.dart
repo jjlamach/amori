@@ -83,10 +83,13 @@ class AmoriApp extends StatelessWidget {
         BlocProvider<TagCubit>(create: (_) => getIt<TagCubit>()),
         BlocProvider<EmotionFormCubit>(
           create: (context) => getIt<EmotionFormCubit>(),
-        )
+        ),
+        BlocProvider(
+          create: (context) => getIt.get<FeelingsCubit>(),
+        ),
       ],
       child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: true,
         theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
           useMaterial3: true,

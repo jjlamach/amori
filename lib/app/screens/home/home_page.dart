@@ -20,11 +20,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final uid = context.read<AuthBloc>().getUser() ?? '';
+    context.read<FeelingsCubit>().watchFeelings(uid);
+
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => getIt.get<FeelingsCubit>()..watchFeelings(uid),
-        ),
         BlocProvider(
           create: (context) => getIt.get<HomeCubit>()..getUsername(uid),
         ),
@@ -97,14 +96,22 @@ class HomePage extends StatelessWidget {
                   children: [
                     SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                     BlocBuilder<HomeCubit, AmoriUser>(
-                      builder: (context, state) => Text(
-                        '${Strings.hello}${state.displayName}',
-                        style:
-                            Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      builder: (context, state) {
+                        if (state.uid?.isEmpty == true) {
+                          return const SizedBox.shrink();
+                        } else {
+                          return Text(
+                            '${Strings.hello}${state.displayName}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineLarge
+                                ?.copyWith(
                                   fontSize: 40.0,
                                   fontWeight: FontWeight.w700,
                                 ),
-                      ),
+                          );
+                        }
+                      },
                     ),
                     const SizedBox(height: 20.0),
                     feelings.isEmpty
@@ -135,11 +142,15 @@ class HomePage extends StatelessWidget {
                                 onPressed: () {
                                   AutoRouter.of(context).push(
                                     SelectNewEmotionView(
-                                        feeling: feelings.first),
+                                      feeling: feelings.first,
+                                    ),
                                   );
                                 },
                                 child: const Text(
                                   Strings.edit,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               )
                             ],

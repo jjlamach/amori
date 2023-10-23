@@ -45,10 +45,7 @@ abstract class $AmoriAppRouter extends _i12.RootStackRouter {
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i2.EmotionFormPage(
-          emotion: args.emotion,
-          emotionDescription: args.emotionDescription,
-          isFavoriteFeeling: args.isFavoriteFeeling,
-          differentDate: args.differentDate,
+          feelingImg: args.feelingImg,
           key: args.key,
         ),
       );
@@ -138,19 +135,13 @@ class BottomNavigationBarRoute extends _i12.PageRouteInfo<void> {
 /// [_i2.EmotionFormPage]
 class EmotionFormRoute extends _i12.PageRouteInfo<EmotionFormRouteArgs> {
   EmotionFormRoute({
-    String? emotion,
-    String? emotionDescription,
-    bool? isFavoriteFeeling,
-    DateTime? differentDate,
+    String? feelingImg,
     _i13.Key? key,
     List<_i12.PageRouteInfo>? children,
   }) : super(
           EmotionFormRoute.name,
           args: EmotionFormRouteArgs(
-            emotion: emotion,
-            emotionDescription: emotionDescription,
-            isFavoriteFeeling: isFavoriteFeeling,
-            differentDate: differentDate,
+            feelingImg: feelingImg,
             key: key,
           ),
           initialChildren: children,
@@ -164,26 +155,17 @@ class EmotionFormRoute extends _i12.PageRouteInfo<EmotionFormRouteArgs> {
 
 class EmotionFormRouteArgs {
   const EmotionFormRouteArgs({
-    this.emotion,
-    this.emotionDescription,
-    this.isFavoriteFeeling,
-    this.differentDate,
+    this.feelingImg,
     this.key,
   });
 
-  final String? emotion;
-
-  final String? emotionDescription;
-
-  final bool? isFavoriteFeeling;
-
-  final DateTime? differentDate;
+  final String? feelingImg;
 
   final _i13.Key? key;
 
   @override
   String toString() {
-    return 'EmotionFormRouteArgs{emotion: $emotion, emotionDescription: $emotionDescription, isFavoriteFeeling: $isFavoriteFeeling, differentDate: $differentDate, key: $key}';
+    return 'EmotionFormRouteArgs{feelingImg: $feelingImg, key: $key}';
   }
 }
 

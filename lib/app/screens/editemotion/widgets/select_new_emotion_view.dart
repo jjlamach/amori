@@ -39,18 +39,13 @@ class SelectNewEmotionView extends StatelessWidget {
                       if (Assets.emotions[index] == feeling?.feeling) {
                         AutoRouter.of(context).push(
                           EmotionFormRoute(
-                            emotion: Assets.emotions[index],
-                            emotionDescription: feeling?.feelingDescription,
-                            isFavoriteFeeling: feeling?.isFavorite,
+                            feelingImg: feeling?.feeling,
                           ),
                         );
                       } else {
                         AutoRouter.of(context).push(
                           EmotionFormRoute(
-                            emotion: Assets.emotions[index],
-
-                            /// Different day other than today
-                            differentDate: differentDate,
+                            feelingImg: Assets.emotions[index],
                           ),
                         );
                       }

@@ -23,7 +23,7 @@ class DefaultEmotionView extends StatelessWidget {
           onTap: () {
             AutoRouter.of(context).push(
               EmotionFormRoute(
-                emotion: Assets.emotions[index],
+                feelingImg: Assets.emotions[index],
               ),
             );
           },
