@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class Common {
   static SnackBar showAppSnackBar(String message) {
     return SnackBar(
-      duration: const Duration(seconds: 2),
+      showCloseIcon: true,
+      duration: const Duration(seconds: 4),
       backgroundColor: const Color.fromRGBO(172, 196, 254, 1),
       content: Text(
         message,

@@ -29,9 +29,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           },
           register: (email, password, username) async {
             try {
-              final credentials = await FirebaseAuth.instance
-                  .createUserWithEmailAndPassword(
-                      email: email, password: password);
+              final credentials =
+                  await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                email: email,
+                password: password,
+              );
               final String? uid = credentials.user?.uid;
               if (uid?.isNotEmpty == true) {
                 this.uid = uid;
@@ -47,7 +49,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 emit(const AuthState.initial());
               }
             } on FirebaseAuthException catch (e) {
-              emit(AuthState.error(e.code));
+              switch (e.code) {
+                case 'email-already-in-use':
+                  emit(const AuthState.error(
+                      'Email is already in use. Try a different one.'));
+                  break;
+                case 'invalid-email':
+                  emit(const AuthState.error('Invalid email'));
+                  break;
+                case 'operation-not-allowed':
+                  emit(const AuthState.error(
+                      'Your email has been disabled. Contact the developer for help.'));
+                  break;
+                case 'weak-password':
+                  emit(const AuthState.error(
+                      'Your password is not strong enough. Try a different one'));
+              }
               emit(const AuthState.initial());
             }
           },
@@ -62,7 +79,26 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 emit(AuthState.loggedIn(uid));
               }
             } on FirebaseAuthException catch (e) {
-              emit(AuthState.error(e.code));
+              switch (e.code) {
+                case 'invalid-email':
+                  emit(const AuthState.error('Invalid email.'));
+                  break;
+                case 'user-disabled':
+                  emit(
+                      const AuthState.error('This account has been disabled.'));
+                  break;
+                case 'user-not-found':
+                  emit(const AuthState.error('User could not be found.'));
+                  break;
+                case 'Wrong-password':
+                  emit(const AuthState.error('Incorrect password'));
+                  break;
+                default:
+                  emit(
+                    const AuthState.error(
+                        'Something went wrong. Please try again later.'),
+                  );
+              }
               emit(const AuthState.initial());
             }
           },
@@ -101,30 +137,43 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 @freezed
 class AuthState with _$AuthState {
   const factory AuthState.initial() = _Initial;
+
   const factory AuthState.loading() = _Loading;
+
   const factory AuthState.registered(String uid) = _Registered;
+
   const factory AuthState.loggedIn(String uid) = _LoggedIn;
+
   const factory AuthState.loggedOut() = _LoggedOut;
+
   const factory AuthState.forgotPassword(String email) =
       _ForgotPasswordEmailSent;
+
   const factory AuthState.deletedAccount() = _Deleted;
+
   const factory AuthState.error(String exception) = _Error;
+
   const factory AuthState.appStarted() = _AppStarted;
 }
 
 @freezed
 class AuthEvent with _$AuthEvent {
   const factory AuthEvent.startApp() = _StartApp;
+
   const factory AuthEvent.register(
     String email,
     String password,
     String username,
   ) = _Register;
+
   const factory AuthEvent.logIn(
     String email,
     String password,
   ) = _LogIn;
+
   const factory AuthEvent.logOut() = _LogOut;
+
   const factory AuthEvent.delete() = _Delete;
+
   const factory AuthEvent.forgotPassword(String email) = _ForgotPassword;
 }
