@@ -30,6 +30,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
   late GlobalKey<FormState> _formKey;
   late String uid;
   bool isFieldEmpty = false;
+  late bool isFavorite;
 
   @override
   void initState() {
@@ -49,6 +50,8 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
       );
       context.read<TagCubit>().selectTag(
           context.read<FeelingsCubit>().state.firstOrNull?.tag ?? '');
+      isFavorite =
+          context.read<FeelingsCubit>().state.firstOrNull?.isFavorite ?? false;
     }
 
     /// Brand new feeling
@@ -56,6 +59,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
     else {
       _emotion = TextEditingController();
       context.read<TagCubit>().resetSelection();
+      isFavorite = false;
     }
   }
 
@@ -94,10 +98,24 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
               ),
               SliverToBoxAdapter(
                 child: Center(
-                  child: SvgPicture.asset(
-                    widget.feelingImg ?? '',
-                    width: double.infinity,
-                    height: 200,
+                  child: Stack(
+                    children: [
+                      SvgPicture.asset(
+                        widget.feelingImg ?? '',
+                        width: double.infinity,
+                        height: 200,
+                      ),
+                      isFavorite == true
+                          ? const Positioned(
+                              top: 0,
+                              right: 0,
+                              child: Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                              ),
+                            )
+                          : const SizedBox.shrink(),
+                    ],
                   ),
                 ),
               ),
