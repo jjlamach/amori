@@ -29,7 +29,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
   late TextEditingController _emotion;
   late GlobalKey<FormState> _formKey;
   late String uid;
-  bool isFieldEmpty = true;
+  bool isFieldEmpty = false;
 
   @override
   void initState() {
@@ -39,14 +39,23 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
 
     uid = context.read<AuthBloc>().uid ?? '';
 
+    /// if this is true then you are looking at a recorded feeling
+    /// Display recorded data
     if (context.read<FeelingsCubit>().state.firstOrNull?.feeling ==
         widget.feelingImg) {
       _emotion = TextEditingController(
         text:
             context.read<FeelingsCubit>().state.firstOrNull?.feelingDescription,
       );
-    } else {
+      context.read<TagCubit>().selectTag(
+          context.read<FeelingsCubit>().state.firstOrNull?.tag ?? '');
+    }
+
+    /// Brand new feeling
+    /// No recorded data
+    else {
       _emotion = TextEditingController();
+      context.read<TagCubit>().resetSelection();
     }
   }
 
@@ -141,12 +150,9 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                             setState(() {
                               if (value.isEmpty) {
                                 isFieldEmpty = true;
-                              } else {
-                                isFieldEmpty = false;
                               }
                             });
                           },
-                          // controller: _emotion,
                           keyboardType: TextInputType.text,
                           maxLength: 250, // Counter - bottom right
                           maxLines: 250, // Box increases height for 250
@@ -186,7 +192,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                       },
                     ),
                     const SizedBox(height: 40.0),
-                    isFieldEmpty == false
+                    _emotion.text.isNotEmpty == true
                         ? _buildEnableButton(context)
                         : const DisabledButtonView(),
                   ],
