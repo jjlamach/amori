@@ -1,4 +1,4 @@
-# Amori: Journal your feelings
+# Amori: Journal your feelings (WIP)
 - Allows you to record feelings per day
 - Favorite any feeling you recorded
 - Delete a feeling
