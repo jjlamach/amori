@@ -95,9 +95,7 @@ class AmoriApp extends StatelessWidget {
           outlinedButtonTheme: const OutlinedButtonThemeData(
             style: ButtonStyle(
               padding: MaterialStatePropertyAll(
-                EdgeInsets.symmetric(
-                  horizontal: 100,
-                ),
+                EdgeInsets.symmetric(horizontal: 40.0, vertical: 1),
               ),
               foregroundColor: MaterialStatePropertyAll(Colors.white),
               textStyle: MaterialStatePropertyAll(

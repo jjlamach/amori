@@ -13,7 +13,7 @@ class Strings {
   static const String no = 'No';
   static const String feelingRecorded = 'Feeling recorded';
   static const String save = 'Save';
-  static const String labelIt = 'Label it';
+  static const String labelIt = 'Label it #';
   static const String writeItOut = 'Write it out';
   static const String whatIsMakingYou = 'What is making you?';
   static const String hello = 'Hello, ';

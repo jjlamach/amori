@@ -85,44 +85,44 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: CustomScrollView(
-            slivers: [
-              const SliverAppBar(
-                title: Text(
-                  Strings.whatIsMakingYou,
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w400,
-                  ),
+        body: CustomScrollView(
+          slivers: [
+            const SliverAppBar(
+              title: Text(
+                Strings.whatIsMakingYou,
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
-              SliverToBoxAdapter(
-                child: Center(
-                  child: Stack(
-                    children: [
-                      SvgPicture.asset(
-                        widget.feelingImg ?? '',
-                        width: double.infinity,
-                        height: 200,
-                      ),
-                      isFavorite == true
-                          ? const Positioned(
-                              top: 0,
-                              right: 0,
-                              child: Icon(
-                                Icons.favorite,
-                                color: Colors.red,
-                              ),
-                            )
-                          : const SizedBox.shrink(),
-                    ],
-                  ),
+            ),
+            SliverToBoxAdapter(
+              child: Center(
+                child: Stack(
+                  children: [
+                    SvgPicture.asset(
+                      widget.feelingImg ?? '',
+                      width: double.infinity,
+                      height: 200,
+                    ),
+                    isFavorite == true
+                        ? const Positioned(
+                            top: 0,
+                            right: 0,
+                            child: Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                            ),
+                          )
+                        : const SizedBox.shrink(),
+                  ],
                 ),
               ),
-              const SliverToBoxAdapter(child: SizedBox(height: 40.0)),
-              SliverToBoxAdapter(
+            ),
+            const SliverToBoxAdapter(child: SizedBox(height: 40.0)),
+            SliverPadding(
+              padding: const EdgeInsets.all(25.0),
+              sliver: SliverToBoxAdapter(
                 child: Column(
                   children: [
                     Padding(
@@ -142,7 +142,12 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                                 ),
                           ),
                           const SizedBox(width: 10.0),
-                          SvgPicture.asset(Assets.iconPencil),
+                          SvgPicture.asset(
+                            Assets.iconPencil,
+                            width: 15,
+                            height: 15,
+                            fit: BoxFit.contain,
+                          ),
                         ],
                       ),
                     ),
@@ -218,8 +223,8 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

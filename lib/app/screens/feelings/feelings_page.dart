@@ -3,6 +3,7 @@ import 'package:amori/app/screens/feelings/state/delete_feeling_cubit.dart';
 import 'package:amori/app/screens/feelings/state/feeling_cubit.dart';
 import 'package:amori/app/screens/feelings/widgets/calendar_feeling_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
+import 'package:amori/common/dimen.dart';
 import 'package:amori/common/strings.dart';
 import 'package:amori/domain/models/feeling/feeling.dart';
 import 'package:amori/main.dart';
@@ -47,78 +48,89 @@ class FeelingsPage extends StatelessWidget {
                 ),
               ),
             ),
-            SliverToBoxAdapter(
-              child: BlocBuilder<FeelingCubit, Feeling>(
-                builder: (context, state) {
-                  DateTime now = DateTime.now();
-                  DateTime firstDate = DateTime(now.year, 1, 1);
-                  return Column(
-                    children: [
-                      CalendarDatePicker(
-                        initialDate: DateTime.now(),
-                        firstDate: firstDate,
-                        lastDate: now,
-                        onDateChanged: (value) {
-                          final date =
-                              '${value.year}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}';
-                          context.read<FeelingCubit>().watchFeeling(uid, date);
-                          differentDate = value;
-                        },
-                      ),
-                      const SizedBox(
-                        height: 40.0,
-                      ),
-                      state.feeling.isEmpty
-                          ? Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 200,
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      color: const Color.fromRGBO(
-                                          226, 235, 255, 1),
-                                      borderRadius: BorderRadius.circular(40.0),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        Strings.nothingToSeeHere,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge
-                                            ?.copyWith(
-                                              fontWeight: FontWeight.w700,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .secondary,
-                                            ),
+            SliverPadding(
+              padding: Dimen.isBigScreen(context)
+                  ? const EdgeInsets.all(25.0)
+                  : const EdgeInsets.all(0.0),
+              sliver: SliverToBoxAdapter(
+                child: BlocBuilder<FeelingCubit, Feeling>(
+                  builder: (context, state) {
+                    DateTime now = DateTime.now();
+                    DateTime firstDate = DateTime(now.year, 1, 1);
+                    return Column(
+                      children: [
+                        CalendarDatePicker(
+                          initialDate: DateTime.now(),
+                          firstDate: firstDate,
+                          lastDate: now,
+                          onDateChanged: (value) {
+                            final date =
+                                '${value.year}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}';
+                            context
+                                .read<FeelingCubit>()
+                                .watchFeeling(uid, date);
+                            differentDate = value;
+                          },
+                        ),
+                        const SizedBox(
+                          height: 40.0,
+                        ),
+                        state.feeling.isEmpty
+                            ? Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 200,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: const Color.fromRGBO(
+                                            226, 235, 255, 1),
+                                        borderRadius:
+                                            BorderRadius.circular(40.0),
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          Strings.nothingToSeeHere,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge
+                                              ?.copyWith(
+                                                fontWeight: FontWeight.w700,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary,
+                                              ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 20.0),
-                                  OutlinedButton(
-                                    style: Theme.of(context)
-                                        .outlinedButtonTheme
-                                        .style,
-                                    onPressed: () {
-                                      AutoRouter.of(context).push(
-                                        SelectNewEmotionView(
-                                          differentDate: differentDate,
+                                    const SizedBox(height: 20.0),
+                                    OutlinedButton(
+                                      style: Theme.of(context)
+                                          .outlinedButtonTheme
+                                          .style,
+                                      onPressed: () {
+                                        AutoRouter.of(context).push(
+                                          SelectNewEmotionView(
+                                            differentDate: differentDate,
+                                          ),
+                                        );
+                                      },
+                                      child: const Text(
+                                        Strings.addOne,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
                                         ),
-                                      );
-                                    },
-                                    child: const Text(
-                                      Strings.addOne,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          : CalendarFeelingView(feeling: state),
-                    ],
-                  );
-                },
+                                  ],
+                                ),
+                              )
+                            : CalendarFeelingView(feeling: state),
+                      ],
+                    );
+                  },
+                ),
               ),
             ),
           ],

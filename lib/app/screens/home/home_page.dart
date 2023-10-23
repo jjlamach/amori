@@ -3,6 +3,7 @@ import 'package:amori/app/screens/editemotion/state/emotion_cubit.dart';
 import 'package:amori/app/screens/home/state/home_cubit.dart';
 import 'package:amori/app/screens/home/widgets/default_emotion_view.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
+import 'package:amori/common/dimen.dart';
 import 'package:amori/common/strings.dart';
 import 'package:amori/domain/models/feeling/feeling.dart';
 import 'package:amori/domain/models/user/amori_user.dart';
@@ -133,9 +134,12 @@ class HomePage extends StatelessWidget {
                                 feelings.first.feeling,
                                 height: 207,
                               ),
-                              SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.1),
+                              Dimen.isBigScreen(context)
+                                  ? SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.1)
+                                  : const SizedBox.shrink(),
                               OutlinedButton(
                                 style:
                                     Theme.of(context).outlinedButtonTheme.style,
@@ -146,12 +150,14 @@ class HomePage extends StatelessWidget {
                                     ),
                                   );
                                 },
-                                child: const Text(
-                                  Strings.edit,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                                child: _checkLatestFeelingForButton(
+                                    feelings, context),
+                                // child: const Text(
+                                //   Strings.edit,
+                                //   style: TextStyle(
+                                //     fontWeight: FontWeight.bold,
+                                //   ),
+                                // ),
                               )
                             ],
                           ),
@@ -191,6 +197,43 @@ class HomePage extends StatelessWidget {
     } else {
       return Text(
         Strings.lastFeelingRecorded,
+        style: style,
+      );
+    }
+  }
+
+  Text _checkLatestFeelingForButton(
+      List<Feeling> feelings, BuildContext context) {
+    final TextStyle? style = Theme.of(context).textTheme.bodyLarge?.copyWith(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        );
+    if (feelings.isEmpty) {
+      return Text(
+        "Add today’s feeling",
+        textAlign: TextAlign.center,
+        style: style,
+      );
+    }
+
+    DateTime latestFeelingDate =
+        DateTime.parse(feelings.first.dateTime).toLocal();
+    DateTime todayDate = DateTime.now();
+
+    // Format to a comparable string format
+    String formattedLatestFeelingDate =
+        DateFormat('MMMM d, y').format(latestFeelingDate);
+    String formattedTodayDate = DateFormat('MMMM d, y').format(todayDate);
+
+    if (formattedLatestFeelingDate == formattedTodayDate) {
+      return Text(
+        Strings.edit,
+        style: style,
+      );
+    } else {
+      return Text(
+        "Add today's feeling",
         style: style,
       );
     }
