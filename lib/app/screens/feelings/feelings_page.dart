@@ -111,8 +111,8 @@ class FeelingsPage extends StatelessWidget {
                                           .style,
                                       onPressed: () {
                                         AutoRouter.of(context).push(
-                                          SelectNewEmotionView(
-                                            differentDate: differentDate,
+                                          DatePickerFeelingRoute(
+                                            date: differentDate,
                                           ),
                                         );
                                       },

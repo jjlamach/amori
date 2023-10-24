@@ -52,5 +52,13 @@ class AmoriAppRouter extends $AmoriAppRouter {
           page: SelectNewEmotionView.page,
           path: '/select-new-emotion',
         ),
+        AutoRoute(
+          page: DatePickerEmotionFormRoute.page,
+          path: '/date-picker-emotion-form',
+        ),
+        AutoRoute(
+          page: DatePickerFeelingRoute.page,
+          path: '/date-picker-select-your-emotion',
+        )
       ];
 }
