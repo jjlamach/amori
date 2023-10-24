@@ -91,6 +91,7 @@ class AmoriApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(
             color: Colors.transparent,
             surfaceTintColor: Colors.transparent,
+            systemOverlayStyle: SystemUiOverlayStyle.dark,
           ),
           outlinedButtonTheme: const OutlinedButtonThemeData(
             style: ButtonStyle(
