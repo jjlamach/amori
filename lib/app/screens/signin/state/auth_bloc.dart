@@ -116,6 +116,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
               emit(AuthState.forgotPassword(email));
             } on FirebaseAuthException catch (e) {
+              switch (e.code) {
+                case 'invalid-email':
+                  emit(const AuthState.error('Invalid email'));
+                  break;
+                case 'user-not-found':
+                  emit(const AuthState.error('User not found.'));
+                  break;
+                default:
+                  emit(const AuthState.error(
+                      'Something went wrong. Please try again later'));
+              }
               emit(AuthState.error(e.code));
             }
           },
