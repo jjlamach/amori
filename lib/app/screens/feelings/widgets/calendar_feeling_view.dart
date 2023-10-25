@@ -74,10 +74,13 @@ class CalendarFeelingView extends StatelessWidget {
                 color: const Color.fromRGBO(233, 233, 233, 1),
               ),
             ),
-            child: Text(
-              feeling.feelingDescription,
-              style: Theme.of(context).textTheme.bodyMedium,
-              textDirection: TextDirection.ltr,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                feeling.feelingDescription,
+                style: Theme.of(context).textTheme.bodyMedium,
+                textDirection: TextDirection.ltr,
+              ),
             ),
           ),
         ),
