@@ -15,11 +15,9 @@ import 'package:flutter_svg/svg.dart';
 @RoutePage()
 class EmotionFormPage extends StatefulWidget {
   final String? feelingImg;
-  final DateTime? differentDate;
 
   const EmotionFormPage({
     this.feelingImg,
-    this.differentDate,
     super.key,
   });
 
@@ -37,32 +35,9 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
   @override
   void initState() {
     super.initState();
-
     _formKey = GlobalKey();
-
     uid = context.read<AuthBloc>().uid ?? '';
-
-    /// if this is true then you are looking at a recorded feeling
-    /// Display recorded data
-    if (context.read<FeelingsCubit>().state.firstOrNull?.feeling ==
-        widget.feelingImg) {
-      _emotion = TextEditingController(
-        text:
-            context.read<FeelingsCubit>().state.firstOrNull?.feelingDescription,
-      );
-      context.read<TagCubit>().selectTag(
-          context.read<FeelingsCubit>().state.firstOrNull?.tag ?? '');
-      isFavorite =
-          context.read<FeelingsCubit>().state.firstOrNull?.isFavorite ?? false;
-    }
-
-    /// Brand new feeling
-    /// No recorded data
-    else {
-      _emotion = TextEditingController();
-      context.read<TagCubit>().resetSelection();
-      isFavorite = false;
-    }
+    _emotion = TextEditingController();
   }
 
   @override
@@ -98,24 +73,10 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
             ),
             SliverToBoxAdapter(
               child: Center(
-                child: Stack(
-                  children: [
-                    SvgPicture.asset(
-                      widget.feelingImg ?? '',
-                      width: double.infinity,
-                      height: 200,
-                    ),
-                    isFavorite == true
-                        ? const Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Icon(
-                              Icons.favorite,
-                              color: Colors.red,
-                            ),
-                          )
-                        : const SizedBox.shrink(),
-                  ],
+                child: SvgPicture.asset(
+                  widget.feelingImg ?? '',
+                  width: double.infinity,
+                  height: 200,
                 ),
               ),
             ),
@@ -240,7 +201,6 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
           final isValid = _formKey.currentState?.validate();
           final tag = context.read<TagCubit>().state;
           if (isValid == true && tag.isNotEmpty) {
-            final String differentDate = widget.differentDate?.formatMe() ?? '';
             context
                 .read<FeelingsCubit>()
                 .addFeeling(
@@ -249,9 +209,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
                       feeling: widget.feelingImg ?? '',
                       tag: tag,
                       isFavorite: false,
-                      dateTime: differentDate.isNotEmpty
-                          ? differentDate
-                          : DateTime.now().formatMe(),
+                      dateTime: DateTime.now().formatMe(),
                       feelingDescription: _emotion.text,
                     ))
                 .then(

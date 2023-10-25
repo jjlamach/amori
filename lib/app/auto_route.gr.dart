@@ -71,7 +71,6 @@ abstract class $AmoriAppRouter extends _i14.RootStackRouter {
         routeData: routeData,
         child: _i4.EmotionFormPage(
           feelingImg: args.feelingImg,
-          differentDate: args.differentDate,
           key: args.key,
         ),
       );
@@ -245,14 +244,12 @@ class DatePickerFeelingRouteArgs {
 class EmotionFormRoute extends _i14.PageRouteInfo<EmotionFormRouteArgs> {
   EmotionFormRoute({
     String? feelingImg,
-    DateTime? differentDate,
     _i15.Key? key,
     List<_i14.PageRouteInfo>? children,
   }) : super(
           EmotionFormRoute.name,
           args: EmotionFormRouteArgs(
             feelingImg: feelingImg,
-            differentDate: differentDate,
             key: key,
           ),
           initialChildren: children,
@@ -267,19 +264,16 @@ class EmotionFormRoute extends _i14.PageRouteInfo<EmotionFormRouteArgs> {
 class EmotionFormRouteArgs {
   const EmotionFormRouteArgs({
     this.feelingImg,
-    this.differentDate,
     this.key,
   });
 
   final String? feelingImg;
 
-  final DateTime? differentDate;
-
   final _i15.Key? key;
 
   @override
   String toString() {
-    return 'EmotionFormRouteArgs{feelingImg: $feelingImg, differentDate: $differentDate, key: $key}';
+    return 'EmotionFormRouteArgs{feelingImg: $feelingImg, key: $key}';
   }
 }
 

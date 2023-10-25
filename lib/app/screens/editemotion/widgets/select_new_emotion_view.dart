@@ -38,39 +38,15 @@ class SelectNewEmotionView extends StatelessWidget {
                 (index) {
                   return GestureDetector(
                     onTap: () {
-                      if (Assets.emotions[index] == feeling?.feeling) {
-                        AutoRouter.of(context).push(
-                          EmotionFormRoute(
-                            feelingImg: feeling?.feeling,
-                          ),
-                        );
-                      } else {
-                        /// Adding a feeling for a different date
-                        AutoRouter.of(context).push(
-                          EmotionFormRoute(
-                            feelingImg: Assets.emotions[index],
-                            differentDate: differentDate,
-                          ),
-                        );
-                      }
+                      AutoRouter.of(context).push(
+                        EmotionFormRoute(
+                          feelingImg: Assets.emotions[index],
+                        ),
+                      );
                     },
-                    child: feeling?.feeling == Assets.emotions[index]
-                        ? Container(
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Colors.black,
-                                  width: 2,
-                                ),
-                              ),
-                            ),
-                            child: SvgPicture.asset(
-                              Assets.emotions[index],
-                            ),
-                          )
-                        : SvgPicture.asset(
-                            Assets.emotions[index],
-                          ),
+                    child: SvgPicture.asset(
+                      Assets.emotions[index],
+                    ),
                   );
                 },
               ),
