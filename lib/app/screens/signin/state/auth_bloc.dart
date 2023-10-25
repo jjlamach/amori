@@ -90,13 +90,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 case 'user-not-found':
                   emit(const AuthState.error('User could not be found.'));
                   break;
-                case 'Wrong-password':
+                case 'wrong-password':
                   emit(const AuthState.error('Incorrect password'));
                   break;
+                case 'invalid-log-in-credentials':
+                  emit(const AuthState.error('Invalid log in credentials.'));
                 default:
                   emit(
                     const AuthState.error(
-                        'Something went wrong. Please try again later.'),
+                      'Something went wrong. Please try again later.',
+                    ),
                   );
               }
               emit(const AuthState.initial());

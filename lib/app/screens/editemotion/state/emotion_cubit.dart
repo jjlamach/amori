@@ -125,7 +125,7 @@ class FeelingsCubit extends Cubit<List<Feeling>> {
   @override
   void onChange(Change<List<Feeling>> change) {
     super.onChange(change);
-    kLogger.i('$change');
+    // kLogger.i('$change');
   }
 
   @override

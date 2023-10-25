@@ -118,7 +118,6 @@ abstract class $AmoriAppRouter extends _i14.RootStackRouter {
         routeData: routeData,
         child: _i11.SelectNewEmotionView(
           feeling: args.feeling,
-          differentDate: args.differentDate,
           key: args.key,
         ),
       );
@@ -367,14 +366,12 @@ class SelectNewEmotionView
     extends _i14.PageRouteInfo<SelectNewEmotionViewArgs> {
   SelectNewEmotionView({
     _i16.Feeling? feeling,
-    DateTime? differentDate,
     _i15.Key? key,
     List<_i14.PageRouteInfo>? children,
   }) : super(
           SelectNewEmotionView.name,
           args: SelectNewEmotionViewArgs(
             feeling: feeling,
-            differentDate: differentDate,
             key: key,
           ),
           initialChildren: children,
@@ -389,19 +386,16 @@ class SelectNewEmotionView
 class SelectNewEmotionViewArgs {
   const SelectNewEmotionViewArgs({
     this.feeling,
-    this.differentDate,
     this.key,
   });
 
   final _i16.Feeling? feeling;
 
-  final DateTime? differentDate;
-
   final _i15.Key? key;
 
   @override
   String toString() {
-    return 'SelectNewEmotionViewArgs{feeling: $feeling, differentDate: $differentDate, key: $key}';
+    return 'SelectNewEmotionViewArgs{feeling: $feeling, key: $key}';
   }
 }
 

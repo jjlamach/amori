@@ -1,20 +1,17 @@
 import 'package:amori/app/auto_route.gr.dart';
-import 'package:amori/app/screens/editemotion/state/emotion_cubit.dart';
 import 'package:amori/common/assets.dart';
 import 'package:amori/common/strings.dart';
 import 'package:amori/domain/models/feeling/feeling.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
 class SelectNewEmotionView extends StatelessWidget {
   final Feeling? feeling;
-  final DateTime? differentDate;
+
   const SelectNewEmotionView({
     this.feeling,
-    this.differentDate,
     super.key,
   });
 
@@ -44,9 +41,24 @@ class SelectNewEmotionView extends StatelessWidget {
                         ),
                       );
                     },
-                    child: SvgPicture.asset(
-                      Assets.emotions[index],
-                    ),
+                    child: feeling?.feeling == Assets.emotions[index] &&
+                            feeling?.dateTime == DateTime.now().formatMe()
+                        ? Container(
+                            decoration: const BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.black,
+                                  width: 2.0,
+                                ),
+                              ),
+                            ),
+                            child: SvgPicture.asset(
+                              Assets.emotions[index],
+                            ),
+                          )
+                        : SvgPicture.asset(
+                            Assets.emotions[index],
+                          ),
                   );
                 },
               ),

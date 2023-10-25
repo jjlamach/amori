@@ -33,38 +33,6 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Scaffold(
           appBar: AppBar(
-            // leading: BlocBuilder<FeelingsCubit, List<Feeling>>(
-            //   builder: (context, state) {
-            //     if (state.isEmpty) {
-            //       return const SizedBox.shrink();
-            //     } else {
-            //       final feeling =
-            //           state.isNotEmpty ? state.first.isFavorite : false;
-            //       if (feeling) {
-            //         return IconButton(
-            //           onPressed: () {
-            //             context.read<FeelingsCubit>().unfavoriteFeeling(
-            //                   uid,
-            //                   state.first.dateTime,
-            //                 );
-            //           },
-            //           icon: const Icon(Icons.favorite,
-            //               color: Colors.red, size: 40),
-            //         );
-            //       } else {
-            //         return IconButton(
-            //           onPressed: () {
-            //             context.read<FeelingsCubit>().favoriteFeeling(
-            //                   uid,
-            //                   state.first.dateTime,
-            //                 );
-            //           },
-            //           icon: const Icon(Icons.favorite_border, size: 40),
-            //         );
-            //       }
-            //     }
-            //   },
-            // ),
             actions: [
               BlocListener<AuthBloc, AuthState>(
                 listener: (context, state) {
@@ -151,13 +119,9 @@ class HomePage extends StatelessWidget {
                                   );
                                 },
                                 child: _checkLatestFeelingForButton(
-                                    feelings, context),
-                                // child: const Text(
-                                //   Strings.edit,
-                                //   style: TextStyle(
-                                //     fontWeight: FontWeight.bold,
-                                //   ),
-                                // ),
+                                  feelings,
+                                  context,
+                                ),
                               )
                             ],
                           ),

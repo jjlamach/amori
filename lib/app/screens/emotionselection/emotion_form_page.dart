@@ -38,7 +38,25 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
     super.initState();
     _formKey = GlobalKey();
     uid = context.read<AuthBloc>().uid ?? '';
-    _emotion = TextEditingController();
+
+    final latestFeeling = context.read<FeelingsCubit>().state.firstOrNull;
+    final today = DateTime.now().formatMe();
+    final lastFeelingRecorded =
+        context.read<FeelingsCubit>().state.firstOrNull?.dateTime;
+
+    final haveEqualDates = today == lastFeelingRecorded;
+    final haveEqualImages = latestFeeling?.feeling == widget.feelingImg;
+
+    /// This is todays feeling. Show details
+    if (haveEqualDates && haveEqualImages) {
+      _emotion = TextEditingController(
+        text: latestFeeling?.feelingDescription,
+      );
+      context.read<TagCubit>().selectTag(latestFeeling?.tag ?? '');
+    } else {
+      /// This is not todays feeling. Dont show anything
+      _emotion = TextEditingController();
+    }
   }
 
   @override
