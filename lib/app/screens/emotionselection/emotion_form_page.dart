@@ -2,6 +2,7 @@ import 'package:amori/app/auto_route.gr.dart';
 import 'package:amori/app/screens/editemotion/state/emotion_cubit.dart';
 import 'package:amori/app/screens/emotionselection/state/tags_cubit.dart';
 import 'package:amori/app/screens/emotionselection/widgets/disabled_button_view.dart';
+import 'package:amori/app/screens/favorites/state/favorite_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/assets.dart';
 import 'package:amori/common/dimen.dart';
@@ -30,7 +31,7 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
   late GlobalKey<FormState> _formKey;
   late String uid;
   bool isFieldEmpty = false;
-  late bool isFavorite;
+  bool isFavorite = false;
 
   @override
   void initState() {
@@ -62,8 +63,15 @@ class _EmotionFormPageState extends State<EmotionFormPage> {
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
-            const SliverAppBar(
-              title: Text(
+            SliverAppBar(
+              leading: IconButton(
+                onPressed: () {
+                  AutoRouter.of(context).pop().then(
+                      (value) => context.read<TagCubit>().resetSelection());
+                },
+                icon: const Icon(Icons.arrow_back_ios),
+              ),
+              title: const Text(
                 Strings.whatIsMakingYou,
                 style: TextStyle(
                   fontSize: 25,

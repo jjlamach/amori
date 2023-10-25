@@ -65,8 +65,16 @@ class _DatePickerEmotionFormPageState extends State<DatePickerEmotionFormPage> {
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
-            const SliverAppBar(
-              title: Text(
+            SliverAppBar(
+              leading: IconButton(
+                onPressed: () {
+                  AutoRouter.of(context).pop().then(
+                        (value) => context.read<TagCubit>().resetSelection(),
+                      );
+                },
+                icon: const Icon(Icons.arrow_back_ios),
+              ),
+              title: const Text(
                 Strings.whatIsMakingYou,
                 style: TextStyle(
                   fontSize: 25,

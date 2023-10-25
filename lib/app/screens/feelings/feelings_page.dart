@@ -112,7 +112,8 @@ class FeelingsPage extends StatelessWidget {
                                       onPressed: () {
                                         AutoRouter.of(context).push(
                                           DatePickerFeelingRoute(
-                                            date: differentDate,
+                                            date:
+                                                differentDate ?? DateTime.now(),
                                           ),
                                         );
                                       },
