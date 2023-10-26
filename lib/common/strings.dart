@@ -55,6 +55,7 @@ class Strings {
   static const String username = 'Username';
   static const String dontHaveAnAccountYet = "Don't have an account yet?";
   static const String notAvalidEmail = 'Not a valid email.';
+  static const String appTitle = 'Amori: Journal your feelings';
 }
 
 enum kTags {

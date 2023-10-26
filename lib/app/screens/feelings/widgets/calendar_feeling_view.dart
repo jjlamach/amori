@@ -136,19 +136,10 @@ class CalendarFeelingView extends StatelessWidget {
                     ],
                   ),
                 ),
-                child: Container(
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color.fromRGBO(255, 226, 226, 1),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Image.asset(
-                      Assets.trashIcon,
-                      width: 31,
-                      height: 34,
-                    ),
-                  ),
+                child: const Icon(
+                  Icons.delete_forever_rounded,
+                  size: 40,
+                  color: Colors.grey,
                 ),
               ),
               const SizedBox(width: 20),

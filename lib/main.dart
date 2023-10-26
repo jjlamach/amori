@@ -7,6 +7,7 @@ import 'package:amori/app/screens/feelings/state/feeling_cubit.dart';
 import 'package:amori/app/screens/home/state/home_cubit.dart';
 import 'package:amori/app/screens/signin/state/auth_bloc.dart';
 import 'package:amori/common/dimen.dart';
+import 'package:amori/common/strings.dart';
 import 'package:amori/domain/firebasecloudrepository/firebase_cloud_storage_impl.dart';
 import 'package:amori/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -193,7 +194,7 @@ class AmoriApp extends StatelessWidget {
           ),
         ),
         routerConfig: _router.config(),
-        title: 'Amori: Journal your feelings',
+        title: Strings.appTitle,
       ),
     );
   }
